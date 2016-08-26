@@ -1,6 +1,5 @@
 \documentclass{hw}
 \usepackage[version=3]{mhchem}
-\usepackage{mychemistry}
 
 \author{J.R. Powers-Luhn}
 \date{2016/09/01}
@@ -22,9 +21,9 @@
 
 \problem{2-4}
 	A fission product of very considerable importance in thermal reactor operation is $ \ce{^{135}Xe}$, which has an enormous thermal absorption cross section of $ 2*10^6 b $. This nuclide can be produced either directly as a fission product or by beta decay of $ \ce{^{135}I} $, as indicated by the radioactive chains below:
-	\begin{rxn}
-		\ce{^{135}I} \arrow \ce{^{135}Xe}
-	\end{rxn}
+%	\begin{rxn}
+%		\ce{^{135}I} \arrow \ce{^{135}Xe}
+%	\end{rxn}
 	Write the rate equations describing the concentration of $ \ce{^{135}I} $ and $ \ce{^{135}Xe} $ in a nuclear reactor. Then assuming a constant production rate of these isotopes from fission and transmutation rate by neutron capture, determine the steady-state or saturated concentration of $ \ce{^{135}Xe} $.
 \solution
 	Holy hell that was really hard! Like, just typing it!
@@ -42,6 +41,14 @@
 \problem{2-10}
 	How many mean free paths thick must a shield be designed in order to attenuate an incident neutron beam by a factor of 1000?
 \solution
-	From \textit{2-27}
+	We know that for every mean free path, $ \Sigma $, travelled, the incident beam attenuates by a factor of $ \frac{1}{e} $. Therefore:
+	
+	\begin{align}
+		\left(\frac{1}{e}\right)^n &= \frac{1}{1000} \\
+		e^{-n} &= 1000^{-1} \\
+		e^n &= 1000 \\
+		n &= ln(1000) \\
+		&= 6.91
+	\end{align}
 
 \end{document}
