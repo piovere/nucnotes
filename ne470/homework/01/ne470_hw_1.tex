@@ -33,7 +33,7 @@
 \solution
 	From \textit{Duderstadt} Appendix A, $ \Sigma_t = 104cm^-1$ for Boron.
 	
-	\begin{align}
+	\begin{align*}
 		\left(\frac{1}{e}\right)^n &= \frac{1}{1000} \\
 		e^{-n} &= 1000^{-1} \\
 		e^n &= 1000 \\
@@ -41,7 +41,7 @@
 		\intertext{Dividing this by the macroscopic cross section $ \Sigma_t $ gives:}
 		\frac{n}{\Sigma_t} &= \frac{ln(1000)}{\Sigma_t} \\
 		&= 0.0664 cm
-	\end{align}
+	\end{align*}
 
 \problem{2-8}
 	A free neutron is unstable against beta decay with a half-life of 11.7m. Determine the relative probability that a neutron will undergo beta-decay before being absorbed in an infinite medium. Estimate this probability for a thermal neutron in $ \ce{H_{2}O} $.
@@ -50,14 +50,14 @@
 	\begin{align*}
 		P_{absorption}\left(x\right) &= \Sigma_a\int_0^x e^{-\Sigma_a x}dx \\
 		&= \sigma_a N \int_0^x e^{-\sigma_a x}dx
-		\intertext{Assume that the incident particle is a thermal neutron with speed $ \dot{x}=2.2*10^5cm/s $. In this case, the neutron should travel a distance of \dot{x}\lambda before decaying:}
+		\intertext{Assume that the incident particle is a thermal neutron with speed \text{$ \dot{x}=2.2*10^5cm/s $}. In this case, the neutron should travel a distance of $ \dot{x}\lambda $ before decaying:}
 		&= \sigma_a N \int_0^{\dot{x}\lambda} e^{-\sigma_a x}dx \\
 		&= 1-e^{-\sigma_a N \dot{x} \lambda}
 		\intertext{The probability of decaying instead of being absorbed (assuming that these are the only two interaction modes:}
-		1 &= P_absorption + P_decay \\
-		P_decay &= 1-P_absorption \\
+		1 &= P_{absorption} + P_{decay} \\
+		P_{decay} &= 1-P_{absorption} \\
 		&= e^{-\sigma_a N \dot{x} \lambda}
-		\intertext{Substituting our speed $ \dot{x}=2.2*10^5cm/s $, half life $ \lambda=11.7m=702s $, and $ \sigma_a N=0.022 $ for a thermal neutron in H_{2}O:}
+		\intertext{Substituting our speed \text{$ \dot{x}=2.2*10^5cm/s $}, half life $ \lambda=11.7m=702s $, and $ \sigma_a N=0.022 $ for a thermal neutron in $ H_{2} $O:}
 		&= 2.11*10^{-1475594}
 	\end{align*}
 	
@@ -68,12 +68,12 @@
 \solution
 	We know that for every mean free path, $ \Sigma $, travelled, the incident beam attenuates by a factor of $ \frac{1}{e} $. Therefore:
 	
-	\begin{align}
+	\begin{align*}
 		\left(\frac{1}{e}\right)^n &= \frac{1}{1000} \\
 		e^{-n} &= 1000^{-1} \\
 		e^n &= 1000 \\
 		n &= ln(1000) \\
 		&= 6.91
-	\end{align}
+	\end{align*}
 
 \end{document}
