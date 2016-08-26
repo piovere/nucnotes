@@ -31,7 +31,17 @@
 \problem{2-6}
 	Boron is a common material used to shield against thermal neutrons. Estimate the thickness of boron required to attenuate an incident thermal neutron beam to 0.1\% of its intensity. (Use the thermal cross section data in Appendix A.)
 \solution
-	This one was quite a bit easier.
+	From \textit{Duderstadt} Appendix A, $ \Sigma_t = 104cm^-1$ for Boron.
+	
+	\begin{align}
+		\left(\frac{1}{e}\right)^n &= \frac{1}{1000} \\
+		e^{-n} &= 1000^{-1} \\
+		e^n &= 1000 \\
+		n &= ln(1000) \\
+		\intertext{Dividing this by the macroscopic cross section $ \Sigma_t $ gives:}
+		\frac{n}{\Sigma_t} &= \fract{ln(1000)}{\Sigma_t} \\
+		&= 0.0664 cm
+	\end{align}
 
 \problem{2-8}
 	A free neutron is unstable against beta decay with a half-life of 11.7m. Determine the relative probability that a neutron will undergo beta-decay before being absorbed in an infinite medium. Estimate this probability for a thermal neutron in $ \ce{H_{2}O} $.
