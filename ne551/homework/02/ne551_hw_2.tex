@@ -1,34 +1,72 @@
 \documentclass{hw}
 \usepackage[version=4]{mhchem}
+\usepackage{cancel}
 
 \author{J.R. Powers-Luhn}
-\date{2016/08/30}
+\date{2016/09/02}
 \title{Homework \#2}
 
 \begin{document}
+
+% \maketitle
 
 \problem{1}
 	Using both relativistic and non-relativistic kinematics, calculate the kinetic energy of a proton with $\beta$=0.001, 0.01, 0.1, 0.2 and 0.5. Estimate where you start seeing a significant ($ >$5\%) difference between the relativistic and non-relativistic energies.
 \solution
 	When approaching this relativistically, we know that $ E=\gamma m c^2 $, $ \gamma = \frac{1}{\sqrt{1-\beta^2}} $, and $E=T+mc^2$. 
 
-	\begin{align}
+	\begin{align*}
 		E &= T + mc^2\\
 		T &= E - mc^2\\
 		&= \gamma mc^2 - mc^2\\
-		&= (\gamma - 1)mc^2
-	\end{align}
+		&= (\gamma - 1)mc^2 \\
+		&= \left(\frac{1}{\sqrt{1-\beta^2}}-1\right)mc^2\numberthis \label{relativistic}
+	\end{align*}
 
 	When considering this from a classical perspective, we know that: 
 
-	\begin{align}
+	\begin{align*}
 		T &= \frac{1}{2}mv^2\\
 		&= \frac{1}{2}mc^2\frac{v^2}{c^2}\\
-		&= \frac{1}{2}\beta^2 mc^2
-	\end{align}
+		&= \frac{1}{2}\beta^2 mc^2 \numberthis \label{nonrelativistic}
+	\end{align*}
+
+	Since the mass of a proton is $ m_{\proton}=938.272MeV $, the nonrelativistic and relativistic kinetic energies are captured in Table \ref{table:betatable}.
+
+	\begin{center}
+		\begin{table}[h]
+		\centering
+			\begin{tabular}{ |c|c|c| }
+				\hline
+				$ \beta $ & $ T_{classical} $ & $ T_{relativistic} $ \\
+				& \eqref{nonrelativistic} & \eqref{relativistic} \\
+				\hline
+				0.001 & 2 & 3 \\
+				0.01 & 4 & 5 \\
+				0.1 & 6 & 7 \\
+				0.2 & 9 & 9 \\
+				0.5 & 0 & 1 \\
+				\hline
+			\end{tabular}
+			\caption {Classical and Relativistic Kinetic Energies of $ \proton $ as a function of $ \beta $}
+			\label{table:betatable}
+		\end{table}
+	\end{center}
+
+	To determine at what energy the error exceeds 5\%, 
+
+	\begin{align*}
+		0.05 &> \frac{T_{relativistic} - T_{classical}}{T_{relativistic}} \\
+		&> \frac{\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)\cancel{mc^2} - \frac{1}{2}\beta^2 \cancel{mc^2}}{\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)\cancel{mc^2}} \\
+		&> 1 - \frac{\beta^2}{2\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)} \\
+		\frac{\beta^2}{2\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)} &> 0.95 \\
+		\beta^2 &> 1.90*\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)
+		\intertext{Solving this for $ \beta $ gives:}
+		\beta &> 0.257
+	\end{align*}
 
 \problem{2}
-	Using relativistic kinematics, calculate the neutron threshold energy for: \ce{n + ^{12}C -> n + 3\alpha (\alpha=^{4}He)}
+	Using relativistic kinematics, calculate the neutron threshold energy for: \ce{n + ^{12}C -> n + 3\alpha, (\alpha=^{4}He)}
 \solution
 	Got a little chemistry here. Glad I loaded that mchem package.
 
