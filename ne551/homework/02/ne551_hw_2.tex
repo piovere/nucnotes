@@ -1,5 +1,6 @@
 \documentclass{hw}
 \usepackage[version=4]{mhchem}
+\usepackage{amsmath}
 \usepackage{cancel}
 
 \author{J.R. Powers-Luhn}
@@ -60,8 +61,8 @@
 		&> \frac{\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)\cancel{mc^2} - \frac{1}{2}\beta^2 \cancel{mc^2}}{\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)\cancel{mc^2}} \\
 		&> 1 - \frac{\beta^2}{2\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)} \\
 		\frac{\beta^2}{2\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)} &> 0.95 \\
-		\beta^2 &> 1.90*\left(\frac{1}{\sqrt{1-\beta^2}}-1\right)
-		\intertext{Solving this for $ \beta $ gives:}
+		\beta^2 &> 1.90*\left(\frac{1}{\sqrt{1-\beta^2}}-1\right) \\
+		\intertext{Solving this for $ \beta $ gives:} \\
 		\beta &> 0.257
 	\end{align*}
 
@@ -73,10 +74,10 @@
 	Initial state:
 	
 	\begin{align*}
-		\left(\vec{p}, i\left(E_n + E_{\ce{^{12}C}}\right)\right)
-		\intertext{Assuming the $ \ce{^{12}C} $ is at rest, $ E_{\ce{^{12}C}} = m\crossout{c^2} $ (for c=1)}
-		\left(\vec{p_n}, i(E_n + m_{\ce{^{12}C}}\right)\right)^2 &= \left({p_n}^2 - \left({E_n}^2 +{m_{\ce{^{12}C}}}^2 + 2m_{\ce{^{12}C}}E_n\right)\right) \\
-		\left(\cancel{{p_n}^2} - \left({p_n}^2 + m_\ce{^{12}C} +
+		\left(\vec{p}, i \left( E_n + E_{\ce{^{12}C}} \right) \right)
+		\intertext{Assuming the $ \ce{^{12}C} $ is at rest, $ E_{\ce{^{12}C}} = m\cancel{c^2} $ (for c=1)}
+		\left(\vec{p_n}, i \left( E_n + m_{\ce{^{12}C}}\right)\right)^2 &= \left({p_n}^2 - \left({E_n}^2 +{m_{\ce{^{12}C}}}^2 + 2m_{\ce{^{12}C}}E_n\right)\right) \\
+		\left(\cancel{{p_n}^2} - \left( \cancel{{p_n}^2} + m_{\ce{^{12}C}} + \right)\right)
 		% need to go back to the drawing board and fix this sign error
 	\end{align*}
 
