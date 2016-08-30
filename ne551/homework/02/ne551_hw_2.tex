@@ -11,7 +11,7 @@
 
 % \maketitle
 
-\problem{1}
+\problem{}
 	Using both relativistic and non-relativistic kinematics, calculate the kinetic energy of a proton with $\beta$=0.001, 0.01, 0.1, 0.2 and 0.5. Estimate where you start seeing a significant ($ >$5\%) difference between the relativistic and non-relativistic energies.
 \solution
 	When approaching this relativistically, we know that $ E=\gamma m c^2 $, $ \gamma = \frac{1}{\sqrt{1-\beta^2}} $, and $E=T+mc^2$. 
@@ -66,7 +66,7 @@
 		\beta &> 0.257
 	\end{align*}
 
-\problem{2}
+\problem{}
 	Using relativistic kinematics, calculate the neutron threshold energy for: \ce{n + ^{12}C -> n + 3\alpha, (\alpha=^{4}He)}
 \solution
 	Specify a 4-momentum vector $ \left(\vec{p}, i\left(E_n + E_{\ce{^{12}C}}\right)\right) $.
@@ -77,8 +77,22 @@
 		\left(\vec{p}, i \left( E_n + E_{\ce{^{12}C}} \right) \right)
 		\intertext{Assuming the $ \ce{^{12}C} $ is at rest, $ E_{\ce{^{12}C}} = m\cancel{c^2} $ (for c=1)}
 		\left(\vec{p_n}, i \left( E_n + m_{\ce{^{12}C}}\right)\right)^2 &= \left({p_n}^2 - \left({E_n}^2 +{m_{\ce{^{12}C}}}^2 + 2m_{\ce{^{12}C}}E_n\right)\right) \\
-		\left(\cancel{{p_n}^2} - \left( \cancel{{p_n}^2} + m_{\ce{^{12}C}} + \right)\right)
-		% need to go back to the drawing board and fix this sign error
+		&= \cancel{p_n^2} - \left( \cancel{p_n^2} + m_n^2 + m_{\ce{^{12}C}}^2 + 2 E_n m_{\ce{^{12}C}} \right) \\
+	\end{align*}
+
+	Final state (all particles at rest in CM frame):
+
+	\[
+	\left( \cancel{\vec{p}}, i\left(m_n + 3m_{\alpha}\right) \right)^2 = -\left( m_n^2 +9m_{\alpha}^2 + 6m_n M_{\alpha} \right)
+	\]
+
+	Since 4-momentum is conserved, we can set these as equal to each other:
+
+	\begin{align*}
+		\cancel{m_n^2} + m_{\ce{^{12}C}}^2 + 2 E_n m_{\ce{^{12}C}} &= \cancel{m_n^2} + 9m_{\alpha}^2 + 6m_n M_{\alpha} \\
+		m_{\ce{^{12}C}}^2 + 2 E_n m_{\ce{^{12}C}} &= 9m_{\alpha}^2 + 6m_n M_{\alpha} \\
+		E_n &= \frac{9 m_{\alpha}^2 + 6 m_n m_{\alpha} - m_{\ce{^{12}C}}^2}{2 m_{\ce{^{12}C}}^2} \\
+		&= 944.15 MeV
 	\end{align*}
 
 \end{document}
