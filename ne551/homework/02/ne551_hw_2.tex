@@ -2,6 +2,7 @@
 \usepackage[version=4]{mhchem}
 \usepackage{amsmath}
 \usepackage{cancel}
+\usepackage{nuc}
 
 \author{J.R. Powers-Luhn}
 \date{2016/09/02}
@@ -70,29 +71,42 @@
 	Using relativistic kinematics, calculate the neutron threshold energy for: \ce{n + ^{12}C -> n + 3\alpha, (\alpha=^{4}He)}
 \solution
 	Specify a 4-momentum vector $ \left(\vec{p}, i\left(E_n + E_{\ce{^{12}C}}\right)\right) $.
-	
+	\\
 	Initial state:
-	
 	\begin{align*}
 		\left(\vec{p}, i \left( E_n + E_{\ce{^{12}C}} \right) \right)
 		\intertext{Assuming the $ \ce{^{12}C} $ is at rest, $ E_{\ce{^{12}C}} = m\cancel{c^2} $ (for c=1)}
 		\left(\vec{p_n}, i \left( E_n + m_{\ce{^{12}C}}\right)\right)^2 &= \left({p_n}^2 - \left({E_n}^2 +{m_{\ce{^{12}C}}}^2 + 2m_{\ce{^{12}C}}E_n\right)\right) \\
 		&= \cancel{p_n^2} - \left( \cancel{p_n^2} + m_n^2 + m_{\ce{^{12}C}}^2 + 2 E_n m_{\ce{^{12}C}} \right) \\
-	\end{align*}
-
-	Final state (all particles at rest in CM frame):
-
+	\end{align*} \\	Final state (all particles at rest in CM frame):
 	\[
 	\left( \cancel{\vec{p}}, i\left(m_n + 3m_{\alpha}\right) \right)^2 = -\left( m_n^2 +9m_{\alpha}^2 + 6m_n M_{\alpha} \right)
 	\]
 
 	Since 4-momentum is conserved, we can set these as equal to each other:
-
 	\begin{align*}
 		\cancel{m_n^2} + m_{\ce{^{12}C}}^2 + 2 E_n m_{\ce{^{12}C}} &= \cancel{m_n^2} + 9m_{\alpha}^2 + 6m_n M_{\alpha} \\
 		m_{\ce{^{12}C}}^2 + 2 E_n m_{\ce{^{12}C}} &= 9m_{\alpha}^2 + 6m_n M_{\alpha} \\
-		E_n &= \frac{9 m_{\alpha}^2 + 6 m_n m_{\alpha} - m_{\ce{^{12}C}}^2}{2 m_{\ce{^{12}C}}^2} \\
-		&= 944.15 MeV
+		E_n &= \frac{9 m_{\alpha}^2 + 6 m_n m_{\alpha} - m_{\ce{^{12}C}}^2}{2 m_{\ce{^{12}C}}^2}
 	\end{align*}
+	Substituting the values from Table \ref{table:particlemasses} for the various masses:
+	\begin{center}
+		\begin{table}[h]
+			\centering
+				\begin{tabular}{ |c|c| }
+					\hline
+					Particle & Mass (MeV) \\
+					\hline
+					$ \He{4} $  & 3728.4 \\
+					$ \C{12} $  & 11177.9 \\
+					$ \neutron $ & 931.494 \\
+					\hline
+				\end{tabular}
+				\caption{Masses of particles in collision\label{table:particlemasses}}
+		\end{table}
+	\end{center}
+	\[ E_n = 947.485 MeV \]
+	This is the total energy of the $ \neutron $; subtracting the rest mass of the neutron from Table \ref{table:particlemasses}, we get:
+	\[ T_n = 7.884 MeV \]
 
 \end{document}
