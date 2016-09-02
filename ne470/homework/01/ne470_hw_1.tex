@@ -1,5 +1,8 @@
 \documentclass{hw}
 \usepackage[version=3]{mhchem}
+\usepackage{nuc}
+\usepackage{graphicx}
+\graphicspath{ {images/}}
 
 \author{J.R. Powers-Luhn}
 \date{2016/09/01}
@@ -24,15 +27,36 @@
 %	\begin{rxn}
 %		\ce{^{135}I} \arrow \ce{^{135}Xe}
 %	\end{rxn}
+	
+	\includegraphics{470-1-2}
+	
 	Write the rate equations describing the concentration of $ \ce{^{135}I} $ and $ \ce{^{135}Xe} $ in a nuclear reactor. Then assuming a constant production rate of these isotopes from fission and transmutation rate by neutron capture, determine the steady-state or saturated concentration of $ \ce{^{135}Xe} $.
 \solution
 	$\ce{^{135}I}$ has one production path (production as a fission daughter) and one decay path ($\beta$ decay into $\ce{^{135}I}$). The rate equation is:
-	\dot{N_{\ce{^{135}I}}} = \phi\Sigma_{fission}\gamma_{\ce{^{135}I}}-\lambda_{\ce{^{135}I}}N_{\ce{^{135}I}}
+	\[ \dot{N}_{\ce{^{135}I}} = \phi\Sigma_{fission}\gamma_{\ce{^{135}I}}-\lambda_{\ce{^{135}I}}N_{\ce{^{135}I}} \]
 
 	$\ce{^{135}Xe}$ is also produced by fission, as well as by the $\beta$ decay of $\ce{^{135}I}$. It is removed by $\beta$ decay as well as by neutron absorption:
-	\dot{N_{\ce{^{135}Xe}}} = \phi\Sigma_{fission}\gamma_{\ce{^{135}Xe}}+\lambda_{\ce{^{135}I}}N_{\ce{^{135}I}}-\lambda_{\ce{^{135}Xe}}N_{\ce{^{135}Xe}}-\sigma_{a} \phi N_{\ce{^{135}Xe}}
+	\[ \dot{N}_{\ce{^{135}Xe}} = \phi\Sigma_{fission}\gamma_{\ce{^{135}Xe}}+\lambda_{\ce{^{135}I}}N_{\ce{^{135}I}}-\lambda_{\ce{^{135}Xe}}N_{\ce{^{135}Xe}}-\sigma_{a} \phi N_{\ce{^{135}Xe}} \]
 
-	............FILL IN STEADY STATE EQUATIONS HERE..................
+	In steady state, set $ \dot{N} = 0 $:
+
+	Iodine:
+
+	\begin{align*}
+		\dot{N}_{\I{135}} &= 0 \rightarrow \\ 
+		\lambda_I N_I &= \phi \Sigma_f \gamma_I \\
+		N_{\I{135}} &= \frac{\phi \Sigma_f \gamma_I}{\lambda_I}
+	\end{align*}
+
+	Xenon:
+
+	\begin{align*}
+		\dot{N}_{Xe} &= 0 \rightarrow \\ 
+		N_{Xe} \left( \lambda_{Xe} + \sigma_{Xe} \phi \right)&= \phi \Sigma_f \gamma_{Xe} + \lambda_I N_I  \\
+		N_{Xe} &= \frac{\phi \Sigma_f \gamma_{Xe} + \lambda_I N_I}{\lambda{Xe} + \sigma_{Xe} \phi} \\
+		&= \frac{\phi \Sigma_f \gamma_{Xe} + \phi \Sigma_f \gamma_I}{\lambda_{Xe} + \sigma_{Xe} \phi} \\
+		N_{\Xe{135}} &= \frac{\phi \Sigma_f \left( \gamma_{Xe} + \gamma_I \right)}{\lambda_{Xe} + \sigma_{Xe} \phi}
+	\end{align*}
 
 \problem{2-6}
 	Boron is a common material used to shield against thermal neutrons. Estimate the thickness of boron required to attenuate an incident thermal neutron beam to 0.1\% of its intensity. (Use the thermal cross section data in Appendix A.)
