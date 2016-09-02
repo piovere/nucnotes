@@ -76,22 +76,21 @@
 \problem{2-8}
 	A free neutron is unstable against beta decay with a half-life of 11.7m. Determine the relative probability that a neutron will undergo beta-decay before being absorbed in an infinite medium. Estimate this probability for a thermal neutron in $ \ce{H_{2}O} $.
 \solution
-	We know that:
+	To determine the relative probability, we take a ratio of the mean free path for neutron absorption and divide it by the distance travelled by a thermal neutron before decaying:
 	\begin{align*}
-		P_{absorption}\left(x\right) &= \Sigma_a\int_0^x e^{-\Sigma_a x}dx \\
-		&= \sigma_a N \int_0^x e^{-\sigma_a x}dx
-		\intertext{Assume that the incident particle is a thermal neutron with speed \text{$ \dot{x}=2.2*10^5cm/s $}. In this case, the neutron should travel a distance of $ \dot{x}\lambda $ before decaying:}
-		&= \sigma_a N \int_0^{\dot{x}\lambda} e^{-\sigma_a x}dx \\
-		&= 1-e^{-\sigma_a N \dot{x} \lambda}
-		\intertext{The probability of decaying instead of being absorbed (assuming that these are the only two interaction modes:}
-		1 &= P_{absorption} + P_{decay} \\
-		P_{decay} &= 1-P_{absorption} \\
-		&= e^{-\sigma_a N \dot{x} \lambda}
-		\intertext{Substituting our speed \text{$ \dot{x}=2.2*10^5cm/s $}, half life $ \lambda=11.7m=702s $, and $ \sigma_a N=0.022 $ for a thermal neutron in $ H_{2} $O:}
-		&= 2.11*10^{-1475594}
+		\frac{x_{absorption}}{x_{decay}} 
+		&= \frac{{\Sigma_a}^{-1}}{\dot{x} t_{1/2}}\\
+		&= \left({\Sigma_a \dot{x} t_{1/2}}\right)^{-1}
 	\end{align*}
-	
-	To any reasonable approximation this may be treated as equal to zero.
+
+	Subsituting the values for a thermal ($ \dot{x} = 2.2*10^5 cm/s $) neutron in water ($ \Sigma_a = 0.022 cm^{-1} $):
+
+	\[
+		\left( \left( 0.022 cm^{-1} \right)\left( 2.2*10^{5} \frac{cm}{s} \right)\left( 11.7 minutes * \frac{60s}{minute} \right) \right)^{-1}
+		= 2.94 * 10^{-7}
+	\]
+
+	It is much more likely that the neutron will decay rather than be absorbed in water (once thermalized). 
 
 \problem{2-10}
 	How many mean free paths thick must a shield be designed in order to attenuate an incident neutron beam by a factor of 1000?
