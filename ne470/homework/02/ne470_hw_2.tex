@@ -27,6 +27,7 @@
 	\end{enumerate}
 
 \solution
+	Calculations are included as an attachment to this assignment after problem 
 	\begin{table}[h]
 		\centering
 		\begin{tabular}{ |c|c|c|c| }
@@ -73,7 +74,25 @@
 	Using the Maxwell-Boltzman distribution $ M(V,T) $, calculate the most probable energy of the nuclei characterized by such a distribution. Also calculate the average thermal energy of these nuclei.
 
 \solution
-
+	The Maxwell-Boltzman distribution is expressed as:
+		\[
+			M(V, T) = \left( \frac{m}{2 \pi k T} \right) ^ {3/2} e^{\frac{-mV^2}{2 k T}}
+		\]
+			Substituting $ E = \frac{1}{2}mV^2 $, we get:
+		\[
+			M(E, T) = \sqrt{\frac{4}{\pi}} E^{1/2} \left( \frac{1}{kT} \right)^{3/2} e^{\frac{-E}{kT}}
+		\]
+		To determine the most likely value (median) we take the derivative and set it equal to zero:
+		\[
+			\frac{dM}{dE} = 0 = \sqrt{\frac{4}{\pi}} \left( \frac{1}{kT} \right)^{3/2} \left( \frac{1}{2} E^{-1/2} e^{\frac{-E}{kT}} + E^{1/2} \left( \frac{-1}{kT} \right) e^{\frac{-E}{kT}}\right)
+		\]
+		Which gives $ E = \frac{1}{2} k T $.
+		
+		To calculate the mean of the distribution, we solve the definite integral:
+		\[
+			\bar{E} = \frac{1}{M} \int^{\infty}_0 M(E, T) E dE	
+		\]
+		This gives a value of $ \bar{E} = \frac{3}{2} kT $
 
 \problem{2-20}
 	Determine the fission-rate density necessary to produce a thermal power density of $ 400 kW/liter $ (typical of a fast breeder reactor core). Assume that the principle fissile isotope is \Pu{239}.
