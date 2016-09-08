@@ -12,7 +12,11 @@
 	Suppose we consider a beam of neutrons incident upon a thin target with an intensity of $ 10^{12} \frac{neutrons}{cm^2 s} $. Suppose further that the total cross section for the nuclei in this target is $ 4 b $. Using this information, determine how long one would have to wait, on the average, for a given nucleus in the target to suffer a neutron interaction.
 
 \solution
-
+	We know that our reaction rate is equal to $ intensity * cross\ section $. Our mean time before a reaction is the inverse of the rate:
+	
+	\[
+		\frac{1}{intensity*cross\ section} = 2.5*10^{11}s
+	\]
 
 \problem{2-11}
 	Using the data from BNL-325, compute the mean free paths of neutrons with the following energies in the specified materials:
@@ -23,10 +27,21 @@
 	\end{enumerate}
 
 \solution
-
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{ |c|c|c|c| }
+			\hline
+			& $ 14MeV $ & $ 1MeV $ & $ 0.05eV$ \\
+			\hline
+			U & $ 3.54cm $ & $ 2.91cm $ & $ 1.42cm $ \\
+			Water & $ 10.04cm $ & $ 1.79cm $ & $ 0.53cm $ \\
+			Air & $ 1.27*10^2 cm $ & $ 5640 cm $ & $ 2041 cm $ \\
+			\hline
+		\end{tabular}
+	\end{table}
 
 \problem{2-12}
-	Determine the kineteic energy at which the wavelength of a neutron is comparable to:
+	Determine the kinetic energy at which the wavelength of a neutron is comparable to:
 	\begin{enumerate}
 		\item the diameter of a nucleus,
 		\item an atomic diameter,
@@ -36,7 +51,23 @@
 	(Only rough estimates are required.)
 
 \solution
-
+	The deBroglie wavelength of a particle is expressed by:
+	\[ \lambda = \frac{h}{\sqrt{2Tm}} \]
+	from which we derive:
+	\[ T = \frac{h^2}{2m{\lambda}^2} \]
+	
+	\begin{table}[h]
+		\begin{tabular}{ |c|c|c| }
+			\hline
+			Object & $ \lambda $ & T \\
+			\hline
+			the diameter of a nucleus & 15 fm & 3.63 MeV \\
+			an atomic diameter & 350 pm & $ 6.68 * 10^{-9} MeV $ \\
+			the interatomic spacing in graphite & 0.142 nm & $ 4.06*10^{-9} MeV $ \\
+			the diameter of a nuclear reactor core & 1 m & $ 8.18*10^{-28} MeV $ \\
+			\hline
+		\end{tabular}
+	\end{table}
 
 \problem{2-15}
 	Using the Maxwell-Boltzman distribution $ M(V,T) $, calculate the most probable energy of the nuclei characterized by such a distribution. Also calculate the average thermal energy of these nuclei.
@@ -48,7 +79,14 @@
 	Determine the fission-rate density necessary to produce a thermal power density of $ 400 kW/liter $ (typical of a fast breeder reactor core). Assume that the principle fissile isotope is \Pu{239}.
 
 \solution
-
+	Each fission of \Pu{239} produces $ 211.5 MeV $. Therefore:
+	
+	\begin{align*}
+		TPD &= \frac{E}{fission} * FRD \\
+		FRD &= \frac{TPD}{\frac{E}{fission}} \\
+		&= \frac{400 \frac{J}{s*L}}{211.5 \frac{MeV}{fission} / 6.2415*10^{12} \frac{MeV}{J}} \\
+		&= 1.18*10^{16} \frac{fissions}{L*s}
+	\end{align*}
 
 
 \end{document}
