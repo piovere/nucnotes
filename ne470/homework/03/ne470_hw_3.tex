@@ -1,0 +1,47 @@
+\documentclass{hw}
+\usepackage[version=3]{mhchem}
+\usepackage{nuc}
+\usepackage{graphicx}
+\graphicspath{ {images/}}
+
+\author{J.R. Powers-Luhn}
+\date{2016/09/15}
+\title{Homework \#3}
+
+\begin{document}
+
+\problem
+	Compute the macroscopic fission cross section of 1, 2, 3, 4, and 5 wt\% enriched $ \ce{UO_2} $ with a density of $ 10.5g/cm^3 $. Use the $ 2200 m/s $ microscopic cross sections provided in Appendix A (pp. 606-610 in D\&H). What is the probability that a neutron will be absorbed in $ \ce{^{238}U} $ (relative to all absorptions) in these mixtures?
+\solution
+
+\problem
+	{\sloppy
+	Using the Table of Nuclides at http://atom.kaeri.re.kr/ton or that found at http://www.nndc.bnl.gov/sigma/ find the following information:}
+	\part What is the total fission cross section of U-233, U-235, Pu-239, and Pu-241 at 0.0253 eV?
+	\part What is the accumulated fission yield of $\ce{^{90}Sr}$ from the thermal fission of $\ce{^{235}U}$?
+	\part {\sloppy Obtain a plot of the $ \ce{^{241}Pu} $ total absorption cross section at 300K over the range $ 10^{-9} to 20 MeV $. Print out the plot and label the major features of the cross section behavior. Turn in the labeled plot.}
+\solution
+
+\problem
+	How many collisions are required to slow down a neutron from 2MeV to 0.025 eV in 
+	\part Hydrogen,
+	\part Deuterium,
+	\part Graphite, and
+	\part Lead?
+\solution
+	From \textit{Lamarsh}, Table 3.1:
+	\begin{table}[h]
+		\begin{tabular}{ |c|c| }
+			
+		\end{tabular}
+		}
+	\end{table}
+
+\problem{Duderstadt \& Hamilton, problem 3-8}
+	Consider an infinitely large homogeneous mixture of $ \ce{^{235}U} $ and a moderating material. Determine the ratio of fuel-to-moderator density that will render this system critical for the following moderators: (a) graphite, (b) beryllium [\texit{sic}], (c) water ($ \ce{H_{2}O} $), and (d) heavy water ($ \ce{D_{2}O} $). Use the thermal cross section data given in Appendix A.
+\solution
+
+\problem{Duderstadt \& Hamilton, problem 3-1}
+	What is the maximum value of the multiplication factor that can be achieved in any conceivable reactor design?
+\solution
+	We know that the multiplication factor for a thermal reactor core is: \[ k_{eff} = \epsilon p \eta P_{fast non leakage} P_{thermal non leakage} f \]. We can assume that an ideal core would be large enough to allow for no leakage, so $ P_{fast non leakage} = P_{thermal non leakage} = 1 $.
