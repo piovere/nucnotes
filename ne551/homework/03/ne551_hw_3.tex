@@ -57,7 +57,18 @@
 
 	Calculations are performed in the attached python notebook. Results:
 	\begin{table}[h]
-		\begin{tabular}
+		\begin{tabular}{ |c|c|c| }
+			\hline
+			T (MeV) & Classical (MeV/cm) & Relativistic (MeV/cm) \\
+			\hline
+			10 & 93.3 & 92.9 \\
+			100 & 15.8 & 15.4 \\
+			500 & 6.29 & 5.89 \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	These disagree with PSTAR by factors in the approximate range of 3-4
 
 
 \problem{}
@@ -66,7 +77,20 @@
 	\includegraphics[width=15cm,height=10cm,keepaspectratio]{ne551_03_fig_01}
 
 \solution
+\[
+	\dot{D}(r) = \dot{D_L}\frac{L^2}{r^2}
+\]
+	\begin{align*}
+		r^2 &= x^2 + L^2 \\
+		&= \left( vt \right)^2 + L^2
+	\end{align*}
 
+	We then intergrate over time:
+
+	\begin{align*}
+		D &= \int^{\inf}_{-\inf} \frac{\dot{D}_L L^2}{v^2 t^2 + L^2} dt \\
+		&= \frac{\pi L \dot{D}_L}{v}
+	\end{align*}
 
 \problem{Anderson 2.5}
 	\begin{enumerate}
@@ -75,6 +99,24 @@
 	\end{enumerate}
 
 \solution
+	We compare the values produced by equation \ref{betablockwithoutbeta} and \ref{betablockwithbeta}, with \ref{betablockwithbeta} corrected in the log term with a value from Anderson fig 2.11.
 
+	$ \delta = 0.19 $
+
+	Producing:
+
+	\[
+	S_c = 4 \pi r_0^2 m_e c^2 \left( \frac{z^2}{\beta^2} \right) \left( \frac{N_A \rho}{M_m} \right) Z \left( ln \left( \frac{2 m_e c^2 \gamma^2 \beta^2}{I} \right) - \beta^2 - \delta \right)
+	\]
+
+	Calculations are performed in the attached program. The values produced are: 
+
+	No corrections:
+
+	$ S_c = 264.19 MeV/cm $
+
+	With corrections applied:
+
+	$ S_c = 256.26 MeV/cm $
 
 \end{document}
