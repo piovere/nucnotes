@@ -4,6 +4,7 @@
 \usepackage{siunitx}
 \usepackage{amsmath}
 \usepackage{cancel}
+\graphicspath{ {images/}}
 
 \author{J.R. Powers-Luhn}
 \date{2016/09/28}
@@ -68,5 +69,12 @@ Use the NIST PSTAR utility to do the following: produce a Bragg Curve for \SI{25
 
 Assume dry air in the ion chambers at a density of \SI{0.0012}{\gram\per\centi\meter^3}. More details about this problem will be covered in class.
 \solution
+Calcluations are performed in the attached code. The curve produced is show in figure \ref{fig:bragg}
+
+\begin{figure}[h]
+	\includegraphics[width=15cm,height=10cm,keepaspectratio]{bragg}
+	\caption{Bragg Curve for 250MeV proton in water}
+	\label{fig:bragg}
+\end{figure}
 
 \end{document}
