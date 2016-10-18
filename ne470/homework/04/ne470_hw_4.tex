@@ -1,0 +1,60 @@
+\documentclass{hw}
+\usepackage{mhchem}
+\usepackage{nuc}
+\usepackage[load=addn]{siunitx}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{physics}
+\graphicspath{ {images/}}
+
+\author{J.R. Powers-Luhn}
+\date{2016/10/25}
+\title{Homework No. 4}
+
+\begin{document}
+
+\problem{}
+Consider a thin slab of $\ce{^{235}U}$ with the incident thermal neutron beams shown below: \\
+\includegraphics[width=5in,keepaspectratio]{470-4-1}
+
+Assuming the beam intensities are constant throughout the entire slab, compute:
+
+\begin{enumerate}
+	\item the neutron flux,
+	\item the current density,
+	\item the fission rate density.
+\end{enumerate}
+
+\solution
+
+\problem{Duderstadt \& Hamilton 4-4}
+In a spherical thermal reactor of radius $R$, it is found that the angular neutron flux can be roughly described by: 
+\[
+	\phi\left( \vb{r}, E, \hat{\Omega} \right) = \frac{\phi_0}{4 \pi} E \exp\left( -\frac{E}{kT} \right)\frac{\sin(\pi r / R)}{r}
+\]
+Compute the total number of neutrons in the reactor.
+
+\solution
+
+\problem{}
+Consider the differential equation analytical and numerical solution presented in class \verb|NE470_2012_02_15| at 35 minutes. Reproduce both of the solutions on your own using Fortran, C/C++, or other computer language you use for the project.
+
+\fbox{
+	\parbox{\textwidth}{
+		\textbf{\underline{Extra Credit (20\% bonus added to total grade)}}: Modify your program to solve this problem for a VARIABLE NUMBER OF NODES (input to the program). Then evaluate the impact of increasing the number of nodes upon the error of your numerical solution. How many nodes are required to match within 4 or 5 significant figures?
+	}
+}
+
+\solution
+
+\problem{Duderstadt \& Hamilton 4-12}
+Use Simpson's rule to write a numerical quadrature formula for the angular integral $\int^{+1}_{-1} \dd \mu \phi(x, \mu)$ for $N$ equal mesh intervals.
+
+\solution
+
+\problem{}
+Compute the thermal neutron diffusion coefficients characterizing light water, heavy water, graphite, and natural uranium. Then compute the extrapolation length $z_0$ characterizing these materials.
+
+\solution
+
+\end{document}
