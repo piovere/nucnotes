@@ -7,6 +7,8 @@
 \usepackage{physics}
 \graphicspath{ {images/}}
 
+\DeclareSIUnit\eVperc{\eV\per\clight}
+
 \author{J.R. Powers-Luhn}
 \date{2016/10/20}
 \title{Homework Chapter 7}
@@ -25,6 +27,15 @@ Calculate the threshold for the following photonuclear reactions:
 
 \solution
 
+Please see attached code for calculations
+
+\part \SI{34.395}{\mega\electronvolt}
+\part \SI{8.5801}{\mega\electronvolt}
+\part \SI{7.3485}{\mega\electronvolt}
+\part \SI{6.2997}{\mega\electronvolt}
+
+\part They are slightly higher than expected due to the requirement that the daughter nucleus have some positive momentum (and therefore energy)
+
 \problem{Anderson 7.4}
 Suppose a \SI{140}{\kilo\electronvolt} photon undergoes photoelectric effect in a lead sheet with a $K$-shell electron.
 \begin{enumerate}
@@ -33,6 +44,26 @@ Suppose a \SI{140}{\kilo\electronvolt} photon undergoes photoelectric effect in 
 \end{enumerate}
 
 \solution
+
+\part From Appendix 4, the K-shell binding energy is \SI{88.004}{\kilo\electronvolt}.
+
+\begin{align*}
+T_{lib} &= E_{\gamma} - BE \\
+&=\SI{140}{\kilo\electronvolt} - \SI{88.004}{\kilo\electronvolt} \\
+&=\SI{51.996}{\kilo\electronvolt}
+\end{align*}
+
+\part
+
+
+\begin{align}
+p_{\gamma} &= \frac{h \nu}{c} \\
+&= \SI{140}{\kilo\electronvolt\per\clight} \\
+p_{\electron} &= \sqrt{2 m E} \\
+&= \sqrt{2 \times \SI{511}{\kilo\electronvolt\per\clight^2} \times \SI{51.996}{\kilo
+\electronvolt}} \\
+&= \SI{230.521}{\kilo\electronvolt\per\clight} \\
+\end{align}
 
 \problem{Anderson 7.11}
 Given that the mass attenuation coefficient for $\ce{^{63}Cu}$ is \SI{0.474}{\meter^2\per\kilo\gram} at \SI{40}{\kilo\electronvolt} (photoelectron dominates) and \SI{0.0042}{\meter^2\per\kilo\gram} at \SI{2}{\mega\electronvolt} (incoherent scatter dominates), estimate the coefficient for $\ce{^{56}Fe}$ at these energies.
