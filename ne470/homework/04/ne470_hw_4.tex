@@ -27,6 +27,33 @@ Assuming the beam intensities are constant throughout the entire slab, compute:
 
 \solution
 
+\part The neutron flux is defined as $ \phi(\vec{r}, t) = v N(\vec{r}, t) $.
+
+\begin{align*}
+	\phi(\vec{r}, t) &= v N(\vec{r}, t) \\
+	&= \sum_v v N(\vec{r}, t) \\
+	&= \SI{0.01}{\centi\meter\per\second} \times \SI{4e12}{n\per\centi\meter^3} + \SI{0.02}{\centi\meter\per\second} \times \SI{1e12}{n\per\centi\meter^3} + \SI{0.005}{\centi\meter\per\second} \times \SI{6e12}{n\per\centi\meter^3} \\
+	&= \SI{9e10}{neutron\per\centi\meter^2\second} 
+\end{align*}
+
+\part Since these neutrons are passing through the slab in different directions, we must compute this as a vector quantity:
+
+\begin{align*}
+	\vec{J} &= J_+ - J_- \\
+	&= \SI{0.01}{\centi\meter\per\second} \times \SI{4e12}{n\per\centi\meter^3} - (\SI{0.02}{\centi\meter\per\second} \times \SI{1e12}{n\per\centi\meter^3} + \SI{0.005}{\centi\meter\per\second} \times \SI{6e12}{n\per\centi\meter^3}) \\
+	&= \SI{-1e10}{neutron\per\centi\meter^2\second}
+\end{align*}
+
+
+\part 
+\begin{align*}
+	F(\vec{r}, t) &= v \Sigma_f N(\vec{r}, t) \\
+	&= \Sigma_f \phi(\vec{r}, t) \\
+	&= \frac{N_A \rho}{M_m} \sigma_f \phi(\vec{r}, t) \\
+	&= \SI{28.7346}{\per\centi\meter} \times \SI{9e10}{\per\centi\meter^2\second} \\
+	&= \SI{2.586e12}{fission\per\centi\meter^3\second}
+\end{align*}
+
 \problem{Duderstadt \& Hamilton 4-4}
 In a spherical thermal reactor of radius $R$, it is found that the angular neutron flux can be roughly described by: 
 \[
@@ -35,6 +62,16 @@ In a spherical thermal reactor of radius $R$, it is found that the angular neutr
 Compute the total number of neutrons in the reactor.
 
 \solution
+We know that $\phi(r, t) = v N(r, t)$, $v = \sqrt{2Em_n}$ for non-relativistic velocities, and that the number of neutrons in $\dd[3]r$ is $N(\mathbf{r}, t) \dd[3]r$. The number of neutrons in the reactor is therefore: $$ \iiint_R \phi / v \dd[3]r$$
+
+\begin{align*}
+	\int N \dd[3]{r} &= \iiint_R \frac{1}{v} \frac{\phi_0}{4 \pi} E \exp\left(- \frac{E}{kT} \right) \frac{\sin(\pi r / R)}{r} \dd[3]r \\
+	&= \int_0^R \int_0^\pi \int_0^{2\pi} \frac{1}{v} \frac{\phi_0}{4 \pi} E \exp\left(- \frac{E}{kT} \right) \frac{\sin(\pi r / R)}{r} r^2 \sin(\phi) \dd{\theta} \dd{\phi} \dd{r} \\
+	&= \int_0^R \int_0^\pi \int_0^{2\pi} \frac{\phi_0}{8 \pi} m_n v \exp\left(- \frac{m_n v^2}{2kT} \right) r \sin(\pi r / R) \sin(\phi) \dd{\theta} \dd{\phi} \dd{r} \\
+	&= \frac{\phi_0}{4} m_n v \exp\left(-\frac{m_n v^2}{2kT}\right) \int_0^R \int_0^\pi r \sin\left( \frac{\pi r}{R} \right) \sin\phi \dd{\phi} \dd{r} \\
+	&= \frac{\phi_0}{\pi} E \exp\left( -\frac{E}{kT} \right) R^2
+\end{align*}
+
 
 \problem{}
 Consider the differential equation analytical and numerical solution presented in class \verb|NE470_2012_02_15| at 35 minutes. Reproduce both of the solutions on your own using Fortran, C/C++, or other computer language you use for the project.
@@ -46,6 +83,7 @@ Consider the differential equation analytical and numerical solution presented i
 }
 
 \solution
+See attached code. The maximum disagreement between the discrete value and the analytic solution at any one node dropped below $10^{-4}$ when the number of nodes was 370.
 
 \problem{Duderstadt \& Hamilton 4-12}
 Use Simpson's rule to write a numerical quadrature formula for the angular integral $\int^{+1}_{-1} \dd \mu \phi(x, \mu)$ for $N$ equal mesh intervals.
@@ -54,9 +92,13 @@ Use Simpson's rule to write a numerical quadrature formula for the angular integ
 Simpson's rule:
 
 \begin{align*}
-	\int^{x_2}_{x_0} f(x) \dd x &\approx \frac{f(0) + 4f(1) + f(2)}{3\Delta x}, \Delta x = x_2 - x_1 = x_1 - x_0 \\
+	\int^{x_2}_{x_0} f(x) \dd x &\approx \Delta x \frac{f(0) + 4f(1) + f(2)}{3}, \Delta x = x_2 - x_1 = x_1 - x_0 \\
 	\int_{-1}^{1} \phi(x,\mu) \dd \mu & \approx \frac{\Delta x}{3} \left[ \phi_{-1}(x) + 4 \phi_0(x) + \phi_1(x) \right]
 \end{align*}
+
+We know that $$ \int_a^b f = \int_a^{a+h} f + \int_{a+h}^{a+2h} f + \dots + \int_{b-2h}^{b+h} f + \int_{b-h}^b f $$ Therefore we can select $h = \frac{b-a}{n}$ and say: $$ 
+\int_{-1}^1 \phi(x, \mu) \dd{\mu} = \frac{h}{3} \sum_{j=1}^n \left[\left(\phi_{-1+(j-1)h}(x) + 4\phi_{-1+jh/2}(x) + \phi_{-1+jh}\right)\right]
+$$
 
 \problem{}
 Compute the thermal neutron diffusion coefficients characterizing light water, heavy water, graphite, and natural uranium. Then compute the extrapolation length $z_0$ characterizing these materials.
