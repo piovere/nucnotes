@@ -1,0 +1,112 @@
+\documentclass{hw}
+\usepackage{mhchem}
+\usepackage{nuc}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{booktabs}
+\graphicspath{ {images/}}
+
+\DeclareSIUnit\eVperc{\eV\per\clight}
+
+\author{J.R. Powers-Luhn}
+\date{2016/11/3}
+\title{Homework Chapter 8}
+
+\begin{document}
+
+\problem{Anderson 8.3}
+Calculate the wavelength of a $\SI{1}{\mega\electronvolt}$ neutron in free space. If a total E of $\SI{1}{\mega\electronvolt}$ is a constant of the motion and the neutron is in a region of a potential well depth of $\SI{10}{\mega\electronvolt}$, what is the wavelength?
+
+\solution
+\part
+\begin{align*}
+	\lambda_{free} &= \frac{h}{\sqrt{2 m_n T}} \\
+	&= \frac{
+			\SI{4.14E-15}{\electronvolt\second} \times \frac{
+															\SI{1}{\mega\electronvolt}
+														}
+														{
+															\SI{1E6}{\electronvolt}
+														}
+		}
+		{
+			\sqrt{
+				2 \times \SI{939.6}{\mega\electronvolt\per\square\clight} \times \SI{1}{\mega\electronvolt}
+			}
+		} \\
+	&= \SI{2.87E-14}{\meter} \\
+	&= \SI{28.7}{\femto\meter}
+\end{align*}
+
+\part
+\begin{align*}
+	\lambda_{well} &= \frac{h}{\sqrt{2 m_n (T + V}} \\
+	&= \frac{
+			\SI{4.14E-15}{\electronvolt\second} \times \frac{
+															\SI{1}{\mega\electronvolt}
+														}
+														{
+															\SI{1E6}{\electronvolt}
+														}
+		}
+		{
+			\sqrt{
+				2 \times \SI{939.6}{\mega\electronvolt\per\square\clight} \times \SI{11}{\mega\electronvolt}
+			}
+		} \\
+	&= \SI{8.64}{\femto\meter}
+\end{align*}
+
+\problem{}
+Using the NNDC ENDF evaluations, find (and report) the elastic scattering cross sections for $\SI{0.5}{\mega\electronvolt}$, $\SI{1}{\mega\electronvolt}$, $\SI{5}{\mega\electronvolt}$, and $\SI{10}{\mega\electronvolt}$ neutrons scattering in $\ce{^{207}Pb}$. Use those values to calculate the corresponding mean free paths for elastic scattering.
+
+\solution
+\begin{tabular}{rrr}
+\toprule
+T (\si{\mega\electronvolt}) &     $\Sigma$ (\si{\per\centi\meter}) &  Mean Free Path (\si{\centi\meter}) \\
+\midrule
+0.5 &  5.810217 &        5.216310 \\
+1.0 &  4.876894 &        6.214590 \\
+5.0 &  4.896170 &        6.190124 \\
+10.0 &  2.483300 &       12.204686 \\
+\bottomrule
+\end{tabular}
+
+
+\problem{Anderson 8.10, change deuterium to $\ce{^{7}Li}$ and change uranium to $\ce{^{206}Pb}$}
+Find the number of collisions (nearest integer) necessary to thermalize a beam of \SI{1}{\mega\electronvolt} neutrons with $\ce{^{7}Li}$, $\ce{He}$, $\ce{Be}$, $\ce{C}$, and $\ce{^{206}Pb}$
+
+\solution
+\begin{tabular}{rlc}
+\toprule
+A &     Target &  Average Collisions to Thermalize \\
+\midrule
+7 &       Li-7 &                                67 \\
+4 &     Helium &                                41 \\
+9 &  Beryllium &                                85 \\
+12 &     Carbon &                               111 \\
+206 &     Pb-206 &                              1809 \\
+\bottomrule
+\end{tabular}
+
+
+\problem{}
+A $\SI{14}{\mega\electronvolt}$ neutron scatters elastically off of a $\ce{^{12}C}$ nucleus. The energy given to the $\ce{^{12}C}$ nucleus is \SI{1}{\mega\electronvolt}. What is the scattered angle of the neutron?
+
+\solution
+\begin{align*}
+	\theta^\prime = \cot^{-1} \frac{1 - A \cos{2 \theta_A^\prime}}{A \sin{ 2 \theta_A^\prime}}
+\end{align*}
+\begin{align*}
+	T^\prime = T \left[ \frac{\cos{\theta^\prime} + \left( A^2 - \sin^2 \theta^\prime \right)^{1/2}}{A + 1} \right]^2
+\end{align*}
+
+Substituting in $T=\SI{14}{\mega\electronvolt}$ and $T^\prime=\SI{13}{\mega\electronvolt}$ and using wolframalpha to solve, we get:
+
+\[
+	\theta^\prime = \pm \ang{56.22}
+\]
+
+\end{document}
