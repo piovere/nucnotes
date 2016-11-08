@@ -21,7 +21,9 @@
 Consider the case of a 1 MeV neutron incident on a nucleus of mass number $A = 100$. Using $R=R_0 A^{1/3}=(1.1)10^{-15} A^{1/3}$m, calculate the time required for a single transversal of the nuclear diameter by the neutron. Assume a square well nuclear potential with depth of 10 MeV. Compare this time with an estimate of the compound nucleus lifetime from the uncertainty principle for a resonance with level width $\Delta E=\SI{0.1}{\electronvolt}$
 
 \solution
-Please see attached code for work. The two values (\SI{2.24e-22}{\second} for the transit of the nuclear diameter and \SI{2.99e-23}{\second} for the Heisenberg energy and time relationship). These two values vary by 
+Please see attached code for work. The two values (\SI{2.24e-22}{\second} for the transit of the nuclear diameter and \SI{2.99e-23}{\second} for the Heisenberg energy and time relationship). These two values vary by an order of magnitude.
+
+The relationship given in the notes indicates that $\Delta E \Delta t \geq h/2$, but other sources give the relationship as $\Delta E \Delta t \geq \hbar /2$. This extra factor of $2 \pi$ would bring these answers closer together (though not match exactly).
 
 \problem{}
 Look up the thermal neutron cross sections for each stable isotope of Cd, and then using those
