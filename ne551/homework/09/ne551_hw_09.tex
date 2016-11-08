@@ -6,6 +6,7 @@
 \usepackage{cancel}
 \usepackage{physics}
 \usepackage{booktabs}
+\usepackage{hyperref}
 \graphicspath{ {images/}}
 
 \DeclareSIUnit\evperc{\eV\per\clight}
@@ -28,7 +29,7 @@ values determine the thermal neutron cross section for natural Cd (please includ
 abundances of each isotope that you use in this calculation)
 
 \solution
-The list of stable isotopes was obtained from the ENDF (https://www.nndc.bnl.gov/sigma/index.jsp?as=116\&lib=endfb7.1\&nsub=10), and the natural abundance fractions were obtained from NC State (https://www.ncsu.edu/chemistry/msf/pdf/IsotopicMass_NaturalAbundance.pdf).
+The list of stable isotopes was obtained from the ENDF (\url{https://www.nndc.bnl.gov/sigma/index.jsp?as=116&lib=endfb7.1&nsub=10}), and the natural abundance fractions were obtained from NC State (\url{https://www.ncsu.edu/chemistry/msf/pdf/IsotopicMass_NaturalAbundance.pdf}).
 
 Calculations were performed in the attached code. The results were
 
@@ -64,6 +65,6 @@ To reduce the beam by 95\% a thickness of \SI{2.57e-2}{\centi\meter} is required
 What is the relative probability of production of I-131 with respect to production of Cs-137 in thermal neutron fission of U-235? Use the double-hump curve on Figure 9.18. What is the relative probability of production of Mo-99 with respect to production of Cs-137?
 
 \solution
-From Wikipedia (https://en.wikipedia.org/wiki/Fission_product_yield#Ordered_by_yield_.28thermal_neutron_fission_of_U-235.29), Cs-137 has a yield of 6.0899\% while I-131 has a yield of 2.8336\%. Mo-99 has a yield of 6.1\%. Mo-99 is therefore about as likely to be produced as Cs-137, while I-131 is about half (46.6\%) as likely to be produced as Cs-137.
+From Wikipedia (\url{https://en.wikipedia.org/wiki/Fission_product_yield#Ordered_by_yield_.28thermal_neutron_fission_of_U-235.29}), Cs-137 has a yield of 6.0899\% while I-131 has a yield of 2.8336\%. Mo-99 has a yield of 6.1\%. Mo-99 is therefore about as likely to be produced as Cs-137, while I-131 is about half (46.6\%) as likely to be produced as Cs-137.
 
 \end{document}
