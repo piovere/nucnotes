@@ -1,0 +1,69 @@
+\documentclass{hw}
+\usepackage{mhchem}
+\usepackage{nuc}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{physics}
+\usepackage{booktabs}
+\graphicspath{ {images/}}
+
+\DeclareSIUnit\evperc{\eV\per\clight}
+
+\author{J.R. Powers-Luhn}
+\date{2016/11/8}
+\title{Homework Chapter 9}
+
+\begin{document}
+
+\problem{Anderson 9.3}
+Consider the case of a 1 MeV neutron incident on a nucleus of mass number $A = 100$. Using $R=R_0 A^{1/3}=(1.1)10^{-15} A^{1/3}$m, calculate the time required for a single transversal of the nuclear diameter by the neutron. Assume a square well nuclear potential with depth of 10 MeV. Compare this time with an estimate of the compound nucleus lifetime from the uncertainty principle for a resonance with level width $\Delta E=\SI{0.1}{\electronvolt}$
+
+\solution
+Please see attached code for work. The two values (\SI{2.24e-22}{\second} for the transit of the nuclear diameter and \SI{2.99e-23}{\second} for the Heisenberg energy and time relationship). These two values vary by 
+
+\problem{}
+Look up the thermal neutron cross sections for each stable isotope of Cd, and then using those
+values determine the thermal neutron cross section for natural Cd (please include the natural
+abundances of each isotope that you use in this calculation)
+
+\solution
+The list of stable isotopes was obtained from the ENDF (https://www.nndc.bnl.gov/sigma/index.jsp?as=116&lib=endfb7.1&nsub=10), and the natural abundance fractions were obtained from NC State (https://www.ncsu.edu/chemistry/msf/pdf/IsotopicMass_NaturalAbundance.pdf).
+
+Calculations were performed in the attached code. The results were
+
+\begin{tabular}{lrrrrrr}
+\toprule
+{} &  Abundance &  Cross Section &  Isotope &  Fractional Cross Section Contribution &  Macroscopic Cross Section &  Number Fraction \\
+\midrule
+0 &       1.25 &          1.000 &      106 &                               0.012500 &               4.914179e+22 &     5.787400e+20 \\
+1 &       0.89 &          1.100 &      108 &                               0.009790 &               5.305494e+22 &     4.120628e+20 \\
+2 &      12.49 &         11.000 &      110 &                               1.373900 &               5.209030e+23 &     5.782770e+21 \\
+3 &      12.80 &         24.000 &      111 &                               3.072000 &               1.126277e+24 &     5.926297e+21 \\
+4 &      24.13 &          2.200 &      112 &                               0.530860 &               1.023202e+23 &     1.117200e+22 \\
+5 &      12.22 &      20600.000 &      113 &                            2517.320000 &               9.496108e+26 &     5.657762e+21 \\
+6 &      28.73 &          0.340 &      114 &                               0.097682 &               1.553570e+22 &     1.330176e+22 \\
+7 &       7.49 &          0.075 &      116 &                               0.005618 &               3.367907e+21 &     3.467810e+21 \\
+\bottomrule
+\end{tabular}
+
+
+\problem{Anderson 9.9, change material to natural Cd}
+What thickness of Cd will remove 95\% of a beam of \SI{100}{\electronvolt} neutrons?
+
+\solution
+$$ \phi = \phi_0 \exp{\left(-\Sigma_i * t\right)} $$
+$$ t = \frac{-\log \left(\phi / \phi_0 \right) }{\Sigma} $$
+$$ \Sigma = \sum_{isotopes} N^{isotope} \sigma_{isotope} $$
+$$ N^{isotope} = \frac{A_v * \rho}{\bar{m_{\ce{Cd}}}} f_{isotope} $$
+$$ \bar{m_{\ce{Cd}}} = \sum_{isotopes} f_{isotope} m_{isotope} \approx \sum_{isotopes} f_{isotope} A_{isotope} $$
+
+To reduce the beam by 95\% a thickness of \SI{2.57e-2}{\centi\meter} is required
+
+\problem{}
+What is the relative probability of production of I-131 with respect to production of Cs-137 in thermal neutron fission of U-235? Use the double-hump curve on Figure 9.18. What is the relative probability of production of Mo-99 with respect to production of Cs-137?
+
+\solution
+From Wikipedia (https://en.wikipedia.org/wiki/Fission_product_yield#Ordered_by_yield_.28thermal_neutron_fission_of_U-235.29), Cs-137 has a yield of 6.0899\% while I-131 has a yield of 2.8336\%. Mo-99 has a yield of 6.1\%. Mo-99 is therefore about as likely to be produced as Cs-137, while I-131 is about half (46.6\%) as likely to be produced as Cs-137.
+
+\end{document}
