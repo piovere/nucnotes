@@ -7,3 +7,10 @@
 Untitled.ipynb
 .vscode/
 *.vscodeLog
+vcs.xml
+Project_Default.xml
+misc.xml
+modules.xml
+*.iml
+workspace.xml
+profiles_settings.xml
