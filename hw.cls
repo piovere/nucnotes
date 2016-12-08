@@ -49,6 +49,14 @@
 \pdfadjustspacing=1
 \fi
 
+\let\runauthor\@author
+\let\runtitle\@title
+\let\rundate\@date
+
+\lhead{\runauthor}
+\chead{\runtitle}
+\rhead{\rundate}
+
 % Set up counters for problems and subsections
 
 \newcounter{ProblemNum}
@@ -71,6 +79,8 @@
 \renewcommand{\theenumii}{\roman{enumii}}
 
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\newcommand{\me}{\mathrm{e}}
 
 % Nuclear engineering stuff I am adding
 \newcommand\electron{\mathrm{e^-}}
