@@ -22,7 +22,7 @@
 
 \problem{}
 A flux of \SI{100}{\electronvolt} neutrons 
-(\SI{1e9}{\per\centi\meter^2\per\second}) is incident on a \ce{^{197}Au} disk 
+(\SI{1e9}{neutrons \per\centi\meter^2\per\second}) is incident on a \ce{^{197}Au} disk 
 that is \SI{1}{\centi\meter} in diameter and is \SI{2.54e-3}{\centi\meter} thick.
 \begin{enumerate}
     \item Calculate the absorption cross section using a thermal cross section 
@@ -43,6 +43,82 @@ that is \SI{1}{\centi\meter} in diameter and is \SI{2.54e-3}{\centi\meter} thick
 \end{enumerate}
 
 \solution
+\part
+For low energies, $\sigma_a \propto v^{-1} \propto \sqrt{\frac{1}{T}}$.
+
+\begin{align*}
+    \sigma_a \left( E \right) &\approx \sigma_a^{Th} \sqrt{\frac{E_{Th}}{E}} \\
+    &\approx \SI{98.7}{\barn} \sqrt{\frac{\SI{0.025}{\electronvolt}}
+    {\SI{100}{\electronvolt}}} \\
+    &\approx \SI{1.56}{\barn} 
+\end{align*}
+
+From NNDC ENDF/B-VII.1 we use the values of (\SI{100.246}{\electronvolt}, 
+\SI{3.99648}{\barn}) and (\SI{99.579}{\electronvolt}, \SI{3.90669}{\barn}) to 
+interpolate and arrive at a value of \SI{3.96336}{\barn}. This is much larger 
+than the calculated value. From the plot of cross sections (figure 
+\ref{fig:197AuCrossSection}) we see that at this point we have entered the 
+resonance region for this nucleus. Since the A number is relatively high for 
+gold, there are many available energy states--and the resonance region starts 
+at comparatively low energies.
+
+\begin{figure}[h]
+    \begin{centering}
+	\includegraphics[width=10cm,height=10cm,keepaspectratio]{197AuCrossSection}
+	\caption{Absorption cross section for \ce{^{197}Au}}
+	\label{fig:197AuCrossSection}
+    \end{centering}
+\end{figure}
+
+\part
+\begin{align*}
+    Q &= \left( M_X + M_\neutron - M_Y \right) c^2 \\
+    \intertext{Use mass excess in lieu of mass}
+    &= \SI{-31.141}{\mega\electronvolt} + \SI{8.071}{\mega\electronvolt} - 
+    \SI{-29.582}{\mega\electronvolt} \\
+    &= \SI{6.512}{\mega\electronvolt}
+\end{align*}
+
+\part
+Since the incident neutron energy is much less than its mass, we can ignore 
+relativistic effects and calculate the kinetic energy of the \ce{^{198}Au} 
+using conservation of momentum.
+
+\begin{align*}
+    \sqrt{2 m_{\neutron} E_{\neutron}} &= 
+    \sqrt{2 m_{\ce{^{198}Au}} E_{\ce{^{198}Au}} } \\
+    E_{\ce{^{198}Au}} &= E_{\neutron} \frac{m_{\neutron}}{m_{\ce{^{198}Au}}} \\
+    &= \SI{100}{\electronvolt} \frac{\SI{1.00866}{\amu}}{\SI{197.968}{\amu}} \\
+    &= \SI{0.510}{\mega\electronvolt}
+\end{align*}
+
+\part
+Since NNDC gives no cross section for \ce{^{198}Au}, assume it does not absorb 
+neutrons.
+
+\begin{align*}
+    \dot{N}_{197} &= -N_{197} \sigma_a \phi \\
+    \dot{N}_{198} &= N_{197} \sigma_a \phi - \lambda_{198} N_{198}
+\end{align*}
+
+Solving these gives:
+
+\begin{align*}
+    A(t) &= N_{197} \sigma_a \phi \left( 1 - \exp{-\lambda t} \right) \\
+    N_{197} &= \frac{A_V}{m_{197}} m_{Au} \\
+    m_{Au} &= \rho V = \rho \times \pi (\SI{0.5}{\centi\meter})^2 
+    \left(\SI{2.54e-3}{\centi\meter}\right) = 
+    \SI{19.32}{\gram\per\centi\meter^3} \times \SI{1.96e-3}{\centi\meter^3} \\
+    &= \SI{3.79e-2}{\gram} \\
+    N_{197} &= \frac{\num{6.022e23}}{\SI{196.966}{\gram}}\SI{3.79e-2}{\gram} = 
+    \num{1.16e20}\\
+    \lambda &= \frac{\log{2}}{\SI{2.69517}{\day}} = \SI{0.2572}{\per\day} \\
+    A(\SI{7}{\day}) &= \num{1.16e20} \times 
+    \SI{3.96336e-24}{\per\centi\meter^2} \times 
+    \SI{1e9}{neutrons \per \centi\meter^2} \times
+    \left( 1 - \exp{- \SI{0.2572}{\per\day} \times \SI{7}{\day}} \right) \\
+    &= \SI{3.84e5}{\becquerel}
+\end{align*}
 
 \problem{}
 A beam of \SI{1}{\mega\electronvolt} neutrons is incident upon a \ce{^{12}C} 
@@ -52,6 +128,29 @@ coefficient for \SI{1}{\mega\electronvolt} \ce{n + ^{12}C} s-wave elastic
 scattering, assuming all of the scattering is elastic at this energy.
 
 \solution
+Anderson equation 8.45:
+\begin{align*}
+    \left(\frac{\mu_{tr}}{\rho}\right)_{es} &= 
+    \left(\frac{\mu}{\rho}\right)_{es} 
+    \left[ \frac{\left<T_A\right>}{T} \right] \\
+    &= \left(\frac{\mu}{\rho}\right)_{es}
+    \left[ \frac{T - \left<T^\prime\right>}{T} \right] \\
+    \left(\frac{\mu}{\rho}\right)_{es} &= n_m \sigma_{es}
+\end{align*}
+
+From CENDL, $\sigma_{es}=\SI{2.49078}{\barn}$
+
+\begin{align*}
+    \left(\frac{\mu_{tr}}{\rho}\right)_{es} &=
+    n_m \sigma_{es} \left[ \frac{1-\alpha}{2} \right] \\
+    \alpha &= \left[ \frac{A-1}{A+1} \right]^2 \approx 0.716 \\
+    \left(\frac{\mu_{tr}}{\rho}\right)_{es} &= 
+    \frac{\rho A_V}{m_m} \sigma_{es} \left[ \frac{1-\alpha}{2} \right] \\
+    &= \frac{\SI{2.2}{\gram\per\centi\meter^3} \times \num{6.022e23}}
+    {\SI{12}{\gram}} \times \SI{2.49078e-24}{\centi\meter^2} \times 
+    \left[ \frac{1-\num{0.716}}{2} \right] \\
+    &= \SI{0.039}{\per\centi\meter}
+\end{align*}
 
 \problem{}
 Define what is meant by stochastic biological effects due to radiation and list 
