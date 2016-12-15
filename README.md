@@ -15,6 +15,7 @@ notes and stuff for classes related to NE
 - [Speeding up Python](https://www.ibm.com/developerworks/community/blogs/jfp/entry/Python_Meets_Julia_Micro_Performance?lang=en)
     - [More in notebook form](https://github.com/kbarbary/website/tree/master/posts)
     - [JIT compiler](http://numba.pydata.org)
+    - [Formatting strings](https://pyformat.info/)
 - [Julia](http://julialang.org)
     - [Language overview](https://learnxinyminutes.com/docs/julia/)
     - [The Julia Paper](https://arxiv.org/pdf/1411.1607.pdf)
