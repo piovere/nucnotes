@@ -26,3 +26,4 @@ notes and stuff for classes related to NE
 ## Other
 - Latex
     - [Draw LaTeX symbols](http://detexify.kirelabs.org/classify.html)
+- [Significant Figures Calculator](https://www.omnicalculator.com/math/sig-fig)
