@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     13852,        418]
+NotebookDataLength[     13846,        418]
 NotebookOptionsPosition[     12515,        367]
-NotebookOutlinePosition[     12879,        383]
-CellTagsIndexPosition[     12836,        380]
+NotebookOutlinePosition[     12873,        383]
+CellTagsIndexPosition[     12830,        380]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -366,7 +366,7 @@ to be the dominant effect on percent error.\
  FormatType->"TextForm"]
 },
 WindowSize->{1078, 833},
-WindowMargins->{{Automatic, -1503}, {Automatic, -50}},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -397,7 +397,7 @@ Cell[2008, 74, 131, 3, 45, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[2176, 82, 229, 6, 32, "Input"],
-Cell[2408, 90, 137, 3, 81, "Output"]
+Cell[2408, 90, 137, 3, 47, "Output"]
 }, Open  ]],
 Cell[2560, 96, 1142, 35, 70, "Input"],
 Cell[3705, 133, 855, 20, 32, "Input"],
@@ -411,15 +411,15 @@ Cell[6688, 213, 1170, 32, 54, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[7895, 250, 84, 2, 32, "Input"],
-Cell[7982, 254, 1007, 26, 176, "Output"]
+Cell[7982, 254, 1007, 26, 165, "Output"]
 }, Open  ]],
 Cell[9004, 283, 570, 11, 32, "Input"],
 Cell[9577, 296, 484, 12, 32, "Input"],
 Cell[CellGroupData[{
 Cell[10086, 312, 314, 8, 54, "Input"],
-Cell[10403, 322, 1340, 28, 194, "Output"]
+Cell[10403, 322, 1340, 28, 183, "Output"]
 }, Open  ]],
-Cell[11758, 353, 753, 12, 59, "Input"]
+Cell[11758, 353, 753, 12, 32, "Input"]
 }
 ]
 *)
