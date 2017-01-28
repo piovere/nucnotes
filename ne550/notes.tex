@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\title{Notes for NE550}
+\author{J.R. Powers-Luhn}
+\date{2017/01/26}
+
+\begin{document}
+
+\section{Gamma ray interactions}
+What is the range of photons in matter? Potentially infinite, since they interact statistically.
+
+The cross section for gammas has a peak in the compton region that correlates to the electron shells. At lower energies there are many peaks, each corresponding to another electron shell.
+
+\subsection{Detectors}
+\subsubsection{Gaseous}
+Radiation interacts wih a gas and the freed electrons are collected by applying a voltage \rightarrow measurable current
+
+\subsubsubsection{Energy regions based on amplifying voltage}
+Ion-saturated: collects all of the charge generated.
+
+Proportional region: Measures the amount of deposited energy (spectroscopy)
+
+Limited region: Can't really use this--effects are non-linear
+
+GM region: collects all incident particle, but does not discriminate between detected events. Also takes some time to relax, so it cannot immediately collect another event.
+
+\subsubsubsection{Geiger Mueller (GM) Tubes}
+One incident event creates cascade of secondary events. 
+
+Can raise voltage so much that breakdown happens without incident particles.
+
+Any energy deposition creates a pulse (very sensitive!). Gamma interactions are typically within the wall (sometimes the anode) but very rarely in the gas.
+
+Relaxation time is a function of the detector and the electronics counting the pulses. This relates to dead time. This can be either a paralyzable or non-paralyzable--non paralyzable detecors have a fixed dead time equal to $ n - m = n m \tau \rightarrow n=\frac{m}{1-m \tau} $. Non-paralyzable detectors do not have fixed dead time so we must use poisson statistics. We can only solve this numerically since the equation involves $ n \exp{-n t} $. Pulse decay time is limited by the formation of large heavy ions. Recovery time is different from dead time (why?).
+
+\subsubsection{Scinillating}
+Electrons de-excite in a detector creating light \rightarrow photodetector \rightarrow measurable current
+
+\subsubsection{Semiconducting}
+Radiation interacts with electrons in the band structure and are swept out of the detector by applying a voltage \rightarrow measurable current
+
+In each case we are measuring a current. Very bright scinitillators can be counted by eye.
+
+Background radiation is always present. We must therefore cancel those such that $n = G - B$ and the error is $\delta n = \sqrt{\delta G^2 + \delta B^2}$. Weight $w_i = $
+
+Other detectors (cloud chamber, bubble chamber, Cerenkov detector, superconductors, etc.).
+
+
+
+\end{document}
