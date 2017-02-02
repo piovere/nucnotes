@@ -1,0 +1,153 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4624,        143]
+NotebookOptionsPosition[      4037,        119]
+NotebookOutlinePosition[      4400,        135]
+CellTagsIndexPosition[      4357,        132]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Laboratory 3 : GM Tubes and Counting Statistics", "Title",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{3.695042603488282*^9, 3.695042673317951*^9}],
+
+Cell["\<\
+J.R. Powers - Luhn
+02 February 2017
+Thursday
+Lab Partner: \
+\>", "Text",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.695042646507798*^9, 3.695042692973851*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["In-lab analysis", "Section",
+ CellChangeTimes->{{3.695042743054076*^9, 3.695042747504838*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"filename", "=", "\"\<X.dat\>\""}], "\[IndentingNewLine]", 
+ RowBox[{"Plateau", "=", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", "filename"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"DataMean", "=", 
+  RowBox[{"Mean", "[", "Plateau", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"sig", "=", 
+  RowBox[{"StandardDeviation", "[", "Plateau", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.695042751686987*^9, 3.695042801087164*^9}, {
+  3.695053698840065*^9, 3.695053746543501*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"Plateau", ",", 
+    RowBox[{"PlotRange", "\[Rule]", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"DataMean", "-", 
+          RowBox[{"5", "*", "sig"}]}], ",", 
+         RowBox[{"DataMean", "+", 
+          RowBox[{"5", "*", "sig"}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"Max", "[", "TwoDList", "]"}], "*", "1.1"}]}], "}"}]}], 
+      "}"}]}], ",", 
+    RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+    RowBox[{"InterpolationOrder", "\[Rule]", "0"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"Filling", "\[Rule]", "Axis"}], ",", 
+    RowBox[{"FillingStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Lighter", "[", 
+       RowBox[{"Orange", ",", "0.5"}], "]"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", "Orange", "}"}]}], ",", 
+    RowBox[{"AxesOrigin", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"FrameLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Counts\>\"", ",", "Black", ",", "24"}], "]"}], ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Observed\>\"", ",", "Black", ",", "24"}], "]"}]}], 
+      "}"}]}], ",", 
+    RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+    RowBox[{"PlotLabel", "\[Rule]", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+        "\"\<Gaussian Approximation of\\nPoisson Distribution, \[Mu]=\>\"", 
+         ",", 
+         RowBox[{"ToString", "[", "distributionMean", "]"}]}], "]"}], ",", 
+       "Black", ",", "30"}], "]"}]}], ",", 
+    RowBox[{"FrameTicksStyle", "\[Rule]", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", "18"}], "]"}]}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "700"}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"Placed", "[", 
+      RowBox[{
+       RowBox[{"{", "\"\<Data Histogram\>\"", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.15", ",", "0.85"}], "}"}]}], "]"}]}], ",", 
+    RowBox[{"PlotMarkers", "\[Rule]", "\"\<\>\""}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.695042816959585*^9, 3.695042824937684*^9}, {
+  3.695044632158041*^9, 3.6950446355263033`*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, -1010}, {Automatic, -57}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 183, 2, 148, "Title",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}],
+Cell[766, 26, 203, 7, 83, "Text",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1006, 38, 100, 1, 64, "Section"],
+Cell[1109, 41, 547, 12, 96, "Input"],
+Cell[1659, 55, 2362, 61, 222, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
