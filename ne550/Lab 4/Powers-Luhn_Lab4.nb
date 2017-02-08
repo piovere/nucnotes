@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     11820,        364]
-NotebookOptionsPosition[     10852,        329]
-NotebookOutlinePosition[     11209,        345]
-CellTagsIndexPosition[     11166,        342]
+NotebookDataLength[     15910,        492]
+NotebookOptionsPosition[     14557,        445]
+NotebookOutlinePosition[     14914,        461]
+CellTagsIndexPosition[     14871,        458]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -312,20 +312,136 @@ Cell[TextData[{
  Cell[BoxData[
   FormBox[
    RowBox[{"1.892", "*", 
-    RowBox[{"10", "^", 
-     RowBox[{"-", "4"}]}], 
+    SuperscriptBox["10", 
+     RowBox[{"-", "4"}]], 
     FractionBox[
      SuperscriptBox["cm", "2"], "mg"]}], TraditionalForm]],
   FormatType->"TraditionalForm"],
  "."
 }], "Text",
- CellChangeTimes->{{3.695572198035323*^9, 3.695572293409293*^9}}],
+ CellChangeTimes->{{3.695572198035323*^9, 3.695572293409293*^9}, {
+  3.695579515944104*^9, 3.695579528580104*^9}}],
 
 Cell["\<\
 5. Using the value found in question 4, calculate the thickness of Aluminum \
 required to absorb between 10-80% of the 88keV gamma-rays in steps of 10%.\
 \>", "Text",
- CellChangeTimes->{{3.695572298800321*^9, 3.69557235570415*^9}}]
+ CellChangeTimes->{{3.695572298800321*^9, 3.69557235570415*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"density", "=", "2700"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"mg", "/", 
+    SuperscriptBox["cm", "3"]}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ap", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"i", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0.1", ",", "0.8", ",", "0.1"}], "}"}]}], "]"}]}], 
+  " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Attenuation", " ", "Percentages"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"at", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      FractionBox[
+       RowBox[{"-", "1"}], 
+       RowBox[{"mu", "*", "density"}]], "*", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", 
+        RowBox[{"ap", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "ap", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Multicolumn", "[", 
+  RowBox[{
+   RowBox[{"Join", "[", 
+    RowBox[{"ap", ",", "at"}], "]"}], ",", "2"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.69557965223573*^9, 3.695579920186861*^9}, 
+   3.6955800810150423`*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"0.1`", "0.20620594592370708`"},
+    {"0.2`", "0.43672458119849716`"},
+    {"0.30000000000000004`", "0.6980650554239032`"},
+    {"0.4`", "0.999760491803453`"},
+    {"0.5`", "1.3565904564847016`"},
+    {"0.6`", "1.7933150376831988`"},
+    {"0.7000000000000001`", "2.356350948288155`"},
+    {"0.8`", "3.1499054941679008`"}
+   },
+   AutoDelete->False,
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.695579666577681*^9, 3.695579684598225*^9}, {
+   3.6955798704497957`*^9, 3.695579888831994*^9}, 3.695579920913309*^9}]
+}, Open  ]],
+
+Cell["\<\
+See above for the thickness (in cm, second column) to attenuate the \
+gamma-rays to the fractions in the first column.\
+\>", "Text",
+ CellChangeTimes->{{3.695579944831514*^9, 3.695579987557332*^9}}],
+
+Cell[TextData[{
+ "6. Calculate the mass thickness of an aluminum shim 0.080\[PlusMinus]0.005 \
+inches thick. Report your answer in ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["cm", "2"], "/", "mg"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.695580013129796*^9, 3.695580091205542*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  FractionBox["1", "density"], "*", 
+  FractionBox["1", 
+   RowBox[{"0.080", "*", "2.54"}]]}], "\[IndentingNewLine]", 
+ RowBox[{
+  FractionBox["1", "density"], "*", 
+  FractionBox["1", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"0.080", "*", "2.54"}], ")"}], "2"]], "*", "0.005", "*", 
+  "2.54"}]}], "Input",
+ CellChangeTimes->{{3.695581135094467*^9, 3.6955811617194223`*^9}, {
+  3.6955812165470667`*^9, 3.695581220550169*^9}, {3.695581300223001*^9, 
+  3.695581309511676*^9}, {3.695581346446576*^9, 3.695581372235268*^9}}],
+
+Cell[BoxData["0.001822688830562846`"], "Output",
+ CellChangeTimes->{{3.695581149149934*^9, 3.695581163374208*^9}, 
+   3.695581373425343*^9}],
+
+Cell[BoxData["0.00011391805191017787`"], "Output",
+ CellChangeTimes->{{3.695581149149934*^9, 3.695581163374208*^9}, 
+   3.695581373428994*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "The mass thickness of an aluminum shim is 0.0018\[PlusMinus]0.00011 ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SuperscriptBox["cm", "2"], "mg"], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.695581409123355*^9, 3.6955814851344547`*^9}}]
 },
 WindowSize->{808, 911},
 WindowMargins->{{4, Automatic}, {Automatic, 4}},
@@ -364,8 +480,20 @@ Cell[CellGroupData[{
 Cell[9027, 269, 1101, 34, 138, "Input"],
 Cell[10131, 305, 79, 1, 32, "Output"]
 }, Open  ]],
-Cell[10225, 309, 379, 12, 47, "Text"],
-Cell[10607, 323, 241, 4, 47, "Text"]
+Cell[10225, 309, 429, 13, 47, "Text"],
+Cell[10657, 324, 241, 4, 47, "Text"],
+Cell[CellGroupData[{
+Cell[10923, 332, 1174, 37, 119, "Input"],
+Cell[12100, 371, 693, 16, 149, "Output"]
+}, Open  ]],
+Cell[12808, 390, 208, 4, 47, "Text"],
+Cell[13019, 396, 351, 10, 35, "Text"],
+Cell[CellGroupData[{
+Cell[13395, 410, 555, 14, 96, "Input"],
+Cell[13953, 426, 140, 2, 32, "Output"],
+Cell[14096, 430, 142, 2, 32, "Output"]
+}, Open  ]],
+Cell[14253, 435, 300, 8, 47, "Text"]
 }
 ]
 *)
