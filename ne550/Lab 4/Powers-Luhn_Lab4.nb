@@ -1,0 +1,372 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11820,        364]
+NotebookOptionsPosition[     10852,        329]
+NotebookOutlinePosition[     11209,        345]
+CellTagsIndexPosition[     11166,        342]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Lab 4: Gamma, Beta, and Alpha Particle Attenuation", "Title"],
+ "\nJ.R. Powers - Luhn\n09 February 2017\nThursday\nLab Partner: "
+}], "Text",
+ CellChangeTimes->{{3.6955559226043777`*^9, 3.695555961642919*^9}}],
+
+Cell[TextData[StyleBox["Pre-Laboratory Questions:", "Chapter"]], "Text",
+ CellChangeTimes->{{3.695555996136836*^9, 3.695556010986773*^9}}],
+
+Cell["\<\
+1. How long does it take for Y-90 to become in secular equilibrium with \
+Sr-90? What is the ratio of their activities?\
+\>", "Text",
+ CellChangeTimes->{{3.695556024114637*^9, 3.6955560481001177`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"half", " ", "life", " ", "of", " ", "Y"}], "-", 
+    RowBox[{"90", " ", "64.1", "h"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Y90HalfLife", "=", "64.1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"half", " ", "life", " ", "of", " ", "Sr"}], "-", 
+     RowBox[{"90", " ", "28.79", "y"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   
+   RowBox[{
+    RowBox[{"Sr90HalfLife", "=", 
+     RowBox[{"28.79", "*", "365.241", "*", "24"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"convert", " ", "to", " ", "hours"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"8", "*", "Y90HalfLife"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.6955702307150507`*^9, 3.695570357317315*^9}, {
+  3.6955704221417933`*^9, 3.695570423274287*^9}, {3.695570536158615*^9, 
+  3.695570540441908*^9}}],
+
+Cell[BoxData["512.8`"], "Output",
+ CellChangeTimes->{{3.695570400925619*^9, 3.69557042444109*^9}, 
+   3.6955705413583183`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "The two isotopes reach secular equilibrium in 8 half-lives of the daughter \
+nuclide, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["t", 
+     RowBox[{"(", 
+      RowBox[{"1", "/", "2"}], ")"}]], "=", 
+    RowBox[{"512.8", "h"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " . At this point their activities are equal, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["A", 
+     RowBox[{"Sr", "-", "90"}]], "=", 
+    SubscriptBox["A", 
+     RowBox[{"Y", "-", "90"}]]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.695562781162677*^9, 3.695562790567631*^9}, {
+  3.6955701046367273`*^9, 3.695570164420895*^9}, {3.695570366141149*^9, 
+  3.69557038847081*^9}, {3.6955704316661243`*^9, 3.6955704353160267`*^9}}],
+
+Cell[TextData[{
+ "2. Using the NIST ESTAR database, determine the range of the most probable \
+and maximum emission energy for the beta particles from Sr-90 and Y-90 in \
+Aluminum and plastic. Provide the answer in units of mass thickness ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{"mg", "/", 
+     SuperscriptBox["cm", "2"]}], ")"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.6955699100761843`*^9, 3.69556993507086*^9}, {
+  3.695569992527939*^9, 3.695570000017695*^9}, {3.6955704669592133`*^9, 
+  3.695570522972302*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"From", " ", 
+      RowBox[{"https", ":"}]}], "//", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"www", ".", "nndc", ".", "bnl", ".", "gov"}], "/", "chart"}], 
+      "/", 
+      RowBox[{"decaysearchdirect", ".", 
+       RowBox[{"jsp", "?", "nuc"}]}]}]}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"90", "SR"}], "&"}], "unc"}], "=", "nds"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sr90BetaEnergy", "=", 
+     RowBox[{"{", "195.88", "}"}]}], " ", 
+    RowBox[{"(*", " ", "keV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"From", " ", 
+       RowBox[{"https", ":"}]}], "//", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"www", ".", "nndc", ".", "bnl", ".", "gov"}], "/", "chart"}], 
+       "/", 
+       RowBox[{"decaysearchdirect", ".", 
+        RowBox[{"jsp", "?", "nuc"}]}]}]}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"90", "Y"}], "&"}], "unc"}], "=", "nds"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Y90BetaEnergy", "=", 
+     RowBox[{"{", 
+      RowBox[{"25.07", ",", "185.61", ",", "933.7"}], "}"}]}], " ", 
+    RowBox[{"(*", " ", "keV", " ", "*)"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.695570551354727*^9, 3.6955706356439857`*^9}, {
+  3.695570706733015*^9, 3.695570801592401*^9}, {3.695570866543824*^9, 
+  3.695570907773107*^9}, {3.695571050241982*^9, 3.6955710522606487`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Ranges", " ", "in", " ", "Aluminum"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{GridBox[{
+     {
+      RowBox[{
+       RowBox[{"Beta", " ", "Energy"}], "\[IndentingNewLine]", 
+       RowBox[{"(", "keV", ")"}]}], 
+      RowBox[{
+       RowBox[{"Stopping", " ", "Power"}], "\[IndentingNewLine]", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["cm", "2"], "/", "g"}], ")"}]}], 
+      RowBox[{"Range", "\[IndentingNewLine]", 
+       RowBox[{"(", 
+        RowBox[{"mg", "/", 
+         SuperscriptBox["cm", "2"]}], ")"}]}]},
+     {"195.8", "2.204", "88.84"},
+     {"25.07", "8.328", "3.010"},
+     {"185.61", "2.261", "82.09"},
+     {"933.7", "1.489", "627.1"}
+    },
+    GridBoxDividers->{
+     "Columns" -> {{True}}, "ColumnsIndexed" -> {}, "Rows" -> {{True}}, 
+      "RowsIndexed" -> {}}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.6955709465251207`*^9, 3.6955709633233747`*^9}, {
+  3.695571055294344*^9, 3.695571215081949*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Ranges", " ", "in", " ", "Plastic", " ", 
+    RowBox[{"(", "Polyethylene", ")"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  
+  RowBox[{GridBox[{
+     {
+      RowBox[{
+       RowBox[{"Beta", " ", "Energy"}], "\[IndentingNewLine]", 
+       RowBox[{"(", "keV", ")"}]}], 
+      RowBox[{
+       RowBox[{"Stopping", " ", "Power"}], "\[IndentingNewLine]", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["cm", "2"], "/", "g"}], ")"}]}], 
+      RowBox[{"Range", "\[IndentingNewLine]", 
+       RowBox[{"(", 
+        RowBox[{"mg", "/", 
+         SuperscriptBox["cm", "2"]}], ")"}]}]},
+     {"195.8", "3.001", "29.60"},
+     {"25.07", "11.89", "0.2532"},
+     {"185.61", "3.081", "26.64"},
+     {"933.7", "1.950", "321.6"}
+    },
+    GridBoxDividers->{
+     "Columns" -> {{True}}, "ColumnsIndexed" -> {}, "Rows" -> {{True}}, 
+      "RowsIndexed" -> {}}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.6955709465251207`*^9, 3.6955709633233747`*^9}, {
+  3.695571055294344*^9, 3.695571215081949*^9}, {3.695571256217553*^9, 
+  3.695571304033922*^9}}],
+
+Cell["\<\
+The 933.7keV beta is the most probable decay for Y-90; The 195.8keV beta is \
+the most probable decay for Sr-90.\
+\>", "Text",
+ CellChangeTimes->{{3.6955707791240396`*^9, 3.695570781047201*^9}, {
+  3.6955713390520267`*^9, 3.6955713815563087`*^9}}],
+
+Cell["\<\
+3. Where are gamma rays on the electromagnetic spectrum? What are the \
+characteristics of their wavelength, frequency, and energy?\
+\>", "Text",
+ CellChangeTimes->{{3.695571419472403*^9, 3.695571447657913*^9}}],
+
+Cell[TextData[{
+ "Gamma rays are the most energetic photons on the electromagnetic spectrum. \
+Their wavelength is on the order of tenths of angstroms ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{
+     SuperscriptBox["10", 
+      RowBox[{"-", "11"}]], "m"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "), making their frequency on order of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["10", "19"], "Hz"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". Their energies are normally in the range of tens to hundreds of keV, but \
+can reach the MeV range. "
+}], "Text",
+ CellChangeTimes->{{3.695571453363655*^9, 3.6955714552228537`*^9}, {
+  3.695571509488737*^9, 3.6955716855607147`*^9}}],
+
+Cell[TextData[{
+ "4. Using the NIST X-ray Mass Attenuation Coefficient Database \
+(http://www.nist.gov/pml/data/xraycoef/), use linear interpolation to find \
+the mass attenuation coefficient of 88keV gamma-rays in Aluminum. Provide the \
+answer in units of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["cm", "2"], "/", "mg"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.695571700205174*^9, 3.6955717960066967`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"e0", "=", "80"}], " ", 
+  RowBox[{"(*", " ", "keV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e1", "=", "100"}], " ", 
+  RowBox[{"(*", " ", "keV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mu0", "=", 
+   RowBox[{"0.2018", " ", "*", " ", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "3"}]]}]}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    SuperscriptBox["cm", "2"], "/", "mg"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mu1", "=", 
+   RowBox[{"0.1704", " ", "*", " ", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "3"}]]}]}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    SuperscriptBox["cm", "2"], "/", "mg"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"mu", "=", 
+  RowBox[{"mu0", "+", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"mu1", "-", "mu0"}], 
+     RowBox[{"e1", "-", "e0"}]], "*", 
+    RowBox[{"(", 
+     RowBox[{"88", "-", "e0"}], ")"}]}]}]}]}], "Input",
+ CellChangeTimes->{{3.695571803492175*^9, 3.6955718224761744`*^9}, {
+  3.695571939948957*^9, 3.695572137336553*^9}}],
+
+Cell[BoxData["0.00018924`"], "Output",
+ CellChangeTimes->{3.69557213972753*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Mass attenuation coefficient for 88keV gammas in Aluminum is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1.892", "*", 
+    RowBox[{"10", "^", 
+     RowBox[{"-", "4"}]}], 
+    FractionBox[
+     SuperscriptBox["cm", "2"], "mg"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.695572198035323*^9, 3.695572293409293*^9}}],
+
+Cell["\<\
+5. Using the value found in question 4, calculate the thickness of Aluminum \
+required to absorb between 10-80% of the 88keV gamma-rays in steps of 10%.\
+\>", "Text",
+ CellChangeTimes->{{3.695572298800321*^9, 3.69557235570415*^9}}]
+},
+WindowSize->{808, 911},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 236, 4, 194, "Text"],
+Cell[797, 26, 138, 1, 54, "Text"],
+Cell[938, 29, 211, 4, 29, "Text"],
+Cell[CellGroupData[{
+Cell[1174, 37, 915, 23, 117, "Input"],
+Cell[2092, 62, 126, 2, 32, "Output"]
+}, Open  ]],
+Cell[2233, 67, 800, 23, 52, "Text"],
+Cell[3036, 92, 586, 14, 71, "Text"],
+Cell[3625, 108, 1555, 46, 96, "Input"],
+Cell[5183, 156, 1007, 28, 172, "Input"],
+Cell[6193, 186, 1102, 30, 172, "Input"],
+Cell[7298, 218, 257, 5, 29, "Text"],
+Cell[7558, 225, 221, 4, 47, "Text"],
+Cell[7782, 231, 737, 20, 70, "Text"],
+Cell[8522, 253, 480, 12, 71, "Text"],
+Cell[CellGroupData[{
+Cell[9027, 269, 1101, 34, 138, "Input"],
+Cell[10131, 305, 79, 1, 32, "Output"]
+}, Open  ]],
+Cell[10225, 309, 379, 12, 47, "Text"],
+Cell[10607, 323, 241, 4, 47, "Text"]
+}
+]
+*)
+
