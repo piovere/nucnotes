@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     15910,        492]
-NotebookOptionsPosition[     14557,        445]
-NotebookOutlinePosition[     14914,        461]
-CellTagsIndexPosition[     14871,        458]
+NotebookDataLength[     21952,        647]
+NotebookOptionsPosition[     19671,        575]
+NotebookOutlinePosition[     20082,        593]
+CellTagsIndexPosition[     20039,        590]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -25,7 +25,8 @@ Cell[TextData[{
  CellChangeTimes->{{3.6955559226043777`*^9, 3.695555961642919*^9}}],
 
 Cell[TextData[StyleBox["Pre-Laboratory Questions:", "Chapter"]], "Text",
- CellChangeTimes->{{3.695555996136836*^9, 3.695556010986773*^9}}],
+ CellChangeTimes->{{3.695555996136836*^9, 3.695556010986773*^9}, 
+   3.695666784373712*^9}],
 
 Cell["\<\
 1. How long does it take for Y-90 to become in secular equilibrium with \
@@ -98,8 +99,7 @@ Aluminum and plastic. Provide the answer in units of mass thickness ",
   FormBox[
    RowBox[{"(", 
     RowBox[{"mg", "/", 
-     SuperscriptBox["cm", "2"]}], ")"}], TraditionalForm]],
-  FormatType->"TraditionalForm"],
+     SuperscriptBox["cm", "2"]}], ")"}], TraditionalForm]]],
  "."
 }], "Text",
  CellChangeTimes->{{3.6955699100761843`*^9, 3.69556993507086*^9}, {
@@ -441,10 +441,142 @@ Cell[TextData[{
     SuperscriptBox["cm", "2"], "mg"], TraditionalForm]],
   FormatType->"TraditionalForm"]
 }], "Text",
- CellChangeTimes->{{3.695581409123355*^9, 3.6955814851344547`*^9}}]
+ CellChangeTimes->{{3.695581409123355*^9, 3.6955814851344547`*^9}}],
+
+Cell[TextData[StyleBox["In-Lab", "Chapter"]], "Text",
+ CellChangeTimes->{{3.6956667941438723`*^9, 3.6956667950808897`*^9}}],
+
+Cell[TextData[StyleBox["Beta particle attenuation", "Subchapter"]], "Text",
+ CellChangeTimes->{{3.6956668289151*^9, 3.695666836820243*^9}}],
+
+Cell["\<\
+With no radiation sources around your station, take a background measurement. \
+Use the count time of 60 seconds and 10 runs.\
+\>", "Text",
+ CellChangeTimes->{{3.695666973872692*^9, 3.695666998027162*^9}}],
+
+Cell["\<\
+Use a hollow source holder to hold the Sr-90 source up on the second to top \
+shelf. Take a 60 second count. Record actual setup parameters.\
+\>", "Text",
+ CellChangeTimes->{{3.695667004044179*^9, 3.69566704015843*^9}}],
+
+Cell["\<\
+On the top shelf, place an absorber between the source and the detector. \
+Choose an absorber that is approximately 10% of the range for the maximum \
+emission energy of Sr-90.\
+\>", "Text",
+ CellChangeTimes->{{3.695667046357212*^9, 3.695667083041773*^9}}],
+
+Cell["\<\
+Repeat step 3 for five more absorbers with mass thicknesses between 30% and \
+300% the range of the most probable beta energy for Sr-90. Use any material \
+absorbers for these measurements that meet the mass thickness requirements. \
+Record the absorber material, mass thickness and count data for all \
+experiments in your laboratory notebook.\
+\>", "Text",
+ CellChangeTimes->{{3.695667087004807*^9, 3.695667162808259*^9}}],
+
+Cell["Return the beta source to the GTA.", "Text",
+ CellChangeTimes->{{3.6956671669988317`*^9, 3.6956671717590303`*^9}}],
+
+Cell[TextData[StyleBox["Alpha particle attenuation", "Subchapter"]], "Text",
+ CellChangeTimes->{{3.695666843630969*^9, 3.6956668466998777`*^9}}],
+
+Cell["\<\
+Measure the distance between the source holder shelves and note it in the \
+laboratory notebook.\
+\>", "Text",
+ CellChangeTimes->{{3.695667186254664*^9, 3.695667205473363*^9}}],
+
+Cell[TextData[{
+ "Check out a Po-210 source from the GTA. ",
+ StyleBox["Note the source born date to estimate the source strength.",
+  FontWeight->"Bold"]
+}], "Text",
+ CellChangeTimes->{{3.695667210538159*^9, 3.695667239293*^9}}],
+
+Cell[TextData[{
+ "Place a series of 0.08\[PlusMinus]0.005 inch aluminum shims on the source \
+holder so that, when the Po-210 alpha source is placed on top, the distance \
+between the alpha source and GM window is minimized but ",
+ StyleBox["not touching the GM window.",
+  FontWeight->"Bold"]
+}], "Text",
+ CellChangeTimes->{{3.695667250677257*^9, 3.6956673192875443`*^9}}],
+
+Cell["\<\
+Estimate the separation distance between the source and the window of the GM \
+tube.\
+\>", "Text",
+ CellChangeTimes->{{3.695667325628092*^9, 3.695667341533862*^9}}],
+
+Cell["\<\
+Conduct one 60 second counting experiment. Record your results in your \
+laboratory notebook.\
+\>", "Text",
+ CellChangeTimes->{{3.695667351725498*^9, 3.695667368668419*^9}}],
+
+Cell["\<\
+Remove one of the aluminum shims from the source holder and repeat step 5.\
+\>", "Text",
+ CellChangeTimes->{{3.695667374231103*^9, 3.695667389198078*^9}}],
+
+Cell["\<\
+Repeat step 6 until all but one aluminum shim has been removed. Then move the \
+source holder down one shelf, add shims to get the next separation distance \
+approximately equal to one aluminum shim thickness, and continue taking 60 \
+second counts at each separation distance.\
+\>", "Text",
+ CellChangeTimes->{{3.6956673947368793`*^9, 3.695667448766982*^9}}],
+
+Cell["\<\
+When the count rate observed is approximately equal to the background, take a \
+couple more measurements to enhance the fidelity of the collected data for \
+post-lab analysis.\
+\>", "Text",
+ CellChangeTimes->{{3.695667451821781*^9, 3.695667486306332*^9}}],
+
+Cell["Return the Po-210 source to the GTA.", "Text",
+ CellChangeTimes->{{3.6956674891628647`*^9, 3.695667495651004*^9}}],
+
+Cell[TextData[StyleBox["Gamma-ray attenuation", "Subchapter"]], "Text",
+ CellChangeTimes->{{3.695666851976824*^9, 3.695666855203624*^9}}],
+
+Cell["\<\
+Check out a 1\[Mu]Ci Cd-109 button source (or other low energy gamma-ray \
+source) from the GTA.\
+\>", "Text",
+ CellChangeTimes->{{3.695667499099515*^9, 3.695667528722443*^9}}],
+
+Cell["\<\
+Place the source on the source holder on the second shelf of the GM test \
+stand. Place another source holder on the top shelf with one aluminum shim on \
+it and conduct a 60 second count.\
+\>", "Text",
+ CellChangeTimes->{{3.6956675310799303`*^9, 3.695667571166739*^9}}],
+
+Cell["\<\
+Now start adding aluminum shims to the top source holder to attenuate some of \
+the 88 keV gamma-rays. Use the answer from the pre-laboratory exercise to \
+attenuate between 10% and 80% of the incident 88 keV gamma-rays. Conduct a \
+total of four experiments between this range at 60 second count times each.\
+\>", "Text",
+ CellChangeTimes->{{3.695667579569743*^9, 3.695667663627015*^9}}],
+
+Cell["\<\
+Record results in the laboratory notebook (i.e., how many shims used and \
+counts observed for each).\
+\>", "Text",
+ CellChangeTimes->{{3.6956676662632627`*^9, 3.695667686332687*^9}}],
+
+Cell["Return the Cd-109 button source to the GTA.", "Text",
+ CellChangeTimes->{{3.695667688254569*^9, 3.695667696076535*^9}}]
 },
 WindowSize->{808, 911},
 WindowMargins->{{4, Automatic}, {Automatic, 4}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -461,39 +593,62 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 236, 4, 194, "Text"],
-Cell[797, 26, 138, 1, 54, "Text"],
-Cell[938, 29, 211, 4, 29, "Text"],
+Cell[797, 26, 164, 2, 54, "Text"],
+Cell[964, 30, 211, 4, 29, "Text"],
 Cell[CellGroupData[{
-Cell[1174, 37, 915, 23, 117, "Input"],
-Cell[2092, 62, 126, 2, 32, "Output"]
+Cell[1200, 38, 915, 23, 117, "Input"],
+Cell[2118, 63, 126, 2, 32, "Output"]
 }, Open  ]],
-Cell[2233, 67, 800, 23, 52, "Text"],
-Cell[3036, 92, 586, 14, 71, "Text"],
-Cell[3625, 108, 1555, 46, 96, "Input"],
-Cell[5183, 156, 1007, 28, 172, "Input"],
-Cell[6193, 186, 1102, 30, 172, "Input"],
-Cell[7298, 218, 257, 5, 29, "Text"],
-Cell[7558, 225, 221, 4, 47, "Text"],
-Cell[7782, 231, 737, 20, 70, "Text"],
-Cell[8522, 253, 480, 12, 71, "Text"],
+Cell[2259, 68, 800, 23, 52, "Text"],
+Cell[3062, 93, 553, 13, 71, "Text"],
+Cell[3618, 108, 1555, 46, 96, "Input"],
+Cell[5176, 156, 1007, 28, 172, "Input"],
+Cell[6186, 186, 1102, 30, 172, "Input"],
+Cell[7291, 218, 257, 5, 29, "Text"],
+Cell[7551, 225, 221, 4, 47, "Text"],
+Cell[7775, 231, 737, 20, 70, "Text"],
+Cell[8515, 253, 480, 12, 71, "Text"],
 Cell[CellGroupData[{
-Cell[9027, 269, 1101, 34, 138, "Input"],
-Cell[10131, 305, 79, 1, 32, "Output"]
+Cell[9020, 269, 1101, 34, 138, "Input"],
+Cell[10124, 305, 79, 1, 32, "Output"]
 }, Open  ]],
-Cell[10225, 309, 429, 13, 47, "Text"],
-Cell[10657, 324, 241, 4, 47, "Text"],
+Cell[10218, 309, 429, 13, 47, "Text"],
+Cell[10650, 324, 241, 4, 47, "Text"],
 Cell[CellGroupData[{
-Cell[10923, 332, 1174, 37, 119, "Input"],
-Cell[12100, 371, 693, 16, 149, "Output"]
+Cell[10916, 332, 1174, 37, 119, "Input"],
+Cell[12093, 371, 693, 16, 149, "Output"]
 }, Open  ]],
-Cell[12808, 390, 208, 4, 47, "Text"],
-Cell[13019, 396, 351, 10, 35, "Text"],
+Cell[12801, 390, 208, 4, 47, "Text"],
+Cell[13012, 396, 351, 10, 35, "Text"],
 Cell[CellGroupData[{
-Cell[13395, 410, 555, 14, 96, "Input"],
-Cell[13953, 426, 140, 2, 32, "Output"],
-Cell[14096, 430, 142, 2, 32, "Output"]
+Cell[13388, 410, 555, 14, 96, "Input"],
+Cell[13946, 426, 140, 2, 32, "Output"],
+Cell[14089, 430, 142, 2, 32, "Output"]
 }, Open  ]],
-Cell[14253, 435, 300, 8, 47, "Text"]
+Cell[14246, 435, 300, 8, 47, "Text"],
+Cell[14549, 445, 123, 1, 54, "Text"],
+Cell[14675, 448, 139, 1, 47, "Text"],
+Cell[14817, 451, 215, 4, 47, "Text"],
+Cell[15035, 457, 229, 4, 47, "Text"],
+Cell[15267, 463, 266, 5, 47, "Text"],
+Cell[15536, 470, 434, 7, 83, "Text"],
+Cell[15973, 479, 120, 1, 29, "Text"],
+Cell[16096, 482, 144, 1, 47, "Text"],
+Cell[16243, 485, 186, 4, 29, "Text"],
+Cell[16432, 491, 229, 5, 29, "Text"],
+Cell[16664, 498, 373, 7, 65, "Text"],
+Cell[17040, 507, 174, 4, 29, "Text"],
+Cell[17217, 513, 183, 4, 29, "Text"],
+Cell[17403, 519, 164, 3, 29, "Text"],
+Cell[17570, 524, 369, 6, 65, "Text"],
+Cell[17942, 532, 265, 5, 47, "Text"],
+Cell[18210, 539, 120, 1, 29, "Text"],
+Cell[18333, 542, 137, 1, 47, "Text"],
+Cell[18473, 545, 186, 4, 29, "Text"],
+Cell[18662, 551, 280, 5, 47, "Text"],
+Cell[18945, 558, 398, 6, 65, "Text"],
+Cell[19346, 566, 193, 4, 29, "Text"],
+Cell[19542, 572, 125, 1, 29, "Text"]
 }
 ]
 *)
