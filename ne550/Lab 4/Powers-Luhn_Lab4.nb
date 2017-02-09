@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     21952,        647]
-NotebookOptionsPosition[     19671,        575]
-NotebookOutlinePosition[     20082,        593]
-CellTagsIndexPosition[     20039,        590]
+NotebookDataLength[     22832,        672]
+NotebookOptionsPosition[     20482,        599]
+NotebookOutlinePosition[     20883,        616]
+CellTagsIndexPosition[     20840,        613]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -455,11 +455,35 @@ Use the count time of 60 seconds and 10 runs.\
 \>", "Text",
  CellChangeTimes->{{3.695666973872692*^9, 3.695666998027162*^9}}],
 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PartABackgroundFilename", "=", "\"\<beta_bkg.dat\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PartABackground", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+       "PartABackgroundFilename"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"12", ";;"}], "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{";;", "3"}], "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6956686945003614`*^9, 3.6956687082206984`*^9}, {
+  3.6956688087047367`*^9, 3.6956688640210238`*^9}, {3.695668926264062*^9, 
+  3.695668932814642*^9}}],
+
 Cell["\<\
 Use a hollow source holder to hold the Sr-90 source up on the second to top \
 shelf. Take a 60 second count. Record actual setup parameters.\
 \>", "Text",
  CellChangeTimes->{{3.695667004044179*^9, 3.69566704015843*^9}}],
+
+Cell[BoxData[
+ RowBox[{"PartASr90DataFilename", "=", "\"\<\>"}]], "Input",
+ CellChangeTimes->{{3.6956692527653413`*^9, 3.6956693021298876`*^9}}],
 
 Cell["\<\
 On the top shelf, place an absorber between the source and the detector. \
@@ -573,12 +597,11 @@ counts observed for each).\
 Cell["Return the Cd-109 button source to the GTA.", "Text",
  CellChangeTimes->{{3.695667688254569*^9, 3.695667696076535*^9}}]
 },
-WindowSize->{808, 911},
-WindowMargins->{{4, Automatic}, {Automatic, 4}},
+WindowSize->{958, 1028},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
-FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
-21, 2016)",
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -592,63 +615,65 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 236, 4, 194, "Text"],
-Cell[797, 26, 164, 2, 54, "Text"],
-Cell[964, 30, 211, 4, 29, "Text"],
+Cell[558, 20, 236, 4, 151, "Text"],
+Cell[797, 26, 164, 2, 61, "Text"],
+Cell[964, 30, 211, 4, 30, "Text"],
 Cell[CellGroupData[{
-Cell[1200, 38, 915, 23, 117, "Input"],
-Cell[2118, 63, 126, 2, 32, "Output"]
+Cell[1200, 38, 915, 23, 107, "Input"],
+Cell[2118, 63, 126, 2, 30, "Output"]
 }, Open  ]],
-Cell[2259, 68, 800, 23, 52, "Text"],
-Cell[3062, 93, 553, 13, 71, "Text"],
-Cell[3618, 108, 1555, 46, 96, "Input"],
-Cell[5176, 156, 1007, 28, 172, "Input"],
-Cell[6186, 186, 1102, 30, 172, "Input"],
-Cell[7291, 218, 257, 5, 29, "Text"],
-Cell[7551, 225, 221, 4, 47, "Text"],
-Cell[7775, 231, 737, 20, 70, "Text"],
-Cell[8515, 253, 480, 12, 71, "Text"],
+Cell[2259, 68, 800, 23, 49, "Text"],
+Cell[3062, 93, 553, 13, 55, "Text"],
+Cell[3618, 108, 1555, 46, 88, "Input"],
+Cell[5176, 156, 1007, 28, 165, "Input"],
+Cell[6186, 186, 1102, 30, 165, "Input"],
+Cell[7291, 218, 257, 5, 30, "Text"],
+Cell[7551, 225, 221, 4, 30, "Text"],
+Cell[7775, 231, 737, 20, 73, "Text"],
+Cell[8515, 253, 480, 12, 55, "Text"],
 Cell[CellGroupData[{
-Cell[9020, 269, 1101, 34, 138, "Input"],
-Cell[10124, 305, 79, 1, 32, "Output"]
+Cell[9020, 269, 1101, 34, 130, "Input"],
+Cell[10124, 305, 79, 1, 30, "Output"]
 }, Open  ]],
-Cell[10218, 309, 429, 13, 47, "Text"],
-Cell[10650, 324, 241, 4, 47, "Text"],
+Cell[10218, 309, 429, 13, 45, "Text"],
+Cell[10650, 324, 241, 4, 49, "Text"],
 Cell[CellGroupData[{
-Cell[10916, 332, 1174, 37, 119, "Input"],
-Cell[12093, 371, 693, 16, 149, "Output"]
+Cell[10916, 332, 1174, 37, 114, "Input"],
+Cell[12093, 371, 693, 16, 148, "Output"]
 }, Open  ]],
-Cell[12801, 390, 208, 4, 47, "Text"],
-Cell[13012, 396, 351, 10, 35, "Text"],
+Cell[12801, 390, 208, 4, 30, "Text"],
+Cell[13012, 396, 351, 10, 36, "Text"],
 Cell[CellGroupData[{
-Cell[13388, 410, 555, 14, 96, "Input"],
-Cell[13946, 426, 140, 2, 32, "Output"],
-Cell[14089, 430, 142, 2, 32, "Output"]
+Cell[13388, 410, 555, 14, 94, "Input"],
+Cell[13946, 426, 140, 2, 30, "Output"],
+Cell[14089, 430, 142, 2, 30, "Output"]
 }, Open  ]],
-Cell[14246, 435, 300, 8, 47, "Text"],
-Cell[14549, 445, 123, 1, 54, "Text"],
-Cell[14675, 448, 139, 1, 47, "Text"],
-Cell[14817, 451, 215, 4, 47, "Text"],
-Cell[15035, 457, 229, 4, 47, "Text"],
-Cell[15267, 463, 266, 5, 47, "Text"],
-Cell[15536, 470, 434, 7, 83, "Text"],
-Cell[15973, 479, 120, 1, 29, "Text"],
-Cell[16096, 482, 144, 1, 47, "Text"],
-Cell[16243, 485, 186, 4, 29, "Text"],
-Cell[16432, 491, 229, 5, 29, "Text"],
-Cell[16664, 498, 373, 7, 65, "Text"],
-Cell[17040, 507, 174, 4, 29, "Text"],
-Cell[17217, 513, 183, 4, 29, "Text"],
-Cell[17403, 519, 164, 3, 29, "Text"],
-Cell[17570, 524, 369, 6, 65, "Text"],
-Cell[17942, 532, 265, 5, 47, "Text"],
-Cell[18210, 539, 120, 1, 29, "Text"],
-Cell[18333, 542, 137, 1, 47, "Text"],
-Cell[18473, 545, 186, 4, 29, "Text"],
-Cell[18662, 551, 280, 5, 47, "Text"],
-Cell[18945, 558, 398, 6, 65, "Text"],
-Cell[19346, 566, 193, 4, 29, "Text"],
-Cell[19542, 572, 125, 1, 29, "Text"]
+Cell[14246, 435, 300, 8, 45, "Text"],
+Cell[14549, 445, 123, 1, 61, "Text"],
+Cell[14675, 448, 139, 1, 53, "Text"],
+Cell[14817, 451, 215, 4, 30, "Text"],
+Cell[15035, 457, 661, 18, 50, "Input"],
+Cell[15699, 477, 229, 4, 49, "Text"],
+Cell[15931, 483, 144, 2, 30, "Input"],
+Cell[16078, 487, 266, 5, 49, "Text"],
+Cell[16347, 494, 434, 7, 68, "Text"],
+Cell[16784, 503, 120, 1, 30, "Text"],
+Cell[16907, 506, 144, 1, 53, "Text"],
+Cell[17054, 509, 186, 4, 30, "Text"],
+Cell[17243, 515, 229, 5, 30, "Text"],
+Cell[17475, 522, 373, 7, 49, "Text"],
+Cell[17851, 531, 174, 4, 30, "Text"],
+Cell[18028, 537, 183, 4, 30, "Text"],
+Cell[18214, 543, 164, 3, 30, "Text"],
+Cell[18381, 548, 369, 6, 68, "Text"],
+Cell[18753, 556, 265, 5, 49, "Text"],
+Cell[19021, 563, 120, 1, 30, "Text"],
+Cell[19144, 566, 137, 1, 53, "Text"],
+Cell[19284, 569, 186, 4, 30, "Text"],
+Cell[19473, 575, 280, 5, 49, "Text"],
+Cell[19756, 582, 398, 6, 68, "Text"],
+Cell[20157, 590, 193, 4, 30, "Text"],
+Cell[20353, 596, 125, 1, 30, "Text"]
 }
 ]
 *)
