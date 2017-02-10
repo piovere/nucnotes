@@ -10,19 +10,20 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28529,        843]
-NotebookOptionsPosition[     25650,        752]
-NotebookOutlinePosition[     26051,        769]
-CellTagsIndexPosition[     26008,        766]
+NotebookDataLength[     34939,       1013]
+NotebookOptionsPosition[     31357,        903]
+NotebookOutlinePosition[     31770,        921]
+CellTagsIndexPosition[     31727,        918]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[TextData[{
  StyleBox["Lab 4: Gamma, Beta, and Alpha Particle Attenuation", "Title"],
- "\nJ.R. Powers - Luhn\n09 February 2017\nThursday\nLab Partner: "
+ "\nJ.R. Powers - Luhn\n09 February 2017\nThursday\nLab Partner: Dory Miller"
 }], "Text",
- CellChangeTimes->{{3.6955559226043777`*^9, 3.695555961642919*^9}}],
+ CellChangeTimes->{{3.6955559226043777`*^9, 3.695555961642919*^9}, {
+  3.695730876970202*^9, 3.6957308787453833`*^9}}],
 
 Cell[TextData[StyleBox["Pre-Laboratory Questions:", "Chapter"]], "Text",
  CellChangeTimes->{{3.695555996136836*^9, 3.695556010986773*^9}, 
@@ -748,13 +749,164 @@ counts observed for each).\
 
 Cell["5. Return the Cd-109 button source to the GTA.", "Text",
  CellChangeTimes->{{3.695667688254569*^9, 3.695667696076535*^9}, {
-  3.695673164536422*^9, 3.6956731653869457`*^9}}]
+  3.695673164536422*^9, 3.6956731653869457`*^9}}],
+
+Cell[TextData[StyleBox["Post-Lab", "Chapter"]], "Text",
+ CellChangeTimes->{{3.695730598854848*^9, 3.695730599928507*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"Beta", " ", "particle", " ", "attenuation"}], 
+  "Subchapter"]], "Input",
+ CellChangeTimes->{{3.6957308943764067`*^9, 3.695730894378295*^9}}],
+
+Cell["\<\
+1. From the data collected in steps 1-4, determine the background and dead \
+time corrected count rate for all data collected and the associated \
+uncertainty.\
+\>", "Text",
+ CellChangeTimes->{{3.695730999145996*^9, 3.695731024200652*^9}, {
+  3.695731719906198*^9, 3.69573172006421*^9}}],
+
+Cell["\<\
+2. Plot the data from part 1 on a semi-log scale with error bars (i.e., \
+transmitted beta fraction vs. absorber thickness). The slope of this line \
+will be the mass attenuation coefficient.\
+\>", "Text",
+ CellChangeTimes->{{3.695731028179863*^9, 3.695731035395154*^9}, {
+  3.695731088944416*^9, 3.695731130992669*^9}, {3.69573172144623*^9, 
+  3.695731721676073*^9}}],
+
+Cell[TextData[{
+ "3. Using linear regression, find the slope and its uncertainty. Report the \
+value in units of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["cm", "2"], "/", "mg"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " in a new, text-formatted cell."
+}], "Text",
+ CellChangeTimes->{{3.695731133602161*^9, 3.695731167162071*^9}, {
+  3.695731723330224*^9, 3.695731723832004*^9}}],
+
+Cell[TextData[{
+ "4. Using equation 4, determine the mass attenuation coefficient for Sr-90 \
+and Y-90 in units of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["cm", "2"], "/", "mg"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.695731168950194*^9, 3.695731195273563*^9}, {
+  3.6957317251501923`*^9, 3.6957317254099827`*^9}}],
+
+Cell["\<\
+5. Comment on how well the collected data agrees with that calculated in \
+equation 4. Include a discussion on the fact that Y-90 is present in the \
+Sr-90 source, and whether this may have affected the experimental result and \
+its comparison with the calculated mass attenuation coefficient.\
+\>", "Text",
+ CellChangeTimes->{{3.6957311977716208`*^9, 3.695731254272222*^9}, {
+  3.695731726700087*^9, 3.695731727802129*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"Alpha", " ", "particle", " ", "attenuation"}], 
+  "Subchapter"]], "Input",
+ CellChangeTimes->{{3.695731402842046*^9, 3.695731405559825*^9}}],
+
+Cell["\<\
+1. From the data collected, determine the average count rate (background \
+corrected and dead time corrected) with uncertainty, for all shims used.\
+\>", "Text",
+ CellChangeTimes->{{3.695731265815062*^9, 3.6957312894776278`*^9}, {
+  3.695731707976413*^9, 3.695731708564238*^9}}],
+
+Cell["\<\
+2. Properly plot the collected data (observed counts vs. distance) with error \
+bars. In a new, text-style cell, estimate the range of alpha particles in \
+air. Also comment on whether you would argue that the count rate vs. distance \
+is flat or not. If not, theorize why this is the case. Hint: see chapter 8 \
+and assume the alpha source is a point source.\
+\>", "Text",
+ CellChangeTimes->{{3.6957312914825172`*^9, 3.695731369410418*^9}, {
+  3.69573170991434*^9, 3.695731710544353*^9}}],
+
+Cell["\<\
+3. Using equation 2, determine the range of alpha particles in air.\
+\>", "Text",
+ CellChangeTimes->{{3.69573137132336*^9, 3.69573140755956*^9}, {
+  3.695731712792181*^9, 3.695731712994144*^9}}],
+
+Cell["\<\
+4. In a text-style cell, compare the calculated and experimentally determined \
+answers. Comment on their level of agreement.\
+\>", "Text",
+ CellChangeTimes->{{3.695731436425941*^9, 3.695731457768593*^9}, {
+  3.695731715120184*^9, 3.6957317153502502`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"Gamma", "-", 
+   RowBox[{"ray", " ", "attenuation"}]}], "Subchapter"]], "Input",
+ CellChangeTimes->{{3.695731466982058*^9, 3.695731471208642*^9}}],
+
+Cell[TextData[{
+ "1. From the data collected, determine the background and dead time \
+corrected count rate, with uncertainty, for all absorbers (number them ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["r", "10"], ",", " ", 
+      SubscriptBox["r", "20"], ",", " ", 
+      SubscriptBox["r", "30"], ",", " ", "..."}], ")"}], "."}], 
+   TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " Noting the amount counted with just a single aluminum shim, normalize the \
+results. This represents the relative transmission."
+}], "Text",
+ CellChangeTimes->{{3.695731475031394*^9, 3.6957315596407747`*^9}, {
+  3.695731686144541*^9, 3.695731686838931*^9}}],
+
+Cell["\<\
+2. From the data, estimate the mass attenuation coefficient using linear \
+regression and its uncertainty. Report the value in a text-style cell.\
+\>", "Text",
+ CellChangeTimes->{{3.69573156277612*^9, 3.695731586584783*^9}, {
+  3.695731689433132*^9, 3.6957316895505133`*^9}}],
+
+Cell["\<\
+2a. Graduate students: Calculate the mass attenuation coefficient including \
+the weights of each datum.\
+\>", "Text",
+ CellChangeTimes->{{3.6957315936544113`*^9, 3.695731610135859*^9}, {
+  3.695731691590662*^9, 3.695731698586425*^9}}],
+
+Cell["\<\
+3. Provide a semi-log plot of the data and the calculated fit as a function \
+of mass thickness of the absorber.\
+\>", "Text",
+ CellChangeTimes->{{3.69573161209534*^9, 3.6957316319395227`*^9}, {
+  3.695731700532469*^9, 3.695731701136574*^9}}],
+
+Cell["\<\
+4. Compare the mass attenuation coefficient experimentally calculated to the \
+NIST value (text-style cell). Do the two agree? Is there an unaccounted for \
+buildup factor? Quantify the discrepancy, if any.\
+\>", "Text",
+ CellChangeTimes->{{3.695731634263513*^9, 3.695731703282497*^9}}]
 },
 WindowSize->{958, 1028},
 WindowMargins->{{-7, Automatic}, {Automatic, 0}},
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
-FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -768,83 +920,101 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 236, 4, 216, "Text"],
-Cell[797, 26, 164, 2, 61, "Text"],
-Cell[964, 30, 211, 4, 30, "Text"],
+Cell[558, 20, 298, 5, 194, "Text"],
+Cell[859, 27, 164, 2, 54, "Text"],
+Cell[1026, 31, 211, 4, 29, "Text"],
 Cell[CellGroupData[{
-Cell[1200, 38, 915, 23, 107, "Input"],
-Cell[2118, 63, 126, 2, 30, "Output"]
+Cell[1262, 39, 915, 23, 117, "Input"],
+Cell[2180, 64, 126, 2, 32, "Output"]
 }, Open  ]],
-Cell[2259, 68, 800, 23, 49, "Text"],
-Cell[3062, 93, 553, 13, 55, "Text"],
-Cell[3618, 108, 1555, 46, 88, "Input"],
-Cell[5176, 156, 1007, 28, 165, "Input"],
-Cell[6186, 186, 1102, 30, 165, "Input"],
-Cell[7291, 218, 257, 5, 30, "Text"],
-Cell[7551, 225, 221, 4, 30, "Text"],
-Cell[7775, 231, 737, 20, 73, "Text"],
-Cell[8515, 253, 480, 12, 55, "Text"],
+Cell[2321, 69, 800, 23, 49, "Text"],
+Cell[3124, 94, 553, 13, 53, "Text"],
+Cell[3680, 109, 1555, 46, 96, "Input"],
+Cell[5238, 157, 1007, 28, 172, "Input"],
+Cell[6248, 187, 1102, 30, 172, "Input"],
+Cell[7353, 219, 257, 5, 29, "Text"],
+Cell[7613, 226, 221, 4, 29, "Text"],
+Cell[7837, 232, 737, 20, 70, "Text"],
+Cell[8577, 254, 480, 12, 53, "Text"],
 Cell[CellGroupData[{
-Cell[9020, 269, 1101, 34, 130, "Input"],
-Cell[10124, 305, 79, 1, 30, "Output"]
+Cell[9082, 270, 1101, 34, 138, "Input"],
+Cell[10186, 306, 79, 1, 32, "Output"]
 }, Open  ]],
-Cell[10218, 309, 429, 13, 45, "Text"],
-Cell[10650, 324, 241, 4, 49, "Text"],
+Cell[10280, 310, 429, 13, 47, "Text"],
+Cell[10712, 325, 241, 4, 47, "Text"],
 Cell[CellGroupData[{
-Cell[10916, 332, 1174, 37, 114, "Input"],
-Cell[12093, 371, 693, 16, 148, "Output"]
+Cell[10978, 333, 1174, 37, 119, "Input"],
+Cell[12155, 372, 693, 16, 149, "Output"]
 }, Open  ]],
-Cell[12801, 390, 208, 4, 30, "Text"],
-Cell[13012, 396, 351, 10, 36, "Text"],
+Cell[12863, 391, 208, 4, 29, "Text"],
+Cell[13074, 397, 351, 10, 35, "Text"],
 Cell[CellGroupData[{
-Cell[13388, 410, 555, 14, 94, "Input"],
-Cell[13946, 426, 140, 2, 30, "Output"],
-Cell[14089, 430, 142, 2, 30, "Output"]
+Cell[13450, 411, 555, 14, 96, "Input"],
+Cell[14008, 427, 140, 2, 32, "Output"],
+Cell[14151, 431, 142, 2, 32, "Output"]
 }, Open  ]],
-Cell[14246, 435, 300, 8, 45, "Text"],
-Cell[14549, 445, 123, 1, 61, "Text"],
-Cell[14675, 448, 139, 1, 53, "Text"],
-Cell[14817, 451, 269, 5, 30, "Text"],
+Cell[14308, 436, 300, 8, 47, "Text"],
+Cell[14611, 446, 123, 1, 54, "Text"],
+Cell[14737, 449, 139, 1, 47, "Text"],
+Cell[14879, 452, 269, 5, 29, "Text"],
 Cell[CellGroupData[{
-Cell[15111, 460, 742, 18, 50, "Input"],
-Cell[15856, 480, 268, 6, 30, "Output"]
+Cell[15173, 461, 742, 18, 54, "Input"],
+Cell[15918, 481, 268, 6, 32, "Output"]
 }, Open  ]],
-Cell[16139, 489, 285, 5, 49, "Text"],
-Cell[16427, 496, 320, 6, 49, "Text"],
-Cell[16750, 504, 488, 8, 68, "Text"],
+Cell[16201, 490, 285, 5, 47, "Text"],
+Cell[16489, 497, 320, 6, 47, "Text"],
+Cell[16812, 505, 488, 8, 65, "Text"],
 Cell[CellGroupData[{
-Cell[17263, 516, 857, 24, 71, "Input"],
-Cell[18123, 542, 208, 5, 30, "Output"],
-Cell[18334, 549, 175, 5, 30, "Output"]
+Cell[17325, 517, 857, 24, 77, "Input"],
+Cell[18185, 543, 208, 5, 32, "Output"],
+Cell[18396, 550, 175, 5, 32, "Output"]
 }, Open  ]],
-Cell[18524, 557, 174, 2, 30, "Text"],
-Cell[18701, 561, 144, 1, 53, "Text"],
-Cell[18848, 564, 238, 5, 30, "Text"],
-Cell[19089, 571, 230, 5, 30, "Input"],
-Cell[19322, 578, 285, 6, 30, "Text"],
-Cell[19610, 586, 359, 11, 30, "Text"],
-Cell[19972, 599, 427, 8, 49, "Text"],
-Cell[20402, 609, 230, 5, 30, "Text"],
-Cell[20635, 616, 164, 2, 30, "Text"],
-Cell[20802, 620, 235, 5, 30, "Text"],
-Cell[21040, 627, 220, 4, 30, "Text"],
-Cell[21263, 633, 421, 7, 68, "Text"],
-Cell[21687, 642, 317, 6, 49, "Text"],
+Cell[18586, 558, 174, 2, 29, "Text"],
+Cell[18763, 562, 144, 1, 47, "Text"],
+Cell[18910, 565, 238, 5, 29, "Text"],
+Cell[19151, 572, 230, 5, 32, "Input"],
+Cell[19384, 579, 285, 6, 29, "Text"],
+Cell[19672, 587, 359, 11, 29, "Text"],
+Cell[20034, 600, 427, 8, 47, "Text"],
+Cell[20464, 610, 230, 5, 29, "Text"],
+Cell[20697, 617, 164, 2, 29, "Text"],
+Cell[20864, 621, 235, 5, 29, "Text"],
+Cell[21102, 628, 220, 4, 29, "Text"],
+Cell[21325, 634, 421, 7, 65, "Text"],
+Cell[21749, 643, 317, 6, 47, "Text"],
 Cell[CellGroupData[{
-Cell[22029, 652, 791, 22, 69, "Input"],
-Cell[22823, 676, 204, 5, 30, "Output"]
+Cell[22091, 653, 791, 22, 75, "Input"],
+Cell[22885, 677, 204, 5, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23064, 686, 560, 14, 52, "Input"],
-Cell[23627, 702, 219, 5, 63, "Output"]
+Cell[23126, 687, 560, 14, 56, "Input"],
+Cell[23689, 703, 219, 5, 32, "Output"]
 }, Open  ]],
-Cell[23861, 710, 174, 2, 30, "Text"],
-Cell[24038, 714, 137, 1, 53, "Text"],
-Cell[24178, 717, 240, 5, 30, "Text"],
-Cell[24421, 724, 336, 6, 49, "Text"],
-Cell[24760, 732, 454, 7, 68, "Text"],
-Cell[25217, 741, 247, 5, 30, "Text"],
-Cell[25467, 748, 179, 2, 30, "Text"]
+Cell[23923, 711, 174, 2, 29, "Text"],
+Cell[24100, 715, 137, 1, 47, "Text"],
+Cell[24240, 718, 240, 5, 29, "Text"],
+Cell[24483, 725, 336, 6, 47, "Text"],
+Cell[24822, 733, 454, 7, 65, "Text"],
+Cell[25279, 742, 247, 5, 29, "Text"],
+Cell[25529, 749, 179, 2, 29, "Text"],
+Cell[25711, 753, 121, 1, 54, "Text"],
+Cell[25835, 756, 177, 4, 49, "Input"],
+Cell[26015, 762, 297, 6, 47, "Text"],
+Cell[26315, 770, 378, 7, 47, "Text"],
+Cell[26696, 779, 412, 11, 35, "Text"],
+Cell[27111, 792, 388, 11, 35, "Text"],
+Cell[27502, 805, 434, 7, 65, "Text"],
+Cell[27939, 814, 176, 4, 49, "Input"],
+Cell[28118, 820, 288, 5, 47, "Text"],
+Cell[28409, 827, 499, 8, 65, "Text"],
+Cell[28911, 837, 204, 4, 29, "Text"],
+Cell[29118, 843, 266, 5, 29, "Text"],
+Cell[29387, 850, 182, 4, 49, "Input"],
+Cell[29572, 856, 691, 17, 67, "Text"],
+Cell[30266, 875, 285, 5, 29, "Text"],
+Cell[30554, 882, 245, 5, 29, "Text"],
+Cell[30802, 889, 252, 5, 29, "Text"],
+Cell[31057, 896, 296, 5, 47, "Text"]
 }
 ]
 *)
