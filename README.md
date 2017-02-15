@@ -22,6 +22,8 @@ notes and stuff for classes related to NE
 - Fortran
     - [Learn Fortran in Y minutes](https://learnxinyminutes.com/docs/fortran95/)
     - [MTU CS201 Slides](https://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html)
+- Flask
+    - [Practical Flask Introduction](https://pythonprogramming.net/practical-flask-introduction/)
 
 ## Other
 - Latex
