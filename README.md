@@ -29,3 +29,4 @@ notes and stuff for classes related to NE
 - Latex
     - [Draw LaTeX symbols](http://detexify.kirelabs.org/classify.html)
 - [Significant Figures Calculator](https://www.omnicalculator.com/math/sig-fig)
+- [Handy Periodic Table](http://www.periodictable.com)
