@@ -22,6 +22,8 @@ notes and stuff for classes related to NE
 - Fortran
     - [Learn Fortran in Y minutes](https://learnxinyminutes.com/docs/fortran95/)
     - [MTU CS201 Slides](https://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html)
+- Mathematica
+    - [Include other Mathematica notebooks](https://www.researchgate.net/post/Importing_and_running_nb_file_inside_another_in_mathematica2)
 
 ## Other
 - Latex
