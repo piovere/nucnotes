@@ -1,0 +1,15 @@
+Description	
+Number of Runs	1
+Preset Time	180
+Preset Counts	0
+Pause Time	0
+Alarm Level	0
+High Voltage	900
+
+Run	High		Elapsed
+Number	Voltage	Counts	Time	Date/Time	Notes
+
+1	900	4548	200.00	02/16/2017 06:24:24 PM	
+1	900	1357	200.00	02/16/2017 06:28:28 PM	
+1	900	746	200.00	02/16/2017 06:32:31 PM	
+1	900	501	200.00	02/16/2017 06:37:50 PM	
