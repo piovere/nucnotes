@@ -11,6 +11,10 @@ notes and stuff for classes related to NE
     - [pStar](http://physics.nist.gov/PhysRefData/Star/Text/PSTAR.html)
 - [RadPro Calculator](http://www.radprocalculator.com/Gamma.aspx)
 
+## Chemistry
+- [3-d pictures of molecules!](http://molview.org/?cid=82219)
+- [Handy Periodic Table](http://www.periodictable.com)
+
 ## Programming
 - [Speeding up Python](https://www.ibm.com/developerworks/community/blogs/jfp/entry/Python_Meets_Julia_Micro_Performance?lang=en)
     - [More in notebook form](https://github.com/kbarbary/website/tree/master/posts)
@@ -22,11 +26,15 @@ notes and stuff for classes related to NE
 - Fortran
     - [Learn Fortran in Y minutes](https://learnxinyminutes.com/docs/fortran95/)
     - [MTU CS201 Slides](https://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html)
+    - [Fortran tutorial](http://www.fortrantutorial.com/subroutines-functions/index.php)
+    - [Error to avoid when passing array in fortran](http://www.eng-tips.com/viewthread.cfm?qid=170599)
 - Flask
     - [Practical Flask Introduction](https://pythonprogramming.net/practical-flask-introduction/)
+- Mathematica
+    - [Include other Mathematica notebooks](https://www.researchgate.net/post/Importing_and_running_nb_file_inside_another_in_mathematica2)
 
 ## Other
 - Latex
     - [Draw LaTeX symbols](http://detexify.kirelabs.org/classify.html)
 - [Significant Figures Calculator](https://www.omnicalculator.com/math/sig-fig)
-- [Handy Periodic Table](http://www.periodictable.com)
+- [Quick AWK column selection](http://thomas-cokelaer.info/blog/2011/05/awk-the-substr-command-to-select-a-substring/)

@@ -1,0 +1,209 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6646,        199]
+NotebookOptionsPosition[      5942,        173]
+NotebookOutlinePosition[      6302,        189]
+CellTagsIndexPosition[      6259,        186]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Lab 5 : Detector Efficiency and Multidimensional Sources\n", 
+  "Title"],
+ StyleBox["J.R. Powers - Luhn", "Text",
+  FontWeight->"Plain"],
+ StyleBox["\n",
+  FontWeight->"Plain"],
+ StyleBox["16 February 2017\nThursday\nLab Partner: ", "Text",
+  FontWeight->"Plain"]
+}], "Input",
+ CellChangeTimes->{{3.696270218007279*^9, 3.6962702565977707`*^9}, {
+  3.6962703117782993`*^9, 3.696270341146665*^9}},
+ FormatType->"TextForm"],
+
+Cell[TextData[StyleBox["Pre-Laboratory Questions", "Chapter"]], "Text",
+ CellChangeTimes->{{3.696270400772377*^9, 3.69627042694809*^9}}],
+
+Cell["1. What are the two main components of detection efficiency?", "Text",
+ CellChangeTimes->{{3.696270428696796*^9, 3.696270440445858*^9}, {
+  3.6962706061966*^9, 3.696270606346489*^9}}],
+
+Cell["\<\
+The two main components are geometric and intrinsic efficiency. Intrinsic \
+efficiency is broken down into three sub-components: the density and size of \
+detector material, the type and energy of the radiation, and the electronics \
+in the detector system (Tsoulfanidis 259). Geometric efficiency has to do \
+with the solid angle presented by the detector.\
+\>", "Text",
+ CellChangeTimes->{{3.696270948806203*^9, 3.696270978494952*^9}, {
+  3.696271018924317*^9, 3.696271094110965*^9}}],
+
+Cell["\<\
+2. Using the NIST database, determine the linear and mass attenuation \
+coefficient of air for the primary gamma from Cs-137 and Co-60.\
+\>", "Text",
+ CellChangeTimes->{{3.696270444746159*^9, 3.69627047870824*^9}, {
+  3.696270609335678*^9, 3.69627060947366*^9}}],
+
+Cell["\<\
+Primary gamma for Cs-137 is 661.657 keV, primary gammas for Co-60 \
+(co-emitted) are 1173.237 keV and 1332.501 keV.\
+\>", "Text",
+ CellChangeTimes->{{3.696271217254751*^9, 3.6962712242644033`*^9}, {
+  3.6962712677686377`*^9, 3.6962713530820303`*^9}}],
+
+Cell[BoxData[GridBox[{
+   {"Nuclide", 
+    RowBox[{"Energy", " ", 
+     RowBox[{"(", "keV", ")"}]}], 
+    RowBox[{
+     RowBox[{"Linear", " ", "Attenuation", " ", "Coefficient"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"(", 
+      SuperscriptBox["cm", 
+       RowBox[{"-", "1"}]], ")"}]}], 
+    RowBox[{
+     RowBox[{"Mass", " ", "Attenuation", " ", "Coefficient"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["cm", "2"], "/", "g"}], ")"}]}]},
+   {
+    RowBox[{"Cs", "-", "137"}], "661.657", 
+    RowBox[{
+     RowBox[{"9.49690121", "e"}], "-", "05"}], "0.0775257"},
+   {
+    RowBox[{"Co", "-", "60"}], "1173.237", 
+    RowBox[{
+     RowBox[{"7.21896407", "e"}], "-", "05"}], "0.05893032"},
+   {"\[Placeholder]", "1332.501", 
+    RowBox[{
+     RowBox[{"6.75959649", "e"}], "-", "05"}], "0.05518038"}
+  },
+  GridBoxDividers->{
+   "Columns" -> {{True}}, "ColumnsIndexed" -> {}, "Rows" -> {{True}}, 
+    "RowsIndexed" -> {}}]], "Input",
+ CellChangeTimes->{{3.69627186963418*^9, 3.696272031545992*^9}, {
+  3.6962721009562674`*^9, 3.696272117063834*^9}}],
+
+Cell["\<\
+3. Using the NNDC database, find the emission probability of energetic \
+photons (x-rays and gamma-rays) above 30 keV for Cs-137 and Co-60.\
+\>", "Text",
+ CellChangeTimes->{{3.696270481483925*^9, 3.6962705188173113`*^9}, {
+  3.696270612053574*^9, 3.696270612193803*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Cs", "-", "137"}]], "Input",
+ CellChangeTimes->{{3.696272212699875*^9, 3.696272215663053*^9}}],
+
+Cell[BoxData[{GridBox[{
+   {
+    RowBox[{"Energy", " ", 
+     RowBox[{"(", "keV", ")"}]}], 
+    RowBox[{"Intensity", " ", 
+     RowBox[{"(", "%", ")"}]}]},
+   {"31.817", "1.99"},
+   {"32.194", "3.64"},
+   {"36.304", "0.348"},
+   {"36.378", "0.672"},
+   {"37.255", "0.213"},
+   {"283.5", 
+    RowBox[{
+     RowBox[{"5.8", "e"}], "-", "4"}]},
+   {"661.657", "85.10"}
+  },
+  GridBoxDividers->{
+   "Columns" -> {{True}}, "ColumnsIndexed" -> {}, "Rows" -> {{True}}, 
+    "RowsIndexed" -> {}}], "\[IndentingNewLine]", 
+ RowBox[{"Co", "-", "60"}], "\[IndentingNewLine]", GridBox[{
+   {
+    RowBox[{"Energy", " ", 
+     RowBox[{"(", "keV", ")"}]}], 
+    RowBox[{"Intensity", " ", 
+     RowBox[{"(", "%", ")"}]}]},
+   {"347.14", "0.0075"},
+   {"826.10", "0.0076"},
+   {"1173.228", "99.85"},
+   {"1332.492", "99.9826"},
+   {"2158.57", "0.00120"},
+   {"2505.692", 
+    RowBox[{
+     RowBox[{"2.0", "e"}], "-", "6"}]}
+  },
+  GridBoxDividers->{
+   "Columns" -> {{True}}, "ColumnsIndexed" -> {}, "Rows" -> {{True}}, 
+    "RowsIndexed" -> {}}]}], "Input",
+ CellChangeTimes->{{3.696272209256776*^9, 3.696272317001498*^9}, {
+  3.6962723832473097`*^9, 3.696272438333338*^9}}],
+
+Cell["\<\
+4. In the rule of thumb described below, justify this assumption based upon \
+angle and curvature arguments and estimate the uncertainty in the assumed \
+projected detector area for a point source.\
+\>", "Text",
+ CellChangeTimes->{{3.6962705209532948`*^9, 3.696270562392481*^9}, {
+  3.6962706144955683`*^9, 3.696270614600636*^9}}],
+
+Cell[TextData[{
+ "At this distance (~ 3 ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["A"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "), the error in the solid angle is approximately 1%. Any greater distance \
+will reduce this error even further. Therefore we can ignore the specific \
+geometry of the area source and treat the source as a point."
+}], "Text",
+ CellChangeTimes->{{3.696272746373468*^9, 3.696272834798221*^9}}],
+
+Cell[TextData[StyleBox["In-Lab", "Chapter"]], "Text",
+ CellChangeTimes->{{3.696270643164023*^9, 3.6962706442323103`*^9}}]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 409}, {Automatic, 33}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 447, 12, 197, "Input"],
+Cell[1008, 34, 136, 1, 54, "Text"],
+Cell[1147, 37, 189, 2, 29, "Text"],
+Cell[1339, 41, 496, 8, 83, "Text"],
+Cell[1838, 51, 272, 5, 47, "Text"],
+Cell[2113, 58, 260, 5, 47, "Text"],
+Cell[2376, 65, 1096, 32, 121, "Input"],
+Cell[3475, 99, 280, 5, 47, "Text"],
+Cell[3758, 106, 118, 2, 32, "Input"],
+Cell[3879, 110, 1157, 38, 349, "Input"],
+Cell[5039, 150, 340, 6, 47, "Text"],
+Cell[5382, 158, 432, 10, 71, "Text"],
+Cell[5817, 170, 121, 1, 54, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
