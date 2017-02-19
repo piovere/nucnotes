@@ -28,6 +28,8 @@ notes and stuff for classes related to NE
     - [MTU CS201 Slides](https://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html)
     - [Fortran tutorial](http://www.fortrantutorial.com/subroutines-functions/index.php)
     - [Error to avoid when passing array in fortran](http://www.eng-tips.com/viewthread.cfm?qid=170599)
+- Flask
+    - [Practical Flask Introduction](https://pythonprogramming.net/practical-flask-introduction/)
 - Mathematica
     - [Include other Mathematica notebooks](https://www.researchgate.net/post/Importing_and_running_nb_file_inside_another_in_mathematica2)
 
