@@ -38,3 +38,5 @@ notes and stuff for classes related to NE
     - [Draw LaTeX symbols](http://detexify.kirelabs.org/classify.html)
 - [Significant Figures Calculator](https://www.omnicalculator.com/math/sig-fig)
 - [Quick AWK column selection](http://thomas-cokelaer.info/blog/2011/05/awk-the-substr-command-to-select-a-substring/)
+
+[Taylor An Introduction to Error Analysis]
