@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      6646,        199]
-NotebookOptionsPosition[      5942,        173]
-NotebookOutlinePosition[      6302,        189]
-CellTagsIndexPosition[      6259,        186]
+NotebookDataLength[     13928,        421]
+NotebookOptionsPosition[     12611,        375]
+NotebookOutlinePosition[     12977,        391]
+CellTagsIndexPosition[     12934,        388]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -169,10 +169,212 @@ geometry of the area source and treat the source as a point."
  CellChangeTimes->{{3.696272746373468*^9, 3.696272834798221*^9}}],
 
 Cell[TextData[StyleBox["In-Lab", "Chapter"]], "Text",
- CellChangeTimes->{{3.696270643164023*^9, 3.6962706442323103`*^9}}]
+ CellChangeTimes->{{3.696270643164023*^9, 3.6962706442323103`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BackgroundFileName", "=", "\"\<background.tsv\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"BackgroundCounts", "=", 
+  RowBox[{"Total", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], "<>", "BackgroundFileName"}], 
+      "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"12", ";;"}], "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{";;", ",", "3"}], "]"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"BackgroundCountRate", "=", 
+  RowBox[{"BackgroundCounts", "/", 
+   RowBox[{"Total", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], "<>", "BackgroundFileName"}],
+        "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"12", ";;"}], "]"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{";;", ",", "4"}], "]"}], "]"}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.696612674106126*^9, 3.696612685529052*^9}, {
+  3.696612732545335*^9, 3.6966127865832767`*^9}, {3.696612818294446*^9, 
+  3.696612821955723*^9}, {3.69661287812188*^9, 3.6966129596374702`*^9}}],
+
+Cell[BoxData["171"], "Output",
+ CellChangeTimes->{
+  3.696612791659237*^9, 3.6966128227282476`*^9, {3.696612948545814*^9, 
+   3.696612960350782*^9}}],
+
+Cell[BoxData["0.5700000000000001`"], "Output",
+ CellChangeTimes->{
+  3.696612791659237*^9, 3.6966128227282476`*^9, {3.696612948545814*^9, 
+   3.69661296038708*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BackgroundCountRateError", "=", 
+  RowBox[{
+   SqrtBox["BackgroundCounts"], "/", 
+   RowBox[{"Total", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], "<>", "BackgroundFileName"}],
+        "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"12", ";;"}], "]"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{";;", ",", "4"}], "]"}], "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.696612979059266*^9, 3.696612983239688*^9}, {
+  3.6966131670093193`*^9, 3.696613195590046*^9}}],
+
+Cell[BoxData["0.04358898943540674`"], "Output",
+ CellChangeTimes->{3.696613196880887*^9}]
+}, Open  ]],
+
+Cell["The Background count rate is 0.57\[PlusMinus]0.04 cps", "Text",
+ CellChangeTimes->{{3.696613200519305*^9, 3.6966132253790903`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{
+   RowBox[{"NotebookDirectory", "[", "]"}], "<>", "BackgroundFileName"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6966128259537153`*^9, 3.696612866866949*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"Description\"\>", ",", "\<\"\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Number of Runs\"\>", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Preset Time\"\>", ",", "60"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Preset Counts\"\>", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Pause Time\"\>", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Alarm Level\"\>", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"High Voltage\"\>", ",", "900"}], "}"}], ",", 
+   RowBox[{"{", "\<\"\"\>", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Run\"\>", ",", "\<\"High\"\>", ",", "\<\"\"\>", 
+     ",", "\<\"Elapsed\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Number\"\>", ",", "\<\"Voltage\"\>", ",", "\<\"Counts\"\>", 
+     ",", "\<\"Time\"\>", ",", "\<\"Date/Time\"\>", ",", "\<\"Notes\"\>"}], 
+    "}"}], ",", 
+   RowBox[{"{", "\<\"\"\>", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "900", ",", "35", ",", "60.`", 
+     ",", "\<\"02/16/2017 06:06:28 PM\"\>", ",", "\<\"\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "2", ",", "900", ",", "25", ",", "60.`", 
+     ",", "\<\"02/16/2017 06:07:29 PM\"\>", ",", "\<\"\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "3", ",", "900", ",", "47", ",", "60.`", 
+     ",", "\<\"02/16/2017 06:08:30 PM\"\>", ",", "\<\"\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "4", ",", "900", ",", "29", ",", "60.`", 
+     ",", "\<\"02/16/2017 06:09:31 PM\"\>", ",", "\<\"\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "5", ",", "900", ",", "35", ",", "60.`", 
+     ",", "\<\"02/16/2017 06:10:32 PM\"\>", ",", "\<\"\"\>"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.69661286716464*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Point Source", "Subchapter",
+ CellChangeTimes->{{3.696612315366952*^9, 3.696612316568308*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PartACsDetectorHeight", "=", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "+", 
+       RowBox[{"1", "/", "16"}]}], ",", " ", 
+      RowBox[{"3", "+", 
+       RowBox[{"1", "/", "16"}]}], ",", " ", 
+      RowBox[{"6", "+", 
+       RowBox[{"1", "/", "16"}]}], ",", " ", 
+      RowBox[{"9", "+", 
+       RowBox[{"1", "/", "16"}]}], ",", " ", 
+      RowBox[{"12", "+", 
+       RowBox[{"1", "/", "16"}]}]}], "}"}], " ", "*", " ", "2.54"}]}], " ", 
+  RowBox[{"(*", " ", "centimeters", " ", "*)"}], ";"}]], "Input",
+ CellChangeTimes->{{3.696612321721044*^9, 3.696612397458394*^9}, {
+  3.696612489945751*^9, 3.6966124914694157`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PartACsRawCounts", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "17612", ",", " ", "4548", ",", " ", "1357", ",", " ", "746", ",", " ", 
+     "501"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PartACsCountTimes", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "190.8", ",", " ", "200", ",", " ", "200", ",", " ", "200", ",", " ", 
+     "200"}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.696612407826653*^9, 3.696612497913591*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PartACoDetectorHeight", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"12", "+", 
+      RowBox[{"1", "/", "16"}]}], ",", " ", 
+     RowBox[{"9", "+", 
+      RowBox[{"1", "/", "8"}]}], ",", 
+     RowBox[{"6", "+", 
+      RowBox[{"1", "/", "16"}]}], ",", " ", 
+     RowBox[{"3", "+", 
+      RowBox[{"1", "/", "16"}]}], ",", " ", 
+     RowBox[{"1", "+", 
+      RowBox[{"1", "/", "16"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PartACoRawCounts", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "426", ",", " ", "661", ",", " ", "1302", ",", " ", "3694", ",", " ", 
+     "16014"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PartACoCountTimes", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "200", ",", " ", "200", ",", " ", "200", ",", " ", "200", ",", " ", 
+     "200"}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.696612518007676*^9, 3.69661260353863*^9}}]
+}, Open  ]]
 },
-WindowSize->{808, 911},
-WindowMargins->{{Automatic, 409}, {Automatic, 33}},
+WindowSize->{1253, 1305},
+WindowMargins->{{Automatic, -1305}, {Automatic, -131}},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -188,22 +390,40 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 447, 12, 197, "Input"],
+Cell[558, 20, 447, 12, 140, "Input"],
 Cell[1008, 34, 136, 1, 54, "Text"],
 Cell[1147, 37, 189, 2, 29, "Text"],
-Cell[1339, 41, 496, 8, 83, "Text"],
-Cell[1838, 51, 272, 5, 47, "Text"],
-Cell[2113, 58, 260, 5, 47, "Text"],
+Cell[1339, 41, 496, 8, 47, "Text"],
+Cell[1838, 51, 272, 5, 29, "Text"],
+Cell[2113, 58, 260, 5, 29, "Text"],
 Cell[2376, 65, 1096, 32, 121, "Input"],
-Cell[3475, 99, 280, 5, 47, "Text"],
+Cell[3475, 99, 280, 5, 29, "Text"],
 Cell[3758, 106, 118, 2, 32, "Input"],
 Cell[3879, 110, 1157, 38, 349, "Input"],
 Cell[5039, 150, 340, 6, 47, "Text"],
-Cell[5382, 158, 432, 10, 71, "Text"],
-Cell[5817, 170, 121, 1, 54, "Text"]
+Cell[5382, 158, 432, 10, 53, "Text"],
+Cell[5817, 170, 121, 1, 54, "Text"],
+Cell[CellGroupData[{
+Cell[5963, 175, 1155, 31, 75, "Input"],
+Cell[7121, 208, 149, 3, 32, "Output"],
+Cell[7273, 213, 164, 3, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7474, 221, 576, 16, 45, "Input"],
+Cell[8053, 239, 89, 1, 32, "Output"]
+}, Open  ]],
+Cell[8157, 243, 137, 1, 29, "Text"],
+Cell[CellGroupData[{
+Cell[8319, 248, 211, 5, 32, "Input"],
+Cell[8533, 255, 1809, 47, 96, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10379, 307, 100, 1, 63, "Subchapter"],
+Cell[10482, 310, 678, 18, 32, "Input"],
+Cell[11163, 330, 500, 13, 54, "Input"],
+Cell[11666, 345, 929, 27, 75, "Input"]
+}, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
