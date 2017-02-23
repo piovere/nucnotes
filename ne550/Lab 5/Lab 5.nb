@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     13928,        421]
-NotebookOptionsPosition[     12611,        375]
-NotebookOutlinePosition[     12977,        391]
-CellTagsIndexPosition[     12934,        388]
+NotebookDataLength[     44461,       1239]
+NotebookOptionsPosition[     40521,       1114]
+NotebookOutlinePosition[     40881,       1130]
+CellTagsIndexPosition[     40838,       1127]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -189,6 +189,18 @@ Cell[BoxData[{
       RowBox[{"12", ";;"}], "]"}], "]"}], "[", 
     RowBox[{"[", 
      RowBox[{";;", ",", "3"}], "]"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"BackgroundTime", "=", 
+  RowBox[{"Total", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], "<>", "BackgroundFileName"}], 
+      "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"12", ";;"}], "]"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{";;", ",", "4"}], "]"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{"BackgroundCountRate", "=", 
   RowBox[{"BackgroundCounts", "/", 
    RowBox[{"Total", "[", 
@@ -204,17 +216,23 @@ Cell[BoxData[{
       RowBox[{";;", ",", "4"}], "]"}], "]"}], "]"}]}]}]}], "Input",
  CellChangeTimes->{{3.696612674106126*^9, 3.696612685529052*^9}, {
   3.696612732545335*^9, 3.6966127865832767`*^9}, {3.696612818294446*^9, 
-  3.696612821955723*^9}, {3.69661287812188*^9, 3.6966129596374702`*^9}}],
+  3.696612821955723*^9}, {3.69661287812188*^9, 3.6966129596374702`*^9}, {
+  3.696873665178795*^9, 3.696873672922526*^9}}],
 
 Cell[BoxData["171"], "Output",
  CellChangeTimes->{
   3.696612791659237*^9, 3.6966128227282476`*^9, {3.696612948545814*^9, 
-   3.696612960350782*^9}}],
+   3.696612960350782*^9}, 3.6968713212656403`*^9, 3.696873674875453*^9}],
+
+Cell[BoxData["300.`"], "Output",
+ CellChangeTimes->{
+  3.696612791659237*^9, 3.6966128227282476`*^9, {3.696612948545814*^9, 
+   3.696612960350782*^9}, 3.6968713212656403`*^9, 3.696873674913637*^9}],
 
 Cell[BoxData["0.5700000000000001`"], "Output",
  CellChangeTimes->{
   3.696612791659237*^9, 3.6966128227282476`*^9, {3.696612948545814*^9, 
-   3.69661296038708*^9}}]
+   3.696612960350782*^9}, 3.6968713212656403`*^9, 3.696873674965008*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -238,7 +256,7 @@ Cell[BoxData[
   3.6966131670093193`*^9, 3.696613195590046*^9}}],
 
 Cell[BoxData["0.04358898943540674`"], "Output",
- CellChangeTimes->{3.696613196880887*^9}]
+ CellChangeTimes->{3.696613196880887*^9, 3.696871323777091*^9}]
 }, Open  ]],
 
 Cell["The Background count rate is 0.57\[PlusMinus]0.04 cps", "Text",
@@ -300,7 +318,7 @@ Cell[BoxData[
     "5", ",", "900", ",", "35", ",", "60.`", 
      ",", "\<\"02/16/2017 06:10:32 PM\"\>", ",", "\<\"\"\>"}], "}"}]}], 
   "}"}]], "Output",
- CellChangeTimes->{3.69661286716464*^9}]
+ CellChangeTimes->{3.69661286716464*^9, 3.696871331908188*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -371,10 +389,731 @@ Cell[BoxData[{
     "200", ",", " ", "200", ",", " ", "200", ",", " ", "200", ",", " ", 
      "200"}], "}"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.696612518007676*^9, 3.69661260353863*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Post-Lab", "Chapter",
+ CellChangeTimes->{{3.696864936936837*^9, 3.696864943546801*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Utility Functions", "Section",
+ CellChangeTimes->{{3.696865479690826*^9, 3.696865481889687*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Corrects", " ", "the", " ", "count", " ", "rate", " ", "for", " ", 
+    "deadtime"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"DTC", "[", 
+      RowBox[{"r_", ",", " ", "tau_"}], "]"}], ":=", 
+     FractionBox["r", 
+      RowBox[{"1", "+", 
+       RowBox[{"r", "*", "tau"}]}]]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"DTCError", "[", 
+     RowBox[{"r_", ",", "tau_", ",", "Dr_", ",", "Dtau_"}], "]"}], ":=", 
+    RowBox[{
+     SqrtBox[
+      RowBox[{
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"DTC", "[", 
+            RowBox[{"r", ",", "tau"}], "]"}], ",", "r"}], "]"}], "2"], "*", 
+        SuperscriptBox["Dr", "2"]}], "+", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"DTC", "[", 
+            RowBox[{"r", ",", "tau"}], "]"}], ",", "tau"}], "]"}], "2"], "*", 
+        
+        SuperscriptBox["Dtau", "2"]}]}]], "/*", "{"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.696865501587802*^9, 3.6968655729003477`*^9}, {
+  3.696865659838767*^9, 3.696865670926675*^9}, {3.6968657169950037`*^9, 
+  3.696865728513576*^9}, {3.696868317689848*^9, 3.696868456110937*^9}, {
+  3.6968710054548273`*^9, 3.696871041105064*^9}, {3.69687111942762*^9, 
+  3.696871182342681*^9}, {3.696871740397596*^9, 3.6968717558529882`*^9}, {
+  3.696872854020426*^9, 3.696872890732403*^9}, {3.696872966647855*^9, 
+  3.696872969630373*^9}, {3.696873964304576*^9, 3.696873967689313*^9}, {
+  3.696876328514915*^9, 3.69687642306409*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Deadtime", "=", 
+   RowBox[{"262", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.696864955547636*^9, 3.696864957907153*^9}, {
+  3.696871672650648*^9, 3.696871680593239*^9}, {3.696871779779593*^9, 
+  3.696871792311545*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Point Source", "Subchapter",
+ CellChangeTimes->{{3.696871297432671*^9, 3.696871300875867*^9}}],
+
+Cell["1. Determine the background count rate.", "Text",
+ CellChangeTimes->{{3.69687135833956*^9, 3.696871376022523*^9}}],
+
+Cell["\<\
+Performed in the lab section above. The background count rate is 0.57\
+\[PlusMinus]0.04 cps.\
+\>", "Text",
+ CellChangeTimes->{{3.696871397820393*^9, 3.696871417306732*^9}}],
+
+Cell["\<\
+2. Make a table for each isotope (i.e., Cs-137 and Co-60) that lists the \
+source-detector distance, gross count rate, background corrected, background \
+and dead time corrected count rate, and uncertainty in the background and \
+dead time corrected count rate. Each data set identified should be a column \
+in the dataset.\
+\>", "Text",
+ CellChangeTimes->{{3.696871420836747*^9, 3.696871511556191*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"PartACsDetectorHeight", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"from", " ", "in"}], "-", 
+    RowBox[{"lab", " ", "above"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACsRawCounts", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"from", " ", "in"}], "-", 
+    RowBox[{"lab", " ", "above"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACsCountTimes", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"from", " ", "in"}], "-", 
+    RowBox[{"lab", " ", "above"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACsGrossCountRates", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"PartACsRawCounts", " ", "/", " ", "PartACsCountTimes"}], "//", 
+   "N"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACsBGCorrectedCountRate", " ", "=", " ", 
+  RowBox[{
+  "PartACsGrossCountRates", "-", 
+   "BackgroundCountRate"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACsBGDTCorrectedCountRate", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"DTC", "[", 
+     RowBox[{
+      RowBox[{"PartACsBGCorrectedCountRate", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], ",", "Deadtime"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{"Length", "[", "PartACsBGCorrectedCountRate", "]"}]}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6968718162716923`*^9, 3.696871827922544*^9}, {
+  3.69687187964957*^9, 3.696871901833267*^9}, {3.696871941433416*^9, 
+  3.696872066339332*^9}, {3.69687217008113*^9, 3.696872186272275*^9}, {
+  3.696872224464326*^9, 3.696872294382327*^9}, {3.696872345407344*^9, 
+  3.6968724160641623`*^9}, {3.696872463572509*^9, 3.696872492415781*^9}, {
+  3.696872982043003*^9, 3.696873040279346*^9}, {3.696873076993026*^9, 
+  3.696873197539122*^9}, {3.6968733907397413`*^9, 3.6968733924786158`*^9}, {
+  3.696873951141343*^9, 3.696873953290502*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "2.69875`", ",", "7.7787500000000005`", ",", "15.39875`", ",", "23.01875`", 
+   ",", "30.63875`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.69687197832979*^9, 3.696871984971581*^9}, 
+   3.696872058830884*^9, {3.696872259007036*^9, 3.696872295054159*^9}, {
+   3.696872396154585*^9, 3.6968724171438637`*^9}, {3.6968731647509727`*^9, 
+   3.6968731896493*^9}, 3.696873393561562*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"17612", ",", "4548", ",", "1357", ",", "746", ",", "501"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.69687197832979*^9, 3.696871984971581*^9}, 
+   3.696872058830884*^9, {3.696872259007036*^9, 3.696872295054159*^9}, {
+   3.696872396154585*^9, 3.6968724171438637`*^9}, {3.6968731647509727`*^9, 
+   3.6968731896493*^9}, 3.696873393566537*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"190.8`", ",", "200", ",", "200", ",", "200", ",", "200"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.69687197832979*^9, 3.696871984971581*^9}, 
+   3.696872058830884*^9, {3.696872259007036*^9, 3.696872295054159*^9}, {
+   3.696872396154585*^9, 3.6968724171438637`*^9}, {3.6968731647509727`*^9, 
+   3.6968731896493*^9}, 3.6968733935695*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "92.30607966457022`", ",", "22.74`", ",", "6.785`", ",", "3.73`", ",", 
+   "2.505`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.69687197832979*^9, 3.696871984971581*^9}, 
+   3.696872058830884*^9, {3.696872259007036*^9, 3.696872295054159*^9}, {
+   3.696872396154585*^9, 3.6968724171438637`*^9}, {3.6968731647509727`*^9, 
+   3.6968731896493*^9}, 3.6968733935723753`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "91.73607966457023`", ",", "22.169999999999998`", ",", "6.215`", ",", 
+   "3.16`", ",", "1.9349999999999998`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.69687197832979*^9, 3.696871984971581*^9}, 
+   3.696872058830884*^9, {3.696872259007036*^9, 3.696872295054159*^9}, {
+   3.696872396154585*^9, 3.6968724171438637`*^9}, {3.6968731647509727`*^9, 
+   3.6968731896493*^9}, 3.6968733935751743`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "89.58296625088241`", ",", "22.041968345188238`", ",", "6.204896381075803`",
+    ",", "3.1573859370350097`", ",", "1.93401951012895`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.69687197832979*^9, 3.696871984971581*^9}, 
+   3.696872058830884*^9, {3.696872259007036*^9, 3.696872295054159*^9}, {
+   3.696872396154585*^9, 3.6968724171438637`*^9}, {3.6968731647509727`*^9, 
+   3.6968731896493*^9}, 3.696873393578094*^9}]
+}, Open  ]],
+
+Cell["Cs-137 Table", "Text",
+ CellChangeTimes->{{3.6968747463867826`*^9, 3.696874750065702*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"PartACsDetectorHeight", "[", 
+         RowBox[{"[", "#", "]"}], "]"}], ",", " ", 
+        RowBox[{"PartACsGrossCountRates", "[", 
+         RowBox[{"[", "#", "]"}], "]"}], ",", " ", 
+        RowBox[{"PartACsBGCorrectedCountRate", "[", 
+         RowBox[{"[", "#", "]"}], "]"}], ",", " ", 
+        RowBox[{"PartACsBGDTCorrectedCountRate", "[", 
+         RowBox[{"[", "#", "]"}], "]"}]}], "}"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3", ",", "4", ",", "5"}], "}"}]}], "]"}], 
+   ",", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"None", ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Distance (cm)\>\"", ",", " ", "\"\<Count Rate (cps)\>\"", ",", 
+        " ", "\"\<BKG Corrected (cps)\>\"", ",", " ", 
+        "\"\<BKG-\[Tau] Corrected (cps)\>\""}], "}"}]}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.696874035585134*^9, 3.696874289230641*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      TagBox["\<\"Distance (cm)\"\>",
+       HoldForm], 
+      TagBox["\<\"Count Rate (cps)\"\>",
+       HoldForm], 
+      TagBox["\<\"BKG Corrected (cps)\"\>",
+       HoldForm], 
+      TagBox["\<\"BKG-\[Tau] Corrected (cps)\"\>",
+       HoldForm]},
+     {"2.69875`", "92.30607966457022`", "91.73607966457023`", 
+      "89.58296625088241`"},
+     {"7.7787500000000005`", "22.74`", "22.169999999999998`", 
+      "22.041968345188238`"},
+     {"15.39875`", "6.785`", "6.215`", "6.204896381075803`"},
+     {"23.01875`", "3.73`", "3.16`", "3.1573859370350097`"},
+     {"30.63875`", "2.505`", "1.9349999999999998`", "1.93401951012895`"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {None, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {
+     None, {"Distance (cm)", "Count Rate (cps)", "BKG Corrected (cps)", 
+       "BKG-\[Tau] Corrected (cps)"}}]]]], "Output",
+ CellChangeTimes->{
+  3.6968741843715878`*^9, {3.696874266925394*^9, 3.696874290002618*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"PartACoDetectorHeight", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"from", " ", "in"}], "-", 
+    RowBox[{"lab", " ", "above"}]}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PartACoRawCounts", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"from", " ", "in"}], "-", 
+    RowBox[{"lab", " ", "above"}]}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PartACoCountTimes", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"from", " ", "in"}], "-", 
+    RowBox[{"lab", " ", "above"}]}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PartACoGrossCountRates", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"PartACsRawCounts", " ", "/", " ", "PartACsCountTimes"}], "//", 
+   "N"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACoBGCorrectedCountRate", " ", "=", " ", 
+  RowBox[{
+  "PartACsGrossCountRates", "-", 
+   "BackgroundCountRate"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PartACoBGDTCorrectedCountRate", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"DTC", "[", 
+     RowBox[{
+      RowBox[{"PartACoBGCorrectedCountRate", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], ",", "Deadtime"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{"Length", "[", "PartACoBGCorrectedCountRate", "]"}]}], "}"}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6968744461886187`*^9, 3.6968744752831297`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "92.30607966457022`", ",", "22.74`", ",", "6.785`", ",", "3.73`", ",", 
+   "2.505`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.696874469286437*^9, 3.696874478541759*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "91.73607966457023`", ",", "22.169999999999998`", ",", "6.215`", ",", 
+   "3.16`", ",", "1.9349999999999998`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.696874469286437*^9, 3.696874478546636*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "89.58296625088241`", ",", "22.041968345188238`", ",", "6.204896381075803`",
+    ",", "3.1573859370350097`", ",", "1.93401951012895`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.696874469286437*^9, 3.6968744785496597`*^9}}]
+}, Open  ]],
+
+Cell["Co-60 Table", "Text",
+ CellChangeTimes->{{3.696874736814805*^9, 3.696874738953857*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"PartACoDetectorHeight", "[", 
+          RowBox[{"[", "#", "]"}], "]"}], "*", "2.54"}], ",", " ", 
+        RowBox[{"PartACoGrossCountRates", "[", 
+         RowBox[{"[", "#", "]"}], "]"}], ",", " ", 
+        RowBox[{"PartACoBGCorrectedCountRate", "[", 
+         RowBox[{"[", "#", "]"}], "]"}], ",", " ", 
+        RowBox[{"PartACoBGDTCorrectedCountRate", "[", 
+         RowBox[{"[", "#", "]"}], "]"}]}], "}"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3", ",", "4", ",", "5"}], "}"}]}], "]"}], 
+   ",", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"None", ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Distance (cm)\>\"", ",", " ", "\"\<Count Rate (cps)\>\"", ",", 
+        " ", "\"\<BKG Corrected (cps)\>\"", ",", " ", 
+        "\"\<BKG-\[Tau] Corrected (cps)\>\""}], "}"}]}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.696874498447747*^9, 3.696874534530158*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      TagBox["\<\"Distance (cm)\"\>",
+       HoldForm], 
+      TagBox["\<\"Count Rate (cps)\"\>",
+       HoldForm], 
+      TagBox["\<\"BKG Corrected (cps)\"\>",
+       HoldForm], 
+      TagBox["\<\"BKG-\[Tau] Corrected (cps)\"\>",
+       HoldForm]},
+     {"30.63875`", "92.30607966457022`", "91.73607966457023`", 
+      "89.58296625088241`"},
+     {"23.177500000000002`", "22.74`", "22.169999999999998`", 
+      "22.041968345188238`"},
+     {"15.39875`", "6.785`", "6.215`", "6.204896381075803`"},
+     {"7.7787500000000005`", "3.73`", "3.16`", "3.1573859370350097`"},
+     {"2.69875`", "2.505`", "1.9349999999999998`", "1.93401951012895`"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {None, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {
+     None, {"Distance (cm)", "Count Rate (cps)", "BKG Corrected (cps)", 
+       "BKG-\[Tau] Corrected (cps)"}}]]]], "Output",
+ CellChangeTimes->{{3.6968745077897253`*^9, 3.6968745348040247`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+3. For each source, determine the source energetic photon emission activity \
+of each source with uncertainty. Assume that the source strength printed on \
+each label is accurate to \[PlusMinus]5%. Include source decay (see born \
+date).\
+\>", "Text",
+ CellChangeTimes->{{3.6968747577106943`*^9, 3.6968748162526417`*^9}}],
+
+Cell["\<\
+Cs-137 has a half life of 30.08yr. For each decay, there is a 91.963% chance \
+of a photon emission with high enough energy to reach and trigger the \
+detector. The source was born with an activity of 10\[Mu]Ci in April, 2011, \
+meaning that it is 6*12-2=70 months old.\
+\>", "Text",
+ CellChangeTimes->{{3.6968749188754168`*^9, 3.6968749705218353`*^9}, {
+  3.696875022333804*^9, 3.696875044752368*^9}, {3.696875104024376*^9, 
+  3.696875162138255*^9}, {3.696875324124559*^9, 3.6968753767953577`*^9}, {
+  3.696877178093865*^9, 3.696877185041821*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Activity", "[", 
+    RowBox[{"A0_", ",", "halflife_", ",", "time_"}], "]"}], ":=", 
+   RowBox[{"A0", "*", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"Log", "[", "2", "]"}]}], "/", 
+       RowBox[{"(", "halflife", ")"}]}], "*", "time"}]]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Activity", "[", 
+  RowBox[{"10.", ",", " ", 
+   RowBox[{"30.08", "*", "12"}], ",", "70"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ActivityError", "=", 
+  RowBox[{
+   SqrtBox[
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"D", "[", 
+       RowBox[{"Activity", ",", "A0"}], "]"}], "2"], "*", 
+     SuperscriptBox["AE", "2"]}]], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"A0", "\[Rule]", "10"}], ",", 
+     RowBox[{"AE", "\[Rule]", "0.5"}]}], "}"}]}]}]}], "Input",
+ CellChangeTimes->{{3.696875341090296*^9, 3.6968754866208477`*^9}, {
+  3.6968765597738543`*^9, 3.696876565069482*^9}, {3.696876626853693*^9, 
+  3.6968767901013536`*^9}, {3.696876825005611*^9, 3.696876932058938*^9}, {
+  3.696876967626768*^9, 3.696876981425915*^9}, {3.6968771873791637`*^9, 
+  3.696877187642145*^9}}],
+
+Cell[BoxData["8.742226699461979`"], "Output",
+ CellChangeTimes->{{3.69687543015073*^9, 3.69687546585147*^9}, {
+   3.696876537368702*^9, 3.696876565700386*^9}, 3.696876718027553*^9, {
+   3.696876905297464*^9, 3.6968769328083677`*^9}, {3.696876968852013*^9, 
+   3.696876982276469*^9}, 3.696877188639419*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.69687543015073*^9, 3.69687546585147*^9}, {
+   3.696876537368702*^9, 3.696876565700386*^9}, 3.696876718027553*^9, {
+   3.696876905297464*^9, 3.6968769328083677`*^9}, {3.696876968852013*^9, 
+   3.696876982276469*^9}, 3.696877188648282*^9}]
+}, Open  ]],
+
+Cell["\<\
+The activity of the Cs-137 source at the time of the experiment was 9\
+\[PlusMinus]0.4 \[Mu]Ci.\
+\>", "Text",
+ CellChangeTimes->{{3.696877005093364*^9, 3.6968770607600822`*^9}}],
+
+Cell["\<\
+For the Co-60 sources, since they are all of the same age I will treat them \
+as a single 4\[PlusMinus]0.1\[Mu]Ci source. The sources were all born in May \
+2012 and half a half life of 5.27 years.\
+\>", "Text",
+ CellChangeTimes->{{3.696877063869574*^9, 3.696877134634626*^9}, {
+  3.6968773938447323`*^9, 3.696877395698138*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Activity", "[", 
+  RowBox[{"4.", ",", " ", 
+   RowBox[{"5.27", "*", "12"}], ",", " ", 
+   RowBox[{"60", "-", "3"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.696877139682262*^9, 3.6968771502627*^9}, {
+  3.696877207921616*^9, 3.696877211781769*^9}}],
+
+Cell[BoxData["2.141574293538566`"], "Output",
+ CellChangeTimes->{3.696877213071999*^9}]
+}, Open  ]],
+
+Cell["The Co-60 sources have a strength of 2\[PlusMinus]0.05 \[Mu]Ci", "Text",
+ CellChangeTimes->{{3.6968773223668623`*^9, 3.696877335459059*^9}, {
+  3.696877373059376*^9, 3.696877388324048*^9}}],
+
+Cell["\<\
+4. Using equations 5 and 6, create a function that can be plotted with data \
+in Mathematica\
+\>", "Text",
+ CellChangeTimes->{{3.696877411295075*^9, 3.6968774311972017`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Eq5", "[", 
+   RowBox[{
+   "Act_", ",", "\[Gamma]_", ",", "\[Epsilon]_", ",", "A_", ",", "r_", ",", 
+    "\[Mu]_"}], "]"}], ":=", 
+  RowBox[{"Act", "*", "\[Gamma]", "*", "\[Epsilon]", "*", 
+   FractionBox["A", 
+    RowBox[{"4", " ", "\[Pi]", " ", 
+     SuperscriptBox["r", "2"]}]], 
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{
+     RowBox[{"-", "\[Mu]"}], " ", "r"}]]}]}]], "Input",
+ CellChangeTimes->{{3.696877442750441*^9, 3.696877512640229*^9}, {
+  3.696877574948101*^9, 3.696877656169846*^9}, {3.6968777128778143`*^9, 
+  3.696877716313572*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Eq6", "[", 
+   RowBox[{"Act_", ",", "\[Gamma]_", ",", "\[Theta]_", ",", "r_"}], "]"}], ":=", 
+  RowBox[{"Act", "*", "\[Gamma]", "*", 
+   FractionBox[
+    RowBox[{"1", "-", 
+     RowBox[{"Cos", "[", "\[Theta]", "]"}]}], "2"], "*", 
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{
+     RowBox[{"-", "\[Mu]"}], " ", "r"}]]}]}]], "Input",
+ CellChangeTimes->{{3.696877721379456*^9, 3.69687784278658*^9}}],
+
+Cell["\<\
+5. Plot the properly corrected count rate (with error bars) vs. distance for \
+each isotope (Cs-137 and Co-60) on different plots (two). Interpolate between \
+the data points with an interpolation order of 2. Also include the \
+theoretical detection efficiency using equations 5 and 6. Include a legend on \
+each of the two plots to identify which curve is which (and also the dataset).\
+\>", "Text",
+ CellChangeTimes->{{3.696877949863064*^9, 3.696878040938612*^9}, {
+  3.6968781097503757`*^9, 3.696878205763784*^9}, {3.696878259706962*^9, 
+  3.696878266874601*^9}, {3.696878318699642*^9, 3.696878328793358*^9}}],
+
+Cell[TextData[StyleBox["To make the theoretical detection efficiency viewable \
+on the same plot, students should scale by the corresponding source energetic \
+photon emission activity and estimate a constant intrinsic detection \
+efficiency to get the two on the same order of magnitude (go with whatever \
+value works).", "SubsubitemNumbered"]], "Item",
+ CellChangeTimes->{3.696878320811901*^9}],
+
+Cell["\<\
+6. From the plots created, determine at what distance, if ever, the detection \
+efficiency can be described by equation 8.8 over equation 8.7 in the text \
+with an error of no more than 5% for each source. Compare the two answers and \
+discuss if they are different or not and whether they agree with our rule of \
+thumb.\
+\>", "Text",
+ CellChangeTimes->{{3.696878335461763*^9, 3.6968784019441*^9}, {
+  3.696878438287644*^9, 3.6968784384714203`*^9}}],
+
+Cell["\<\
+Note: use the best guess geometric efficiency equation based upon the \
+inspection of the plot from question 6.\
+\>", "Item",
+ CellChangeTimes->{{3.6968784109127398`*^9, 3.6968784289355927`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Line Source", "Subchapter",
+ CellChangeTimes->{{3.6968784601238956`*^9, 3.696878461282907*^9}}],
+
+Cell["\<\
+1. Make a table for the line source data with the same information contained \
+within the table for the point source analysis.\
+\>", "Text",
+ CellChangeTimes->{{3.696878464188856*^9, 3.696878480758499*^9}, {
+  3.696878837344265*^9, 3.696878837472171*^9}}],
+
+Cell[TextData[{
+ "2. Determine the total line energetic photon emission activity ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox["E", "\[Gamma]"], "\[GreaterEqual]", 
+     RowBox[{"30", "keV"}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ") with uncertainty. Assume the source strength of each source is known to \
+\[PlusMinus]5%."
+}], "Text",
+ CellChangeTimes->{{3.69687848367227*^9, 3.6968785244643507`*^9}, {
+  3.696878559928773*^9, 3.696878594804619*^9}, {3.696878839680401*^9, 
+  3.696878839794662*^9}}],
+
+Cell["\<\
+3. Create a function that can be plotted that will provide the count rate \
+versus distance for the line source data.\
+\>", "Text",
+ CellChangeTimes->{{3.696878597479549*^9, 3.696878612276175*^9}, {
+  3.696878842568013*^9, 3.696878842688088*^9}}],
+
+Cell[TextData[{
+ "4. Plot the properly corrected count rate (with error bars) vs. distance. \
+Interpolate between the data points with an interpolation order of 2. Also \
+include the theoretical detection efficiency for both a line source and a ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1", "/", 
+    SuperscriptBox["r", "2"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " (point) source. Include a legend to identify which curve is which (i.e., \
+data vs. calculated)."
+}], "Text",
+ CellChangeTimes->{{3.696878615964126*^9, 3.696878718938452*^9}, {
+  3.696878845000188*^9, 3.696878845176697*^9}}],
+
+Cell["\<\
+To make the theoretical detection efficiency viewable on the same plot, \
+students should scale by the corresponding source energetic photon emission \
+activity and estimate a constant intrinsic detection efficiency to get the \
+two on the same order of magnitude (go with whatever value works).\
+\>", "Item",
+ CellChangeTimes->{{3.6968787274431553`*^9, 3.696878781241335*^9}}],
+
+Cell["\<\
+5. From the plots created, determine at what distance, if ever, the detection \
+efficiency can be described by equation 8.8 in the text vs. the appropriate \
+line source equation with an error of no more than 5%. Does the result agree \
+with our rule of thumb?\
+\>", "Text",
+ CellChangeTimes->{{3.696878784717065*^9, 3.696878847672018*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Area Source", "Subchapter",
+ CellChangeTimes->{{3.696878861568791*^9, 3.696878864235818*^9}}],
+
+Cell["\<\
+1. Make a table for the square source data with the same information \
+contained within the table for the point source analysis.\
+\>", "Text",
+ CellChangeTimes->{{3.696878871312168*^9, 3.6968788895593987`*^9}, {
+  3.696879506161335*^9, 3.69687950628836*^9}}],
+
+Cell[TextData[{
+ "2. Determine the total square energetic photon emission activity ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox["E", "\[Gamma]"], "\[GreaterEqual]", 
+     RowBox[{"30", "keV"}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ") with uncertainty. Assume the source strength of each source is known to \
+\[PlusMinus]5%."
+}], "Text",
+ CellChangeTimes->{{3.696878891651491*^9, 3.696878933276836*^9}, {
+  3.696879508088339*^9, 3.696879508185154*^9}}],
+
+Cell["\<\
+3. Create a function that can be plotted that will provide the total count \
+rate versus distance for the square source data.\
+\>", "Text",
+ CellChangeTimes->{{3.6968789371869497`*^9, 3.696878958530077*^9}, {
+  3.696879510552231*^9, 3.6968795106515102`*^9}}],
+
+Cell[TextData[{
+ "4. Plot the properly corrected count rate (with error bars) vs. distance. \
+Interpolate between the data point with an interpolation order of 2. Also \
+include the theoretical detection efficiency for a square source and a ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1", "/", 
+    SuperscriptBox["r", "2"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " (point) source. Include a legend to identify which curve is which (i.e., \
+data vs. calculated)."
+}], "Text",
+ CellChangeTimes->{{3.6968789617784643`*^9, 3.696879017243536*^9}, {
+  3.696879512736208*^9, 3.696879512920294*^9}}],
+
+Cell["\<\
+To make the theoretical detection efficiency viewable on the same plot, \
+students should scale by the corresponding source energetic photon emission \
+activity and estimate a constant intrinsic detection efficiency to get the \
+two on the same order of magnitude (go with whatever value works).\
+\>", "Item",
+ CellChangeTimes->{{3.696879025033675*^9, 3.696879034278728*^9}}],
+
+Cell["\<\
+5. From the plots created, determine at what distance, if ever, the detection \
+efficiency can be described by equation 8.8 over equation 8.11 in the text \
+with an error of no more than 5%. Does the result agree with our rule of \
+thumb?\
+\>", "Text",
+ CellChangeTimes->{{3.696879042814086*^9, 3.696879083662156*^9}, {
+  3.69687947350604*^9, 3.696879516288289*^9}}]
+}, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1253, 1305},
-WindowMargins->{{Automatic, -1305}, {Automatic, -131}},
+WindowSize->{838, 1031},
+WindowMargins->{{Automatic, 295}, {Automatic, 0}},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -393,35 +1132,114 @@ Notebook[{
 Cell[558, 20, 447, 12, 140, "Input"],
 Cell[1008, 34, 136, 1, 54, "Text"],
 Cell[1147, 37, 189, 2, 29, "Text"],
-Cell[1339, 41, 496, 8, 47, "Text"],
-Cell[1838, 51, 272, 5, 29, "Text"],
-Cell[2113, 58, 260, 5, 29, "Text"],
+Cell[1339, 41, 496, 8, 65, "Text"],
+Cell[1838, 51, 272, 5, 47, "Text"],
+Cell[2113, 58, 260, 5, 47, "Text"],
 Cell[2376, 65, 1096, 32, 121, "Input"],
-Cell[3475, 99, 280, 5, 29, "Text"],
+Cell[3475, 99, 280, 5, 47, "Text"],
 Cell[3758, 106, 118, 2, 32, "Input"],
 Cell[3879, 110, 1157, 38, 349, "Input"],
 Cell[5039, 150, 340, 6, 47, "Text"],
 Cell[5382, 158, 432, 10, 53, "Text"],
 Cell[5817, 170, 121, 1, 54, "Text"],
 Cell[CellGroupData[{
-Cell[5963, 175, 1155, 31, 75, "Input"],
-Cell[7121, 208, 149, 3, 32, "Output"],
-Cell[7273, 213, 164, 3, 32, "Output"]
+Cell[5963, 175, 1592, 44, 138, "Input"],
+Cell[7558, 221, 195, 3, 32, "Output"],
+Cell[7756, 226, 197, 3, 32, "Output"],
+Cell[7956, 231, 211, 3, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7474, 221, 576, 16, 45, "Input"],
-Cell[8053, 239, 89, 1, 32, "Output"]
+Cell[8204, 239, 576, 16, 89, "Input"],
+Cell[8783, 257, 111, 1, 32, "Output"]
 }, Open  ]],
-Cell[8157, 243, 137, 1, 29, "Text"],
+Cell[8909, 261, 137, 1, 29, "Text"],
 Cell[CellGroupData[{
-Cell[8319, 248, 211, 5, 32, "Input"],
-Cell[8533, 255, 1809, 47, 96, "Output"]
+Cell[9071, 266, 211, 5, 32, "Input"],
+Cell[9285, 273, 1831, 47, 138, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10379, 307, 100, 1, 63, "Subchapter"],
-Cell[10482, 310, 678, 18, 32, "Input"],
-Cell[11163, 330, 500, 13, 54, "Input"],
-Cell[11666, 345, 929, 27, 75, "Input"]
+Cell[11153, 325, 100, 1, 63, "Subchapter"],
+Cell[11256, 328, 678, 18, 54, "Input"],
+Cell[11937, 348, 500, 13, 54, "Input"],
+Cell[12440, 363, 929, 27, 75, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13406, 395, 93, 1, 65, "Chapter"],
+Cell[CellGroupData[{
+Cell[13524, 400, 102, 1, 64, "Section"],
+Cell[13629, 403, 1646, 42, 99, "Input"],
+Cell[15278, 447, 312, 8, 32, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15627, 460, 100, 1, 63, "Subchapter"],
+Cell[15730, 463, 120, 1, 29, "Text"],
+Cell[15853, 466, 182, 4, 29, "Text"],
+Cell[16038, 472, 413, 7, 65, "Text"],
+Cell[CellGroupData[{
+Cell[16476, 483, 1862, 42, 201, "Input"],
+Cell[18341, 527, 420, 8, 32, "Output"],
+Cell[18764, 537, 381, 7, 32, "Output"],
+Cell[19148, 546, 378, 7, 32, "Output"],
+Cell[19529, 555, 409, 8, 32, "Output"],
+Cell[19941, 565, 435, 8, 32, "Output"],
+Cell[20379, 575, 457, 8, 32, "Output"]
+}, Open  ]],
+Cell[20851, 586, 96, 1, 29, "Text"],
+Cell[CellGroupData[{
+Cell[20972, 591, 1073, 28, 159, "Input"],
+Cell[22048, 621, 1584, 41, 128, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23669, 667, 1380, 38, 180, "Input"],
+Cell[25052, 707, 212, 5, 32, "Output"],
+Cell[25267, 714, 238, 5, 32, "Output"],
+Cell[25508, 721, 264, 5, 32, "Output"]
+}, Open  ]],
+Cell[25787, 729, 93, 1, 29, "Text"],
+Cell[CellGroupData[{
+Cell[25905, 734, 1107, 29, 159, "Input"],
+Cell[27015, 765, 1571, 40, 128, "Output"]
+}, Open  ]],
+Cell[28601, 808, 331, 6, 47, "Text"],
+Cell[28935, 816, 558, 9, 65, "Text"],
+Cell[CellGroupData[{
+Cell[29518, 829, 1186, 32, 83, "Input"],
+Cell[30707, 863, 305, 4, 32, "Output"],
+Cell[31015, 869, 288, 4, 32, "Output"]
+}, Open  ]],
+Cell[31318, 876, 187, 4, 29, "Text"],
+Cell[31508, 882, 338, 6, 47, "Text"],
+Cell[CellGroupData[{
+Cell[31871, 892, 271, 6, 32, "Input"],
+Cell[32145, 900, 87, 1, 32, "Output"]
+}, Open  ]],
+Cell[32247, 904, 195, 2, 29, "Text"],
+Cell[32445, 908, 184, 4, 29, "Text"],
+Cell[32632, 914, 590, 15, 51, "Input"],
+Cell[33225, 931, 437, 11, 49, "Input"],
+Cell[33665, 944, 622, 9, 83, "Text"],
+Cell[34290, 955, 397, 5, 56, "Item"],
+Cell[34690, 962, 460, 8, 65, "Text"],
+Cell[35153, 972, 205, 4, 28, "Item"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35395, 981, 101, 1, 63, "Subchapter"],
+Cell[35499, 984, 265, 5, 47, "Text"],
+Cell[35767, 991, 552, 14, 52, "Text"],
+Cell[36322, 1007, 256, 5, 29, "Text"],
+Cell[36581, 1014, 608, 13, 71, "Text"],
+Cell[37192, 1029, 387, 6, 59, "Item"],
+Cell[37582, 1037, 350, 6, 65, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37969, 1048, 99, 1, 63, "Subchapter"],
+Cell[38071, 1051, 268, 5, 47, "Text"],
+Cell[38342, 1058, 504, 13, 52, "Text"],
+Cell[38849, 1073, 268, 5, 47, "Text"],
+Cell[39120, 1080, 606, 13, 71, "Text"],
+Cell[39729, 1095, 385, 6, 59, "Item"],
+Cell[40117, 1103, 376, 7, 47, "Text"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
