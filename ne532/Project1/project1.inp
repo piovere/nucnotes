@@ -1,0 +1,64 @@
+ne532 project 1, photons
+c Cell Cards
+c ==============================
+c Material   Density    Surfaces   Data
+1 2          -0.001225  -1         imp:p=1
+2 1          -1.0       1 -2       imp:p=1
+3 0                     2          imp:p=0
+
+c Surface Cards
+c ==============================
+c Sphere of air...
+c     x      y      z     r
+1 sph 0      0      0     1000
+c ...surrounded by a cylinder of water...
+c     x     y         z     hx     hy     hz      r
+2 rcc 0     -1500     0     0      3000   0       1500
+c ...wrapped in a cube of nothing (the world).
+c     -x    +x   -y    +y   -z    +z
+3 rpp -1600 1600 -1600 1600 -1600 1600
+
+c ==============================
+c Material Cards
+c ==============================
+C name: Air (dry, near sea level)
+C density = 0.001225
+m1
+     6012 -1.2256e-04
+     6013 -1.4365e-06
+     7014 -7.5232e-01
+     7015 -2.9442e-03
+     8016 -2.3115e-01
+     8017 -9.3580e-05
+     8018 -5.3454e-04
+     18036 -3.8527e-05
+     18038 -7.6673e-06
+     18040 -1.2781e-02
+C name: Water, Liquid
+C density = 1.0
+m2
+     1001 -1.1187e-01
+     1002 -2.5713e-05
+     8016 -8.8570e-01
+     8017 -3.5857e-04
+     8018 -2.0482e-03
+c ==============================
+c Number of particles
+c ==============================
+nps 1000
+c ==============================
+Source definition:
+Cf-252
+c ==============================
+sdef erg=d1 pos=0 0 0
+si1 H 0.1     0.6     1.5     10.5
+sp1 D 0       6.6     -31     -31 
+c ==============================
+c Tally Ho!
+c ==============================
+c Photon surface current through surface 1
+f1:p 1
+c ==============================
+c a la mode
+c ==============================
+mode p
