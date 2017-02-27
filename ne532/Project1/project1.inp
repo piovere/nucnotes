@@ -2,8 +2,8 @@ ne532 project 1, photons
 c Cell Cards
 c ==============================
 c Material   Density    Surfaces   Data
-1 2          -0.001225  -1         imp:p=1
-2 1          -1.0       1 -2       imp:p=1
+1 1          -0.001225  -1         imp:p=1
+2 2          -1.0       1 -2       imp:p=1
 3 0                     2          imp:p=0
 
 c Surface Cards
@@ -51,8 +51,16 @@ Source definition:
 Cf-252
 c ==============================
 sdef erg=d1 pos=0 0 0
-si1 H 0.1     0.6     1.5     10.5
-sp1 D 0       6.6     -31     -31 
+si1 h 0.1     0.6     1.5     10.5
+ds1 s 2       3       4       5
+si2 h 0.1
+sp2 d 0
+si3 h 0.1                  10i     0.6
+sp3 d 0                    6.6
+si4 l 0.6                  18i     1.5
+sp4 d 6.9426434627486771   18iLOG  1.3988949512487889
+si5 h 1.5                  18i     10.5
+sp5 d 1.4036570733541136   18iLOG  7.7060558285406563e-05
 c ==============================
 c Tally Ho!
 c ==============================
