@@ -10,13 +10,10 @@ c Surface Cards
 c ==============================
 c Sphere of air...
 c     x      y      z     r
-1 sph 0      0      0     1000
+1 sph 0      0      0     100
 c ...surrounded by a cylinder of water...
 c     x     y         z     hx     hy     hz      r
-2 rcc 0     -1500     0     0      3000   0       1500
-c ...wrapped in a cube of nothing (the world).
-c     -x    +x   -y    +y   -z    +z
-3 rpp -1600 1600 -1600 1600 -1600 1600
+2 rcc 0     -150      0     0      300   0       150
 
 c ==============================
 c Material Cards
@@ -45,28 +42,42 @@ m2
 c ==============================
 c Number of particles
 c ==============================
-nps 1000
+nps 1e10
 c ==============================
-Source definition:
-Cf-252
+c Source definition:
+c Cf-252
 c ==============================
-sdef erg=d1 pos=0 0 0
-si1 h 0.1     0.6     1.5     10.5
-ds1 s 2       3       4       5
-si2 h 0.1
-sp2 d 0
-si3 h 0.1                  10i     0.6
-sp3 d 0                    6.6
-si4 l 0.6                  18i     1.5
-sp4 d 6.9426434627486771   18iLOG  1.3988949512487889
-si5 h 1.5                  18i     10.5
-sp5 d 1.4036570733541136   18iLOG  7.7060558285406563e-05
+sdef wgt=1e5 erg=d1 pos=0 0 0 par=p
+c si1 h 0.1 0.6 1.5 10.5
+c sp1 s 2   3   4   5
+si1 s 2    3    4
+sp1   1    1    1
+si2 h 0.1    0.6
+sp2 d 0      6.6
+si3 h 0.6  17i                  1.5
+sp3 d 0    6.9426434627486771   16LOG  1.5291050114426159
+si4 h 1.5                       17i     10.5
+sp4 d 0 1.4036570733541136      16LOG  0.00013289928476962001
 c ==============================
 c Tally Ho!
 c ==============================
 c Photon surface current through surface 1
 f1:p 1
+c1 0 1
+c Photon surface current per unit area
+f2:p 1
 c ==============================
-c a la mode
+c Stop condition
 c ==============================
+stop f1 0.1
+c ==============================
+c Time
+c ==============================
+t1 0.01 49i 2.01
+t2 0.01 49i 2.01
 mode p
+c ==============================
+c I don't know what this does!
+c ==============================
+fq1 t f
+print
