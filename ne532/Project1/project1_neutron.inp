@@ -13,7 +13,7 @@ c     x      y      z     r
 1 sph 0      0      0     100
 c ...surrounded by a cylinder of water...
 c     x     y         z     hx     hy     hz      r
-2 rcc 0     -150      0     0      300   0       150
+2 rcc 0     -150      0     0      300    0       150
 
 c ==============================
 c Material Cards
@@ -27,7 +27,6 @@ m1
      7015 -2.9442e-03
      8016 -2.3115e-01
      8017 -9.3580e-05
-     8018 -5.3454e-04
      18036 -3.8527e-05
      18038 -7.6673e-06
      18040 -1.2781e-02
@@ -38,30 +37,18 @@ m2
      1002 -2.5713e-05
      8016 -8.8570e-01
      8017 -3.5857e-04
-     8018 -2.0482e-03
 c ==============================
 c Source definition:
 c Cf-252
 c ==============================
-sdef wgt=216223.40425531918 erg=d1 pos=0 0 0 par=p
-c si1 h 0.1 0.6 1.5 10.5
-c sp1 s 2   3   4   5
-si1 s 2    3    4
-sp1   1    1    1
-si2 h 0.1    0.6
-sp2 d 0      6.6
-si3 h 0.6  17i                  1.5
-sp3 d 0    6.9426434627486771   16LOG  1.5291050114426159
-si4 h 1.5                       17i     10.5
-sp4 d 0 1.4036570733541136      16LOG  0.00013289928476962001
+sdef wgt=1e5 erg=d1 pos=0 0 0 par=n
+sp1 -3 1.025 2.926
 c ==============================
 c Tally Ho!
 c ==============================
-c Photon surface current through surface 1
-f1:p 1
+c Neutron surface current through surface 1
+f1:n 1
 c1 0 1
-c Photon surface current per unit area
-f2:p 1
 c ==============================
 c Stop condition
 c ==============================
@@ -70,9 +57,8 @@ nps 1e6
 c ==============================
 c Time
 c ==============================
-t1 0.01 49i 2.01
-t2 0.01 49i 2.01
-mode p $ we want photons for this one
+t1 0.1 49i 50.1
+mode n $ we want neutrons for this 
 c ==============================
 c I don't know what this does!
 c ==============================
