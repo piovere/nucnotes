@@ -58,6 +58,8 @@ c ==============================
 c Photon surface current through surface 1
 f1:p 1
 c1 0 1
+f11:p 1
+e11 0.1 0.6 17i 1.5 17i 10.5
 c ==============================
 c Stop condition
 c ==============================
@@ -72,4 +74,5 @@ c ==============================
 c I don't know what this does!
 c ==============================
 fq1 t f
+fq11 e f
 print
