@@ -1,4 +1,4 @@
-ne532 project 1, photons
+ne532 project 1, neutrons
 c Cell Cards
 c ==============================
 c Material   Density    Surfaces   Data
@@ -44,8 +44,6 @@ c Source definition:
 c Cf-252
 c ==============================
 sdef wgt=216223.40425531918 erg=d1 pos=0 0 0 par=p
-si1 s 2      3                     4
-sp1   3.3    3.1144654558988139    1.2876880851337871
 si2 h 0.1    0.6
 sp2 d 0      6.6
 si3 h 0.6  17i                  1.5
