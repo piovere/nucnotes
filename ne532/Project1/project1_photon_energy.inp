@@ -1,0 +1,80 @@
+ne532 project 1, photons
+c Cell Cards
+c ==============================
+c Material   Density    Surfaces   Data
+c 1 1          -0.001225  -1         imp:p=1
+c 2 2          -1.0       1 -2       imp:p=1
+c 3 0                     2          imp:p=0
+1 0                     -1           imp:p=1
+2 0                     1            imp:p=0
+
+c Surface Cards
+c ==============================
+c Sphere of air...
+c     x      y      z     r
+1 sph 0      0      0     100
+c ...surrounded by a cylinder of water...
+c     x     y         z     hx     hy     hz      r
+2 rcc 0     -150      0     0      300   0       150
+
+c ==============================
+c Material Cards
+c ==============================
+C name: Air (dry, near sea level)
+C density = 0.001225
+m1
+     6012 -1.2256e-04
+     6013 -1.4365e-06
+     7014 -7.5232e-01
+     7015 -2.9442e-03
+     8016 -2.3115e-01
+     8017 -9.3580e-05
+     8018 -5.3454e-04
+     18036 -3.8527e-05
+     18038 -7.6673e-06
+     18040 -1.2781e-02
+C name: Water, Liquid
+C density = 1.0
+m2
+     1001 -1.1187e-01
+     1002 -2.5713e-05
+     8016 -8.8570e-01
+     8017 -3.5857e-04
+     8018 -2.0482e-03
+c ==============================
+c Source definition:
+c Cf-252
+c ==============================
+sdef wgt=216223.40425531918 erg=d1 pos=0 0 0 par=p
+si1 s 2      3                     4
+sp1   3.3    3.1144654558988139    1.2876880851337871
+si2 h 0.1    0.6
+sp2 d 0      6.6
+si3 h 0.6  17i                  1.5
+sp3 d 0    6.9426434627486771   16LOG  1.5291050114426159
+si4 h 1.5                       17i     10.5
+sp4 d 0 1.4036570733541136      16LOG  0.00013289928476962001
+c ==============================
+c Tally Ho!
+c ==============================
+c Photon surface current through surface 1
+f1:p 1
+c1 0 1
+f11:p 1
+e11 0.1 0.6 17i 1.5 17i 10.5
+c ==============================
+c Stop condition
+c ==============================
+c stop f11 0.01
+nps 1e6
+c ==============================
+c Time
+c ==============================
+t1 0.01 49i 2.01
+mode p $ we want photons for this one
+c ==============================
+c I don't know what this does!
+c ==============================
+fq1 t f
+fq11 e f
+print
