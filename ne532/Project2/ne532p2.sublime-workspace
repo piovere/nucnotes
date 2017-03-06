@@ -1,0 +1,320 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"b",
+				"b_old"
+			],
+			[
+				"allo",
+				"allocatable"
+			],
+			[
+				"alloca",
+				"allocate"
+			],
+			[
+				"end",
+				"enddo"
+			],
+			[
+				"int",
+				"integer"
+			],
+			[
+				"real",
+				"real64"
+			],
+			[
+				"num",
+				"num_nodes"
+			],
+			[
+				"Z",
+				"Z_eff"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "p3.i",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 107.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/jrpowers-luhn/nucnotes",
+		"/Users/jrpowers-luhn/nucnotes/ne532",
+		"/Users/jrpowers-luhn/nucnotes/ne532/Project2"
+	],
+	"file_history":
+	[
+		"/private/var/folders/pq/dyht1wn11l7cc6d2jkdb589r00010z/T/b00d21ab-108c-497e-a511-5fb2cca6b738/home/jrpowers-luhn/532/project1/gamma/project1_photon.o",
+		"/Users/jrpowers-luhn/Downloads/ne571_project2.m",
+		"/Users/jrpowers-luhn/470-project-1/Project 2/sections/Report_results.tex",
+		"/Users/jrpowers-luhn/nucnotes/ne470/homework/02/ne470_hw_2.tex",
+		"/Users/jrpowers-luhn/470-project-1/Project 2/Report_results",
+		"/Users/jrpowers-luhn/470-project-1/Project 2/Report_methodology",
+		"/Users/jrpowers-luhn/470-project-1/Project 2/Report_introduction",
+		"/Users/jrpowers-luhn/nucnotes/ne551/homework/06/ne551_hw_5.tex",
+		"/Users/jrpowers-luhn/nucnotes/ne470/homework/04/errors.py",
+		"/Users/jrpowers-luhn/nucnotes/ne470/homework/04/ne470_hw_4.tex",
+		"/Users/jrpowers-luhn/nucnotes/ne551/homework/05/ne551_hw_5.tex",
+		"/Users/jrpowers-luhn/470-project-1/test.f90",
+		"/Users/jrpowers-luhn/470-project-1/desperate.f90",
+		"/Users/jrpowers-luhn/470-project-1/Report.tex",
+		"/Users/jrpowers-luhn/470-project-1/Project1.f90",
+		"/Users/jrpowers-luhn/470-project-1/mock.py",
+		"/Users/jrpowers-luhn/nucnotes/ne551/homework/03/ne551_hw_3.tex",
+		"/Users/jrpowers-luhn/nucnotes/.gitignore",
+		"/Users/jrpowers-luhn/nucnotes/ne470/homework/03/ne470_hw_3.tex",
+		"/Users/jrpowers-luhn/nucnotes/ne551/homework/03/ne551_h2_3.tex",
+		"/Users/jrpowers-luhn/Google Drive/530/References",
+		"/Network/Servers/hrgsrv01.engr.utk.edu/Volumes/Promise RAID/Homes/jrpowers-luhn/Desktop/ne470_HW_01.tex",
+		"/Users/jrpowers-luhn/Weinberg/sftp-config.json",
+		"/Users/jrpowers-luhn/Weinberg/calculate.f"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"1tally",
+			"eqn:leftboundary",
+			"\\part",
+			"uranium",
+			"Lead",
+			"Tin",
+			"Iron",
+			"Silicon",
+			"Aluminum",
+			"sodium",
+			"carbon",
+			"\\Delta X",
+			"\\delta",
+			"Uranium",
+			"Tin",
+			"Iron",
+			"silicon",
+			"Aluminum",
+			"sodium",
+			"Carbon",
+			"dry",
+			"water",
+			"air",
+			"ater",
+			"&=",
+			"lead"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\\Delta x",
+			"\\Delta"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "p3.i",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"rulers":
+							[
+								78
+							],
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 212.0
+	},
+	"pinned_build_system": "",
+	"project": "ne532p2.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 230.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
