@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4838,        134]
-NotebookOptionsPosition[      4042,        105]
-NotebookOutlinePosition[      4404,        121]
-CellTagsIndexPosition[      4361,        118]
+NotebookDataLength[      6645,        175]
+NotebookOptionsPosition[      5837,        146]
+NotebookOutlinePosition[      6199,        162]
+CellTagsIndexPosition[      6156,        159]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -28,46 +28,83 @@ Cell[TextData[StyleBox["Pre-laboratory Questions", "Chapter"]], "Text",
  CellChangeTimes->{{3.697822772700963*^9, 3.697822782408001*^9}}],
 
 Cell["\<\
-Read the laboratory assignment in its entirety before coming to lab\
+1. Read the laboratory assignment in its entirety before coming to lab.\
 \>", "Text",
- CellChangeTimes->{{3.69782279114014*^9, 3.697822807439437*^9}}],
+ CellChangeTimes->{{3.69782279114014*^9, 3.697822807439437*^9}, {
+  3.6978238193869457`*^9, 3.697823824819702*^9}}],
 
-Cell["Check", "Text",
+Cell[TextData[StyleBox["Check",
+ FontWeight->"Bold"]], "Text",
  CellChangeTimes->{{3.697822827100041*^9, 3.69782282761908*^9}}],
 
 Cell["\<\
-Read the Wikipedia page on oscilloscope \
-(https://en.wikipedia.org/wiki/Oscilloscope)\
+2. Read the Wikipedia page on oscilloscope \
+(https://en.wikipedia.org/wiki/Oscilloscope).\
 \>", "Text",
- CellChangeTimes->{{3.697822830305002*^9, 3.69782285261546*^9}}],
+ CellChangeTimes->{{3.697822830305002*^9, 3.69782285261546*^9}, {
+  3.6978238217769814`*^9, 3.69782382998321*^9}}],
 
-Cell["Check", "Text",
+Cell[TextData[StyleBox["Check",
+ FontWeight->"Bold"]], "Text",
  CellChangeTimes->{{3.697822859891294*^9, 3.6978228604464073`*^9}}],
 
-Cell["What is the purpose of AC coupling on an oscilloscope?", "Text",
- CellChangeTimes->{{3.697822863712678*^9, 3.697822877282206*^9}}],
+Cell["3. What is the purpose of AC coupling on an oscilloscope?", "Text",
+ CellChangeTimes->{{3.697822863712678*^9, 3.697822877282206*^9}, {
+  3.697823832948818*^9, 3.6978238330805817`*^9}}],
 
-Cell["Answer answer answer", "Text",
- CellChangeTimes->{{3.697822878720059*^9, 3.697822881818055*^9}}],
+Cell[TextData[StyleBox["This presents on the the time-varying portions of the \
+signal, without the DC voltage that this signal might be \
+\[OpenCurlyDoubleQuote]riding\[CloseCurlyDoubleQuote] on.",
+ FontWeight->"Bold"]], "Text",
+ CellChangeTimes->{{3.697822878720059*^9, 3.697822881818055*^9}, {
+  3.697825251020905*^9, 3.697825275886952*^9}}],
 
-Cell["What is the most common use of an oscilloscope?", "Text",
- CellChangeTimes->{{3.697822884127686*^9, 3.6978228948466253`*^9}}],
+Cell["4. What is the most common use of an oscilloscope?", "Text",
+ CellChangeTimes->{{3.697822884127686*^9, 3.6978228948466253`*^9}, {
+  3.697823835984693*^9, 3.6978238360926657`*^9}}],
 
-Cell["Answer answer answer", "Text",
- CellChangeTimes->{{3.697822896043791*^9, 3.697822899165625*^9}}],
+Cell[TextData[{
+ StyleBox["According to Wikipedia \
+(https://en.wikipedia.org/wiki/Oscilloscope#Examples_of_use), \
+\[OpenCurlyDoubleQuote][o]ne of the most frequent uses of scopes is \
+troubleshooting malfunctioning electronic equipment.\[CloseCurlyDoubleQuote] \
+Using the oscilloscope it is possible to probe in between components in a \
+signal path, comparing the measured output against some expected result. In \
+this way it is possible, via binary troubleshooting, to find the faulty \
+component in ",
+  FontWeight->"Bold"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", 
+    RowBox[{"-", "n"}]], TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontWeight->"Bold"],
+ StyleBox[" time, where ",
+  FontWeight->"Bold"],
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontWeight->"Bold"],
+ StyleBox[" is the number of components.",
+  FontWeight->"Bold"]
+}], "Text",
+ CellChangeTimes->{{3.697822896043791*^9, 3.697822899165625*^9}, {
+  3.6978253060110188`*^9, 3.697825506255011*^9}}],
 
 Cell["\<\
-In a DMM, the resistance values will change as a function of the current \
+5. In a DMM, the resistance values will change as a function of the current \
 magnitude being measured. Explain why this happens and if this could affect a \
 measured value in a given experiment.\
 \>", "Text",
- CellChangeTimes->{{3.697822908966305*^9, 3.6978229398329353`*^9}}],
+ CellChangeTimes->{{3.697822908966305*^9, 3.6978229398329353`*^9}, {
+  3.697823839524685*^9, 3.6978238396285563`*^9}}],
 
-Cell["Answer answer answer", "Text",
+Cell[TextData[StyleBox["Answer answer answer",
+ FontWeight->"Bold"]], "Text",
  CellChangeTimes->{{3.697822941504072*^9, 3.6978229502781143`*^9}}],
 
 Cell["\<\
-Look at figure 3.1 from experiment 3 in this laboratory exercise (Circuits \
+6. Look at figure 3.1 from experiment 3 in this laboratory exercise (Circuits \
 I). Solve for the currents using Kirchoff\[CloseCurlyQuote]s Circuit Laws via \
 a software program. Provide a diagram on how loops and nodes were defined \
 with the starting matrix (note the nodes used, as these need to be known for \
@@ -75,14 +112,16 @@ the experimental evaluation). Report the currents expected in the experiment. \
 Be sure to save the program in case these exact resistor values are not \
 available.\
 \>", "Text",
- CellChangeTimes->{{3.6978229525875673`*^9, 3.697823046343231*^9}}],
+ CellChangeTimes->{{3.6978229525875673`*^9, 3.697823046343231*^9}, {
+  3.697823842588798*^9, 3.697823842676536*^9}}],
 
-Cell["Answer answer answer", "Text",
+Cell[TextData[StyleBox["Answer answer answer",
+ FontWeight->"Bold"]], "Text",
  CellChangeTimes->{{3.697823048757429*^9, 3.6978230524548903`*^9}}],
 
 Cell[TextData[{
- "In class we analytically solved the differential equation describing a CR \
-network.\n\ta. Graphically display via plotting software how the input \
+ "7. In class we analytically solved the differential equation describing a \
+CR network.\n\ta. Graphically display via plotting software how the input \
 sinusoidal wave is modified at the output when modifying the input frequency. \
 Plot the cases when the input frequency varies in decades from ",
  Cell[BoxData[
@@ -98,9 +137,11 @@ and output on a single plot (5 plots total). Print out the Mathematica \
 Notebook and turn in the solution with the rest of your prelab assignment."
 }], "Text",
  CellChangeTimes->{{3.6978230638114853`*^9, 3.697823221884892*^9}, {
-  3.697823254044347*^9, 3.697823263255289*^9}}],
+  3.697823254044347*^9, 3.697823263255289*^9}, {3.69782384564489*^9, 
+  3.697823845824812*^9}, {3.697823880936796*^9, 3.697823881072124*^9}}],
 
-Cell["Answer answer answer", "Text",
+Cell[TextData[StyleBox["Answer answer answer",
+ FontWeight->"Bold"]], "Text",
  CellChangeTimes->{{3.697823267798066*^9, 3.697823273426834*^9}}]
 },
 WindowSize->{808, 911},
@@ -122,23 +163,21 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 229, 4, 194, "Text"],
 Cell[790, 26, 137, 1, 54, "Text"],
-Cell[930, 29, 156, 3, 29, "Text"],
-Cell[1089, 34, 86, 1, 29, "Text"],
-Cell[1178, 37, 175, 4, 29, "Text"],
-Cell[1356, 43, 89, 1, 29, "Text"],
-Cell[1448, 46, 136, 1, 29, "Text"],
-Cell[1587, 49, 102, 1, 29, "Text"],
-Cell[1692, 52, 131, 1, 29, "Text"],
-Cell[1826, 55, 102, 1, 29, "Text"],
-Cell[1931, 58, 284, 5, 47, "Text"],
-Cell[2218, 65, 104, 1, 29, "Text"],
-Cell[2325, 68, 568, 9, 83, "Text"],
-Cell[2896, 79, 104, 1, 29, "Text"],
-Cell[3003, 82, 930, 18, 122, "Text"],
-Cell[3936, 102, 102, 1, 29, "Text"]
+Cell[930, 29, 211, 4, 29, "Text"],
+Cell[1144, 35, 127, 2, 29, "Text"],
+Cell[1274, 39, 229, 5, 29, "Text"],
+Cell[1506, 46, 130, 2, 29, "Text"],
+Cell[1639, 50, 190, 2, 29, "Text"],
+Cell[1832, 54, 344, 5, 47, "Text"],
+Cell[2179, 61, 185, 2, 29, "Text"],
+Cell[2367, 65, 1030, 26, 103, "Text"],
+Cell[3400, 93, 338, 6, 47, "Text"],
+Cell[3741, 101, 145, 2, 29, "Text"],
+Cell[3889, 105, 620, 10, 101, "Text"],
+Cell[4512, 117, 145, 2, 29, "Text"],
+Cell[4660, 121, 1027, 19, 122, "Text"],
+Cell[5690, 142, 143, 2, 29, "Text"]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
