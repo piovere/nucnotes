@@ -1,0 +1,144 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4838,        134]
+NotebookOptionsPosition[      4042,        105]
+NotebookOutlinePosition[      4404,        121]
+CellTagsIndexPosition[      4361,        118]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Laboratory #6: Oscilloscopes and Circuits", "Title"],
+ "\nJ.R. Powers-Luhn\nNE550, Thursday 17:30-20:30\nPartner:\nStation:"
+}], "Text",
+ CellChangeTimes->{{3.697822694879187*^9, 3.697822745284664*^9}}],
+
+Cell[TextData[StyleBox["Pre-laboratory Questions", "Chapter"]], "Text",
+ CellChangeTimes->{{3.697822772700963*^9, 3.697822782408001*^9}}],
+
+Cell["\<\
+Read the laboratory assignment in its entirety before coming to lab\
+\>", "Text",
+ CellChangeTimes->{{3.69782279114014*^9, 3.697822807439437*^9}}],
+
+Cell["Check", "Text",
+ CellChangeTimes->{{3.697822827100041*^9, 3.69782282761908*^9}}],
+
+Cell["\<\
+Read the Wikipedia page on oscilloscope \
+(https://en.wikipedia.org/wiki/Oscilloscope)\
+\>", "Text",
+ CellChangeTimes->{{3.697822830305002*^9, 3.69782285261546*^9}}],
+
+Cell["Check", "Text",
+ CellChangeTimes->{{3.697822859891294*^9, 3.6978228604464073`*^9}}],
+
+Cell["What is the purpose of AC coupling on an oscilloscope?", "Text",
+ CellChangeTimes->{{3.697822863712678*^9, 3.697822877282206*^9}}],
+
+Cell["Answer answer answer", "Text",
+ CellChangeTimes->{{3.697822878720059*^9, 3.697822881818055*^9}}],
+
+Cell["What is the most common use of an oscilloscope?", "Text",
+ CellChangeTimes->{{3.697822884127686*^9, 3.6978228948466253`*^9}}],
+
+Cell["Answer answer answer", "Text",
+ CellChangeTimes->{{3.697822896043791*^9, 3.697822899165625*^9}}],
+
+Cell["\<\
+In a DMM, the resistance values will change as a function of the current \
+magnitude being measured. Explain why this happens and if this could affect a \
+measured value in a given experiment.\
+\>", "Text",
+ CellChangeTimes->{{3.697822908966305*^9, 3.6978229398329353`*^9}}],
+
+Cell["Answer answer answer", "Text",
+ CellChangeTimes->{{3.697822941504072*^9, 3.6978229502781143`*^9}}],
+
+Cell["\<\
+Look at figure 3.1 from experiment 3 in this laboratory exercise (Circuits \
+I). Solve for the currents using Kirchoff\[CloseCurlyQuote]s Circuit Laws via \
+a software program. Provide a diagram on how loops and nodes were defined \
+with the starting matrix (note the nodes used, as these need to be known for \
+the experimental evaluation). Report the currents expected in the experiment. \
+Be sure to save the program in case these exact resistor values are not \
+available.\
+\>", "Text",
+ CellChangeTimes->{{3.6978229525875673`*^9, 3.697823046343231*^9}}],
+
+Cell["Answer answer answer", "Text",
+ CellChangeTimes->{{3.697823048757429*^9, 3.6978230524548903`*^9}}],
+
+Cell[TextData[{
+ "In class we analytically solved the differential equation describing a CR \
+network.\n\ta. Graphically display via plotting software how the input \
+sinusoidal wave is modified at the output when modifying the input frequency. \
+Plot the cases when the input frequency varies in decades from ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["10", "3"], "-", 
+    RowBox[{
+     SuperscriptBox["10", "7"], "Hz"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". Use a time constant of one microsecond, a peak-to-peak input amplitude of \
+two volts, and a time domain covering at least four periods. Put the input \
+and output on a single plot (5 plots total). Print out the Mathematica \
+Notebook and turn in the solution with the rest of your prelab assignment."
+}], "Text",
+ CellChangeTimes->{{3.6978230638114853`*^9, 3.697823221884892*^9}, {
+  3.697823254044347*^9, 3.697823263255289*^9}}],
+
+Cell["Answer answer answer", "Text",
+ CellChangeTimes->{{3.697823267798066*^9, 3.697823273426834*^9}}]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, -1228}, {Automatic, 50}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 229, 4, 194, "Text"],
+Cell[790, 26, 137, 1, 54, "Text"],
+Cell[930, 29, 156, 3, 29, "Text"],
+Cell[1089, 34, 86, 1, 29, "Text"],
+Cell[1178, 37, 175, 4, 29, "Text"],
+Cell[1356, 43, 89, 1, 29, "Text"],
+Cell[1448, 46, 136, 1, 29, "Text"],
+Cell[1587, 49, 102, 1, 29, "Text"],
+Cell[1692, 52, 131, 1, 29, "Text"],
+Cell[1826, 55, 102, 1, 29, "Text"],
+Cell[1931, 58, 284, 5, 47, "Text"],
+Cell[2218, 65, 104, 1, 29, "Text"],
+Cell[2325, 68, 568, 9, 83, "Text"],
+Cell[2896, 79, 104, 1, 29, "Text"],
+Cell[3003, 82, 930, 18, 122, "Text"],
+Cell[3936, 102, 102, 1, 29, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
