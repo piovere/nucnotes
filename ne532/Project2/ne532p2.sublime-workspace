@@ -43,7 +43,8 @@
 			"file": "p3.i",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 4849,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -118,7 +119,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -163,7 +164,7 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
 			"\\Delta x",
@@ -184,18 +185,18 @@
 				{
 					"buffer": 0,
 					"file": "p3.i",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 4849,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								4561,
+								4561
 							]
 						],
 						"settings":
@@ -207,7 +208,9 @@
 								78
 							],
 							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 5,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -304,7 +307,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
