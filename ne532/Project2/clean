@@ -2,4 +2,5 @@
 
 rm *.o
 rm *.r
+rm *.c
 
