@@ -21,12 +21,53 @@ c Soil
 c       xmin     xmax     ymin     ymax     zmin     zmax
 1 rpp   -350     350      -30      0        -350     350
 c ----------------------------------------------------------------
-c NaI Detector
+c NaI Detector, a cylinder with radius 3.81cm and height 7.62cm
 c       vx       vy       vz       hx       hy       hz     r
 2 rcc   0        110.1    0        0        7.62     0      3.81
-c NaI Detector Casing
+c NaI Detector Casing, 1mm of Al around the detector
+c     the bottom of which is 110cm above the ground
 3 rcc   0        110.0    0        0        7.82     0      3.91
 c ----------------------------------------------------------------
-c The World
-c       xmin     xmax     ymin     ymax     zmin     zmax
-4 rpp   -351     351      -31      120      -351     351
+c The World, a sphere centered at (0,0,0) with radius 7m
+c       x        y        z        r
+1 sph   0        0        0        700
+
+c ================================================================
+c Material Cards
+c ----------------------------------------------------------------
+c name: Soil
+c density = 1.82 g/cm^3
+m1
+     8016       -46.10
+     14028      -28.20
+     13027       -8.23
+     26056       -5.63
+     20040       -4.15
+     11023       -2.36
+     12024       -2.33
+     19039       -2.09
+c ----------------------------------------------------------------
+c name: Sodium Iodide
+c density = 3.67 g/cm^3
+m2
+     11000 1.000
+     53000 1.000
+c ----------------------------------------------------------------
+c name: Aluminum casing
+c density = 2.70 g/cm^3
+m3
+     13000 1.000
+c ----------------------------------------------------------------
+c name: Air (dry, near sea level)
+c density = 0.001225 g/cm^3
+m4
+     6012 -1.2256e-04
+     6013 -1.4365e-06
+     7014 -7.5232e-01
+     7015 -2.9442e-03
+     8016 -2.3115e-01
+     8017 -9.3580e-05
+     8018 -5.3454e-04
+     18036 -3.8527e-05
+     18038 -7.6673e-06
+     18040 -1.2781e-02
