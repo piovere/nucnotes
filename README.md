@@ -23,6 +23,7 @@ notes and stuff for classes related to NE
 - [Julia](http://julialang.org)
     - [Language overview](https://learnxinyminutes.com/docs/julia/)
     - [The Julia Paper](https://arxiv.org/pdf/1411.1607.pdf)
+    - [Quick and dirty, with plots](http://lectures.quantecon.org/jl/getting_started.html)
 - Fortran
     - [Learn Fortran in Y minutes](https://learnxinyminutes.com/docs/fortran95/)
     - [MTU CS201 Slides](https://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html)
