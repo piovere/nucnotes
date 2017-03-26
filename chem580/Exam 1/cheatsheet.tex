@@ -10,7 +10,7 @@
 
 
 \pdfinfo{
-  /Title (chem580 Cheat Sheet 1)
+  /Title (chem580 Cheat Sheet 2)
   /Creator (TeX)
   /Producer (pdfTeX 1.40.0)
   /Author (J.R. Powers-Luhn)
@@ -80,17 +80,17 @@
 \end{center}
 
 \section{Binding Energy}
-\begin{equation}
+\begin{align*}
     B=15.56A-17.23A^{2/3}-0.72Z^2A^{-1/3}-23.285\left(A-2Z\right)^2A^{-1}+11A^{-1/2}
-\end{equation}
-\begin{equation}
+\end{align*}
+\begin{align*}
     B=931 \left(1.00783Z + 1.00867N -M  \right)
-\end{equation}
+\end{align*}
 
 \section{Nuclear Radius}
-\begin{equation}
+\begin{align*}
     R(\si{cm})=\num{1.4e-13}A^{1/3}
-\end{equation}
+\end{align*}
 
 \section{Magic Numbers}
 2, 8, 20, 28, 50, 82, 126 (also 118 for $p^+$)
@@ -99,10 +99,10 @@
 \SI{1}{\amu}=\SI{931}{\mega\electronvolt}
 
 \section{Coulomb Barrier}
-\begin{equation}
+\begin{align*}
     E_C=1.11 \frac{\left( A + A^\prime \right)}{A}
-         \frac{Z Z^\prime}{\left(A^{1/3} + A^\prime^{1/3} \right)}
-\end{equation}
+         \frac{Z Z^\prime}{\left(A^{1/3} + A^{\prime 1/3} \right)}
+\end{align*}
 
 \section{Specific Activity}
 A is mass number, T is half-life in days
@@ -112,9 +112,34 @@ $\frac{\num{1.3e8}}{AT}$
 $\frac{\num{4.8e6}}{AT}$
 
 \section{Beta Recoil}
-\begin{equation}
+\begin{align*}
     E_{Max}=E_m \frac{m_e}{m_e+M_D}
-\end{equation}
+\end{align*}
+
+\section{Alpha Range}
+\begin{align*}
+    R_{air} = 0.31 E_\alpha^{1.5} \\
+    R_{?} = R_{air} * \rho_{Air} / \rho_{?} \\
+    E_\alpha = E_{decay} \frac{m_{Daughter}}{m_\alpha+m_{Daughter}} \\
+\end{align*}
+$\alpha$ produces \num{30000} ion pairs per cm in air
+
+\section{Beta Ranges}
+\begin{align*}
+    E_{avg} \approx E_{max} / 3 \\
+    E_{max}^{daughter} = E_\beta \frac{m_\beta}{m_\beta+M_{daughter}} \\
+    R(mg/cm^2)=
+    \begin{cases}
+        543 E_m - 133 & E_m \geq \SI{0.8}{\mega\electronvolt} \\
+        407 E_m^{1.38} & E_m < \SI{0.8}{\mega\electronvolt}
+    \end{cases}
+\end{align*}
+Scattering increases with Z and surface density up to about 1/5 of the range
+
+\section{Compton}
+\begin{align*}
+    E_{s} = \frac{E_{tot}}{ 1 + \frac{E_{tot}}{m_e}\left( 1 - \cos{\theta_\gamma} \right) }
+\end{align*}
 
 % You can even have references
 \rule{0.3\linewidth}{0.25pt}
