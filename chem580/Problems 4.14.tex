@@ -1,0 +1,730 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font than Computer Modern for most use cases
+    \usepackage{palatino}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Problems 4.14}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Section 4.14 Problems}\label{section-4.14-problems}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         \PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k+kn}{import} \PY{n}{division}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{from} \PY{n+nn}{uncertainties} \PY{k+kn}{import} \PY{n}{ufloat}
+         \PY{k+kn}{from} \PY{n+nn}{uncertainties.umath} \PY{k+kn}{import} \PY{o}{*}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+    \subsection{Part A}\label{part-a}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{voltage} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{1800}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+        \PY{n}{cpm} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{812}\PY{p}{,} \PY{l+m+mi}{1703}\PY{p}{,} \PY{l+m+mi}{2482}\PY{p}{,} \PY{l+m+mi}{2591}\PY{p}{,} 
+                        \PY{l+m+mi}{2758}\PY{p}{,} \PY{l+m+mi}{2783}\PY{p}{,} \PY{l+m+mi}{2791}\PY{p}{,} \PY{l+m+mi}{2788}\PY{p}{,} 
+                        \PY{l+m+mi}{2802}\PY{p}{,} \PY{l+m+mi}{2836}\PY{p}{,} \PY{l+m+mi}{2941}\PY{p}{,} \PY{l+m+mi}{3473}\PY{p}{,} 
+                        \PY{l+m+mi}{4109}\PY{p}{,} \PY{l+m+mi}{4592}\PY{p}{,} \PY{l+m+mi}{4731}\PY{p}{,} \PY{l+m+mi}{4771}\PY{p}{,} 
+                        \PY{l+m+mi}{4817}\PY{p}{,} \PY{l+m+mi}{4880}\PY{p}{,} \PY{l+m+mi}{4922}\PY{p}{,} \PY{l+m+mi}{4964}\PY{p}{,} 
+                        \PY{l+m+mi}{4999}\PY{p}{,} \PY{l+m+mi}{5177}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{voltage}\PY{p}{,} \PY{n}{cpm}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{850}\PY{p}{,} \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1350}\PY{p}{,} \PY{l+m+mi}{1700}\PY{p}{]}\PY{p}{:}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{a}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dotted}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Voltage}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Counts per Minute}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count rate curve}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Problems 4.14_files/Problems 4.14_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Note: I assume that there was a typo in the 4th data point--it should
+read ``850, (2591)'', not ``850, (1591)''
+
+    From (0,800), the detector is counting ions that are formed close to the
+detector wire (most of the ion pairs recombine). In the (800,1200)
+range, the detector is in the ionization region, where all ions from the
+ionization event are collected but no cascade ions are produced. (1200,
+1400) is the limited proportional region where increasing the voltage
+causes more cascade ionizations which are then collected by the
+detector. In (1350,1700), the detector is in the Geiger-Mueller region
+where it collects all ionizations in the cascade and the effects of
+increasing voltage are minor. Finally, above 1700V the self-discharge
+region begins, where the electric field is strong enough to cause ions
+to form without an incident particle.
+
+    \subsection{Part B}\label{part-b}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{voltage} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{625}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{675}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} 
+                           \PY{l+m+mi}{725}\PY{p}{,} \PY{l+m+mi}{750}\PY{p}{,} \PY{l+m+mi}{775}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{850}\PY{p}{,} 
+                           \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{950}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{1025}\PY{p}{]}\PY{p}{)}
+        \PY{n}{cpm} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{392}\PY{p}{,} \PY{l+m+mi}{1261}\PY{p}{,} \PY{l+m+mi}{2627}\PY{p}{,} \PY{l+m+mi}{3410}\PY{p}{,} \PY{l+m+mi}{3876}\PY{p}{,} 
+                        \PY{l+m+mi}{4002}\PY{p}{,} \PY{l+m+mi}{4051}\PY{p}{,} \PY{l+m+mi}{4096}\PY{p}{,} \PY{l+m+mi}{4185}\PY{p}{,} \PY{l+m+mi}{4319}\PY{p}{,} 
+                        \PY{l+m+mi}{4422}\PY{p}{,} \PY{l+m+mi}{4782}\PY{p}{,} \PY{l+m+mi}{5371}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+m+mi}{725}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dotted}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{axvline}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+m+mi}{950}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dotted}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{voltage}\PY{p}{,} \PY{n}{cpm}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Voltage}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Counts per Minute}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count rate curve in GM region}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Problems 4.14_files/Problems 4.14_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The operating voltage should be around 800-825V. Operating above 1025 is
+inadvisable because the detector will self-discharge even without
+radiation present.
+
+    \subsection{Part C}\label{part-c}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{voltage\PYZus{}background} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1300}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+        \PY{n}{cpm\PYZus{}background} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{36}\PY{p}{,} \PY{l+m+mi}{41}\PY{p}{,} \PY{l+m+mi}{59}\PY{p}{,} \PY{l+m+mi}{91}\PY{p}{,} \PY{l+m+mi}{109}\PY{p}{,} 
+                                   \PY{l+m+mi}{152}\PY{p}{,} \PY{l+m+mi}{196}\PY{p}{,} \PY{l+m+mi}{201}\PY{p}{,} \PY{l+m+mi}{219}\PY{p}{,} 
+                                   \PY{l+m+mi}{228}\PY{p}{,} \PY{l+m+mi}{251}\PY{p}{,} \PY{l+m+mi}{249}\PY{p}{,} \PY{l+m+mi}{252}\PY{p}{,} 
+                                   \PY{l+m+mi}{254}\PY{p}{,} \PY{l+m+mi}{289}\PY{p}{,} \PY{l+m+mi}{397}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{voltage\PYZus{}sample} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{550}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} 
+                                   \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{850}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} 
+                                   \PY{l+m+mi}{950}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{1050}\PY{p}{,} \PY{l+m+mi}{1100}\PY{p}{,} 
+                                   \PY{l+m+mi}{1150}\PY{p}{,} \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1250}\PY{p}{]}\PY{p}{)}
+        \PY{n}{cpm\PYZus{}sample} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{171}\PY{p}{,} \PY{l+m+mi}{672}\PY{p}{,} \PY{l+m+mi}{2314}\PY{p}{,} \PY{l+m+mi}{3371}\PY{p}{,} \PY{l+m+mi}{3986}\PY{p}{,} 
+                               \PY{l+m+mi}{4907}\PY{p}{,} \PY{l+m+mi}{5096}\PY{p}{,} \PY{l+m+mi}{5188}\PY{p}{,} \PY{l+m+mi}{5235}\PY{p}{,} 
+                               \PY{l+m+mi}{5348}\PY{p}{,} \PY{l+m+mi}{5391}\PY{p}{,} \PY{l+m+mi}{5442}\PY{p}{,} \PY{l+m+mi}{5503}\PY{p}{,} 
+                               \PY{l+m+mi}{5601}\PY{p}{,} \PY{l+m+mi}{5936}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{voltage\PYZus{}background}\PY{p}{,} \PY{n}{cpm\PYZus{}background}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Background}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{voltage\PYZus{}sample}\PY{p}{,} \PY{n}{cpm\PYZus{}sample}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sample}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Voltage}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Counts per minute}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{center right}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Count rate with and without sample}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Problems 4.14_files/Problems 4.14_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The appropriate counting voltage is between 950-1050V.
+
+    \subsection{Part D}\label{part-d}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{sc} \PY{o}{=} \PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{3270}\PY{p}{,} \PY{l+m+mi}{3270}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{st} \PY{o}{=} \PY{l+m+mf}{22.00}
+        \PY{n}{bc} \PY{o}{=} \PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{331}\PY{p}{,} \PY{l+m+mi}{331}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{bt} \PY{o}{=} \PY{l+m+mf}{9.00}
+        \PY{n}{activity} \PY{o}{=} \PY{n}{sc} \PY{o}{/} \PY{n}{st} \PY{o}{\PYZhy{}} \PY{n}{bc} \PY{o}{/} \PY{n}{bt}
+        \PY{k}{print}\PY{p}{(}\PY{n}{activity}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+111.9+/-3.3
+
+    \end{Verbatim}
+
+    The count rate is 112$\pm$3 cpm
+
+    \subsection{Part E}\label{part-e}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{9.00e\PYZhy{}6} \PY{o}{/}\PY{l+m+mi}{60}
+        \PY{n}{cr} \PY{o}{=} \PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{927420}\PY{p}{,} \PY{l+m+mi}{927420}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{k}{print}\PY{p}{(}\PY{n}{cr} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{cr} \PY{o}{*} \PY{n}{dt}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(1.0773+/-0.0013)e+06
+
+    \end{Verbatim}
+
+    The true count rate is 1.0773E6$\pm$1.3E3
+
+    \subsection{Part F}\label{part-f}
+
+    \(\tau = \frac{n_{12}-70 n_1}{n_{12} n_1 - 70 n_1 n_{12}}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{tau} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{l+m+mf}{147210.} \PY{o}{\PYZhy{}} \PY{l+m+mf}{11.}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{l+m+mf}{70.} \PY{o}{*} \PY{l+m+mf}{2120.}\PY{o}{\PYZhy{}} \PY{l+m+mf}{11.}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{p}{(}\PY{l+m+mf}{147210.} \PY{o}{\PYZhy{}}\PY{l+m+mf}{11.}\PY{p}{)}\PY{o}{*} \PY{p}{(}\PY{l+m+mf}{2120.} \PY{o}{\PYZhy{}} \PY{l+m+mf}{11.}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mf}{70.} \PY{o}{*} \PY{p}{(}\PY{l+m+mf}{2120.} \PY{o}{\PYZhy{}} \PY{l+m+mf}{11.}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{l+m+mf}{147210.} \PY{o}{\PYZhy{}} \PY{l+m+mf}{11.}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{tau} \PY{o}{=} \PY{n}{tau} \PY{o}{*} \PY{l+m+mi}{60} \PY{c+c1}{\PYZsh{} convert from minutes to seconds}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{tau}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 3.333248418129619e-06
+\end{Verbatim}
+        
+    The dead time is 3.33\(\mu\)s
+
+    \subsection{Part G}\label{part-g}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{sample\PYZus{}no\PYZus{}cs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{18921}\PY{p}{,} \PY{l+m+mi}{14632}\PY{p}{,} \PY{l+m+mi}{11985}\PY{p}{,} \PY{l+m+mi}{7337}\PY{p}{,} \PY{l+m+mi}{4511}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} cpm}
+         \PY{n}{sample\PYZus{}with\PYZus{}cs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{21026}\PY{p}{,} \PY{l+m+mi}{16746}\PY{p}{,} \PY{l+m+mi}{14092}\PY{p}{,} \PY{l+m+mi}{9439}\PY{p}{,} \PY{l+m+mi}{6621}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} cpm}
+         \PY{n}{pure\PYZus{}no\PYZus{}cs} \PY{o}{=} \PY{l+m+mi}{181} \PY{c+c1}{\PYZsh{} cpm}
+         \PY{n}{pure\PYZus{}with\PYZus{}cs} \PY{o}{=} \PY{l+m+mi}{4732} \PY{c+c1}{\PYZsh{} cpm}
+\end{Verbatim}
+
+    \subsubsection{G.1}\label{g.1}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{quenched\PYZus{}sample\PYZus{}values} \PY{o}{=} \PY{n}{cr\PYZus{}with\PYZus{}cs} \PY{o}{\PYZhy{}} \PY{n}{cr\PYZus{}no\PYZus{}cs}
+         \PY{k}{print}\PY{p}{(}\PY{n}{quenched\PYZus{}sample\PYZus{}values}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[2105 2114 2107 2102 2110]
+
+    \end{Verbatim}
+
+    \subsubsection{G.2}\label{g.2}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{non\PYZus{}quenched\PYZus{}standard\PYZus{}value} \PY{o}{=} \PY{n}{pure\PYZus{}with\PYZus{}cs} \PY{o}{\PYZhy{}} \PY{n}{pure\PYZus{}no\PYZus{}cs}
+         \PY{k}{print}\PY{p}{(}\PY{n}{non\PYZus{}quenched\PYZus{}standard\PYZus{}value}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4551
+
+    \end{Verbatim}
+
+    \subsubsection{G.3}\label{g.3}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{quenching\PYZus{}factors} \PY{o}{=} \PY{n}{non\PYZus{}quenched\PYZus{}standard\PYZus{}value} \PY{o}{/} \PY{n}{quenched\PYZus{}sample\PYZus{}values}
+         \PY{k}{print}\PY{p}{(}\PY{n}{quenching\PYZus{}factors}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 2.16199525  2.15279092  2.15994305  2.16508088  2.15687204]
+
+    \end{Verbatim}
+
+    \subsubsection{G.4}\label{g.4}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{non\PYZus{}quenched\PYZus{}sample\PYZus{}counts} \PY{o}{=} \PY{n}{sample\PYZus{}no\PYZus{}cs} \PY{o}{*} \PY{n}{quenching\PYZus{}factors}
+         \PY{k}{print}\PY{p}{(}\PY{n}{non\PYZus{}quenched\PYZus{}sample\PYZus{}counts}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 40907.11211401  31499.63670766  25886.91741813  15885.19838249
+   9729.64976303]
+
+    \end{Verbatim}
+
+    \subsubsection{G.5}\label{g.5}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{sample\PYZus{}activities} \PY{o}{=} \PY{n}{non\PYZus{}quenched\PYZus{}sample\PYZus{}counts} \PY{o}{\PYZhy{}} \PY{n}{pure\PYZus{}no\PYZus{}cs}
+         \PY{k}{print}\PY{p}{(}\PY{n}{sample\PYZus{}activities}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 40726.11211401  31318.63670766  25705.91741813  15704.19838249
+   9548.64976303]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{answer} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quenched Sample Values}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{quenched\PYZus{}sample\PYZus{}values}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quenching Factors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{quenching\PYZus{}factors}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Non\PYZhy{}quenched Counts}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{non\PYZus{}quenched\PYZus{}sample\PYZus{}counts}\PY{p}{,}
+             \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sample Activities}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{sample\PYZus{}activities}
+         \PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{answer}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   Non-quenched Counts  Quenched Sample Values  Quenching Factors  \textbackslash{}
+0         40907.112114                    2105           2.161995   
+1         31499.636708                    2114           2.152791   
+2         25886.917418                    2107           2.159943   
+3         15885.198382                    2102           2.165081   
+4          9729.649763                    2110           2.156872   
+
+   Sample Activities  
+0       40726.112114  
+1       31318.636708  
+2       25705.917418  
+3       15704.198382  
+4        9548.649763  
+
+    \end{Verbatim}
+
+    \subsection{Part H}\label{part-h}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{thickness} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{,} \PY{l+m+mi}{35}\PY{p}{]}\PY{p}{)}
+         \PY{n}{counts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5922}\PY{p}{,} \PY{l+m+mi}{3901}\PY{p}{,} \PY{l+m+mi}{2876}\PY{p}{,} \PY{l+m+mi}{2181}\PY{p}{,} \PY{l+m+mi}{1623}\PY{p}{,} \PY{l+m+mi}{1145}\PY{p}{,} \PY{l+m+mi}{752}\PY{p}{,} \PY{l+m+mi}{427}\PY{p}{]}\PY{p}{)}
+         \PY{n}{correction\PYZus{}factor} \PY{o}{=} \PY{n}{counts}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{/} \PY{n}{counts}
+         \PY{k}{print}\PY{p}{(}\PY{n}{correction\PYZus{}factor}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[  1.           1.51807229   2.05910987   2.71526823   3.64879852
+   5.1720524    7.875       13.86885246]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{fit} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{polyfit}\PY{p}{(}\PY{n}{thickness}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{correction\PYZus{}factor}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{thickness}\PY{p}{,} \PY{n}{correction\PYZus{}factor}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Data}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Correction Factor (cpm)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{r\PYZsq{}}\PY{l+s+s1}{Thickness (mg/cm\PYZdl{}\PYZca{}2\PYZdl{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{35}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{x}\PY{p}{)}\PY{p}{,} 
+                  \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dashed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Correction Factor vs Thickness}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{23}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{]}\PY{p}{)}
+         \PY{n}{unknown\PYZus{}counts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{3722}\PY{p}{,} \PY{l+m+mi}{9421}\PY{p}{,} \PY{l+m+mi}{875}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Problems 4.14_files/Problems 4.14_40_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Thickness}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{Counts}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{CF}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{Corrected Counts}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZhy{}\PYZhy{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZob{}0\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZob{}1\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZob{}2\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                 \PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}
+                 \PY{n}{unknown\PYZus{}counts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}
+                 \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{fit}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{unknown\PYZus{}sample\PYZus{}thicknesses}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o}{*} \PY{n}{unknown\PYZus{}counts}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+             \PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Thickness	Counts		CF			Corrected Counts
+---------	------		--			----------------
+8		3722		1.73234760334		6447.79777963
+23		9421		5.00328331478		47135.9321086
+31		875		8.80884819709		7707.74217246
+
+    \end{Verbatim}
+
+    \subsection{Part I}\label{part-i}
+
+    In each case below indicate: 1. the best detection system and 2.
+corrections necessary to compare the counting results to a standard.
+
+The form of the sample must not be altered.
+
+    \subsubsection{\texorpdfstring{1. An electroplated sample of
+\(^{210}\)Po (5.30 MeV alpha) 7\(\mu\)
+thick}{1. An electroplated sample of \^{}\{210\}Po (5.30 MeV alpha) 7\textbackslash{}mu thick}}\label{an-electroplated-sample-of-210po-5.30-mev-alpha-7mu-thick}
+
+    Use a solid state detector. Correct for background, absorption and
+scattering.
+
+    \subsubsection{\texorpdfstring{2. A solid sample of BaSO\(_4\)
+containing \(^{35}\)S (0.17 MeV beta) 17 mg/cm\(^2\)
+thick}{2. A solid sample of BaSO\_4 containing \^{}\{35\}S (0.17 MeV beta) 17 mg/cm\^{}2 thick}}\label{a-solid-sample-of-baso_4-containing-35s-0.17-mev-beta-17-mgcm2-thick}
+
+    Use a solid state detector. Correct for background, absorption and
+scattering.
+
+    \subsubsection{\texorpdfstring{3. A solid sample of ashed mammalian bone
+tissue containing \(^3\)H (0.018 MeV beta) 4 mg/cm\(^2\)
+thick}{3. A solid sample of ashed mammalian bone tissue containing \^{}3H (0.018 MeV beta) 4 mg/cm\^{}2 thick}}\label{a-solid-sample-of-ashed-mammalian-bone-tissue-containing-3h-0.018-mev-beta-4-mgcm2-thick}
+
+    Use a solid state detector. Correct for background, absorption and
+scattering.
+
+    \subsubsection{\texorpdfstring{4. A solid sample of adenosine phosphate
+conatining \(^{32}\)P (1.71 MeV beta) 22 mg/cm\(^2\)
+thick}{4. A solid sample of adenosine phosphate conatining \^{}\{32\}P (1.71 MeV beta) 22 mg/cm\^{}2 thick}}\label{a-solid-sample-of-adenosine-phosphate-conatining-32p-1.71-mev-beta-22-mgcm2-thick}
+
+    Use a solid state detector. Correct for background, absorption.
+
+    \subsubsection{\texorpdfstring{5. A solid sample of freeze-dried plant
+tissue containing \(^{71}\)As (0.81 MeV positron and 0.175 MeV gamma) 42
+mg/cm\(^2\)
+thick}{5. A solid sample of freeze-dried plant tissue containing \^{}\{71\}As (0.81 MeV positron and 0.175 MeV gamma) 42 mg/cm\^{}2 thick}}\label{a-solid-sample-of-freeze-dried-plant-tissue-containing-71as-0.81-mev-positron-and-0.175-mev-gamma-42-mgcm2-thick}
+
+    Use a solid state detector. Correct for background, absorption.
+
+    \subsubsection{\texorpdfstring{6. A solution of ashed bone marrow
+containing \(^{55}\)Fe (6.4 keV X-ray) in dilute perchloric
+acid}{6. A solution of ashed bone marrow containing \^{}\{55\}Fe (6.4 keV X-ray) in dilute perchloric acid}}\label{a-solution-of-ashed-bone-marrow-containing-55fe-6.4-kev-x-ray-in-dilute-perchloric-acid}
+
+    Since this is a liquid, mix with a scintillating liquid in a 4\(\pi\)
+detector. Correct for background.
+
+    \subsubsection{\texorpdfstring{7. A solution of bovine liver tissue
+labeled with \(^{64}\)Cu (1.34 MeV gamma, 0.57 MeV beta, 0.66 MeV
+positron) in
+hyamine}{7. A solution of bovine liver tissue labeled with \^{}\{64\}Cu (1.34 MeV gamma, 0.57 MeV beta, 0.66 MeV positron) in hyamine}}\label{a-solution-of-bovine-liver-tissue-labeled-with-64cu-1.34-mev-gamma-0.57-mev-beta-0.66-mev-positron-in-hyamine}
+
+    Use a solid state detector. Correct for background, absorption,
+scattering.
+
+    \subsubsection{\texorpdfstring{8. A solution of bartonella muris cell
+debris with \(^{75}\)Zn (ec, 1.11 MeV
+gamma)}{8. A solution of bartonella muris cell debris with \^{}\{75\}Zn (ec, 1.11 MeV gamma)}}\label{a-solution-of-bartonella-muris-cell-debris-with-75zn-ec-1.11-mev-gamma}
+
+    Use a liquid scintillator, correct for background.
+
+    \subsubsection{\texorpdfstring{9. A solution of pig urine containing
+\(^{235}\)Pu (5.85 MeV
+alpha)}{9. A solution of pig urine containing \^{}\{235\}Pu (5.85 MeV alpha)}}\label{a-solution-of-pig-urine-containing-235pu-5.85-mev-alpha}
+
+    Use a liquid scintillator, correct for background.
+
+    \subsubsection{\texorpdfstring{10. A liquid dispersing agent containing
+colloidally-suspended funaria spores with \(^{45}\)Ca (0.25 MeV
+beta)}{10. A liquid dispersing agent containing colloidally-suspended funaria spores with \^{}\{45\}Ca (0.25 MeV beta)}}\label{a-liquid-dispersing-agent-containing-colloidally-suspended-funaria-spores-with-45ca-0.25-mev-beta}
+
+    Use a liquid scintillator, correct for background.
+
+    \subsubsection{\texorpdfstring{11. Gaseous BF\(_3\) containing
+\(^{18}\)F (0.65 MeV
+positron)}{11. Gaseous BF\_3 containing \^{}\{18\}F (0.65 MeV positron)}}\label{gaseous-bf_3-containing-18f-0.65-mev-positron}
+
+    Use a proportional counter, correct for background.
+
+    \subsection{Part J}\label{part-j}
+
+    \subsubsection{1}\label{section}
+
+    \(^{32}\)P (1.71 MeV beta) in presence of \(^{35}\)S (167 keV beta):
+
+Use a solid state detector and set to only detect energies above 1MeV.
+
+    \subsubsection{2}\label{section}
+
+    \(^{131}\)I (970 keV beta) in presence of \(^{32}\)P (1710 keV beta):
+
+Use a solid state detector and set to only detect energies below 1.2MeV
+
+    \subsubsection{3}\label{section}
+
+    \(^{32}\)P (1.71 MeV beta) in presence of \(^{131}\)I (970 keV beta):
+
+Use a solid state detector and set to only detect energies above 1.2 MeV
+
+    \subsubsection{4}\label{section}
+
+    \(^{226}\)Th (6.45 MeV alpha) in presence of \(^{129}\)I (194 keV beta):
+
+Count with beta only by placing a piece of paper as a shield between
+detector and source, then count beta and alpha without the piece of
+paper. Subtract the beta value from the beta plus alpha value.
+
+Alternatively, set energy threshold to 2 MeV and count alpha only.
+
+    \subsubsection{5}\label{section}
+
+    \(^{3}\)H (18.6 keV beta) in presence of \(^{14}\)C (156 keV beta):
+
+Allow the H gas to physically separate from the denser C-14 gas, then
+count the gas in the upper chamber (the \(^3H\)) with a proportional
+counter.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
