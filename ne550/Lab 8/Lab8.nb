@@ -1,0 +1,393 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12876,        385]
+NotebookOptionsPosition[     11397,        330]
+NotebookOutlinePosition[     11761,        346]
+CellTagsIndexPosition[     11718,        343]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 8: Semiconductor Detectors", "Title",
+ CellChangeTimes->{{3.7009118155509453`*^9, 3.700911839618614*^9}}],
+
+Cell["\<\
+J.R. Powers-Luhn
+jpowersl@vols.utk.edu
+Station 1
+Partner: Tanner Jacobi\
+\>", "Text",
+ CellChangeTimes->{{3.700911846208334*^9, 3.7009118594566402`*^9}, {
+  3.700911934949953*^9, 3.700911943053743*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Using the MCA", "Chapter",
+ CellChangeTimes->{{3.7009120085340433`*^9, 3.70091201015346*^9}}],
+
+Cell[TextData[StyleBox["1. For each conversion gain, calculate the voltage \
+width per channel.", "Section"]], "Text",
+ CellChangeTimes->{{3.7009120380575123`*^9, 3.700912062543322*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"conversionGains", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    SuperscriptBox["2", "n"], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "8", ",", "14"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.700913025110813*^9, 3.700913131934079*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "256", ",", "512", ",", "1024", ",", "2048", ",", "4096", ",", "8192", ",", 
+   "16384"}], "}"}]], "Output",
+ CellChangeTimes->{3.7009131327693357`*^9}]
+}, Open  ]],
+
+Cell["\<\
+According to the spec sheet for the Ortex ASPEC-927 MCA \
+(http://www.ortec-online.com/products/electronics/multichannel-analyzers-mca/\
+basic-analog/aspec-927), the voltage range for our MCA is 0-10V.\
+\>", "Text",
+ CellChangeTimes->{{3.700913207754449*^9, 3.700913234810199*^9}, {
+  3.700913565827561*^9, 3.700913569779602*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"voltageWidthPerChannel", "=", 
+  RowBox[{
+   RowBox[{"10", "/", "conversionGains"}], "//", "N"}]}]], "Input",
+ CellChangeTimes->{{3.700913244691428*^9, 3.7009132633443823`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.0390625`", ",", "0.01953125`", ",", "0.009765625`", ",", "0.0048828125`",
+    ",", "0.00244140625`", ",", "0.001220703125`", ",", "0.0006103515625`"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.700913260188554*^9, 3.700913263828024*^9}}]
+}, Open  ]],
+
+Cell["\<\
+The voltage per channel for the various settings of the Conversion Gain \
+parameter are in the table below:\
+\>", "Text",
+ CellChangeTimes->{{3.700913292498909*^9, 3.700913324528657*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Multicolumn", "[", 
+     RowBox[{
+      RowBox[{"Join", "[", 
+       RowBox[{"conversionGains", ",", " ", "voltageWidthPerChannel"}], "]"}],
+       ",", "2"}], "]"}], "//", "First"}], ",", " ", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"None", ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Conversion Gain\>\"", ",", "\"\<Voltage width per Channel\>\""}], 
+       "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7009133264777603`*^9, 3.700913328772922*^9}, {
+  3.700913371172711*^9, 3.700913527832151*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      TagBox["\<\"Conversion Gain\"\>",
+       HoldForm], 
+      TagBox["\<\"Voltage width per Channel\"\>",
+       HoldForm]},
+     {"256", "0.0390625`"},
+     {"512", "0.01953125`"},
+     {"1024", "0.009765625`"},
+     {"2048", "0.0048828125`"},
+     {"4096", "0.00244140625`"},
+     {"8192", "0.001220703125`"},
+     {"16384", "0.0006103515625`"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {None, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {
+     None, {"Conversion Gain", "Voltage width per Channel"}}]]]], "Output",
+ CellChangeTimes->{
+  3.700913429970558*^9, {3.700913507217937*^9, 3.7009135284259863`*^9}}]
+}, Open  ]],
+
+Cell[TextData[StyleBox["2. Using the conversions from 1, determine the \
+voltage measured by the MCA for the determined channel peak number for each \
+of the four conversion gains.", "Section"]], "Text",
+ CellChangeTimes->{{3.700913533272908*^9, 3.700913533415949*^9}, {
+  3.70091363099655*^9, 3.700913676799385*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"peaks", "=", 
+   RowBox[{"{", 
+    RowBox[{"324", ",", " ", "2430", ",", " ", "648", ",", " ", "1298"}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"conversionGains", "=", 
+   RowBox[{"{", 
+    RowBox[{"512", ",", " ", "4096", ",", " ", "1024", ",", " ", "2048"}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"voltPeaks", "=", 
+  RowBox[{
+   RowBox[{"peaks", "*", 
+    RowBox[{"10", "/", "conversionGains"}]}], "//", "N"}]}]}], "Input",
+ CellChangeTimes->{{3.70092388066677*^9, 3.700923884174389*^9}, {
+  3.700924007019835*^9, 3.700924043652463*^9}, {3.70092418551038*^9, 
+  3.700924217421341*^9}, {3.700924377321645*^9, 3.7009243797686357`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "6.328125`", ",", "5.9326171875`", ",", "6.328125`", ",", "6.337890625`"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.7009242145319242`*^9, 3.700924217830014*^9}, 
+   3.700924380104713*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Mean", "[", "voltPeaks", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Mean", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"voltPeaks", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ",", 
+    RowBox[{"voltPeaks", "[", 
+     RowBox[{"[", "3", "]"}], "]"}], ",", 
+    RowBox[{"voltPeaks", "[", 
+     RowBox[{"[", "4", "]"}], "]"}]}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"StandardDeviation", "[", "voltPeaks", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"Mean", "[", "voltPeaks", "]"}], "-", 
+    RowBox[{"voltPeaks", "[", 
+     RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "/", 
+  RowBox[{"StandardDeviation", "[", "voltPeaks", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7009244945503473`*^9, 3.700924550757255*^9}, {
+  3.700924606500073*^9, 3.7009246476338577`*^9}}],
+
+Cell[BoxData["6.231689453125`"], "Output",
+ CellChangeTimes->{{3.7009245019845877`*^9, 3.700924516818017*^9}, 
+   3.700924551348833*^9, 3.700924614074514*^9, 3.70092464840324*^9}],
+
+Cell[BoxData["6.331380208333333`"], "Output",
+ CellChangeTimes->{{3.7009245019845877`*^9, 3.700924516818017*^9}, 
+   3.700924551348833*^9, 3.700924614074514*^9, 3.700924648412751*^9}],
+
+Cell[BoxData["0.19943464959384105`"], "Output",
+ CellChangeTimes->{{3.7009245019845877`*^9, 3.700924516818017*^9}, 
+   3.700924551348833*^9, 3.700924614074514*^9, 3.7009246484202433`*^9}],
+
+Cell[BoxData["1.4996003263930118`"], "Output",
+ CellChangeTimes->{{3.7009245019845877`*^9, 3.700924516818017*^9}, 
+   3.700924551348833*^9, 3.700924614074514*^9, 3.7009246484271507`*^9}]
+}, Open  ]],
+
+Cell["\<\
+The peak channel on the MCA software corresponded to a voltage of 6.23V, or \
+6.33V if the outlier (conversion gain of 4096, approximately 1.5\[Sigma] \
+below the mean value) is excluded. Error analysis was not conducted as no \
+uncertainty in the 10V max was provided by the MCA manufacturer and the error \
+in the number of bits in the address space was assumed to be zero.
+
+It is assumed that, as the 4096 channel data were collected first while the \
+other settings were collected in rapid \
+\>", "Text",
+ CellChangeTimes->{{3.700924424822583*^9, 3.700924438711657*^9}, {
+  3.700924482676865*^9, 3.700924488729693*^9}, {3.7009245575177603`*^9, 
+  3.700924599763071*^9}, {3.700924653089345*^9, 3.700924734146748*^9}, {
+  3.700925198013679*^9, 3.700925203806177*^9}, {3.70092525182642*^9, 
+  3.7009252812772207`*^9}}],
+
+Cell[TextData[StyleBox["3. From the data recorded, make a properly formatted \
+table of the data (conversion gain, peak channel number, and voltage \
+corresponding to the channel peak number).", "Section"]], "Text",
+ CellChangeTimes->{{3.700924797755245*^9, 3.700924827977991*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Multicolumn", "[", 
+     RowBox[{
+      RowBox[{"Join", "[", 
+       RowBox[{"conversionGains", ",", "peaks", ",", "voltPeaks"}], "]"}], 
+      ",", "3"}], "]"}], "//", "First"}], ",", 
+   RowBox[{"TableHeadings", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"None", ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Conversion Gain\>\"", ",", " ", "\"\<Peak Channel\>\"", ",", " ", 
+        "\"\<Peak Voltage\>\""}], "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.700924899891912*^9, 3.70092497026*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      TagBox["\<\"Conversion Gain\"\>",
+       HoldForm], 
+      TagBox["\<\"Peak Channel\"\>",
+       HoldForm], 
+      TagBox["\<\"Peak Voltage\"\>",
+       HoldForm]},
+     {"512", "324", "6.328125`"},
+     {"4096", "2430", "5.9326171875`"},
+     {"1024", "648", "6.328125`"},
+     {"2048", "1298", "6.337890625`"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {None, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {
+     None, {"Conversion Gain", "Peak Channel", "Peak Voltage"}}]]]], "Output",\
+
+ CellChangeTimes->{3.700924972752675*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["4. From the data in the table and ", "Section"],
+ StyleBox["in a text-style cell", "Section",
+  FontWeight->"Bold"],
+ StyleBox[", discuss the trends seen in the peak channel number and \
+corresponding voltage to the peak channel number. Which one is constant and \
+which one changes? Why does that one change? Does it make sense?", "Section"]
+}], "Text",
+ CellChangeTimes->{{3.700924993635346*^9, 3.7009250772157373`*^9}}],
+
+Cell["\<\
+As expected, the peak channel changes while the peak voltage remains \
+constant. Altering the number of channels (bits in the address space) only \
+changes the \[OpenCurlyDoubleQuote]binning\[CloseCurlyDoubleQuote] when \
+processing the incoming signals. \
+\>", "Text",
+ CellChangeTimes->{{3.700925095815761*^9, 3.700925183704319*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{781, 1803},
+WindowMargins->{{Automatic, -794}, {-211, Automatic}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 115, 1, 92, "Title"],
+Cell[698, 25, 212, 7, 83, "Text"],
+Cell[CellGroupData[{
+Cell[935, 36, 99, 1, 65, "Chapter"],
+Cell[1037, 39, 186, 2, 82, "Text"],
+Cell[CellGroupData[{
+Cell[1248, 45, 273, 7, 35, "Input"],
+Cell[1524, 54, 194, 5, 32, "Output"]
+}, Open  ]],
+Cell[1733, 62, 340, 6, 65, "Text"],
+Cell[CellGroupData[{
+Cell[2098, 72, 201, 4, 32, "Input"],
+Cell[2302, 78, 283, 6, 32, "Output"]
+}, Open  ]],
+Cell[2600, 87, 197, 4, 29, "Text"],
+Cell[CellGroupData[{
+Cell[2822, 95, 633, 17, 54, "Input"],
+Cell[3458, 114, 1253, 36, 162, "Output"]
+}, Open  ]],
+Cell[4726, 153, 317, 4, 117, "Text"],
+Cell[CellGroupData[{
+Cell[5068, 161, 714, 17, 75, "Input"],
+Cell[5785, 180, 232, 6, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6054, 191, 829, 21, 96, "Input"],
+Cell[6886, 214, 179, 2, 32, "Output"],
+Cell[7068, 218, 183, 2, 32, "Output"],
+Cell[7254, 222, 187, 2, 32, "Output"],
+Cell[7444, 226, 186, 2, 32, "Output"]
+}, Open  ]],
+Cell[7645, 231, 829, 14, 137, "Text"],
+Cell[8477, 247, 281, 3, 117, "Text"],
+Cell[CellGroupData[{
+Cell[8783, 254, 596, 16, 54, "Input"],
+Cell[9382, 272, 1175, 35, 110, "Output"]
+}, Open  ]],
+Cell[10572, 310, 449, 8, 187, "Text"],
+Cell[11024, 320, 345, 6, 47, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
