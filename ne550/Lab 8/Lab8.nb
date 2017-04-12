@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12876,        385]
-NotebookOptionsPosition[     11397,        330]
-NotebookOutlinePosition[     11761,        346]
-CellTagsIndexPosition[     11718,        343]
+NotebookDataLength[     13712,        404]
+NotebookOptionsPosition[     12156,        347]
+NotebookOutlinePosition[     12520,        363]
+CellTagsIndexPosition[     12477,        360]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -322,9 +322,26 @@ Cell["\<\
 As expected, the peak channel changes while the peak voltage remains \
 constant. Altering the number of channels (bits in the address space) only \
 changes the \[OpenCurlyDoubleQuote]binning\[CloseCurlyDoubleQuote] when \
-processing the incoming signals. \
+processing the incoming signals. Therefore the size of the voltage range \
+represented by each channel changes, but the input voltage range remains from \
+0-10V. \
 \>", "Text",
- CellChangeTimes->{{3.700925095815761*^9, 3.700925183704319*^9}}]
+ CellChangeTimes->{{3.700925095815761*^9, 3.700925183704319*^9}, {
+   3.700933552278267*^9, 3.7009335696181097`*^9}, {3.700933607038764*^9, 
+   3.700933627837442*^9}, 3.700933719675756*^9}],
+
+Cell[TextData[StyleBox["MCA Linearity", "Chapter"]], "Text",
+ CellChangeTimes->{{3.7009338886029673`*^9, 3.700933891922604*^9}}],
+
+Cell[TextData[{
+ "1. From the spectrum saved (should contain a total of 15 peaks), find the \
+peak channel number (i.e., the average channel number used in a Gaussian fit) \
+for each of the 15 peak regions.\n\ta. ",
+ StyleBox["Note:",
+  FontWeight->"Bold"],
+ " This can be found by multiplying"
+}], "Text",
+ CellChangeTimes->{{3.700933968689769*^9, 3.700934040737646*^9}}]
 }, Open  ]]
 }, Open  ]]
 },
@@ -384,7 +401,9 @@ Cell[8783, 254, 596, 16, 54, "Input"],
 Cell[9382, 272, 1175, 35, 110, "Output"]
 }, Open  ]],
 Cell[10572, 310, 449, 8, 187, "Text"],
-Cell[11024, 320, 345, 6, 47, "Text"]
+Cell[11024, 320, 598, 10, 83, "Text"],
+Cell[11625, 332, 128, 1, 54, "Text"],
+Cell[11756, 335, 372, 8, 65, "Text"]
 }, Open  ]]
 }, Open  ]]
 }
