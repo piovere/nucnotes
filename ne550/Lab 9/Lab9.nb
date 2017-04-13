@@ -1,0 +1,193 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6501,        185]
+NotebookOptionsPosition[      5500,        150]
+NotebookOutlinePosition[      5845,        165]
+CellTagsIndexPosition[      5802,        162]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 9: Spectroscopy", "Title",
+ CellChangeTimes->{{3.7009118155509453`*^9, 3.700911839618614*^9}, {
+  3.7010800960587044`*^9, 3.701080111055487*^9}}],
+
+Cell["\<\
+J.R. Powers-Luhn
+jpowersl@vols.utk.edu
+Station 4
+Partner: Eric Francis\
+\>", "Text",
+ CellChangeTimes->{{3.700911846208334*^9, 3.7009118594566402`*^9}, {
+  3.700911934949953*^9, 3.700911943053743*^9}, {3.7010800847397394`*^9, 
+  3.7010800915938425`*^9}}],
+
+Cell["Assembled NaI(Tl) Detector: Setup and Spectral Analysis", "Text",
+ CellChangeTimes->{{3.7010807470788136`*^9, 3.701080760163772*^9}}],
+
+Cell["\<\
+1. For each spectrum collected, determine the peak position by averaging over \
+the peak. The answer should be in channel number.\
+\>", "Text",
+ CellChangeTimes->{{3.701080765366953*^9, 3.701080799058234*^9}}],
+
+Cell["\<\
+2. Make a properly formatted table in Mathematica listing the source, the \
+emission energy, and the peak position determined from step one.\
+\>", "Text",
+ CellChangeTimes->{{3.7010808046452556`*^9, 3.7010808506999063`*^9}}],
+
+Cell["\<\
+3. From the data within the table, conduct a first order polynomial fit on \
+the data to find the voltage to energy conversion.\
+\>", "Text",
+ CellChangeTimes->{{3.701080855502905*^9, 3.7010808760303516`*^9}}],
+
+Cell["4. Now try a second order polynomial.", "Text",
+ CellChangeTimes->{{3.7010808796494584`*^9, 3.7010808891941957`*^9}}],
+
+Cell["\<\
+5. Plot the data (channel number vs. energy) along with the first and second \
+order polynomial fits on the same, properly formatted, plot.\
+\>", "Text",
+ CellChangeTimes->{{3.701080892042508*^9, 3.701080914777506*^9}}],
+
+Cell["\<\
+6. In a text-style cell, discuss whether the first order or second order \
+polynomial fit better describes the data and why. Further discuss how \
+non-proportional the NaI(Tl) detector is.\
+\>", "Text",
+ CellChangeTimes->{{3.7010809176040173`*^9, 3.7010809582752385`*^9}}],
+
+Cell["\<\
+7. Using the best fit to the data, convert the spectrum from counts vs. \
+channel number to counts vs. energy for the Cs-137 spectrum.\
+\>", "Text",
+ CellChangeTimes->{{3.701080961850999*^9, 3.701080980884486*^9}}],
+
+Cell["\<\
+8. Plot the Cs-137 energy spectrum against the HPGe and CZT Cs-137 energy \
+spectra.\
+\>", "Text",
+ CellChangeTimes->{{3.70108099601856*^9, 3.70108102586049*^9}}],
+
+Cell["\<\
+9. Below the plot, and in a text-style cell, discuss what you see on the plot \
+in step 8. Describe the shape of each spectra and the resolution of each.\
+\>", "Text",
+ CellChangeTimes->{{3.701081039066539*^9, 3.7010810649056625`*^9}}],
+
+Cell["The Need for a Preamplifier", "Text",
+ CellChangeTimes->{{3.7010810690252237`*^9, 3.701081074818264*^9}}],
+
+Cell[TextData[{
+ "1. For each spectrum collected with and without the preamplifier in the \
+pulse processing chain, determined the full energy peak position in channel \
+number units.\n\ta. ",
+ StyleBox["Note: ",
+  FontWeight->"Bold"],
+ "The peak may drift away for larger shaping time constants, and may even \
+disappear. If this happens, label it as \[OpenCurlyDoubleQuote]Not Present\
+\[CloseCurlyDoubleQuote]."
+}], "Text",
+ CellChangeTimes->{{3.7010810774057465`*^9, 3.7010811436019573`*^9}}],
+
+Cell["\<\
+2. Make a properly formatted table in Mathematica that includes the shaping \
+time, peak position with preamp, and peak position without preamp.\
+\>", "Text",
+ CellChangeTimes->{{3.7010811483122005`*^9, 3.7010811754535255`*^9}}],
+
+Cell["\<\
+3. Investigating the data contained within the table, discuss the trends \
+observed with and without the preamplifier present in a text-style cell. \
+Theorize the origin of the differences between the two datasets, [sic] and \
+further comment on why the use of a preamplifier is necessary.\
+\>", "Text",
+ CellChangeTimes->{{3.701081178165254*^9, 3.7010812344489155`*^9}}],
+
+Cell["Integral Pulse Height Spectrum", "Text",
+ CellChangeTimes->{{3.7010812373254485`*^9, 3.7010812427446427`*^9}}],
+
+Cell["\<\
+1. Make a 2D list of data of LLD (x-value) and counts (y-value).\
+\>", "Text",
+ CellChangeTimes->{{3.7010812463609304`*^9, 3.7010812622661076`*^9}}],
+
+Cell["\<\
+2. Change the collected Cs-137 spectra in the first part of the lab from \
+counts vs. channel number to counts vs. voltage.\
+\>", "Text",
+ CellChangeTimes->{{3.701081264513516*^9, 3.7010812901003485`*^9}}],
+
+Cell["\<\
+3. Plot the 2D list of data, which is a crude integral pulse height spectrum, \
+against the quality differential pulse height spectrum.
+\ta. You may try and connect the dots between data points using the \
+\[OpenCurlyDoubleQuote]Interpolation\[CloseCurlyDoubleQuote] option in \
+Mathematica for graphing purposes so it is easier to compare the two spectra.\
+\>", "Text",
+ CellChangeTimes->{{3.701081299365015*^9, 3.7010813788612757`*^9}}],
+
+Cell["\<\
+4. Using the drawing tools, correlate the shape of each spectra with each \
+other.\
+\>", "Text",
+ CellChangeTimes->{{3.7010813853125267`*^9, 3.7010813977279034`*^9}}]
+}, Open  ]]
+},
+WindowSize->{799, 960},
+WindowMargins->{{6, Automatic}, {3, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 155, 2, 101, "Title"],
+Cell[738, 26, 264, 8, 87, "Text"],
+Cell[1005, 36, 139, 1, 30, "Text"],
+Cell[1147, 39, 219, 4, 49, "Text"],
+Cell[1369, 45, 234, 4, 49, "Text"],
+Cell[1606, 51, 219, 4, 49, "Text"],
+Cell[1828, 57, 123, 1, 30, "Text"],
+Cell[1954, 60, 229, 4, 49, "Text"],
+Cell[2186, 66, 282, 5, 49, "Text"],
+Cell[2471, 73, 224, 4, 49, "Text"],
+Cell[2698, 79, 172, 4, 30, "Text"],
+Cell[2873, 85, 245, 4, 49, "Text"],
+Cell[3121, 91, 111, 1, 30, "Text"],
+Cell[3235, 94, 496, 10, 87, "Text"],
+Cell[3734, 106, 238, 4, 49, "Text"],
+Cell[3975, 112, 381, 6, 68, "Text"],
+Cell[4359, 120, 116, 1, 30, "Text"],
+Cell[4478, 123, 158, 3, 30, "Text"],
+Cell[4639, 128, 215, 4, 49, "Text"],
+Cell[4857, 134, 448, 7, 87, "Text"],
+Cell[5308, 143, 176, 4, 30, "Text"]
+}, Open  ]]
+}
+]
+*)
+
