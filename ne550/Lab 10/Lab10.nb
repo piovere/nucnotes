@@ -1,0 +1,235 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8351,        227]
+NotebookOptionsPosition[      7375,        194]
+NotebookOutlinePosition[      7723,        209]
+CellTagsIndexPosition[      7680,        206]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[StyleBox["Lab 10: Neutron Detectors", "Title"]], "Text",
+ CellChangeTimes->{{3.7015172632267227`*^9, 3.7015172645556955`*^9}, {
+  3.7015173063939075`*^9, 3.701517308784159*^9}}],
+
+Cell["\<\
+J.R. Powers-Luhn
+NE550 Thursday 17:30\
+\>", "Text",
+ CellChangeTimes->{{3.7015173165035954`*^9, 3.701517339481928*^9}}],
+
+Cell[TextData[{
+ StyleBox[Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["", "3"], "He"}], TraditionalForm]], "Chapter",
+  FormatType->"TraditionalForm"], "Chapter"],
+ StyleBox[" neutron detector", "Chapter"]
+}], "Text",
+ CellChangeTimes->{{3.701517358938229*^9, 3.7015173809623303`*^9}}],
+
+Cell[TextData[{
+ "1. Properly plot the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["", "3"], "He"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " spectra for each shaping time investigated. Put all traces on a single \
+pot, and use the full energy peak that shows up in at least some of the \
+spectra to convert the abscissa to energy (Q-value is 764 keV)."
+}], "Text",
+ CellChangeTimes->{{3.7015173857724676`*^9, 3.701517478820621*^9}}],
+
+Cell[TextData[{
+ "2. From the plot, and in a text-style cell, discuss what shaping time is \
+needed to obtain a quality spectrum from the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["", "3"], "He"}], TraditionalForm]]],
+ " detector (i.e., full energy peak with wall effects)."
+}], "Text",
+ CellChangeTimes->{{3.701517483145093*^9, 3.7015175569928193`*^9}}],
+
+Cell["\<\
+3. In another text-style cell, comment on the reason behind the required \
+shaping time. That is, why is the peaking time found necessary required? What \
+is it a function of?\
+\>", "Text",
+ CellChangeTimes->{{3.7015175610143147`*^9, 3.7015175959228587`*^9}}],
+
+Cell["\<\
+4. If we wish to only count neutron events, identify which energy value on \
+the abscissa would be chosen to discriminate counts from the very low energy \
+region of the spectrum. Put your answer in a text-style cell.\
+\>", "Text",
+ CellChangeTimes->{{3.701517599026784*^9, 3.7015176436462307`*^9}}],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    SubscriptBox["BF", "3"], " ", "neutron", " ", "detector"}], "Chapter"], 
+  TraditionalForm]],
+ FormatType->"TraditionalForm"]], "Text",
+ CellChangeTimes->{{3.7015176513671894`*^9, 3.70151766221516*^9}}],
+
+Cell[TextData[{
+ "1. Properly plot the ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["BF", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " spectra for each shaping time investigated. Put all traces on a single \
+plot, and use the full energy peak that shows up in at least some of the \
+spectra to convert the abscissa to energy (Q-value is 2.79 MeV, but the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["", "7"], "Li"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " product only goes to the ground state 6% of the time."
+}], "Text",
+ CellChangeTimes->{{3.7015176676090508`*^9, 3.7015177481886625`*^9}}],
+
+Cell[TextData[{
+ "2. From the plot, and in a text-style cell, discuss what shaping time is \
+needed to obtain a quality spectrum from the ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["BF", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " detector (i.e., full energy peak with wall effects)."
+}], "Text",
+ CellChangeTimes->{{3.7015177511400332`*^9, 3.701517803198981*^9}}],
+
+Cell["\<\
+3. In another text-style cell, comment on the reason behind the required \
+shaping time. That is, why is the peaking time found necessary required? What \
+is it a function of?\
+\>", "Text",
+ CellChangeTimes->{{3.7015178083821383`*^9, 3.701517845137247*^9}}],
+
+Cell["\<\
+4. If we wish to only count neutron events, identify which energy value on \
+the abscissa would be chosen to discriminate counts from the very low energy \
+region of the spectrum. Put your answer in a text-style cell.\
+\>", "Text",
+ CellChangeTimes->{{3.7015178484880466`*^9, 3.701517857802616*^9}, {
+  3.7015179407225266`*^9, 3.7015179815847535`*^9}}],
+
+Cell[TextData[StyleBox["Boron loaded organic scintillator", "Chapter"]], \
+"Text",
+ CellChangeTimes->{{3.7015179870907135`*^9, 3.701517995821699*^9}}],
+
+Cell["\<\
+1. Plot the two spectra on the sample plot (properly formatted) when the \
+Na-22 source is and is not present near the boron loaded organic scintillator.\
+\>", "Text",
+ CellChangeTimes->{{3.7015179994817677`*^9, 3.7015180358507204`*^9}}],
+
+Cell["\<\
+2. Using the drawing tools, identify the thermal neutron response in both \
+spectra (again, this is the plot in (1)) and the Na-22 contribution observed \
+in one of the two spectra.\
+\>", "Text",
+ CellChangeTimes->{{3.701518040363373*^9, 3.7015180797106676`*^9}}],
+
+Cell["\<\
+3. In a text-style cell, comment on whether the Na-22 source interferes with \
+counting thermal neutrons with this organic scintillator. Specifically \
+comment on the threshold (i.e., value on the abscissa) you would choose to \
+discriminate between gamma-rays and neutrons.\
+\>", "Text",
+ CellChangeTimes->{{3.701518083010041*^9, 3.701518142249916*^9}}],
+
+Cell[TextData[StyleBox["EJ-299 Pulse Shape Discrimination Plastic", \
+"Chapter"]], "Text",
+ CellChangeTimes->{{3.7015181460788264`*^9, 3.7015181539691324`*^9}}],
+
+Cell["\<\
+1. Plot the two spectra on the sample plot (properly formatted) when the \
+Na-22 source is and is not present near the EJ-299 detector.\
+\>", "Text",
+ CellChangeTimes->{{3.7015181577234993`*^9, 3.7015181851847954`*^9}}],
+
+Cell["\<\
+2. Using the drawing tools, identify the fast neutron response in both \
+spectra (again, this is the plot in (1)) and the Na-22 contribution observed \
+in one of the two spectra.\
+\>", "Text",
+ CellChangeTimes->{{3.7015181920092063`*^9, 3.70151823145638*^9}}],
+
+Cell["\<\
+3. In a text-style cell, comment on whether the Na-22 source interferes with \
+counting fast neutrons with this organic scintillator. Specifically comment \
+on the threshold (i.e., value on the abscissa) you would choose to \
+discriminate between gamma-rays and neutrons, if any is appropriate at all.\
+\>", "Text",
+ CellChangeTimes->{{3.701518233949478*^9, 3.701518298914049*^9}}],
+
+Cell["\<\
+4. Import the 2D PSD plot collected using the V1720 digitizer with PSD \
+capability. Looking at this plot, qualitatively discuss, in a text-style \
+cell, how well EJ-299 discriminates signals from gamma rays and neutrons. Pay \
+particular attention to the lower integrated pulse region (low end of \
+abscissa). For the abscissa value where a clear separation is observed \
+between gamma rays and neutrons, theorize if this abscissa value is superior \
+to just collecting a pulse height spectrum and choosing some threshold, if \
+any (plot from (1) and discussion in (3)).\
+\>", "Text",
+ CellChangeTimes->{{3.701518304697291*^9, 3.7015183876963105`*^9}, {
+  3.7015184733008127`*^9, 3.7015185226640224`*^9}}]
+},
+WindowSize->{759, 833},
+WindowMargins->{{Automatic, 572}, {Automatic, 84}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 191, 2, 75, "Text"],
+Cell[752, 24, 129, 4, 49, "Text"],
+Cell[884, 30, 297, 8, 61, "Text"],
+Cell[1184, 40, 464, 11, 70, "Text"],
+Cell[1651, 53, 372, 9, 51, "Text"],
+Cell[2026, 64, 269, 5, 49, "Text"],
+Cell[2298, 71, 309, 5, 68, "Text"],
+Cell[2610, 78, 268, 7, 61, "Text"],
+Cell[2881, 87, 642, 16, 70, "Text"],
+Cell[3526, 105, 384, 9, 49, "Text"],
+Cell[3913, 116, 267, 5, 49, "Text"],
+Cell[4183, 123, 362, 6, 68, "Text"],
+Cell[4548, 131, 150, 2, 61, "Text"],
+Cell[4701, 135, 247, 4, 49, "Text"],
+Cell[4951, 141, 273, 5, 49, "Text"],
+Cell[5227, 148, 364, 6, 68, "Text"],
+Cell[5594, 156, 160, 2, 61, "Text"],
+Cell[5757, 160, 229, 4, 49, "Text"],
+Cell[5989, 166, 269, 5, 49, "Text"],
+Cell[6261, 173, 391, 6, 68, "Text"],
+Cell[6655, 181, 716, 11, 125, "Text"]
+}
+]
+*)
+
