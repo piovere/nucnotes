@@ -1,4 +1,4 @@
-﻿@book{error,
+﻿@book{RN115,
    author = {Taylor, John},
    title = {Introduction to error analysis, the study of uncertainties in physical measurements},
    ISBN = {0935702423},
@@ -6,7 +6,7 @@
    type = {Book}
 }
 
-@article{czt,
+@article{RN117,
    author = {Franc, J. and Höschl, P. and Belas, E. and Grill, R. and Hlı́dek, P. and Moravec, P. and Bok, J.},
    title = {CdTe and CdZnTe crystals for room temperature gamma-ray detectors},
    journal = {Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment},
@@ -48,7 +48,7 @@
    type = {Journal Article}
 }
 
-@book{textbook,
+@book{RN114,
    author = {Tsoulfanidis, Nicholas},
    title = {Measurement and detection of radiation},
    publisher = {CRC press},
@@ -57,76 +57,11 @@
    type = {Book}
 }
 
-@misc{nucdata,
+@misc{RN119,
    volume = {2017},
    number = {April 27, 2017},
    url = {http://nucleardata.nuclear.lu.se/toi/},
    year = {1998},
    type = {Web Page}
 }
-
-@misc{peakutils,
-   volume = {2017},
-   number = {April 27, 2017},
-   url = {http://pythonhosted.org/PeakUtils/index.html},
-   year = {2017},
-   type = {Web Page}
-}
-
-@article{perez-andujar,
-   author = {Perez-Andujar, A and Pibida, L},
-   title = {Performance of CdTe, HPGe and NaI (Tl) detectors for radioactivity measurements},
-   journal = {Applied radiation and isotopes},
-   volume = {60},
-   number = {1},
-   pages = {41-47},
-   ISSN = {0969-8043},
-   year = {2004},
-   type = {Journal Article}
-}
-
-@inbook{saha,
-   author = {Saha, Gopal B.},
-   title = {Scintillation and Semiconductor Detectors},
-   booktitle = {Physics and Radiobiology of Nuclear Medicine},
-   publisher = {Springer New York},
-   address = {New York, NY},
-   pages = {81-107},
-   ISBN = {978-0-387-36281-6},
-   DOI = {10.1007/978-0-387-36281-6_8},
-   url = {http://dx.doi.org/10.1007/978-0-387-36281-6_8},
-   year = {2006},
-   type = {Book Section}
-}
-
-@article{giaz,
-  title={Characterization of large volume 3.5 ″$\times$ 8 ″LaBr 3: Ce detectors},
-  author={Giaz, A and Pellegri, L and Riboldi, S and Camera, F and Blasi, N and Boiano, C and Bracco, A and Brambilla, S and Ceruti, S and Coelli, S and others},
-  journal={Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment},
-  volume={729},
-  pages={910--921},
-  year={2013},
-  publisher={Elsevier}
-}
-
-@article{bandgap,
-title = "CdTe and Cd1−xZnxTe for nuclear detectors: facts and fictions ",
-journal = "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment ",
-volume = "428",
-number = "1",
-pages = "38 - 44",
-year = "1999",
-note = "",
-issn = "0168-9002",
-doi = "https://doi.org/10.1016/S0168-9002(98)01578-2",
-url = "http://www.sciencedirect.com/science/article/pii/S0168900298015782",
-author = "P. Fougeres and P. Siffert and M. Hageali and J.M. Koebel and R. Regal",
-keywords = "CdZnTe",
-keywords = "CdTe",
-keywords = "THM",
-keywords = "HPB",
-keywords = "Zn segregation",
-keywords = "Nuclear detector "
-}
-
 
