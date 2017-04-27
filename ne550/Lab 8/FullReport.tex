@@ -2,6 +2,11 @@
 
 \usepackage{fontspec}
 \usepackage{hyperref}
+\usepackage[load=addn]{siunitx}
+\usepackage{float}
+\usepackage[tableposition=top]{caption}
+
+\floatstyle{plaintop}
 
 \setmainfont{Times New Roman}
 
@@ -29,13 +34,36 @@ This section needs to give an adequately detailed description of each experiment
 As an example, from Laboratory Assignment 8, experiment setup and Background, we would not list the ~15 steps in sequential order. Indeed, the reader does not need to know that you “Return(ed) the Cs-137 to the GTA.” The appropriate way to report this experiment would be the following (or equivalent): The HPGe detector output was connected to the ORTEC 572A amplifier and its unipolar output was connected to the ORTEC 927 ASPEC MCA. The gain on the amplifier was set to 10, the shaping time to 10 µs, the conversion gain to 14-bits, and a XXXX V bias to the detector. From here, a Cs-137 button source was used to properly set the amplifier gain so that the 662 keV photopeak resided near channel 6,500. Once the settings for the pulse processing chain were properly set, the background radiation environment was measured for ten minutes. One could mention that we ensured that all sources were removed from near-proximity with the HPGe detector, but this is implied from the “background radiation environment.” The goal is to be clear and concise, not verbose. 
 
 \subsection{MCA Linearity}
-In order to determine the linearity response of the <<<KIND OF MCA>>> MCA, a model <<<PULSE GENERATOR>>> voltage pulse generator was connected to the MCA while the output of the pulse generator was also monitored via an <<<o-scope model>>> oscilloscope, as indicated in figure <<<part 1 block diagram>>>. The output of the MCA was recorded in the Maestro software for several voltage settings, and the channels corresponding to each peak recorded.
+In order to determine the linearity response of the ORTEC 927 ASPEC MCA, a model BNC BL-2 voltage pulse generator was connected through an ORTEC 572A amplifier to the MCA while the output of the pulse generator was also monitored via an GW INSTEK model GDS-3254 oscilloscope, as indicated in figure \ref{fig:MCAblock}. The output of the MCA was recorded in the Maestro software for several voltage settings, and the channels corresponding to each peak recorded.
+
+\subsection{MCA Dead Time}
+In order to determine the dead time of the MCA, the pulse generator was then set to produce a double pulse with a \SI{3}{\micro\second} rise time and a \SI{10}{\micro\second} fall time. Amplifier shaping time was set to \SI{0.5}{\micro\second} with an amplitude of \SI{5.44}{\volt}. The MCA was set to conduct a continuous collection with a 12 bit conversion gain. The spacing between the pulse was adjusted and the threshold at which the MCA was able to distinguish between the pulses (the point at which two peaks appeared on the spectrum) recorded. 
 
 \subsection{HPGe Evaluation}
-The MCA was then connected to an HPGe/Preamplifier/Amplifier chain as indicated in figure <<<block diagram>>>. The HPGe detector was biased to <<<volts>>>. The amplifier shaping time was set to <<<shaping time>>> with a gain setting of <<<gain>>>. After a \SI{10}{\minute} background was collected, an assortment of sealed sources were placed at a distance of approximately \SI{10}{\centi\meter} from the detector face. Information regarding the sources is presented in table <<<table reference>>>. Spectra for these sources were collected in the highest-available number of channels (14 bits) in order to take advantage of the high resolution of the HPGe detector. Sources were counted for <<<time>>> in order to obtain sufficient counts to obtain reasonable statistics.
+The MCA was then connected to an HPGe/Preamplifier/Amplifier chain as indicated in figure \ref{fig:hpgeblock}. The amplifier shaping time was set to \SI{10}{\micro\second} with a gain setting of 10 and unipolar output. After a \SI{10}{\minute} background was collected, an assortment of sealed sources were placed at a distance of approximately \SI{10}{\centi\meter} from the detector face. Information regarding the sources is presented in table \ref{tab:hpgesources}. Spectra for these sources were collected in the highest-available number of channels (14 bits) in order to take advantage of the high resolution of the HPGe detector. Sources were counted for \SI{150}{\second} in order to obtain sufficient counts to obtain reasonable statistics.
+
+\begin{center}
+\begin{table}
+	\centering
+	\begin{tabular}{c c c}
+		\hline\hline
+		Source & Date & Activity \\
+		\hline
+		Na-22 & April 2015 & \SI{1}{\micro\curie} \\
+		Cs-137 & April 2015 & \SI{10}{\micro\curie} \\
+		Co-60 & May 2012 & \SI{1}{\micro\curie} \\
+		Mn-54 & February 2012 & \SI{10}{\micro\curie} \\
+		Cd-109 & May 2015 & \SI{1}{\micro\curie} \\
+		Ba-133 & February 2012 & \SI{1}{\micro\curie} \\
+		Co-57 & May 2015 & \SI{1}{\micro\curie} \\
+		\hline
+	\end{tabular}
+	\caption{Sources for HPGe Evaluation\label{tab:hpgesources}}
+\end{table}
+\end{center}
 
 \subsection{HPGe Geometric variation}
-A <<<source type>>> source was used to determine the respons of the HPGe detector to sources at various ranges.
+A \SI{1}{\micro\curie} Cs-137 source dated February 2012 was used to determine the response of the HPGe detector to sources at various ranges. The source was placed in a holder 
 
 \subsection{CZT Evaluation}
 
