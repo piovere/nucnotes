@@ -2,7 +2,7 @@
 
 \usepackage{fontspec}
 \usepackage{hyperref}
-\usepackage[load=addn]{siunitx}
+\usepackage[separate-uncertainty=true,load=addn]{siunitx}
 \usepackage{float}
 \usepackage[tableposition=top]{caption}
 
@@ -33,6 +33,8 @@ This section needs to give an adequately detailed description of each experiment
 
 As an example, from Laboratory Assignment 8, experiment setup and Background, we would not list the ~15 steps in sequential order. Indeed, the reader does not need to know that you “Return(ed) the Cs-137 to the GTA.” The appropriate way to report this experiment would be the following (or equivalent): The HPGe detector output was connected to the ORTEC 572A amplifier and its unipolar output was connected to the ORTEC 927 ASPEC MCA. The gain on the amplifier was set to 10, the shaping time to 10 µs, the conversion gain to 14-bits, and a XXXX V bias to the detector. From here, a Cs-137 button source was used to properly set the amplifier gain so that the 662 keV photopeak resided near channel 6,500. Once the settings for the pulse processing chain were properly set, the background radiation environment was measured for ten minutes. One could mention that we ensured that all sources were removed from near-proximity with the HPGe detector, but this is implied from the “background radiation environment.” The goal is to be clear and concise, not verbose. 
 
+This section should be between 1-3 pages.
+
 \subsection{MCA Linearity}
 In order to determine the linearity response of the ORTEC 927 ASPEC MCA, a model BNC BL-2 voltage pulse generator was connected through an ORTEC 572A amplifier to the MCA while the output of the pulse generator was also monitored via an GW INSTEK model GDS-3254 oscilloscope, as indicated in figure \ref{fig:MCAblock}. The output of the MCA was recorded in the Maestro software for several voltage settings, and the channels corresponding to each peak recorded.
 
@@ -45,6 +47,7 @@ The MCA was then connected to an HPGe/Preamplifier/Amplifier chain as indicated 
 \begin{center}
 \begin{table}
 	\centering
+	\caption{Sources for HPGe Evaluation\label{tab:hpgesources}}
 	\begin{tabular}{c c c}
 		\hline\hline
 		Source & Date & Activity \\
@@ -58,24 +61,77 @@ The MCA was then connected to an HPGe/Preamplifier/Amplifier chain as indicated 
 		Co-57 & May 2015 & \SI{1}{\micro\curie} \\
 		\hline
 	\end{tabular}
-	\caption{Sources for HPGe Evaluation\label{tab:hpgesources}}
 \end{table}
 \end{center}
 
 \subsection{HPGe Geometric variation}
-A \SI{1}{\micro\curie} Cs-137 source dated February 2012 was used to determine the response of the HPGe detector to sources at various ranges. The source was placed in a holder 
+A \SI{1}{\micro\curie} Cs-137 source dated February 2012 was used to determine the response of the HPGe detector to sources at various ranges. The source was placed in a holder above the detector face. A \SI{150}{\second} spectrum was recorded on contact and at heights of \SI{2.6\pm.3}{\centi\meter}, \SI{6.2\pm.3}{\centi\meter}, \SI{9.4\pm.3}{\centi\meter}, \SI{11.5\pm.3}{\centi\meter}, and \SI{14.7\pm.3}{\centi\meter}.
 
 \subsection{CZT Evaluation}
+An effort was made to objectively compare the HPGe detector to another type of detector, namely a Cadmium Zinc Telluride (CZT) detector. This data collection was performed by the course instructors, so precise settings for the electronics chain were not available at the time of this report. The information that was available for this experiment is recorded in table \ref{tab:cztsources}.
 
-\subsection{Was there another detector?}
+\subsection{Sodium Iodide Evaluation}
 
-This section should be between 1-3 pages.
 
 \section{Results (20\%)}
 This section should provide all results from the experiment. This includes graphical representations, when appropriate. This section is where students will draw conclusions from the data and discuss discrepancies and the significance of the results with comparison to accepted values/concepts. Error analysis is important, so make sure all numbers and figures are appropriately represented with uncertainty. When appropriate, compare results with accepted value(s), indicate the discrepancy, and whether the discrepancy is significant or not. Students should identify all sources of error, both systematic and statistical in the experimental technique and methods for improvement. This latter point could also find itself within the conclusion. This section should be as long as needed to present collected/analyzed data and an appropriate level of discussion of results/conclusions through demonstrative arguments.
 
+\subsection{MCA performance}
+
+\subsection{HPGe Resolution and efficiency}
+The spectra from the assorted sources were analyzed using Python and the PeakFinder library
+%reference
+in order to determine a relationship between channel number and energy. The detected peaks were correlated to known gamma emission spectra for these sources and a linear fit was performed on this data. A plot of the data and the linear fit can be seen in figure \ref{fig:hpgeenergytochannel}. Based on the $R^2>0.9999$ value, it was determined that further analysis could be conducted in terms of energy vice channel number, and the spectra were converted accordingly.
+
+The spectrum for the Na-22 source showed significant photopeaks, as expected (see figure \ref{fig:na22hpge}). The principle gamma emission from the Na-22 source is visible at $E=\SI{1274 \pm 0.1}{\kilo\electronvolt}. The largest peak in this spectrum corresponded to the annhilation of the positrons from the source, corresponding to an energy of \SI{511}{\kilo\electronvolt}. These gamma rays produced secondary scattering events via the process of Compton Scattering. This process produced a continuous spectrum (due to the three-body nature of the products of Compton Scattering event), the maximum energy (see equation \ref{eqn:compton}) produces an observable drop in the energy which corresponds to the maximum energy of the scattered electrom from these events. This is visible as a "Compton Edge". This feature appears to one degree or another in most of the spectra recorded for this report.
+
+\begin{equation}
+	\label{eqn:annhilationenergy}
+	E_\gamma = m_e \times c^2 = \SI{511}{\kilo\electronvolt}
+\end{equation}
+
+The spectrum for the Mn-54 source (see figure \ref{mn54hpge}) showed a single peak at \SI{835}{\kilo\electronvolt} and no other visible features. This corresponds to its electron capture decay, which occurs with a branching frequency of greater than 0.9999
+%reference:http://nucleardata.nuclear.lu.se/toi/nuclide.asp?iZA=250054
+.
+
+Two isotopes of Cobalt were examined, Co-57 and Co-60. Co-57 decays via several modes, only three of which have significant branching fractions (>1\%). The lowest energy of these, an electron capture at \SI{14.4}{\kilo\electronvolt} was low enough energy that it was not visible in the background-corrected spectrum (due to the prevalence of X-rays in the low-energy region below approximately \SI{20}{\kilo\electronvolt}). The remaining two peaks are closely spaced at \SI{122}{\kilo\electronvolt} and \SI{136}{\kilo\electronvolt}, making them a good mechanism to evaluate the resolution of a detector. As expected, the two peaks were distinct on the plotted spectrum, as can be seen in figure \ref{fig:co57hpge}. The distinct peaks also provide the opportunity
+
+In order to determine the detector efficiency for each of the photopeaks from the sources, the spectral data representing each of the peaks were segregated out and treated separately for this portion. 
+
+\begin{center}
+\begin{table}
+	\centering
+	\caption{Resolution and Efficiency of HPGe Detector\label{tab:hpgeperf}}
+	\begin{tabular}{c c c c c c}
+		\hline\hline
+		Source & Energy (\pm \SI{0.1}{\kilo\electronvolt}) & Resolution & Photopeak (cps \times \si{\kilo\electronvolt}) & Total (cps \times \si{\kilo\electronvolt}) & Photopeak efficiency \\
+		\hline
+		Na-22 & 511 & 1.20 & 25.4 & 2339 & 0.011 \\
+		\hline
+	\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}
+	\centering
+	\caption{Resolution and Efficiency of CZT Detector\label{tab:cztperf}}
+	\begin{tabular}{c c c c c c}
+		\hline\hline
+		Source & Energy (\pm \SI{0.1}{\kilo\electronvolt}) & Resolution & Photopeak (cps \times \si{\kilo\electronvolt}) & Total (cps \times \si{\kilo\electronvolt}) & Photopeak efficiency \\
+		\hline
+		Na-22 & 511 & 1.20 & 25.4 & 2339 & 0.011 \\
+		\hline
+	\end{tabular}
+\end{table}
+\end{center}
+
 \section{Conclusion (10\%)}
 This section is a final overview of the results and their significance. This should be a summary of section 4, the results section, with an overarching view of the results. This section should be no more than one page.
+
+The ORTEC 927 ASPEC MCA was determined to perform within the ranges required for spectral analysis, with sufficient resolution and linear response at a variety of input voltages. The performance of an HPGe detector was analyzed for a variety of well-characterized sources. Its resolution was found to be excellent, typically in the range of 
+%RANGE
+. Its efficiency was calculated to be within the range of 
 
 \section{References (12.5\%)}
 References need to be cited in order of appearance in the report. This is NOT a bibliography. I do not want to know what students have read in the past that contributed, but what was specifically used in generation of the report. I would like to see Endnote used with the “numbered” style formatting. EndNote is available for free at \url{https://webapps.utk.edu/oit/softwaredistribution/}. At the end of this document, the Endnote output style is provided for reference.
