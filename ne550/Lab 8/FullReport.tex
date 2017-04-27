@@ -5,6 +5,10 @@
 \usepackage[separate-uncertainty=true,load=addn]{siunitx}
 \usepackage{float}
 \usepackage[tableposition=top]{caption}
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 \floatstyle{plaintop}
 
@@ -22,19 +26,13 @@
 
 \maketitle
 
-\section{Abstract (5\%)}
+\section{Abstract}
 Here students will tell the reader what was done, why it was done, the important results, and what the significance is. This section is an overview of the entire write up and should be concise and to the point. No figures go into this section but final values do (including uncertainty) and conclusions drawn from these results. This section should be only 250-500 words.
 
-\section{Introduction (10\%)}
+\section{Introduction}
 This section should cover the basic concepts of what the purpose of the laboratory is. This, in most cases, will require research on the part of the student to figure out what underlying concepts are associated with the assignment. This section is also the theory section. Any references used must be cited and plagiarism will result in automatic F for the assignment. Safe Assign will check all sources, within UTK and online, for text matching any source. The purpose of this section is to allow students to demonstrate an understanding of the basic concepts of the course and the topics covered within the laboratory assignment. This section should be between 3-7 pages.
 
-\section{Experimental (10\%)}
-This section needs to give an adequately detailed description of each experiment, including equipment used and short description of method. A bullet point list copied from the laboratory assignment is not acceptable. A general discussion of experimental technique should be included, not a point-by-point discussion of each step in an experiment. Plagiarizing my work will not be tolerated. 
-
-As an example, from Laboratory Assignment 8, experiment setup and Background, we would not list the ~15 steps in sequential order. Indeed, the reader does not need to know that you “Return(ed) the Cs-137 to the GTA.” The appropriate way to report this experiment would be the following (or equivalent): The HPGe detector output was connected to the ORTEC 572A amplifier and its unipolar output was connected to the ORTEC 927 ASPEC MCA. The gain on the amplifier was set to 10, the shaping time to 10 µs, the conversion gain to 14-bits, and a XXXX V bias to the detector. From here, a Cs-137 button source was used to properly set the amplifier gain so that the 662 keV photopeak resided near channel 6,500. Once the settings for the pulse processing chain were properly set, the background radiation environment was measured for ten minutes. One could mention that we ensured that all sources were removed from near-proximity with the HPGe detector, but this is implied from the “background radiation environment.” The goal is to be clear and concise, not verbose. 
-
-This section should be between 1-3 pages.
-
+\section{Experimental}
 \subsection{MCA Linearity}
 In order to determine the linearity response of the ORTEC 927 ASPEC MCA, a model BNC BL-2 voltage pulse generator was connected through an ORTEC 572A amplifier to the MCA while the output of the pulse generator was also monitored via an GW INSTEK model GDS-3254 oscilloscope, as indicated in figure \ref{fig:MCAblock}. The output of the MCA was recorded in the Maestro software for several voltage settings, and the channels corresponding to each peak recorded.
 
@@ -70,12 +68,29 @@ A \SI{1}{\micro\curie} Cs-137 source dated February 2012 was used to determine t
 \subsection{CZT Evaluation}
 An effort was made to objectively compare the HPGe detector to another type of detector, namely a Cadmium Zinc Telluride (CZT) detector. This data collection was performed by the course instructors, so precise settings for the electronics chain were not available at the time of this report. The information that was available for this experiment is recorded in table \ref{tab:cztsources}.
 
+\begin{center}
+\begin{table}
+	\centering
+	\caption{Sources and count time for CZT evaluation\label{tab:cztsources}}
+	\begin{tabular}{c c}
+		\hline\hline
+		Source & Count time (\si{\second}) \\
+		\hline
+		Na-22 & 300 \\
+		Co-57 & 300 \\
+		Co-60 & 600 \\ 
+		Cd-109 & 300 \\
+		Ba-133 & 300 \\
+		Cs-137 & 120 \\
+		\hline
+	\end{tabular}
+\end{table}
+\end{center}
+
 \subsection{Sodium Iodide Evaluation}
 
 
-\section{Results (20\%)}
-This section should provide all results from the experiment. This includes graphical representations, when appropriate. This section is where students will draw conclusions from the data and discuss discrepancies and the significance of the results with comparison to accepted values/concepts. Error analysis is important, so make sure all numbers and figures are appropriately represented with uncertainty. When appropriate, compare results with accepted value(s), indicate the discrepancy, and whether the discrepancy is significant or not. Students should identify all sources of error, both systematic and statistical in the experimental technique and methods for improvement. This latter point could also find itself within the conclusion. This section should be as long as needed to present collected/analyzed data and an appropriate level of discussion of results/conclusions through demonstrative arguments.
-
+\section{Results}
 \subsection{MCA performance}
 
 \subsection{HPGe Resolution and efficiency}
@@ -83,11 +98,16 @@ The spectra from the assorted sources were analyzed using Python and the PeakFin
 %reference
 in order to determine a relationship between channel number and energy. The detected peaks were correlated to known gamma emission spectra for these sources and a linear fit was performed on this data. A plot of the data and the linear fit can be seen in figure \ref{fig:hpgeenergytochannel}. Based on the $R^2>0.9999$ value, it was determined that further analysis could be conducted in terms of energy vice channel number, and the spectra were converted accordingly.
 
-The spectrum for the Na-22 source showed significant photopeaks, as expected (see figure \ref{fig:na22hpge}). The principle gamma emission from the Na-22 source is visible at $E=\SI{1274 \pm 0.1}{\kilo\electronvolt}. The largest peak in this spectrum corresponded to the annhilation of the positrons from the source, corresponding to an energy of \SI{511}{\kilo\electronvolt}. These gamma rays produced secondary scattering events via the process of Compton Scattering. This process produced a continuous spectrum (due to the three-body nature of the products of Compton Scattering event), the maximum energy (see equation \ref{eqn:compton}) produces an observable drop in the energy which corresponds to the maximum energy of the scattered electrom from these events. This is visible as a "Compton Edge". This feature appears to one degree or another in most of the spectra recorded for this report.
+The spectrum for the Na-22 source showed significant photopeaks, as expected (see figure \ref{fig:na22hpge}). The principle gamma emission from the Na-22 source is visible at E=\SI{1274 \pm 0.1}{\kilo\electronvolt}, (see equation \ref{eqn:annhilationenergy}). The largest peak in this spectrum corresponded to the annhilation of the positrons from the source, corresponding to an energy of \SI{511}{\kilo\electronvolt}. These gamma rays produced secondary scattering events via the process of Compton Scattering. This process produced a continuous spectrum (due to the three-body nature of the products of Compton Scattering event), the maximum energy (see equation \ref{eqn:compton}) produces an observable drop in the energy which corresponds to the maximum energy of the scattered electrom from these events. This is visible as a "Compton Edge". This feature appears to one degree or another in most of the spectra recorded for this report.
 
 \begin{equation}
 	\label{eqn:annhilationenergy}
 	E_\gamma = m_e \times c^2 = \SI{511}{\kilo\electronvolt}
+\end{equation}
+
+\begin{equation}
+	\label{eqn:compton}
+	E_s^{Max} = E_\gamma \left(1 - \frac{1}{1 + \frac{2E_\gamma}{m_e c^2}} \right)
 \end{equation}
 
 The spectrum for the Mn-54 source (see figure \ref{mn54hpge}) showed a single peak at \SI{835}{\kilo\electronvolt} and no other visible features. This corresponds to its electron capture decay, which occurs with a branching frequency of greater than 0.9999
@@ -101,12 +121,25 @@ In order to determine the detector efficiency for each of the photopeaks from th
 \begin{center}
 \begin{table}
 	\centering
-	\caption{Resolution and Efficiency of HPGe Detector\label{tab:hpgeperf}}
+	\caption{Efficiency of HPGe Detector\label{tab:hpgeperf}}
 	\begin{tabular}{c c c c c c}
 		\hline\hline
-		Source & Energy (\pm \SI{0.1}{\kilo\electronvolt}) & Resolution & Photopeak (cps \times \si{\kilo\electronvolt}) & Total (cps \times \si{\kilo\electronvolt}) & Photopeak efficiency \\
+		Source & \specialcell{Energy\\($\pm$ \SI{0.1}{\kilo\electronvolt})} & \specialcell{FWHM\\(\si{\kilo\electronvolt})} & \specialcell{Photopeak\\(cps $\times$ \si{\kilo\electronvolt})} & \specialcell{Total\\(cps $\times$ \si{\kilo\electronvolt})} & Photopeak efficiency \\
 		\hline
-		Na-22 & 511 & 1.20 & 25.4 & 2339 & 0.011 \\
+		Na-22  &  511  & 2.83 &  25.4 & 2339  & 0.011 \\
+		       & 1274  & 2.75 &  4.48 & 2339  & 0.0019 \\
+		Mn-54  &  835  & 1.73 & 0.861 &  82.5 & 0.010 \\
+		Co-57  &  122  & 1.05 &  15.7 & 413.2 & 0.038 \\
+               &  136  & 1.06 &  1.90 & 413.2 & 0.0046 \\
+        Co-60  & 1173  & 2.25 &  1.07 & 250.4 & 0.0043 \\
+               & 1332  & 2.32 & 0.893 & 250.4 & 0.0036 \\
+        Cd-109 & 88.04 & 1.22 & 0.882 & 42.65 & 0.021  \\
+        Ba-133 & 81    & 1.51 & 19.47 & 1509  & 0.013 \\
+               & 276   & 1.36 & 2.520 & 1509  & 0.0017 \\
+               & 303   & 1.36 & 5.613 & 1509  & 0.0037 \\
+               & 356   & 1.41 & 15.03 & 1509  & 0.010 \\
+               & 384   & 1.53 & 2.109 & 1509  & 0.0014 \\
+        Cs-137 & 662   & 1.82 & 15.33 & 1334 & 0.011 \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -115,10 +148,10 @@ In order to determine the detector efficiency for each of the photopeaks from th
 \begin{center}
 \begin{table}
 	\centering
-	\caption{Resolution and Efficiency of CZT Detector\label{tab:cztperf}}
+	\caption{Efficiency of CZT Detector\label{tab:cztperf}}
 	\begin{tabular}{c c c c c c}
 		\hline\hline
-		Source & Energy (\pm \SI{0.1}{\kilo\electronvolt}) & Resolution & Photopeak (cps \times \si{\kilo\electronvolt}) & Total (cps \times \si{\kilo\electronvolt}) & Photopeak efficiency \\
+		Source & \specialcell{Energy\\($\pm$ \SI{0.1}{\kilo\electronvolt})} & Resolution & \specialcell{Photopeak\\(cps $\times$ \si{\kilo\electronvolt})} & \specialcell{Total\\(cps $\times$ \si{\kilo\electronvolt})} & Photopeak efficiency \\
 		\hline
 		Na-22 & 511 & 1.20 & 25.4 & 2339 & 0.011 \\
 		\hline
@@ -126,14 +159,53 @@ In order to determine the detector efficiency for each of the photopeaks from th
 \end{table}
 \end{center}
 
-\section{Conclusion (10\%)}
+\section{Conclusion}
 This section is a final overview of the results and their significance. This should be a summary of section 4, the results section, with an overarching view of the results. This section should be no more than one page.
 
-The ORTEC 927 ASPEC MCA was determined to perform within the ranges required for spectral analysis, with sufficient resolution and linear response at a variety of input voltages. The performance of an HPGe detector was analyzed for a variety of well-characterized sources. Its resolution was found to be excellent, typically in the range of 
-%RANGE
-. Its efficiency was calculated to be within the range of 
+The ORTEC 927 ASPEC MCA was determined to perform within the ranges required for spectral analysis, with sufficient resolution and linear response at a variety of input voltages. The performance of an HPGe detector was analyzed for a variety of well-characterized sources. Its resolution was found to be excellent, with full-width, half-max (FWHM) typically in the range of 1-3 (see table \ref{tab:hpgeperf}).
 
-\section{References (12.5\%)}
+\begin{center}
+\begin{table}
+	\centering
+	\caption{Resolution HPGe Detector\label{tab:hpgefwhm}}
+	\begin{tabular}{c c c c c c}
+		\hline\hline
+		Source & \specialcell{Energy\\($\pm$ \SI{0.1}{\kilo\electronvolt})} & \specialcell{Resolution\\ \si{\kilo\electronvolt}} \\
+		\hline
+		Na-22 & 511 & 2.83 \\
+		& 1274 & 2.75 \\
+		Mn-54 & 835 & 1.73 \\
+		Co-57 & 122 & 1.05 \\
+		& 136 & 1.06 \\
+		Co-60 & 1173 & 2.25 \\
+		& 1332 & 2.32 \\
+		Cd-109 & 88.04 & 1.22 \\
+		Ba-133 & 81 & 1.51 \\
+		& 276 & 1.36 \\
+		& 303 & 1.36 \\
+		& 356 & 1.41 \\
+		& 384 & 1.53 \\
+		Cs-137 & 662 & 1.82 \\
+		\hline
+	\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}
+	\centering
+	\caption{Resolution of CZT Detector\label{tab:cztfwhm}}
+	\begin{tabular}{c c c c c c}
+		\hline\hline
+		Source & \specialcell{Energy\\($\pm$ \SI{0.1}{\kilo\electronvolt})} & Resolution & \specialcell{Photopeak\\(cps $\times$ \si{\kilo\electronvolt})} & \specialcell{Total\\(cps $\times$ \si{\kilo\electronvolt})} & Photopeak efficiency \\
+		\hline
+		Na-22 & 511 & 1.20 & 25.4 & 2339 & 0.011 \\
+		\hline
+	\end{tabular}
+\end{table}
+\end{center}
+
+\section{References}
 References need to be cited in order of appearance in the report. This is NOT a bibliography. I do not want to know what students have read in the past that contributed, but what was specifically used in generation of the report. I would like to see Endnote used with the “numbered” style formatting. EndNote is available for free at \url{https://webapps.utk.edu/oit/softwaredistribution/}. At the end of this document, the Endnote output style is provided for reference.
 
 
