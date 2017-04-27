@@ -16,3 +16,6 @@ workspace.xml
 profiles_settings.xml
 .idea
 *.r
+*.bbl
+*.bcf
+*.blg
