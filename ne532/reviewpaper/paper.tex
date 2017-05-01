@@ -1,0 +1,63 @@
+\documentclass{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[citestyle=ieee,sorting=none,bibencoding=utf8,backend=biber]{biblatex}
+
+\graphicspath{{images/}}
+\bibliography{bib}
+
+\let\DeclareUSUnit\DeclareSIUnit
+\let\US\SI
+\DeclareUSUnit\foot{ft}
+\DeclareUSUnit\inch{in}
+
+\author{Powers-Luhn, J.R.}
+\title{A Review of Engineering Challenges for Enrichment Measurement in a Gas Centrifuge Plant}
+\date{May 1st, 2017}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Measurement of uranium enrichment is a necessary precondition to the production of nuclear fuel while simultaneously satisfying the international community as to the peaceful nature of a nuclear program.
+\end{abstract}
+
+\section{Introduction}
+The use of nuclear power as a replacement for carbon-emitting has proven attractive to several nations around the world. Most proven nuclear power plant designs require enriched uranium to use as fuel, whether produced domestically by the country involved or purchased on the international market. The need for nuclear enrichment is projected to rise 21\% of its 2015 levels by 2020, while the world capacity is expected to exceed requirements by 16\% in that same year \cite{worldnuclear}. This naturally raises the question of how to convince other nations that this enrichment is intended for peaceful use and not in the production of undeclared nuclear weapons.
+
+Several methods exist for measuring the enrichment of uranium in its solid or metallic forms. Many of these use spectral analysis, either of a broad range of energies or comparing a purely $\ce{^{235}U}$ emission (\SI{186}{\kilo\electronvolt}) to a background value or one proportional to the amount of total uranium. This is less useful for measuring the enrichment of gaseous uranium compounds used in gas-centrifuge enrichment plants, as it would require the piping through which the uranium flows to be greater than \SI{1}{\meter} in diameter \cite{tape}
+
+\section{Stages for enrichment measurement}
+
+\subsection{During enrichment}
+Enrichment can be measured in the gas phase of $\ce{UF_6}$ for a typical gas centrifuge plant. This technique, however, faces a number of challenges 
+
+Imaging techniques also show promise for the determination of enrichment, especially in the verification of design information (e.g., which portions of piping are in use) in enrichment plants. Burks, et al \cite{RN47}, were able to use a Compton scattering-based imager to detect a small (\SI{2.5}{\gram}) $\ce{^{235}U}$ source in the presence of a much larger (\SI{400}{\gram}) sample of depleted uranium. These image was taken at an assortment of distances (\SIrange{4}{9}{\foot}), with the HEU clearly visible up to \SI{6}{\foot}. This method worked best as a verification tool, and suffered from a poor point spread function at energies of interest (\SI{186}{\kilo\electronvolt}). It was also comparatively insensitive to low-enriched uranium samples and very sensitive to holdup in the piping material.
+
+\subsection{In transit cylinders}
+Both before and after enrichment, the $\ce{UF_6}$ is stored and transported in the form of cylinders, typically of model 30B (\SI{30}{\inch} by \SI{6}{\foot}; commonly used for storage of UF6 in product cylinder bays) and larger model 48B cylinders (\SI{48}{\inch} by \SI{12}{\foot}). Measurement at this point has the advantage of higher density and a standardized container configuration, allowing for total uranium content to be measured via simple weight methods. The amount of $\ce{^{235}U}$ present can then be measured using the strength of the \SI{186}{\kilo\electronvolt}.
+
+
+
+Papers:
+- Mortreau (RN60): LaBr3 scintillator
+- Smith 2009 (RN48): Enrichment Assay Methods for verification
+- Berndt 2010 (RN58): Enrichment or UF6 mass determination
+- Freeman 2010 (RN63): Detection of illicit HEU with neutron counting
+- Miller 2010 (RN44): Cylinder assay system
+- Smith 2010 (RN61): Signatures and methods
+- Mace 2011 (RN57): Automated nondestructive detector characterization
+- Miller 2012 (RN55): Conceptual ideas for nondestructive
+
+\subsection{Forensic}
+It is sometimes of interest to track the use of enrichment facilities after their active use. This can provide forensic information useful in informing policy makers as to the capabilities of nations and groups in the past. 
+
+One proposed method uses the long biological residence times of various nuclides and chemicals used in the processing of nuclear material \cite{RN45}. Samples are taken from these plants and animals and analyzed using NMR techniques. Test studies indicate that these samples survive analysis and show variation to indicate industrial proceses, but this technique is limited in that it depends on a well-understood background of other industrial work that might involve these chemicals but not represent nuclear processing or enrichment.
+
+\nocite{*}
+\printbibliography
+
+\end{document}
