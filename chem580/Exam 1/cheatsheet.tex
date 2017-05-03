@@ -7,6 +7,7 @@
 \usepackage{color,graphicx,overpic}
 \usepackage{hyperref}
 \usepackage[load=addn]{siunitx}
+\usepackage{mhchem}
 
 
 \pdfinfo{
@@ -26,6 +27,8 @@
         {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
         {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
     }
+
+\DeclareSIUnit\year{yr}
 
 % Turn off header and footer
 \pagestyle{empty}
@@ -75,10 +78,6 @@
 \setlength{\multicolsep}{1pt}
 \setlength{\columnsep}{2pt}
 
-\begin{center}
-     \Large{\underline{chem580 exam 1}} \\
-\end{center}
-
 \section{Binding Energy}
 \begin{align*}
     B=15.56A-17.23A^{2/3}-0.72Z^2A^{-1/3}-23.285\left(A-2Z\right)^2A^{-1}+11A^{-1/2}
@@ -106,10 +105,10 @@
 
 \section{Specific Activity}
 A is mass number, T is half-life in days
-\subsection{\si[per=frac]{\milli\curie\per\milli\gram}}
-$\frac{\num{1.3e8}}{AT}$
-\subsection{\si[per=frac]{\mega\becquerel\per\milli\gram}}
-$\frac{\num{4.8e6}}{AT}$
+\begin{tabular}{c c}
+	\si[per=frac]{\milli\curie\per\milli\gram} & $\frac{\num{1.3e8}}{AT}$ \\
+	\si[per=frac]{\mega\becquerel\per\milli\gram} & $\frac{\num{4.8e6}}{AT}$ \\
+\end{tabular}
 
 \section{Equilibrium}
 \subsection{Secular}
@@ -147,10 +146,41 @@ Scattering increases with Z and surface density up to about 1/5 of the range
     E_{s} = \frac{E_{tot}}{ 1 + \frac{E_{tot}}{m_e}\left( 1 - \cos{\theta_\gamma} \right) }
 \end{align*}
 
+\section{counting}
+\begin{align*}
+	t_s / t_b = \sqrt{\frac{S/t_s}{B/t_b}}
+\end{align*}
+
+\section{Quality Factors}
+\begin{table}
+	\begin{tabular}{c c c}
+	Particle & Energy & Q \\
+	$\gamma$, X-ray & & 1 \\
+	$\beta^{\pm}$ & & 1 \\
+	neutron & \SI{0.025}{\electronvolt} & 5 \\
+	& \SI{0.01}{\mega\electronvolt} & 5 \\
+	& \SI{0.05}{\mega\electronvolt} & 10 \\
+	& \SI{10}{\mega\electronvolt} & 10 \\
+	& \SI{1}{\mega\electronvolt} & 20 \\
+	& \SI{>20}{\mega\electronvolt} & 5 \\
+	$\alpha$ & & 20 \\
+	proton & & 5 \\
+\end{tabular}
+\end{table}
+
+\section{Bio effects}
+Most to least sensitive: gonads, bone marrow, colon, lung, stomach, bladder, breast, liver, esophagus, thyroid, other (adrenals, brain, intestines, kidney muscle, pancreas, spleen, thymus, uterus, etc), bone surface, skin.
+
+Natural sources (\si{\milli\sievert\per\year}) cosmic rays (0.4), external (K,U,Th) (0.5), internal (\ce{^{40}K}) (0.3), inhaled Rn (3), total (4.2) \\
+Artificial (\si{\milli\sievert} per dose) local: external medical diagnosis (1-5), external therapy (~50000), internal diagnosis (1-1000), internal therapy (10000) \\
+whole body: external diagnosis (0.02-0.5), external therapy (up to 50), internal diagnosis (0.1-10), internal therapy (50)
+
+PUREX
+
 % You can even have references
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
-\bibliographystyle{abstract}
-\bibliography{refFile}
+%\bibliographystyle{abstract}
+%\bibliography{refFile}
 \end{multicols}
 \end{document}
