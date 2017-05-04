@@ -1,5 +1,5 @@
-\documentclass[10pt,landscape]{article}
-\usepackage{multicol}
+\documentclass[6pt,landscape]{article}
+%\usepackage{multicol}
 \usepackage{calc}
 \usepackage{ifthen}
 \usepackage[landscape]{geometry}
@@ -15,14 +15,14 @@
   /Creator (TeX)
   /Producer (pdfTeX 1.40.0)
   /Author (J.R. Powers-Luhn)
-  /Subject (chem580 Cheat Sheet 1)
+  /Subject (chem580 Cheat Sheet 3)
   /Keywords (pdflatex, latex,pdftex,tex)}
 
 % This sets page margins to .5 inch if using letter paper, and to 1cm
 % if using A4 paper. (This probably isn't strictly necessary.)
 % If using another size paper, use default 1cm margins.
 \ifthenelse{\lengthtest { \paperwidth = 11in}}
-    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    { \geometry{top=.25in,left=.25in,right=.25in,bottom=.25in} }
     {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
         {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
         {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
@@ -67,16 +67,18 @@
 \begin{document}
 \raggedright
 \footnotesize
-\begin{multicols}{2}
+%\begin{multicols}{2}
 
 
 % multicol parameters
 % These lengths are set only within the two main columns
 %\setlength{\columnseprule}{0.25pt}
-\setlength{\premulticols}{1pt}
-\setlength{\postmulticols}{1pt}
-\setlength{\multicolsep}{1pt}
-\setlength{\columnsep}{2pt}
+%\setlength{\premulticols}{1pt}
+%\setlength{\postmulticols}{1pt}
+%\setlength{\multicolsep}{1pt}
+%\setlength{\columnsep}{2pt}
+
+\begin{minipage}[t]{0.45\textwidth}
 
 \section{Binding Energy}
 \begin{align*}
@@ -141,6 +143,9 @@ $\alpha$ produces \num{30000} ion pairs per cm in air
 \end{align*}
 Scattering increases with Z and surface density up to about 1/5 of the range
 
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+
 \section{Compton}
 \begin{align*}
     E_{s} = \frac{E_{tot}}{ 1 + \frac{E_{tot}}{m_e}\left( 1 - \cos{\theta_\gamma} \right) }
@@ -152,7 +157,7 @@ Scattering increases with Z and surface density up to about 1/5 of the range
 \end{align*}
 
 \section{Quality Factors}
-\begin{table}
+%\begin{table}
 	\begin{tabular}{c c c}
 	Particle & Energy & Q \\
 	$\gamma$, X-ray & & 1 \\
@@ -166,7 +171,7 @@ Scattering increases with Z and surface density up to about 1/5 of the range
 	$\alpha$ & & 20 \\
 	proton & & 5 \\
 \end{tabular}
-\end{table}
+%\end{table}
 
 \section{Bio effects}
 Most to least sensitive: gonads, bone marrow, colon, lung, stomach, bladder, breast, liver, esophagus, thyroid, other (adrenals, brain, intestines, kidney muscle, pancreas, spleen, thymus, uterus, etc), bone surface, skin.
@@ -174,13 +179,39 @@ Most to least sensitive: gonads, bone marrow, colon, lung, stomach, bladder, bre
 Natural sources (\si{\milli\sievert\per\year}) cosmic rays (0.4), external (K,U,Th) (0.5), internal (\ce{^{40}K}) (0.3), inhaled Rn (3), total (4.2) \\
 Artificial (\si{\milli\sievert} per dose) local: external medical diagnosis (1-5), external therapy (~50000), internal diagnosis (1-1000), internal therapy (10000) \\
 whole body: external diagnosis (0.02-0.5), external therapy (up to 50), internal diagnosis (0.1-10), internal therapy (50)
+\section{PUREX}
+MOX + garbage + \ce{HNO_3} + TBP $\rightarrow$ \\ (waste) + FeSulfamate (\ce{FeH_4N_2O_6S_2}) $\rightarrow$ \ce{Pu^{3+}} + U + garbage $\underset{\text{separate}}{\rightarrow}$
 
-PUREX
+\section{Detectors}
+%\begin{table}
+	\begin{tabular}{c c c c c c}
+		Detector & PC & GM & SC(s) & SC(l) & SS \\
+		Energy discrimination & y & n & y & y & y \\
+		Detection Medium & gas & gas & sol & liq & sol \\
+		Amplification & $10^3$ & $10^8$ & $10^6$ & $10^6$ & $10^0$ \\
+		ext amp needed & hi & lo & med & med & hi \\
+		resolving time ($\mu$s) & 5 & 150 & 1 & 1 & 0.1 \\
+		background & med & med & hi & hi & lo/med \\
+		external $\alpha$ efficiency & lo & lo & lo & & hi \\
+		internal $\alpha$ efficiency & hi & & & hi & \\
+		external low-E $\beta$ & lo & lo & lo & & hi \\
+		internal low-E $\beta$ & hi & & & hi & \\
+		external hi-E $\beta$ & hi & med & med & & hi \\
+		internal hi-E $\beta$ & hi & & & hi & \\
+		external low-E $\gamma$ & med & med & med & & hi \\
+		internal low-E $\gamma$ & med & & & med & \\
+		external hi-E $\gamma$ & lo & lo & hi & & hi \\
+		internal hi-E $\gamma$ & lo & & & lo & \\
+		commonly-used sample form & sol & sol & liq & liq & sol
+	\end{tabular}	
+%\end{table}
+
+\end{minipage}
 
 % You can even have references
-\rule{0.3\linewidth}{0.25pt}
-\scriptsize
+%\rule{0.3\linewidth}{0.25pt}
+%\scriptsize
 %\bibliographystyle{abstract}
 %\bibliography{refFile}
-\end{multicols}
+%\end{multicols}
 \end{document}
