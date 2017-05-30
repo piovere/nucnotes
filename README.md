@@ -10,6 +10,7 @@ notes and stuff for classes related to NE
     - [aStar](http://physics.nist.gov/PhysRefData/Star/Text/ASTAR.html)
     - [pStar](http://physics.nist.gov/PhysRefData/Star/Text/PSTAR.html)
 - [RadPro Calculator](http://www.radprocalculator.com/Gamma.aspx)
+- [mragheb](http://mragheb.com/NPRE%20402%20ME%20405%20Nuclear%20Power%20Engineering/index.htm)
 
 ## Chemistry
 - [3-d pictures of molecules!](http://molview.org/?cid=82219)
