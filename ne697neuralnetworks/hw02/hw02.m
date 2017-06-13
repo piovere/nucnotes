@@ -26,7 +26,7 @@ x_axis = 1:100;
 
 figure();
 plot(Error);
-title('Error');
+title(join(['Error for learning rate',string(lr)]));
 ylabel('Error');
 xlabel('Epoch');
 legend('Error');
@@ -35,6 +35,6 @@ drawnow
 figure();
 plot(x_axis, W', x_axis, B');
 legend('x\_1 weight', 'x\_2 weight', 'Bias');
-title('W and B');
+title(join(['Weights and Bias vs. Training Epoch (learning rate =',string(lr),')']));
 xlabel('Epoch');
 drawnow
