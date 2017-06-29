@@ -1,0 +1,54 @@
+%\documentclass{IEEEtran}
+\documentclass{article}
+\usepackage[alsoload=synchem,load=named]{siunitx}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[citestyle=ieee,sorting=none,bibencoding=utf8,backend=biber]{biblatex}
+\usepackage{verbatim}
+
+\graphicspath{{images/}}
+\bibliography{697}
+
+\begin{document}
+
+\title{NE697 Project Proposal}
+\begin{comment}
+\author{
+	\IEEEauthorblockN{J.R. Powers-Luhn}
+	\IEEEauthorblockA{
+		Department of Nuclear Engineering\\
+		University of Tennessee\\
+		1004 Estabrook Rd\\
+		Knoxville, TN 37996\\
+		Email: jpowersl@vols.utk.edu
+	}
+}
+\end{comment}
+
+%\begin{comment}
+\author{J.R. Powers-Luhn}
+%\end{comment}
+
+\maketitle
+
+\section{Background}
+Determination of the composition of samples is a primary component of the discipline of nuclear forensics. This can prove difficult in the field, however, limiting the utility of spectroscopic techniques to analysis that lags an event of interest by days or weeks. A technique that resists this limitation is laser-induced breakdown spectroscopy (LIBS), wherein a high-energy laser is used to ablate a surface, producing a plasma. The relaxation of this plasma as it recombines emits a signal that can be analyzed spectroscopically \cite{miziolek2006laser}.
+
+Initially developed in the 1960s, a portable LIBS was developed in the mid 1990s and is now being evaluated for deployment with rapid response army units to characterize nuclear sites. 
+
+Currently, analysis of these spectra is a manual process that involves loading the recorded data into specialized software and manually examining the data, comparing it against known values. This additional step produces delays and limits the ability to deploy handheld LIBS devices for in-situ nuclear forensics. When first used for nuclear forensics at the Gunnison, CO remediation site the technique was able to process only three samples per hour \cite{anderson1994laser}. Faster analysis techniques will enable smaller numbers of technicians to process larger areas.
+
+\section{Objectives}
+The objective of this project is to develop a neural network architecture that can discriminate between elements in a LIBS spectral sample and estimate the concentrations of those elements in the sample.
+
+\section{Methodologies}
+This project will focus on two neural network architectures: a generalized regression network (GRNN) and a convolutional neural network (CNN). The GRNN is expected to be a good fit for this problem based on the presence of peaks in discrete areas (corresponding to elements in the sample). GRNNs have been applied to neutron spectroscopy \cite{Martinez-blanco2016}. The GRNN architecture should be useful for modeling the spectral peaks representing different elements in the sample. A convolutional neural network would be a different approach. Since the spectra used for training are expected to contain many features (and noise), feature extraction may prove difficult. Less complex techniques have been used to analyze gamma rays spectroscopy, with independently trained layers of neurons trained to approximate spectra of individual isotopes combined to predict abundance of each isotope \cite{Lagari2017}. This network was not fully convolutional, however, as it did not independently extract features from the data set.
+
+Networks with GRNN and CNN architectures will be trained on handheld LIBS spectra of forensically interesting samples. These samples have been generated in the lab with well understood and reproduceable techniques, and will provide reliably labeled data for training the networks. The networks will then be evaluated based on randomly selected spectra not in the training set. Training techniques will have to take into account the comparatively small number of spectra available.
+
+\section{Expected Results and Contributions}
+I expect that this project will simplify the application of handheld LIBS for nuclear forensics in the field. Should the neural network architectures being examined prove successful, it will provide another analysis tool for processing LIBS data. Further, it will be one that can incorporate further training into its process with minimal user effort.
+
+\printbibliography
+
+\end{document}
