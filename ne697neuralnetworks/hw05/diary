@@ -1,0 +1,84 @@
+net = feedforwardnet(4);
+net.trainParam.goal = var(r)
+
+net =
+
+    Neural Network
+ 
+              <a href="matlab:doc nnproperty.net_name">name</a>: 'Feed-Forward Neural Network'
+          <a href="matlab:doc nnproperty.net_userdata">userdata</a>: (your custom info)
+ 
+    dimensions:
+ 
+         <a href="matlab:doc nnproperty.net_numInputs">numInputs</a>: 1
+         <a href="matlab:doc nnproperty.net_numLayers">numLayers</a>: 2
+        <a href="matlab:doc nnproperty.net_numOutputs">numOutputs</a>: 1
+    <a href="matlab:doc nnproperty.net_numInputDelays">numInputDelays</a>: 0
+    <a href="matlab:doc nnproperty.net_numLayerDelays">numLayerDelays</a>: 0
+ <a href="matlab:doc nnproperty.net_numFeedbackDelays">numFeedbackDelays</a>: 0
+ <a href="matlab:doc nnproperty.net_numWeightElements">numWeightElements</a>: 4
+        <a href="matlab:doc nnproperty.net_sampleTime">sampleTime</a>: 1
+ 
+    connections:
+ 
+       <a href="matlab:doc nnproperty.net_biasConnect">biasConnect</a>: [1; 1]
+      <a href="matlab:doc nnproperty.net_inputConnect">inputConnect</a>: [1; 0]
+      <a href="matlab:doc nnproperty.net_layerConnect">layerConnect</a>: [0 0; 1 0]
+     <a href="matlab:doc nnproperty.net_outputConnect">outputConnect</a>: [0 1]
+ 
+    subobjects:
+ 
+             input: Equivalent to inputs{1}
+            output: Equivalent to outputs{2}
+ 
+            <a href="matlab:doc nnproperty.net_inputs">inputs</a>: {1x1 cell array of 1 input}
+            <a href="matlab:doc nnproperty.net_layers">layers</a>: {2x1 cell array of 2 layers}
+           <a href="matlab:doc nnproperty.net_outputs">outputs</a>: {1x2 cell array of 1 output}
+            <a href="matlab:doc nnproperty.net_biases">biases</a>: {2x1 cell array of 2 biases}
+      <a href="matlab:doc nnproperty.net_inputWeights">inputWeights</a>: {2x1 cell array of 1 weight}
+      <a href="matlab:doc nnproperty.net_layerWeights">layerWeights</a>: {2x2 cell array of 1 weight}
+ 
+    functions:
+ 
+          <a href="matlab:doc nnproperty.net_adaptFcn">adaptFcn</a>: '<a href="matlab:doc adaptwb">adaptwb</a>'
+        <a href="matlab:doc nnproperty.net_adaptParam">adaptParam</a>: (none)
+          <a href="matlab:doc nnproperty.net_derivFcn">derivFcn</a>: '<a href="matlab:doc defaultderiv">defaultderiv</a>'
+         <a href="matlab:doc nnproperty.net_divideFcn">divideFcn</a>: '<a href="matlab:doc dividerand">dividerand</a>'
+       <a href="matlab:doc nnproperty.net_divideParam">divideParam</a>: .<a href="matlab:doc nnparam.trainRatio">trainRatio</a>, .<a href="matlab:doc nnparam.valRatio">valRatio</a>, .<a href="matlab:doc nnparam.testRatio">testRatio</a>
+        <a href="matlab:doc nnproperty.net_divideMode">divideMode</a>: 'sample'
+           <a href="matlab:doc nnproperty.net_initFcn">initFcn</a>: '<a href="matlab:doc initlay">initlay</a>'
+        <a href="matlab:doc nnproperty.net_performFcn">performFcn</a>: '<a href="matlab:doc mse">mse</a>'
+      <a href="matlab:doc nnproperty.net_performParam">performParam</a>: .<a href="matlab:doc nnparam.regularization">regularization</a>, .<a href="matlab:doc nnparam.normalization">normalization</a>
+          <a href="matlab:doc nnproperty.net_plotFcns">plotFcns</a>: {'<a href="matlab:doc plotperform">plotperform</a>', <a href="matlab:doc plottrainstate">plottrainstate</a>, <a href="matlab:doc ploterrhist">ploterrhist</a>,
+                    <a href="matlab:doc plotregression">plotregression</a>}
+        <a href="matlab:doc nnproperty.net_plotParams">plotParams</a>: {1x4 cell array of 4 params}
+          <a href="matlab:doc nnproperty.net_trainFcn">trainFcn</a>: '<a href="matlab:doc trainlm">trainlm</a>'
+        <a href="matlab:doc nnproperty.net_trainParam">trainParam</a>: .<a href="matlab:doc nnparam.showWindow">showWindow</a>, .<a href="matlab:doc nnparam.showCommandLine">showCommandLine</a>, .<a href="matlab:doc nnparam.show">show</a>, .<a href="matlab:doc nnparam.epochs">epochs</a>,
+                    .<a href="matlab:doc nnparam.time">time</a>, .<a href="matlab:doc nnparam.goal">goal</a>, .<a href="matlab:doc nnparam.min_grad">min_grad</a>, .<a href="matlab:doc nnparam.max_fail">max_fail</a>, .<a href="matlab:doc nnparam.mu">mu</a>, .<a href="matlab:doc nnparam.mu_dec">mu_dec</a>,
+                    .<a href="matlab:doc nnparam.mu_inc">mu_inc</a>, .<a href="matlab:doc nnparam.mu_max">mu_max</a>
+ 
+    weight and bias values:
+ 
+                <a href="matlab:doc nnproperty.net_IW">IW</a>: {2x1 cell} containing 1 input weight matrix
+                <a href="matlab:doc nnproperty.net_LW">LW</a>: {2x2 cell} containing 1 layer weight matrix
+                 <a href="matlab:doc nnproperty.net_b">b</a>: {2x1 cell} containing 2 bias vectors
+ 
+    methods:
+ 
+             <a href="matlab:doc nnet/adapt">adapt</a>: Learn while in continuous use
+         <a href="matlab:doc nnet/configure">configure</a>: Configure inputs & outputs
+            <a href="matlab:doc nnet/gensim">gensim</a>: Generate Simulink model
+              <a href="matlab:doc nnet/init">init</a>: Initialize weights & biases
+           <a href="matlab:doc nnet/perform">perform</a>: Calculate performance
+               <a href="matlab:doc nnet/sim">sim</a>: Evaluate network outputs given inputs
+             <a href="matlab:doc nnet/train">train</a>: Train network with examples
+              <a href="matlab:doc nnet/view">view</a>: View diagram
+       <a href="matlab:doc nnet/unconfigure">unconfigure</a>: Unconfigure inputs & outputs
+ 
+    evaluate:       outputs = net(inputs)
+ 
+net.trainParam.epochs = 1000;
+net.divideFcn = 'dividetrain';
+[net, tr] = train(net, x, y);
+save('feedforwardnet','net','tr');
+diary off
