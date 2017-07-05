@@ -1,7 +1,7 @@
 function [ net ] = tdnet( neurons )
 %tdnet Summary of this function goes here
 %   Detailed explanation goes here
-net = timedelaynet(1, neurons);
+net = timedelaynet(1:2, neurons);
 
 %   Mean squared error can't be better than the variance of our noise
 %   For an unbiased estimator, mse = variance
