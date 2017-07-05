@@ -1,0 +1,567 @@
+t = [0:0.5:62];
+noise = 0.2 * rand(size(t));
+data = sin(t) + noise;
+x = data(1:60);
+y = data(3:62);
+save 'trainingdata';
+plot([x;y]');
+title('Shifted sinusoid, with noise');
+ff_net = feedforwardnet(4);
+ff_net.performFcn = 'mse';
+ff_net.trainParam.goal = var(noise);
+ff_net.trainParam.epochs = 1000;
+ff_net.divideFcn = 'dividetrain';
+[ff_net, ff_tr] = train(ff_net, x, y);
+% as expected, with no memory, the network is unable to calculate the value two intervals in the future
+plotresponse(y, ff_net(x));
+diary off
+clear
+load trainingdata
+% using utility function in tdnet.m
+td_net = tdnet(4);
+diary off
+% generate time-shifted training data
+diary off
+[Xs, Xi, Ai, Ts, EWs, shift] = preparets(td_net, data, data);
+{Index exceeds matrix dimensions.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('preparets', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m', 293)" style="font-weight:bold">preparets</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m',293,0)">line 293</a>)
+xi = xx(:,FBS+((1-net.numInputDelays):0));
+} 
+[Xs, Xi, Ai, Ts, EWs, shift] = preparets(td_net, num2cell(data), num2cell(data));
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+save 'timedelaynet'
+clear
+load trainingdata
+[Xs, Xi, Ai, Ts, EWs, shift] = preparets(td_net, num2cell(data), num2cell(data));
+{Undefined function or variable 'td_net'.
+} 
+clear
+load trainingdata
+td_net = tdnet(1);
+[Xs, Xi, Ai, Ts, EWs, shift] = preparets(td_net, num2cell(data), num2cell(data));
+[td_net, td_tr] = train(Xs, Ts, Xi);
+{Undefined function 'train' for input arguments of type 'cell'.
+} 
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+diary on
+% 1 neuron: minimum gradient reached
+td_net = tdnet(2);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 2 neurons: minimum gradient reached
+td_net = tdnet(3);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 3 neurons; minimum gradient reached, but error ~0.008
+td_net = tdnet(4);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+td_net = tdnet(4);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 4 neurons: minimum gradient reached, error still ~0.009
+td_net = tdnet(5);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 5 neurons: still hitting minimum gradient (mse ~0.007)
+td_net = tdnet(6);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 6 neurons, same result
+td_net = tdnet(7);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 7 neurons. failing on max epochs now
+td_net = tdnet(8);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 8 neurons. still failing on max epoch, but error is falling. Believe that this is overtraining
+td_net = tdnet(9);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% almost there...
+td_net = tdnet(10);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% 10 neurons final error at 0.00382
+td_net = tdnet(11);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+init(td_net)
+
+ans =
+
+    Neural Network
+ 
+              <a href="matlab:doc nnproperty.net_name">name</a>: 'Time Delay Neural Network'
+          <a href="matlab:doc nnproperty.net_userdata">userdata</a>: (your custom info)
+ 
+    dimensions:
+ 
+         <a href="matlab:doc nnproperty.net_numInputs">numInputs</a>: 1
+         <a href="matlab:doc nnproperty.net_numLayers">numLayers</a>: 2
+        <a href="matlab:doc nnproperty.net_numOutputs">numOutputs</a>: 1
+    <a href="matlab:doc nnproperty.net_numInputDelays">numInputDelays</a>: 2
+    <a href="matlab:doc nnproperty.net_numLayerDelays">numLayerDelays</a>: 0
+ <a href="matlab:doc nnproperty.net_numFeedbackDelays">numFeedbackDelays</a>: 0
+ <a href="matlab:doc nnproperty.net_numWeightElements">numWeightElements</a>: 45
+        <a href="matlab:doc nnproperty.net_sampleTime">sampleTime</a>: 1
+ 
+    connections:
+ 
+       <a href="matlab:doc nnproperty.net_biasConnect">biasConnect</a>: [1; 1]
+      <a href="matlab:doc nnproperty.net_inputConnect">inputConnect</a>: [1; 0]
+      <a href="matlab:doc nnproperty.net_layerConnect">layerConnect</a>: [0 0; 1 0]
+     <a href="matlab:doc nnproperty.net_outputConnect">outputConnect</a>: [0 1]
+ 
+    subobjects:
+ 
+             input: Equivalent to inputs{1}
+            output: Equivalent to outputs{2}
+ 
+            <a href="matlab:doc nnproperty.net_inputs">inputs</a>: {1x1 cell array of 1 input}
+            <a href="matlab:doc nnproperty.net_layers">layers</a>: {2x1 cell array of 2 layers}
+           <a href="matlab:doc nnproperty.net_outputs">outputs</a>: {1x2 cell array of 1 output}
+            <a href="matlab:doc nnproperty.net_biases">biases</a>: {2x1 cell array of 2 biases}
+      <a href="matlab:doc nnproperty.net_inputWeights">inputWeights</a>: {2x1 cell array of 1 weight}
+      <a href="matlab:doc nnproperty.net_layerWeights">layerWeights</a>: {2x2 cell array of 1 weight}
+ 
+    functions:
+ 
+          <a href="matlab:doc nnproperty.net_adaptFcn">adaptFcn</a>: '<a href="matlab:doc adaptwb">adaptwb</a>'
+        <a href="matlab:doc nnproperty.net_adaptParam">adaptParam</a>: (none)
+          <a href="matlab:doc nnproperty.net_derivFcn">derivFcn</a>: '<a href="matlab:doc defaultderiv">defaultderiv</a>'
+         <a href="matlab:doc nnproperty.net_divideFcn">divideFcn</a>: '<a href="matlab:doc dividetrain">dividetrain</a>'
+       <a href="matlab:doc nnproperty.net_divideParam">divideParam</a>: (none)
+        <a href="matlab:doc nnproperty.net_divideMode">divideMode</a>: 'time'
+           <a href="matlab:doc nnproperty.net_initFcn">initFcn</a>: '<a href="matlab:doc initlay">initlay</a>'
+        <a href="matlab:doc nnproperty.net_performFcn">performFcn</a>: '<a href="matlab:doc mse">mse</a>'
+      <a href="matlab:doc nnproperty.net_performParam">performParam</a>: .<a href="matlab:doc nnparam.regularization">regularization</a>, .<a href="matlab:doc nnparam.normalization">normalization</a>
+          <a href="matlab:doc nnproperty.net_plotFcns">plotFcns</a>: {'<a href="matlab:doc plotperform">plotperform</a>', <a href="matlab:doc plottrainstate">plottrainstate</a>, <a href="matlab:doc ploterrhist">ploterrhist</a>,
+                    <a href="matlab:doc plotregression">plotregression</a>, <a href="matlab:doc plotresponse">plotresponse</a>, <a href="matlab:doc ploterrcorr">ploterrcorr</a>,
+                    <a href="matlab:doc plotinerrcorr">plotinerrcorr</a>}
+        <a href="matlab:doc nnproperty.net_plotParams">plotParams</a>: {1x7 cell array of 7 params}
+          <a href="matlab:doc nnproperty.net_trainFcn">trainFcn</a>: '<a href="matlab:doc trainlm">trainlm</a>'
+        <a href="matlab:doc nnproperty.net_trainParam">trainParam</a>: .<a href="matlab:doc nnparam.showWindow">showWindow</a>, .<a href="matlab:doc nnparam.showCommandLine">showCommandLine</a>, .<a href="matlab:doc nnparam.show">show</a>, .<a href="matlab:doc nnparam.epochs">epochs</a>,
+                    .<a href="matlab:doc nnparam.time">time</a>, .<a href="matlab:doc nnparam.goal">goal</a>, .<a href="matlab:doc nnparam.min_grad">min_grad</a>, .<a href="matlab:doc nnparam.max_fail">max_fail</a>, .<a href="matlab:doc nnparam.mu">mu</a>, .<a href="matlab:doc nnparam.mu_dec">mu_dec</a>,
+                    .<a href="matlab:doc nnparam.mu_inc">mu_inc</a>, .<a href="matlab:doc nnparam.mu_max">mu_max</a>
+ 
+    weight and bias values:
+ 
+                <a href="matlab:doc nnproperty.net_IW">IW</a>: {2x1 cell} containing 1 input weight matrix
+                <a href="matlab:doc nnproperty.net_LW">LW</a>: {2x2 cell} containing 1 layer weight matrix
+                 <a href="matlab:doc nnproperty.net_b">b</a>: {2x1 cell} containing 2 bias vectors
+ 
+    methods:
+ 
+             <a href="matlab:doc nnet/adapt">adapt</a>: Learn while in continuous use
+         <a href="matlab:doc nnet/configure">configure</a>: Configure inputs & outputs
+            <a href="matlab:doc nnet/gensim">gensim</a>: Generate Simulink model
+              <a href="matlab:doc nnet/init">init</a>: Initialize weights & biases
+           <a href="matlab:doc nnet/perform">perform</a>: Calculate performance
+               <a href="matlab:doc nnet/sim">sim</a>: Evaluate network outputs given inputs
+             <a href="matlab:doc nnet/train">train</a>: Train network with examples
+              <a href="matlab:doc nnet/view">view</a>: View diagram
+       <a href="matlab:doc nnet/unconfigure">unconfigure</a>: Unconfigure inputs & outputs
+ 
+    evaluate:       [outputs,inputStates] = ans(inputs,inputStates)
+ 
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% hit local minimum at error of 0.414
+td_net = tdnet(12);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+td_net = tdnet(12);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+td_net = tdnet(12);
+[td_net, td_tr] = train(td_net, Xs, Ts, Xi);
+% final error this time is 0.00329. It looks like it's possible to do better, but not easy
+save 'td_net'
+clear
+load trainingdata
+diary off
+narx_net = narx(10); % start with 10
+[Xs, Xi, Ai, Ts] = preparets(narx_net, X, {}, Y);
+narx_net = train(narx_net, Xs, Ts, Xi);
+% now try smaller numbers of neurons, starting with 1
+narx_net = narx(1);
+narx_net = train(narx_net, Xs, Ts, Xi);
+% even with 1 neuron the training quickly stopped at a minimum gradient
+narx_net = narx(2);
+narx_net = train(narx_net, Xs, Ts, Xi);
+% a similar result occured with 2
+narx_net = narx(3);
+narx_net = train(narx_net, Xs, Ts, Xi);
+% same with 3
+narx_net = narx(4);
+narx_net = train(narx_net, Xs, Ts, Xi);
+% 4 neurons was sufficient to train the network
+% now to test closed loop performance
+closed_narx = closeloop(narx_net);
+diary off
+plotresponse(Ts, closed_narx(Xs));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+plotresponse(closed_narx, Ts, closed_narx(Xs));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+plotresponse(Ts, closed_narx(Xs, Xi));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+diary off
+view(closed_narx);
+[cXs, cXi, cAi, cTs] = preparets(closed_narx, X, {}, Y);
+plotresponse(cTs, closed_narx(cXs, cXi));
+view(closed_narx);
+view(closed_narx);
+narx_net = narx(10);
+view(narx_net)
+[Xs, Xi, Ai, Ts] = preparets(narx_net, X, {}, Y);
+narx_net = train(narx_net, Xs, Ts, Xi);
+view(narx_net)
+narx_net = narx(10);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('narxnet', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m', 114)" style="font-weight:bold">narxnet</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m',114,0)">line 114</a>)
+Minimum feedbackDelay is zero causing a zero-delay loop.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nnfcnInfo/overrideStructure', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnutils\nnfcnInfo.m', 119)" style="font-weight:bold">nnfcnInfo/overrideStructure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnutils\nnfcnInfo.m',119,0)">line 119</a>)
+        err = feval(x.mfunction,'check_param',s);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('narxnet', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m', 133)" style="font-weight:bold">narxnet</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m',133,0)">line 133</a>)
+    [param,err] = INFO.overrideStructure(param,args);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('narx', 'C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\narx.m', 4)" style="font-weight:bold">narx</a> (<a href="matlab: opentoline('C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\narx.m',4,0)">line 4</a>)
+net = narxnet([0], [0], neurons);
+} 
+narx_net = narx(10);
+view(narx_net);
+[Xs, Xi, Ai, Ts] = preparets(narx_net, X, {}, Y);
+narx_net = train(narx_net, Xs, Ts, Xi);
+view(narx_net)
+narx_net = narx(10);
+[Xs, Xi, Ai, Ts] = preparets(narx_net, X, {}, Y);
+narx_net = train(narx_net, Xs, Ts, Xi);
+clear
+load trainingdata
+diary on
+net = tdnet(10);
+[Xs, Xi, Ai, Ts, EWs, shift] = preparets(net, num2cell(x), num2cell(x));
+% now we have a training data set to try and predict the next input
+[net, tr] = train(net, Xs, Ts, Xi);
+% 10 neurons: error 0.077
+net = tdnet(10);
+[net, tr] = train(net, Xs, Ts, Xi);
+net = tdnet(10);
+[net, tr] = train(net, Xs, Ts, Xi);
+% must increase number of neurons
+net = tdnet(20);
+[net, tr] = train(net, Xs, Ts, Xi);
+% better, (error ~0.041)
+net = tdnet(100);
+[net, tr] = train(net, Xs, Ts, Xi);
+% no surprise, we are overfitting here
+net = tdnet(50);
+[net, tr] = train(net, Xs, Ts, Xi);
+% 50 is better ,still overfitting
+net = tdnet(35);
+[net, tr] = train(net, Xs, Ts, Xi);
+net = tdnet(35);
+[net, tr] = train(net, Xs, Ts, Xi);
+% 35 does not get us there
+net = tdnet(42);
+[net, tr] = train(net, Xs, Ts, Xi);
+% 42 has a nice ring to it, but let's keep searching (training goal met)
+net = tdnet(39);
+[net, tr] = train(net, Xs, Ts, Xi);
+% after 906 iterations, 39 was enough
+net = tdnet(37);
+[net, tr] = train(net, Xs, Ts, Xi);
+% 37 was enough also. Let's try 35 again
+net = tdnet(35);
+[net, tr] = train(net, Xs, Ts, Xi);
+net = tdnet(35);
+[net, tr] = train(net, Xs, Ts, Xi);
+net = tdnet(35);
+[net, tr] = train(net, Xs, Ts, Xi);
+% can't get there with 35
+net = tdnet(36);
+[net, tr] = train(net, Xs, Ts, Xi);
+% looks like 36 is the winner
+save td_net
+clear
+load trainingdata.mat
+net = narx(10);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% 10 not enough. Let's go straight to 36
+net = narx(36);
+net = train(net, Xs, Ts, Xi);
+% closer but no. Bound at 100
+net = narx(100);
+net = train(net, Xs, Ts, Xi);
+% Got pretty close (~0.004)
+net = narx(100);
+net = train(net, Xs, Ts, Xi);
+net = narx(200);
+net = train(net, Xs, Ts, Xi);
+net = narx(500);
+net = train(net, Xs, Ts, Xi);
+net([1])
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+net([1],[1])
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+net.numInputs
+
+ans =
+
+     2
+
+net([1,2])
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+net(1,2)
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+net([[1],[1]])
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/sim', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p', 266)" style="font-weight:bold">network/sim</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\sim.p',266,0)">line 266</a>)
+Number of inputs does not match net.numInputs.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('network/subsref', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m', 15)" style="font-weight:bold">network/subsref</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\@network\subsref.m',15,0)">line 15</a>)
+     otherwise, v = sim(vin,subs{:});
+} 
+Xi
+
+Xi =
+
+  2×1 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    [0.1656]
+    [0.1656]
+
+view(net)
+net([[1];[1]])
+
+ans =
+
+   -0.9582
+
+% somehow, 500 neurons finally reached the goal
+% let's cheat now, and assume that "no delayed inputs" means non-recursive inputs
+net = narx(10);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% this network EASILY reached the training goal. Let's shrink our hidden layer to 4
+net = narx(10);
+net = narx(4);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% again, this very quickly reached the training goal
+% now try shrinking the recursive inputs
+% (this was done in the narx.m file)
+net = narx(4);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% in this case we hit a minimum gradient with an error of 0.006
+net = narx(10);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% 10 neurons converged nicely, in about 10 epochs in this case
+net = narx(7);
+net = train(net, Xs, Ts, Xi);
+net = narx(5);
+net = train(net, Xs, Ts, Xi);
+net = narx(5);
+net = train(net, Xs, Ts, Xi);
+net = narx(5);
+net = train(net, Xs, Ts, Xi);
+% apparently 5 is not enough
+net = narx(6);
+net = train(net, Xs, Ts, Xi);
+% 6 got to an error of 0.00301!
+net = narx(6);
+net = train(net, Xs, Ts, Xi);
+net = narx(6);
+net = train(net, Xs, Ts, Xi);
+net = narx(6);
+net = train(net, Xs, Ts, Xi);
+net = narx(7);
+net = train(net, Xs, Ts, Xi);
+net = narx(7);
+net = train(net, Xs, Ts, Xi);
+net = narx(7);
+net = train(net, Xs, Ts, Xi);
+% it looks like 7 is the minimum necessary with 2 delayed recursive inputs
+net_closed = closeloop(net);
+[Xs, Xi, Ai, Ts] = preparets(net_closed, con2seq(x), {}, con2seq(x));
+net_closed = train(net_closed, Xs, Ts, Xi);
+net_closed = train(net_closed, Xs, Ts, Xi);
+net = narx(350);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net_closed = train(net, Xs, Ts, Xi);
+net = narx(450);
+net_closed = train(net, Xs, Ts, Xi);
+% 450 just barely made it (580 epochs)
+% reworking architecture
+net = narx(10);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% well that worked quickly
+net = narx(10);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('narxnet', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m', 114)" style="font-weight:bold">narxnet</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m',114,0)">line 114</a>)
+Minimum feedbackDelay is zero causing a zero-delay loop.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nnfcnInfo/overrideStructure', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnutils\nnfcnInfo.m', 119)" style="font-weight:bold">nnfcnInfo/overrideStructure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnutils\nnfcnInfo.m',119,0)">line 119</a>)
+        err = feval(x.mfunction,'check_param',s);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('narxnet', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m', 133)" style="font-weight:bold">narxnet</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\narxnet.m',133,0)">line 133</a>)
+    [param,err] = INFO.overrideStructure(param,args);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('narx', 'C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\narx.m', 4)" style="font-weight:bold">narx</a> (<a href="matlab: opentoline('C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\narx.m',4,0)">line 4</a>)
+net = narxnet([0], [0], neurons);
+} 
+net = narx(4);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+net = narx(1);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+net = train(net, Xs, Ts, Xi);
+% in spite of being theoretically similar to the 1-delay time-delay network it way outperforms!
+net_closed = closeloop(net)
+
+net_closed =
+
+    Neural Network
+ 
+              <a href="matlab:doc nnproperty.net_name">name</a>: 'NARX Neural Network'
+          <a href="matlab:doc nnproperty.net_userdata">userdata</a>: (your custom info)
+ 
+    dimensions:
+ 
+         <a href="matlab:doc nnproperty.net_numInputs">numInputs</a>: 1
+         <a href="matlab:doc nnproperty.net_numLayers">numLayers</a>: 2
+        <a href="matlab:doc nnproperty.net_numOutputs">numOutputs</a>: 1
+    <a href="matlab:doc nnproperty.net_numInputDelays">numInputDelays</a>: 0
+    <a href="matlab:doc nnproperty.net_numLayerDelays">numLayerDelays</a>: 1
+ <a href="matlab:doc nnproperty.net_numFeedbackDelays">numFeedbackDelays</a>: 1
+ <a href="matlab:doc nnproperty.net_numWeightElements">numWeightElements</a>: 5
+        <a href="matlab:doc nnproperty.net_sampleTime">sampleTime</a>: 1
+ 
+    connections:
+ 
+       <a href="matlab:doc nnproperty.net_biasConnect">biasConnect</a>: [1; 1]
+      <a href="matlab:doc nnproperty.net_inputConnect">inputConnect</a>: [1; 0]
+      <a href="matlab:doc nnproperty.net_layerConnect">layerConnect</a>: [0 1; 1 0]
+     <a href="matlab:doc nnproperty.net_outputConnect">outputConnect</a>: [0 1]
+ 
+    subobjects:
+ 
+             input: Equivalent to inputs{1}
+            output: Equivalent to outputs{2}
+ 
+            <a href="matlab:doc nnproperty.net_inputs">inputs</a>: {1x1 cell array of 1 input}
+            <a href="matlab:doc nnproperty.net_layers">layers</a>: {2x1 cell array of 2 layers}
+           <a href="matlab:doc nnproperty.net_outputs">outputs</a>: {1x2 cell array of 1 output}
+            <a href="matlab:doc nnproperty.net_biases">biases</a>: {2x1 cell array of 2 biases}
+      <a href="matlab:doc nnproperty.net_inputWeights">inputWeights</a>: {2x1 cell array of 1 weight}
+      <a href="matlab:doc nnproperty.net_layerWeights">layerWeights</a>: {2x2 cell array of 2 weights}
+ 
+    functions:
+ 
+          <a href="matlab:doc nnproperty.net_adaptFcn">adaptFcn</a>: '<a href="matlab:doc adaptwb">adaptwb</a>'
+        <a href="matlab:doc nnproperty.net_adaptParam">adaptParam</a>: (none)
+          <a href="matlab:doc nnproperty.net_derivFcn">derivFcn</a>: '<a href="matlab:doc defaultderiv">defaultderiv</a>'
+         <a href="matlab:doc nnproperty.net_divideFcn">divideFcn</a>: '<a href="matlab:doc dividetrain">dividetrain</a>'
+       <a href="matlab:doc nnproperty.net_divideParam">divideParam</a>: (none)
+        <a href="matlab:doc nnproperty.net_divideMode">divideMode</a>: 'time'
+           <a href="matlab:doc nnproperty.net_initFcn">initFcn</a>: '<a href="matlab:doc initlay">initlay</a>'
+        <a href="matlab:doc nnproperty.net_performFcn">performFcn</a>: '<a href="matlab:doc mse">mse</a>'
+      <a href="matlab:doc nnproperty.net_performParam">performParam</a>: .<a href="matlab:doc nnparam.regularization">regularization</a>, .<a href="matlab:doc nnparam.normalization">normalization</a>
+          <a href="matlab:doc nnproperty.net_plotFcns">plotFcns</a>: {'<a href="matlab:doc plotperform">plotperform</a>', <a href="matlab:doc plottrainstate">plottrainstate</a>, <a href="matlab:doc ploterrhist">ploterrhist</a>,
+                    <a href="matlab:doc plotregression">plotregression</a>, <a href="matlab:doc plotresponse">plotresponse</a>, <a href="matlab:doc ploterrcorr">ploterrcorr</a>,
+                    <a href="matlab:doc plotinerrcorr">plotinerrcorr</a>}
+        <a href="matlab:doc nnproperty.net_plotParams">plotParams</a>: {1x7 cell array of 7 params}
+          <a href="matlab:doc nnproperty.net_trainFcn">trainFcn</a>: '<a href="matlab:doc trainlm">trainlm</a>'
+        <a href="matlab:doc nnproperty.net_trainParam">trainParam</a>: .<a href="matlab:doc nnparam.showWindow">showWindow</a>, .<a href="matlab:doc nnparam.showCommandLine">showCommandLine</a>, .<a href="matlab:doc nnparam.show">show</a>, .<a href="matlab:doc nnparam.epochs">epochs</a>,
+                    .<a href="matlab:doc nnparam.time">time</a>, .<a href="matlab:doc nnparam.goal">goal</a>, .<a href="matlab:doc nnparam.min_grad">min_grad</a>, .<a href="matlab:doc nnparam.max_fail">max_fail</a>, .<a href="matlab:doc nnparam.mu">mu</a>, .<a href="matlab:doc nnparam.mu_dec">mu_dec</a>,
+                    .<a href="matlab:doc nnparam.mu_inc">mu_inc</a>, .<a href="matlab:doc nnparam.mu_max">mu_max</a>
+ 
+    weight and bias values:
+ 
+                <a href="matlab:doc nnproperty.net_IW">IW</a>: {2x1 cell} containing 1 input weight matrix
+                <a href="matlab:doc nnproperty.net_LW">LW</a>: {2x2 cell} containing 2 layer weight matrices
+                 <a href="matlab:doc nnproperty.net_b">b</a>: {2x1 cell} containing 2 bias vectors
+ 
+    methods:
+ 
+             <a href="matlab:doc nnet/adapt">adapt</a>: Learn while in continuous use
+         <a href="matlab:doc nnet/configure">configure</a>: Configure inputs & outputs
+            <a href="matlab:doc nnet/gensim">gensim</a>: Generate Simulink model
+              <a href="matlab:doc nnet/init">init</a>: Initialize weights & biases
+           <a href="matlab:doc nnet/perform">perform</a>: Calculate performance
+               <a href="matlab:doc nnet/sim">sim</a>: Evaluate network outputs given inputs
+             <a href="matlab:doc nnet/train">train</a>: Train network with examples
+              <a href="matlab:doc nnet/view">view</a>: View diagram
+       <a href="matlab:doc nnet/unconfigure">unconfigure</a>: Unconfigure inputs & outputs
+ 
+    evaluate:       [outputs,ignore,layerStates] = net_closed(inputs,{},layerStates)
+ 
+[Xs, Xi, Ai, Ts] = preparets(net_closed, con2seq(x), {}, con2seq(x));
+net_closed = train(net_closed, Xs, Ts, Xi);
+clear
+load trainingdata.mat
+%let
+%us try 1 hidden neuron!
+net = elman(1);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('elmannet', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\elmannet.m', 75)" style="font-weight:bold">elmannet</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\elmannet.m',75,0)">line 75</a>)
+FCN is not char.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('elman', 'C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\elman.m', 4)" style="font-weight:bold">elman</a> (<a href="matlab: opentoline('C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\elman.m',4,0)">line 4</a>)
+net = elmannet([0], [1], neurons);
+} 
+net = elman_net(1);
+{Undefined function or variable 'elman_net'.
+} 
+net = elman_net(1);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('elmannet', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\elmannet.m', 75)" style="font-weight:bold">elmannet</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nnnetwork\elmannet.m',75,0)">line 75</a>)
+FCN is not char.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('elman_net', 'C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\elman_net.m', 4)" style="font-weight:bold">elman_net</a> (<a href="matlab: opentoline('C:\Users\jrpl\Documents\GitHub\nucnotes\ne697neuralnetworks\hw05\elman_net.m',4,0)">line 4</a>)
+net = elmannet([0], [1], neurons);
+} 
+net = elman_net(1);
+[Xs, Xi, Ai, Ts] = preparets(net_closed, con2seq(x), {}, con2seq(x));
+{Undefined function or variable 'net_closed'.
+} 
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('preparets', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m', 170)" style="font-weight:bold">preparets</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m',170,0)">line 170</a>)
+Number of feedback signals not equal to all feedback (0) or open feedback (0) outputs.
+} 
+net = elman_net(1);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('preparets', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m', 170)" style="font-weight:bold">preparets</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m',170,0)">line 170</a>)
+Number of feedback signals not equal to all feedback (0) or open feedback (0) outputs.
+} 
+net = elman_net(1);
+[Xs, Xi, Ai, Ts] = prepare
