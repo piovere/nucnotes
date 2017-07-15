@@ -564,4 +564,37 @@ net = elman_net(1);
 Number of feedback signals not equal to all feedback (0) or open feedback (0) outputs.
 } 
 net = elman_net(1);
-[Xs, Xi, Ai, Ts] = prepare
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('preparets', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m', 170)" style="font-weight:bold">preparets</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m',170,0)">line 170</a>)
+Number of feedback signals not equal to all feedback (0) or open feedback (0) outputs.
+} 
+net = elman_net(1);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('preparets', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m', 170)" style="font-weight:bold">preparets</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m',170,0)">line 170</a>)
+Number of feedback signals not equal to all feedback (0) or open feedback (0) outputs.
+} 
+net = elman_net(1);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), {}, con2seq(x));
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('preparets', 'C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m', 170)" style="font-weight:bold">preparets</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2017a\toolbox\nnet\nnet\nndatafun\preparets.m',170,0)">line 170</a>)
+Number of feedback signals not equal to all feedback (0) or open feedback (0) outputs.
+} 
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), con2seq(x));
+net = train(net, Xs, Ts, Xi, Ai);
+view(net);
+net = elman_net(1);
+view(net);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), con2seq(x));
+view(net);
+net = train(net, Xs, Ts, Xi, Ai);
+view(net)
+net = elman_net(1);
+[Xs, Xi, Ai, Ts] = preparets(net, con2seq(x), con2seq(x));
+net = train(net, Xs, Ts, Xi, Ai);
+net = train(net, Xs, Ts, Xi, Ai);
+length(sin(t) + mean(noise))
+
+ans =
+
+   125
+
+view(net)
