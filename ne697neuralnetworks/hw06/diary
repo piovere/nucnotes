@@ -1,0 +1,8 @@
+fun = @(x,y) y*sin(4*x)+1.1*x*sin(2*y);
+fun(3,3)
+
+ans =
+
+   -2.5318
+
+diary off
