@@ -1,4 +1,4 @@
-function [er] = ridge_mse(lambdas,xn,yn,xt,yt) 
+function [er] = ridge_mse(lambdas) 
 %
 %   [yq] = ridge_mse(lambdas,xn,yn,xt,yt)
 %   Local Ridge Regression Error Calculation.
@@ -17,11 +17,11 @@ function [er] = ridge_mse(lambdas,xn,yn,xt,yt)
 % University of Tennessee
 
 if length(lambdas)==1;
-    lambdas=lambdas*ones(1,size(xn,2));  % allow for single ridge parameter
+    lambdas=lambdas*ones(1,size(x_test,2));  % allow for single ridge parameter
 end   
-    
-beta=inv(xn'*xn+diag(lambdas.^2))*xn'*yn;
-yp=xt*beta;
-er=mean(sumsqr(yp-yt)/length(yt)); 
+
+beta=inv(x_train'*x_train+diag(lambdas.^2))*x_train'*y_train;
+yp=x_test*beta;
+er=mean(sumsqr(yp-y_test)/length(y_test)); 
 
  

@@ -101,7 +101,7 @@ s = svd(xs)  % singular values of the standardized data
 % First, we'll do an L-curve method to find our optimal alpha
 
 alpha = logspace(-1,2,100);
-RMSE = nan(size(alpha)); % Mean squared error for each alpha
+RMSE = 	(size(alpha)); % Mean squared error for each alpha
 normB = nan(size(alpha)); % size the regression coefficients for each alpha
 cond_num = nan(size(alpha));
 
