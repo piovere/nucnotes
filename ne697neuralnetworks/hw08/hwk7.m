@@ -2,8 +2,8 @@ clear
 close all
 clc
 
-addpath /Users/jamiecoble/'Google Drive'/Documents/Classes/'NE 697'/2017/'NE 671_GA'/mfiles/data/
-addpath /Users/jamiecoble/'Google Drive'/Documents/Classes/'NE 697'/2017/'NE 671_GA'/'Conventional Optimization Examples'/'multivariate ridge'/
+% addpath /Users/jamiecoble/'Google Drive'/Documents/Classes/'NE 697'/2017/'NE 671_GA'/mfiles/data/
+% addpath /Users/jamiecoble/'Google Drive'/Documents/Classes/'NE 697'/2017/'NE 671_GA'/'Conventional Optimization Examples'/'multivariate ridge'/
 
 load sim.mat
 %%
@@ -55,14 +55,6 @@ for ii = 1:numel(alpha)
     cond_num(ii) = max(e)/min(e);
 end
 
-figure; semilogx(alpha,RMSE_train)
-hold all
-semilogx(alpha,RMSE_test)
-legend('Training','Test','location','best')
-xlabel('\alpha')
-ylabel('RMSE (s)')
-title('RMSE of Test Data')
-
 ind = find(RMSE_test == min(RMSE_test));
 a_CV = alpha(ind)
 RMSE_min = RMSE_test(ind)
@@ -82,6 +74,7 @@ ypLR = xsV*BLR;
 ypLR = unscore(ypLR,y_m,y_std);
 RMSE_linReg = sqrt(mean((ypLR-y_val).^2))
 
+% Plot number 3
 f = figure; 
 plot(y_val,'k.')
 hold all
@@ -89,6 +82,7 @@ plot(ypCV,'r-s')
 plot(ypLR,'g')
 xlabel('Observation')
 ylabel('Output')
+title('Plot number 3')
 legend('Actual','CV-method','Linear Regression','location','best')
 
 %% What if we use optimization methods? %%
@@ -201,32 +195,15 @@ hold on
 plot(ff_local2,'s-')
 legend('Correlation to output','Local Filter Factor','location','best')
 
-%% Using multistart to search the space %%
-
-x0 = (max(s)-min(s))*rand(size(xs,2),1)+min(s); % randomly generate regularization parameters in the range of the singular values
-ms = MultiStart;
-problem = createOptimProblem('fminunc','objective',@(x)ridge_mse(x,xs,ys,xsT,zscore1(y_test,y_m,y_std)),'x0',x0,'options',options);
-
-[a_local3,fval,exitflag,output] = run(ms,problem,50)
-
 %%
-B_opt4 = (xs'*xs+diag(a_local3.^2))\(xs'*ys);
-yp_opt4 = xsV*B_opt2;
-yp_opt4 = unscore(yp_opt4,y_m,y_std);
-RMSE_opt4 = sqrt(mean((yp_opt4-y_val).^2))
 
 figure(f)
-plot(yp_opt4,'r')
 legend('Actual','CV-method','Linear Regression','Ridge Reg - opt','Local Ridge Reg','Local Ridge 2','Local Ridge 3','location','best')
 
 RMSE_linReg
 RMSE_CV
 RMSE_opt
 RMSE_opt2
-RMSE_opt3
-RMSE_opt4
-
-ff_local3 = s.^2./(s.^2 + a_local3.^2);
 
 figure;
 plot(abs(cc(end,1:end-1)),'o-')

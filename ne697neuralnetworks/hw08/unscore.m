@@ -3,7 +3,7 @@ function d = unscore( scaled, means, stddevs )
 %   Restores data that was scaled for machine learning
 
 % Initialize result matrix
-d = ones(size(scaled));
+d = nan(size(scaled));
 
 % Find out how many columns in d
 c = size(d);
