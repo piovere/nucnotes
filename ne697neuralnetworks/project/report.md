@@ -39,13 +39,13 @@ was ablated with a benchtop LIBS instrument at 20 different sites on the
 surface of the bead, with a 11,725 channel spectrum collected from each site. 
 This produced a dataset of 220 records of 11,725 values. These records were 
 segmented into 154 training and 66 validation sets. The validation sets were 
-selected by randomly selected 6 records generated from each of the 11 samples 
-in order to ensure that the validation set was representative. Each of the 
-records was matched to two different output tags--one representing which 
-analyte was added to the sample (or none), the other with the mass of each 
-chemical constituent of the sample. The records were normalized to scale each 
-of the input records in the range $\left[0,1\right]$, while the output values 
-were converted into one-hot vectors (for the classification network) and 13 
+selected by randomly choosing 6 records from each of the 11 samples in order 
+to ensure that the validation set was representative. Each of the records was 
+matched to two different output tags--one representing which analyte was 
+added to the sample (or none), the other with the mass of each chemical 
+constituent of the sample. The records were normalized to scale each of the 
+input records in the range $\left[0,1\right]$, while the output values were 
+converted into one-hot vectors (for the classification network) and 13 
 element vectors with each value in the range range $\left[0,1\right]$ (one 
 value for each of the 10 analytes plus 3 for the base recipe). 
 
@@ -69,3 +69,6 @@ the optimal width for the neurons,
 ## Future work
 
 - Per-neuron width?
+- Convolutional layers
+- Normalized output
+- Multi-class classification/confidence
