@@ -1,0 +1,72 @@
+\documentclass{hw}
+\usepackage[version=4]{mhchem}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage[load=addn]{siunitx}
+\usepackage{nuc}
+
+\author{J.R. Powers-Luhn}
+\date{2017/09/19}
+\title{Homework \#3}
+
+\begin{document}
+
+% \maketitle
+
+\problem{}
+	Estimate how close an $\ce{H_3O+}$ ion and a hydrated electron must be to interact
+\solution
+	\begin{align*} 
+        R_e &= \SI{2.1}{\angstrom} \\
+        R_\ce{H_3O+} &= \SI{0.3}{\angstrom} \\
+        R_{rxn} &= R_e + R_\ce{H_3O+} \\
+        &= \SI{2.4}{\angstrom}
+    \end{align*}
+
+\problem{}
+    A \SI{50}{\centi\meter^3} sample of water is given a dose of \SI{50}{\milli\gray} 
+    from \SI{10}{\kilo\electronvolt} electrons. If the yield of \ce{H_2O_2} is 
+    $G = 1.81$ per \SI{100}{\electronvolt}, how many molecules of \ce{H_2O_2} are 
+    produced in the sample?
+\solution
+    \begin{align*}
+        \frac{
+            \SI{50}{\joule}
+        }{
+            \SI{1e3}{\kilo\gram}
+        } \times 
+        \SI{50}{\centi\meter^3}
+         \times 
+        \frac{
+            \SI{1}{\gram} \ce{H_2O}
+        }{
+            \SI{1}{cm^3} \ce{H_2O}
+        }
+         \times 
+        \frac{
+            \SI{1}{\kilo\gram}
+        }{
+            \SI{1e3}{\gram}
+        }
+         \times 
+        \frac{
+            \SI{1}{\electronvolt}
+        }{
+            \SI{1.6e-19}{\joule}
+        } \\
+        =\num{2.82e14}
+    \end{align*}
+
+\problem{}
+    During the chemical stage of radiolysis of water, what is the only chemical reaction to add reactivity to the system?
+\solution
+    \begin{align*}
+        \ce{H_3O^+} + \ce{e^-_{aq}} \rightarrow \ce{H_2O} + \ce{\bullet H}
+    \end{align*}
+
+\problem{}
+    During what phase of the cell cycle is the genetic material replicated?
+\solution
+    Interphase
+
+\end{document}
