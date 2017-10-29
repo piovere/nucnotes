@@ -1,0 +1,81 @@
+\documentclass{hw}
+\usepackage[version=4]{mhchem}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage[load=addn]{siunitx}
+\usepackage{nuc}
+\usepackage{hyperref}
+
+\author{J.R. Powers-Luhn}
+\date{2017/10/24}
+\title{Homework \#4}
+
+\begin{document}
+
+% \maketitle
+
+\problem{}
+Procedure necessary to grow cell culture in a Petri dish.
+
+\solution
+This requires a culture of synchronized cells in multiple samples to remove the effect of the cell cycle on radiosensitivity. I would choose an appropriate type of cell (one which grows in a monolayer). Then I would wait until those cells are close to mitosis to enable mitotic shake-off, possibly enhanced by enzyme trypsin. A gentle shaking would free the cells from the surface, enabling the transfer of the cells and medium to other petri discs. Alternatively, a drug could be used to stop the cells from departing from G1.
+
+After this I would put it into an aseptic dish with an appropriate growth medium.
+
+\problem{}
+Definition of cell survival, i.e. how will you determine if a particular cell survives the radiation dose to which it is exposed?
+
+\solution
+I would apply a stain. Living cells will take up the dye; dead cells will not. After the dye is removed from the solution, the living cells will be a different color from the dead cells. The number of living cells could then be counted via an electronic counter.
+
+\problem{}
+Procedure for accounting for cell death due to experiment conditions, i.e. how would you control for cell death not attributed to radiation exposure but rather experiment conditions.
+
+\solution
+I would plate a control group which would not be exposed to radiation. They would be synchronized with the other cultures. Care would be taken that this culture had sufficient population to provide reliable statistics.
+
+\problem{}
+Suppose your experiment budget allows for the measurement of only five Petri dish cultures. Using the D0 doses for cell lines we have discussed in class as a guide, what five radiation doses would you select to produce your curve. Please give a short justification for this decision.
+
+\solution
+Of the five, one would be a control (and receive 0 dose). For the remaining four, I would try to select values to optimize the measurement of D1 (slope of the low-dose portion of the survival curve on a log plot) and D0 (for the high-dose portion of the survival curve on a log plot).
+
+\problem{}
+Procedure for determining how many cells to seed in each Petri dish.
+
+\solution
+I would seed a number of cells that allowed for good counting statistics while not too many that counting the population became impossible. This number would have to account for plating efficiency, as seeding 100 cells may only result in 50-70 colonies formed.
+
+$$
+\text{Plating Efficiency}=\frac{\text{Colonies observed}}{\text{Number of cells plated}}
+$$
+
+\problem{}
+Method for determining how many cells in each Petri dish survive radiation dose.
+
+\solution
+Determining how many cells survive could be measured via Hemocytometer or Electro-optical counting.
+
+$$
+    \text{Survival efficiency} = \frac{\text{Colonies counted}}{\text{Cells seeded} \times \left(PE/100\right)}
+$$
+
+\problem{}
+Hypothesis the shape of your measured survival curve if the cell line was a human sperm cell (i.e. shoulder or no shoulder). What values would you hypothesis for the value of D0 and n the extrapolation number the human sperm cell line?
+
+\solution
+The human sperm cell has a high reproduction rate, which means that it is more vulnerable to low doses of radiation. Therefore I would not expect there to be a shoulder on this curve. I would expect the D0 value to be fairly low, and the extrapolation number to be around 1.
+
+\problem{}
+Hypothesis the shapes of your measured survival curve if the cell line was a human melanoma (i.e. shoulder or no shoulder). What values would you hypothesis for the value of D0 and n the extrapolation number the melanoma cell line?
+
+\solution
+From Strojan, 2010\footnote{\url{https://openi.nlm.nih.gov/detailedresult.php?img=PMC3423668_rado-44-01-01f1&req=4}}, Melanoma cells are resistant to a wide variety of radiation and able to repair themselves. I would therefore expect a significant shulder in the cell survival curve and a high extrapolation number. D0 would also be higher than the \SI{1.5}{\gray}.
+
+\problem{}
+Procedure for accounting for cell cycle effects. As we discussed in class the cell cycle can greatly affect cell radiosensitivity. Describe a method for synchronizing the phase of cycle for cells in culture.
+
+\solution
+I would synchronize the cell cycle by applying a drug that would prevent cells from leaving the G1 portion of the cell cycle until all cells were at the same point. After that I would introduce the counteracting drug, allowing all the cells to proceed.
+
+\end{document}
