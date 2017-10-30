@@ -1,0 +1,38 @@
+% 3.21
+x1 = [1; -1; 2; 4];
+x2 = [-2; 5; 6; 9];
+x3 = [1; 2; 0; -3];
+x4 = [4; -2; -4; -7];
+diary off
+proj = inline('a''*b / (b''*b) * b', 'a', 'b')
+
+proj =
+
+     Inline function:
+     proj(a,b) = a'*b / (b'*b) * b
+
+e1 = x1 / norm(x1);
+u2 = x2 - proj(x2, e1);
+e2 = u2 / norm(u2);
+u3 = x3 - proj(x3, e1) - proj(x3, e2);
+e3 = u3 / norm(u3);
+u4 = x4 - proj(x4, e1) - proj(x4, e2) - proj(x4, e3);
+e4 = u4 / norm(u4);
+diary off
+E = [e1 e2 e3 e4]
+
+E =
+
+    0.2132   -0.4631    0.7728    0.3780
+   -0.2132    0.8228    0.3671    0.3780
+    0.4264    0.2724    0.4154   -0.7559
+    0.8528    0.1853   -0.3091    0.3780
+
+diary off
+norm(E)
+
+ans =
+
+    1.0000
+
+diary off
