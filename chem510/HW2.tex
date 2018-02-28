@@ -1,24 +1,23 @@
 \documentclass{hw}
 \usepackage{amsmath}
 \usepackage[load=addn]{siunitx}
-\usepackage{nuc}
 \usepackage[super]{nth}
 
-\sisetup{%
-    ,exponent-to-prefix = true
-    ,zero-decimal-to-integer
+\sisetup{
+    exponent-to-prefix = true,
+    zero-decimal-to-integer
 }
 
+\title{Homework \#2}
 \author{J.R. Powers-Luhn}
 \date{2018/03/02}
-\title{Homework \#2}
 
 \begin{document}
 
 % \maketitle
 
 \problem{}
-	We would like to take an asorption spectrum of a sample that we believe has its absorption maximum at \SI{200}{\nano\meter}. Which of the following materials should our cuvette be made of: borosilicate glass, polystyrene, or quartz? Explain why your choice is the best option.
+    We would like to take an asorption spectrum of a sample that we believe has its absorption maximum at \SI{200}{\nano\meter}. Which of the following materials should our cuvette be made of: borosilicate glass, polystyrene, or quartz? Explain why your choice is the best option.
 \solution
     In order to measure the absorption in our sample, we need to ensure that our cuvette does not absorb our signal. Borosilicate has a very low transmission fraction below \SI{300}{\nano\meter} or so, so it is a poor choice. Similarly, polystyrene has a strong, broad absorption peak at \SI{250}{\nano\meter}, making it unsuitable for this cuvette.
 
@@ -73,13 +72,30 @@
         \begin{align*}
             \frac{1}{f} &= \left( n - 1 \right) \left(\frac{1}{R_1} - \frac{1}{R_2} \right) \\
             &= \left(1.47 - 1 \right)\left( \frac{1}{\SI{1}{\centi\meter}} - \frac{-1}{\SI{0.5}{\centi\meter}} \right) \\
-            \frac{1}{f} &= \SI{0.47}{\per\centi\meter} \\
-            f &= \SI{2.13}{\centi\meter}
+            \frac{1}{f} &= \SI{1.41}{\per\centi\meter} \\
+            f &= \SI{7.09}{\milli\meter}
         \end{align*}
-        http://bcs.whfreeman.com/webpub/Ektron/FRKT%20College%20Physics%201e/Pocket%20Worked%20Examples/PWE%2024-3%20-%20Calculating%20Focal%20Length%20for%20a%20Convex%20Lens.pdf
     \part
+        \begin{align*}
+            \frac{1}{f} &= \frac{1}{s_1} + \frac{1}{s_2} \\
+            \frac{1}{s_2} &= \frac{1}{f} - \frac{1}{s_1} \\
+            s_2 &= \left( \frac{1}{\SI{7.09}{\milli\meter}} - \frac{1}{\SI{20}{\milli\meter}} \right)^{-1} \\
+            s_2 &= \SI{1.10}{\centi\meter}
+        \end{align*}
+        The image will be \SI{1.10}{\centi\meter} behind the lens.
     \part
+        \begin{align*}
+            f/\# &= \frac{f}{D} \\
+            &= \SI{7.09}{\milli\meter} / \SI{50.8}{\milli\meter} \\
+            &= \num{0.140}
+        \end{align*}
     \part
+        \begin{align*}
+            f/\# &\approx \frac{1}{2 N.A.} \\
+            N.A. &\approx \frac{1}{2 f/\#} \\
+            &\approx \left( 2 * \num{0.140} \right) \\
+            &\approx \num{3.58}
+        \end{align*}
 
 \problem{}
     What is the definition of an optical aberration? Also name the two types of optical aberrations.
