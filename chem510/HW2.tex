@@ -100,6 +100,11 @@
 \problem{}
     What is the definition of an optical aberration? Also name the two types of optical aberrations.
 \solution
+    An optical aberration is a deviation in the behavior of optical elements from the ideal. Two types are:
+    \begin{itemize}
+        \item chromatic: when broadband light is passed through an optical component, the different wavelengths follow different paths. This results in a spreading of the colors
+        \item monochromatic: aberration in the lens that affects monochromatic light. These result from non-ideally shaped lenses and include coma and astigmatism
+    \end{itemize}
 
 \problem{}
     A grating has a groove density of \num{3600} grooves per \si{\milli\meter}. If the incident beam strikes the grating at an angle of \ang{30},
@@ -111,6 +116,54 @@
         \item What is the free spectral range for the \nth{1} order at \SI{600}{\nano\meter}?
     \end{enumerate}
 \solution
+    \part
+        \begin{align*}
+            m \lambda &= d \left( \sin{\theta} + \sin{\phi} \right) \\
+            \phi &= \arcsin{\left( \frac{m \lambda}{d} - \sin{\theta} \right)} \\
+            &= \arcsin{
+                       \left(
+                           \frac{
+                               \SI{240}{\nano\meter}
+                            }{
+                                \SI{3600}{grooves\per\milli\meter}^{-1}
+                            } 
+                            - \sin{\ang{30}}
+                       \right) 
+            } \\
+            &= \arcsin{0.364} \\
+            &= \ang{21.3}
+        \end{align*}
+    \part
+        \begin{align*}
+            \phi &= \arcsin{
+                       \left(
+                           \frac{
+                               \SI{350}{\nano\meter}
+                            }{
+                                \SI{3600}{grooves\per\milli\meter}^{-1}
+                            } 
+                            - \sin{\ang{30}}
+                       \right) 
+            } \\
+            &= \ang{49.5}
+        \end{align*}
+    \part
+        To a point, longer wavelengths will be diffracted to larger angles in the first mode.
+    \part
+        \begin{align*}
+            \phi_2 &= \phi_1 \\
+            \arcsin{\left( \frac{m_2 \lambda_2}{d} - \sin{\theta} \right)} &= \arcsin{\left( \frac{m_1 \lambda_1}{d} - \sin{\theta} \right)} \\
+            { 2 \times \lambda_2 } &= { 1 \times \lambda_1 } \\
+            \lambda_2 &= \frac{1}{2} \SI{350}{\nano\meter} \\
+            &= \SI{175}{\nano\meter}
+        \end{align*}
+    \part
+        \begin{align*}
+            \Delta \lambda &= \frac{\lambda}{m} \\
+            \lambda + \Delta \lambda &= \SI{600}{\nano\meter} \\
+            \lambda &= \frac{1}{2} \SI{600}{\nano\meter} = \SI{300}{\nano\meter} \\
+            \Delta \lambda &= \SI{300}{\nano\meter}
+        \end{align*}
 
 \problem{}
     For a fiber optic probe with core and cladding refractive indices of \num{1.50} and \num{1.48}, respectively, and $\theta_i = \ang{28}$, calculate:
