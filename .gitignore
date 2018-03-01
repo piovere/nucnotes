@@ -20,3 +20,6 @@ profiles_settings.xml
 *.bcf
 *.blg
 *.m~
+*.synctex.gz
+*.fls
+*.fdb_latexmk
