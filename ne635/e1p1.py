@@ -38,3 +38,8 @@ class Nuclide(object):
 sample = {
     94241: Nuclide(94241, 95241, 4.509581e8, activity=3.714e12)
 }
+
+def timestep(sample, time):
+    for nuclide in sample.items():
+        daughter = nuclide._daughter
+        daughter_amount = sample.get(daughter, Nuclide(daughter, ))
