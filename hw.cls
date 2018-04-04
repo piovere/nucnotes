@@ -32,8 +32,10 @@
   \lfoot{}\cfoot{\thepage}\rfoot{}
   \pagestyle{fancy}
 
-%\ifx\pdfoutput\undefined                         %LaTeX
-\ifdefined\ifpdf
+\newcount\debug
+
+\ifdefined\ifpdf                                %PDFLaTeX
+  \message{In PDF block...}
   \RequirePackage[pdftex,bookmarks=true]{hyperref}
   \hypersetup{ %
     pdfauthor   = {\@author},
@@ -42,7 +44,8 @@
     pdfproducer = {dvips + ps2pdf}
   }
   \pdfadjustspacing=1
-\else                                            %PDFLaTeX
+\else                                            %LaTeX
+  \message{In LaTeX block...}
   \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
   \hypersetup{ %
     pdfauthor   = {\@author},
@@ -51,6 +54,8 @@
     pdfproducer = {dvips + ps2pdf}
   }
 \fi
+
+\message{\@author}
 
 \let\runauthor\@author
 \let\runtitle\@title
