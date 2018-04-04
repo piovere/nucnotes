@@ -17,7 +17,9 @@
 \RequirePackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{empheq}
-\RequirePackage{ifthen}
+\RequirePackage{ifpdf}
+%\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
 %\RequirePackage{jhwgraphics} Another personal style file I use.
 
 
@@ -30,15 +32,8 @@
   \lfoot{}\cfoot{\thepage}\rfoot{}
   \pagestyle{fancy}
 
-\ifx\pdfoutput\undefined                         %LaTeX
-  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
-  \hypersetup{ %
-    pdfauthor   = {\@author},
-    pdftitle    = {\@title},
-    pdfcreator  = {LaTeX with hyperref package},
-    pdfproducer = {dvips + ps2pdf}
-  }
-\else                                            %PDFLaTeX
+%\ifx\pdfoutput\undefined                         %LaTeX
+\ifdefined\ifpdf
   \RequirePackage[pdftex,bookmarks=true]{hyperref}
   \hypersetup{ %
     pdfauthor   = {\@author},
@@ -46,7 +41,15 @@
     pdfcreator  = {LaTeX with hyperref package},
     pdfproducer = {dvips + ps2pdf}
   }
-\pdfadjustspacing=1
+  \pdfadjustspacing=1
+\else                                            %PDFLaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
 \fi
 
 \let\runauthor\@author
