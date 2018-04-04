@@ -1,6 +1,6 @@
 \documentclass{hw}
     \usepackage{amsmath}
-    \usepackage[load=addn]{siunitx}
+    \usepackage{siunitx}
     \usepackage[super]{nth}
     \usepackage[version=4]{mhchem}
     
@@ -29,7 +29,16 @@ Calculate the (a) peak output and (b) average power for a laser that produces \S
 
 \solution
 
+\part{Peak output}
+    \begin{align*}
+        \SI{100}{\micro\joule} &= \frac{\SI{100e-6}{\joule\per pulse}}{\SI{12e-12}{\second\per pulse}} \\
+        &= \SI{8}{\mega\watt}
+    \end{align*}
 
+\part{Average power}
+    \begin{align*}
+        \SI{100e-6}{\joule\per pulse} \times \SI{1000e3}{\per\second} &= \SI{100}{\watt}
+    \end{align*}
 
 \problem{}
 
