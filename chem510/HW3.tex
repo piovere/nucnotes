@@ -1,17 +1,15 @@
+\title{Homework \#3}
+\author{J.R. Powers-Luhn}
+\date{2018/04/06}
+
 \documentclass{hw}
-    \usepackage{amsmath}
-    \usepackage{siunitx}
-    \usepackage[super]{nth}
-    \usepackage[version=4]{mhchem}
-    
-    \sisetup{
-        exponent-to-prefix = true,
-        zero-decimal-to-integer
-    }
-    
-    \title{Homework \#3}
-    \author{J.R. Powers-Luhn}
-    \date{2018/04/06}
+\usepackage{amsmath}
+\usepackage[load=addn]{siunitx}
+
+\sisetup{
+    %exponent-to-prefix = true,
+    zero-decimal-to-integer
+}
     
 \begin{document}
 
@@ -29,13 +27,13 @@ Calculate the (a) peak output and (b) average power for a laser that produces \S
 
 \solution
 
-\part{Peak output}
+\part
     \begin{align*}
         \SI{100}{\micro\joule} &= \frac{\SI{100e-6}{\joule\per pulse}}{\SI{12e-12}{\second\per pulse}} \\
         &= \SI{8}{\mega\watt}
     \end{align*}
 
-\part{Average power}
+\part
     \begin{align*}
         \SI{100e-6}{\joule\per pulse} \times \SI{1000e3}{\per\second} &= \SI{100}{\watt}
     \end{align*}
@@ -115,13 +113,13 @@ Identify and define the 3 types of atomic spectroscopy.
 
 \solution
 
-\part{Awesome}
+\part
 Lorem ipsum dolor simet.
 
-\part{LIBS}
+\part
 Lorem ipsum dolor simet.
 
-\part{Dumb}
+\part
 Lorem ipsum dolor simet.
 
 \end{document}
