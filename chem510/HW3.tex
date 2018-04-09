@@ -89,11 +89,11 @@ Explain how CW, pulsed, and Q-switched laser pulses differ from each other.
 
 \part{Pulsed}
 
-Pulsed lasers emit all of their energy in the amount of time required for relaxation of the laser medium. 
+Pulsed lasers emit all of their energy in the amount of time required for relaxation of the laser medium. The come in single-shot or repetitive pulse mode. They have a high peak power (\si{\kilo\watt} to \si{\mega\watt}) but low average power.
 
 \part{Q-switched}
 
-A q-switched laser 
+A q-switched laser is a pulsed laser that builds up a larger population inversion by establishing a low q-factor in the lasing medium (for example by allowing photons to leak out of the lasing medium). This allows a larger population inversion. After some time, the q-factor is switched from low to high which allows the lasing medium to de-excite, emitting a large pulse. The pulse is very energetic, but typically with a lower pulse repetition frequency than a conventional pulsed laser.
 
 \problem{}
 
@@ -139,7 +139,17 @@ A Nd:YVO4 laser has two output wavelengths in the IR wavelength region, \SIlist{
 
 \solution
 
+\part{Fundamental}
 
+\SI{1342}{\nano\meter}
+
+\part{Second harmonic}
+
+\SI{671.0}{\nano\meter}
+
+\part{Third harmonic}
+
+\SI{447.3}{\nano\meter}
 
 \problem{}
 
@@ -147,7 +157,7 @@ Describe how a CCD works.
 
 \solution
 
-
+A voltage (~\SI{10}{\volt}) is applied near the p-doped substrate of an NP junction (insulated from the p-doped silicon by a silicon dioxide layer). When a photon is incident on the N-doped substrate, an electron-hole pair is formed. The hole migrates to the n-doped substrate and the electron migrates towards the positive voltage and is collected there. It can then be migrated out and the signal collected by controlling the voltage applied to different regions of the silicon.
 
 \problem{}
 
@@ -155,7 +165,9 @@ What is the difference between random and non-random noise and is each one funda
 
 \solution
 
+Random noise can be fundamental (resulting from particle nature of light and matter) or non-fundamental (due to imperfect components and instrumentation). The sign and magnitude are unpredictable.
 
+Non-random noise is never fundamental. The sign and magnitude of non-random noise are correlated in time.
 
 \problem{}
 
@@ -171,8 +183,24 @@ Identify the following types of noise as either fundamental (F) or non-fundament
 
 \solution
 
-
-
+\begin{tabular}{| c | c |}
+    \hline
+    \textbf{Noise} & \textbf{F/NF} \\
+    \hline
+    \hline
+    Shot noise &  F \\
+    \hline
+    Pink noise & NF \\
+    \hline
+    Interference & NF \\
+    \hline
+    Dark current noise & F \\
+    \hline
+    Readout noise & NF \\
+    \hline
+    Impulse noise & NF \\
+    \hline
+\end{tabular}
 \problem{}
 
 Identify and define the 3 types of atomic spectroscopy.
