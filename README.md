@@ -46,6 +46,7 @@ notes and stuff for classes related to NE
 
 - Latex
   - [Draw LaTeX symbols](http://detexify.kirelabs.org/classify.html)
+  - [LaTeX summary page](https://faculty.math.illinois.edu/~hildebr/tex/)
 - [Significant Figures Calculator](https://www.omnicalculator.com/math/sig-fig)
 - [Quick AWK column selection](http://thomas-cokelaer.info/blog/2011/05/awk-the-substr-command-to-select-a-substring/)
 - Git
