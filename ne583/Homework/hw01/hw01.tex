@@ -39,7 +39,6 @@
     \end{align*}
 
 \solution
-    Lorem ipsum dolor simet
     \begin{align*}
         \lambda &= \frac{\int_0^\infty x \mathrm{e}^{-\sigma_t x} dx }{\int_0^\infty \mathrm{e}^{-\sigma_t x} dx} \\
         \lambda \int_0^\infty \mathrm{e}^{-\sigma_t x} dx &= \int_0^\infty x \mathrm{e}^{-\sigma_t x} dx \\
@@ -52,6 +51,23 @@
         \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \frac{x}{\mathrm{e}^{\sigma_t x}}\Big|_0^\infty \right) \\
         \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} - \lim_{x\to0}\frac{x}{\mathrm{e}^{\sigma_t x}} \right] \right) \\
         \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} - 0 \right] \right) \\
+    \end{align*}
+
+    To evaluate $\lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}}$, we use l'Hopital's rule.
+
+    \begin{align*}
+        \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} &= \lim_{x\to\infty}\frac{\frac{d}{dx}x}{\frac{d}{dx}\mathrm{e}^{\sigma_t x}} \\
+        &= \lim_{x\to\infty}\frac{1}{\sigma_t \mathrm{e}^{\sigma_t x}} \\
+        &= 0
+    \end{align*}
+
+    Plugging this back in, we get:
+
+    \begin{align*}
+        \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ 0 - 0 \right] \right) \\
+        \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t^2} \\
+        \lambda &= {\frac{1}{\sigma_t^2}} / {\frac{1}{\sigma_t}} \\
+        \lambda &= \frac{1}{\sigma_t}
     \end{align*}
 
 \end{document}
