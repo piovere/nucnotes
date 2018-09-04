@@ -40,7 +40,8 @@ notes and stuff for classes related to NE
   - [Include other Mathematica notebooks](https://www.researchgate.net/post/Importing_and_running_nb_file_inside_another_in_mathematica2)
 - Jupyter
   - [Shortcuts, tips, and tricks](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/)
-    - [Useful plugins](http://blog.juliusschulz.de/blog/ultimate-ipython-notebook)
+  - [Useful plugins](http://blog.juliusschulz.de/blog/ultimate-ipython-notebook)
+  - [Transfer data to google colab](https://www.kdnuggets.com/2018/02/google-colab-free-gpu-tutorial-tensorflow-keras-pytorch.html/2)
 
 ### Other
 
@@ -53,5 +54,7 @@ notes and stuff for classes related to NE
   - [How to PR](http://kbroman.org/github_tutorial/pages/fork.html)
 - Publishing
   - [Overview Guide](https://www.publishingcampus.elsevier.com/)
+- Unix
+  - [tmux](https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340)
 
 [Taylor An Introduction to Error Analysis]
