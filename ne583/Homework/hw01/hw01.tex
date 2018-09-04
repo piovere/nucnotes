@@ -22,7 +22,15 @@
     \end{itemize}
 
 \solution
-    Lorem ipsum dolor simet
+    \begin{itemize}
+        \item In particle accelerators where the beam energy is high, the wavelength can be comparable to the radius of the target particles. At this point it is necessary to treat the nucleons as having volume.
+        \item In the presence of large masses (e.g. neutron stars), spacetime is curved. This distorts the path of particles.
+        \item 
+        \item There is a small but measurable delay between the absorption of a neutron and subsequent emission or fission event. There is a further delay before the decay of fission fragments produces decay neutrons.
+        \item 
+        \item In a PWR, the macroscopic cross section of the moderator material changes with temperature, altering the material properties.
+        \item 
+    \end{itemize}
 
 \problem{}
     Use integration by parts and l'Hopital's rule to show that:
@@ -32,5 +40,18 @@
 
 \solution
     Lorem ipsum dolor simet
+    \begin{align*}
+        \lambda &= \frac{\int_0^\infty x \mathrm{e}^{-\sigma_t x} dx }{\int_0^\infty \mathrm{e}^{-\sigma_t x} dx} \\
+        \lambda \int_0^\infty \mathrm{e}^{-\sigma_t x} dx &= \int_0^\infty x \mathrm{e}^{-\sigma_t x} dx \\
+        u &= x \\
+        \frac{du}{dx} &= 1 \\
+        v &= -\frac{1}{\sigma_t} \mathrm{e}^{-\sigma_t x} \\
+        \frac{dv}{dx} &= \mathrm{e}^{-\sigma_t x} \\
+        \lambda \left(-\frac{1}{\sigma_t} \mathrm{e}^{-\sigma_t x} \Big|_0^\infty\right) &= -\frac{1}{\sigma_t} x \mathrm{e}^{-\sigma_t x}\Big|_0^\infty - \frac{1}{\sigma_t^2}\mathrm{e}^{-\sigma_t x}\Big|_0^\infty \\
+        \lambda \frac{-1}{\sigma_t} \left( 0 - 1 \right) &= -\frac{1}{\sigma_t} x \mathrm{e}^{-\sigma_t x}\Big|_0^\infty - \frac{1}{\sigma_t^2} \left( 0 - 1 \right) \\
+        \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \frac{x}{\mathrm{e}^{\sigma_t x}}\Big|_0^\infty \right) \\
+        \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} - \lim_{x\to0}\frac{x}{\mathrm{e}^{\sigma_t x}} \right] \right) \\
+        \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} - 0 \right] \right) \\
+    \end{align*}
 
 \end{document}
