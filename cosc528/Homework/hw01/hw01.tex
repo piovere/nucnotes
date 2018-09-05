@@ -19,10 +19,19 @@
     
 
 \problem{2.7}
-    Derive equation 2.17: $$ w_0 = \mean{r} - w_1 \mean{x} $$
+    Derive equation 2.17: 
+    \begin{align*}
+        w_0 &= \mean{r} - w_1 \mean{x} \\
+        w_1 &= \frac{\sum_t x^t r^t - \mean{x r} N}{\sum_t \left( x^t \right)^2 - N \mean{x}^2}
+    \end{align*}
 
 \solution
-    
+    We seek to minimize the error function:
+    \begin{align*}
+        E(w_1, w_0 | X) = \frac{1}{N} \sum_{t=1}^N \left[ r^t - \left( w_1 x^t + w_0 \right) \right]
+    \end{align*}
+
+    To do this, we set the derivative $\frac{d}{dx} E(X)$ equal to zero:
 
 \problem{2.9}
     Show that the VC dimension of the triangle hypothesis class is 7 in two dimensions.  (Hint: For best separation, it is best to place the seven points equidistant on a circle.)
