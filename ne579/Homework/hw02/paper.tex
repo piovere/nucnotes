@@ -18,7 +18,48 @@
 Lorem ipsum dolor simet \cite{1985Gbcp}
 
 \section{Introduction}
-Lorem ipsum dolor simet
+Understanding the distribution of a signal with a random component is a necessary first step in analyzing or modeling that signal. In order to recover the true nature of a physical phenomena, we measure the value of the signal plus some random noise, $M = S + N$. Misunderstanding the noise results in misunderstanding the recovered signal, which may lead to incorrect conclusions about the data. If the noise is underestimated then this could lead to a true hypothesis being rejected. Similarly, mischaracterizing the distribution from which the noise is generated could result in a systematic bias in models.
+
+\subsection{Gaussian Distribution}
+A common physical model for a single sampled quantity is a mean value plus some noise from a a Gaussian distribution, as in equation \ref{eq:gauss}.
+
+\begin{equation}
+	G(x | \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+	\label{eq:gauss}
+\end{equation}
+
+This assumption, however, is not always valid. In order to test this, we can compare the properties of the measured distribution to the hypothetical distribution by measuring the mathematical properties called \textit{moments}. The $n$th moment of a distribution is described by equation \ref{eq:moment}.
+
+\begin{equation}
+	\mu_n = \int_{\infty}^{\infty} (x - c)^n f(x) dx
+	\label{eg:moment}
+\end{equation}
+
+The moments of a set of samples (plus some other characteristics: the median, trimmed mean, and standard deviation) are characteristic of a distribution. In order to illustrate this, statistical properties were calculated for a real-life data set made of sampled data \cite{1985Gbcp}. This data set consists of 252 samples each of fourteen quantities:
+
+\begin{itemize}
+	\item Age (\si{\year})
+	\item Weight (lbs)
+	\item Height (inches)
+	\item Adiposity index (\si{\kilo\gram\per\meter^2})
+	\item Neck circumference (\si{\centi\meter})
+	\item Chest circumference (\si{\centi\meter})
+	\item Ab circumference (\si{\centi\meter})
+	\item Hip circumference (\si{\centi\meter})
+	\item Thigh circumference (\si{\centi\meter})
+	\item Knee circumference (\si{\centi\meter})
+	\item Ankle circumference (\si{\centi\meter})
+	\item Extended bicep circumference (\si{\centi\meter})
+	\item Forearm circumference (\si{\centi\meter})
+	\item Wrist circumference (\si{\centi\meter})
+\end{itemize}
+
+These measured values were used to calculate the percent body fat using equation \ref{eq:brozek}
+
+\begin{equation}
+	\%BF = \frac{457}{\rho} - 414.2
+	\label{eq:brozek}
+\end{equation}
 
 \section{Results}
 Lorem ipsum dolor simet
