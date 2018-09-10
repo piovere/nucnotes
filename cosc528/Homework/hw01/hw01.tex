@@ -1,0 +1,54 @@
+\documentclass{hw}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{nuc}
+
+\newcommand{\mean}{\bar}
+
+\author{J.R. Powers-Luhn}
+\date{2018/09/04}
+\title{Homework \#1}
+
+\begin{document}
+%\maketitle
+
+\problem{2.6}
+    In equation 2.13, we summed up the squares of the differences between the actual value and the estimated value. This error function is the one most frequently used, but it is one of several possible error functions. Because it sums up the squares of the differences, it is not robust to outliers. What would be a better error function to implement \textit{robust regression}?
+
+\solution
+    
+
+\problem{2.7}
+    Derive equation 2.17: 
+    \begin{align*}
+        w_0 &= \mean{r} - w_1 \mean{x} \\
+        w_1 &= \frac{\sum_t x^t r^t - \mean{x r} N}{\sum_t \left( x^t \right)^2 - N \mean{x}^2}
+    \end{align*}
+
+\solution
+    We seek to minimize the error function:
+    \begin{align*}
+        E(w_1, w_0 | X) = \frac{1}{N} \sum_{t=1}^N \left[ r^t - \left( w_1 x^t + w_0 \right) \right]
+    \end{align*}
+
+    To do this, we set the derivative $\frac{d}{dx} E(X)$ equal to zero:
+
+\problem{2.9}
+    Show that the VC dimension of the triangle hypothesis class is 7 in two dimensions.  (Hint: For best separation, it is best to place the seven points equidistant on a circle.)
+
+\solution
+    
+
+\problem{2.10}
+    Assume as in exercise 8 that our hypothesis class is the set of lines. Write down an error function that not only minimizes the number of misclassifications but also maximizes the margin.
+
+\solution
+    
+
+\problem{2.11}
+    One source of noise is error in the labels. Can you propose a method to find datapoints that are highly likely to be mislabeled?
+
+\solution
+    
+
+\end{document}
