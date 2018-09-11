@@ -22,13 +22,13 @@
 \maketitle
 
 \section{Abstract}
-Prior to generating \textit{post hoc} models from data it is necessary to examine the data to validate any assumptions made in collecting it. That examination should include explicitly states assumptions as well as attempts to validate those assumptions prior to drawing conclusions about the data. Generating models from biased data can obviously result in biased models, but those biases may be more subtle in the model than in the data that produced it. In order to demonstrate the form that such an examination might take, statistical summary calculations were performed on data collected for a 1985 body weight study. It was determined that the sampled data did not conform to expected (Gaussian) distributions, and that at least one significant outlier was present in a parameter used to calculate lean body mass in the 1985 paper. An examination was made of the cross-correlations between the measured data and the body fat percentage predictions, revealing that abdominal circumference may be a good predictor of body fat percentage (correlation value of $0.81$). 
+Prior to generating \textit{post hoc} models from data it is necessary to examine the data to validate any assumptions made in collecting it. That examination should include explicitly stated assumptions as well as attempts to validate those assumptions prior to drawing conclusions about the data. Generating models from biased data can obviously result in biased models, but those biases may be more subtle in the model than in the data that produced it. In order to demonstrate the form that such an examination might take, statistical summary calculations were performed on data collected for a 1985 body weight study. It was determined that the sampled data did not conform to expected (Gaussian) distributions, and that at least one significant outlier was present in a parameter used to calculate lean body mass in the 1985 paper. An examination was made of the cross-correlations between the measured data and the body fat percentage predictions, revealing that abdominal circumference may be a good predictor of body fat percentage (correlation value of $0.81$). 
 
 \section{Introduction}
 Understanding the distribution of a signal with a random component is a necessary first step in analyzing or modeling that signal. In order to recover the true nature of a physical phenomena, we measure the value of the signal plus some random noise, $M = S + N$. Misunderstanding the noise results in misunderstanding the recovered signal, which may lead to incorrect conclusions about the data. If the noise is underestimated then this could lead to a true hypothesis being rejected. Similarly, mischaracterizing the distribution from which the noise is generated could result in a systematic bias in models. 
 
 \subsection{Gaussian Distribution}
-A common physical model for a single sampled quantity is a mean value plus some noise from a a Gaussian distribution, as in equation \ref{eq:gauss}.
+A common physical model for a single sampled quantity is a mean value plus some variation drawn from a Gaussian distribution, as in equation \ref{eq:gauss}.
 
 \begin{equation}
 	G(x | \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2 \sigma^2}}
@@ -111,7 +111,7 @@ This does not necessarily indicate that the underlying population does not follo
 \begin{figure}
 \centering
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{histogram_array}
+	\includegraphics[width=0.5\textwidth]{sample_size}
 	\caption{Four normalized sample distributions drawn from the same population. Small sample sizes result in difficulty identifying the distribution of the underlying population, and even large sample sizes may still result in a sample with different moments than the population that produced them.\label{fig:sample_size}}
 \end{center}
 \end{figure}
