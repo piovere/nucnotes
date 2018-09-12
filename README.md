@@ -44,6 +44,7 @@ notes and stuff for classes related to NE
   - [Transfer data to google colab](https://www.kdnuggets.com/2018/02/google-colab-free-gpu-tutorial-tensorflow-keras-pytorch.html/2)
 - Deep Learning
   - [Learn deep learning in 6 months](https://towardsdatascience.com/how-to-learn-deep-learning-in-6-months-e45e40ef7d48)
+  - [Deep learning without CUDA cores](https://informatics.sydney.edu.au/blogs/amdgpu/)
 
 ### Other
 
