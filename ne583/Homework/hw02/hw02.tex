@@ -1,10 +1,13 @@
 \documentclass{hw}
 \usepackage{amsmath}
 \usepackage{nuc}
+\usepackage{physics}
 
 \author{J.R. Powers-Luhn}
 \date{2018/09/11}
 \title{Homework \#2}
+
+%\newcommand{\hat}[1]{\uvec{#1}}
 
 \begin{document}
 
@@ -12,18 +15,61 @@
     Repeat the Lagrangian derivation using time, $t$, as the parameter instead of distance, $s$, along the direction of travel.
 
 \solution
-    Lorem ipsum dolor simet
+    \begin{align*}
+    	\Psi (t) &= \Psi(x_0, y_0, z_0, E_0, \hat{\Omega}_0, t_0, t) \\
+    	x(t) &= x_0 + \int_0^t \frac{dx}{dt} dt = x_0 + \hat{\Omega} \cdot \hat{i} v t \\
+    	y(t) &= y_0 + \int_0^t \frac{dy}{dt} dt = y_0 + \hat{\Omega} \cdot \hat{j} v t \\
+    	z(t) &= z_0 + \int_0^t \frac{dz}{dt} dt = z_0 + \hat{\Omega} \cdot \hat{k} v t \\
+    	E(t) &= E_0 + \int_0^t \frac{dE}{dt} dt = E_0 \\
+    	\hat{\Omega}(t) &= \hat{\Omega}_0 + \int_0^t \frac{d\hat{\Omega}}{dt} dt = \hat{\Omega}_0 \\
+    	t(t) &= t_0 + t \\
+    	\Psi(t + dt) &= \Psi(t) - \Psi(t) \sigma_t(t) dt + q(t)dt \\
+    	\frac{d\Psi}{dt} &= q(t) - \Psi(t) \sigma_t(t) \\
+    	\dv{\Psi}{t} &= \left[ \pdv{\Psi}{t} \pdv{t}{t} + \pdv{\Psi}{x} \pdv{x}{t} + \pdv{\Psi}{y} \pdv{y}{t} + \pdv{\Psi}{z} \pdv{z}{t} + \pdv{\Psi}{E} \pdv{E}{t} + \pdv{\Psi}{\hat{\Omega}} \pdv{\hat{\Omega}}{t} \right] \\
+    	&= \left[ \pdv{\Psi}{t} + \pdv{\Psi}{x} \hat{\Omega} \cdot \hat{i} v + \pdv{\Psi}{y} \hat{\Omega} \cdot \hat{j} v + \pdv{\Psi}{z} \hat{\Omega} \cdot \hat{k} v \right] \\
+    	q(t) &= \frac{1}{v} \pdv{\Psi}{t} + \pdv{\Psi}{x} \hat{\Omega} \cdot \hat{i} + \pdv{\Psi}{y} \hat{\Omega} \cdot \hat{j} + \pdv{\Psi}{z} \hat{\Omega} \cdot \hat{k} + \Psi(t) \sigma_t \\
+    	q(\vec{r}, E, \hat{\Omega}, t) &= \frac{1}{v} \pdv{\Psi}{t} + \pdv{\Psi}{x} \hat{\Omega} \cdot \hat{i} + \pdv{\Psi}{y} \hat{\Omega} \cdot \hat{j} + \pdv{\Psi}{z} \hat{\Omega} \cdot \hat{k} + \Psi(\vec{r}, E, \hat{\Omega}, t) \sigma_t(\vec{r}, E, \hat{\Omega}, t)
+    \end{align*}
 
 \problem{}
     How would the equation look for a charged particle with stopping power (i.e., energy loss per unit distance) of $S(E)$?
 
 \solution
-    Lorem ipsum dolor simet
+	\begin{align*}
+	    \Psi (t) &= \Psi(x_0, y_0, z_0, E_0, \hat{\Omega}_0, t_0, t) \\
+    	x(s) &= x_0 + \int_0^s \frac{dx}{ds} ds = x_0 + \hat{\Omega} \cdot \hat{i} s \\
+    	y(s) &= y_0 + \int_0^s \frac{dy}{ds} ds = y_0 + \hat{\Omega} \cdot \hat{j} s \\
+    	z(s) &= z_0 + \int_0^s \frac{dz}{ds} ds = z_0 + \hat{\Omega} \cdot \hat{k} s \\
+    	E(s) &= E_0 + \int_0^s \frac{dE}{ds} ds = E_0 - S(E) s \\
+    	\hat{\Omega}(t) &= \hat{\Omega}_0 + \int_0^t \frac{d\hat{\Omega}}{dt} dt = \hat{\Omega}_0 \\
+    	t(s) &= t_0 + \frac{s}{v} \\
+    \end{align*}
+
+    Combine these and take derivatives as before:
+    
+    \begin{align*}
+    	q(\vec{r}, E, \hat{\Omega}, t) &= \frac{1}{v} \pdv{\Psi(\vec{r}, E, \hat{\Omega}, t)}{t} - \pdv{\Psi(\vec{r}, E, \hat{\Omega}, t)}{E} S(E) + \vec{\nabla} \Psi(\vec{r}, E, \hat{\Omega}, t) \cdot \hat{\Omega} + \Psi(\vec{r}, E, \hat{\Omega}, t) \sigma_t(\vec{r}, E, \hat{\Omega}, t)
+    \end{align*}
+    
 
 \problem{}
     Fermi developed his “age theory” by assuming that neutron scattering was a continuous process (instead of happening instantaneously at each collision). Using $\xi$ (average lethargy gain per collision), show that $S(E)=E \xi \sigma_s$.
 
 \solution
-    Lorem ipsum dolor simet
+    On average, every time a neutron travels one mean free path, $\frac{1}{\sigma}$, it has a collision and its lethargy, $u$ increases by $\xi$. Energy is related to lethargy by:
+
+    \begin{align*}
+    	u &= \ln{\frac{E_0}{E}} \\
+    	&= \ln{E_0} - \ln{E} \\
+    	\dv{u}{E} &= \frac{-1}{E}
+    \end{align*}
+
+    Therefore:
+
+    \begin{align*}
+    	\dv{E}{s} &= \dv{E}{u} \dv{u}{s} \\
+    	&= \left( \dv{u}{E} \right)^{-1} \dv{u}{s} \\
+    	&= -E \xi \sigma
+    \end{align*}
 
 \end{document}
