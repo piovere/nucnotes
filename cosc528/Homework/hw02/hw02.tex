@@ -16,10 +16,16 @@
 %\maketitle
 
 \problem{3.5}
-    Propose a three-level cascade where when one level rejects, the next one is used as in equation 3.10. How can we fix the \lambda on different levels? 
+    Propose a three-level cascade where when one level rejects, the next one is used as in equation 3.10. How can we fix the $\lambda$ on different levels? 
 
     \begin{equation}
-        \lambda+{ik} = 5
+        \lambda_{ik} =
+        \begin{cases}
+        0 & i = k \\
+        \lambda & i = K + 1 \\
+        1 & otherwise
+
+    \end{cases}
     \end{equation}
 
 \solution
