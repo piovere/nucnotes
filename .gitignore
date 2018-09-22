@@ -28,3 +28,4 @@ profiles_settings.xml
 *.cpython-36.pyc
 .pytest_cache/
 .coverage
+htmlcov/
