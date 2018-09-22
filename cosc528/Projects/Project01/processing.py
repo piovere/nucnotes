@@ -114,6 +114,13 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     >>> y = np.arange(3).reshape((-1, 1))
     >>> cross_val_split(td, 1, 1, 1)
     (array([[3, 4, 5]]), array([[0, 1, 2]]), array([[6, 7, 8]]))
+
+    >>> np.random.seed(3)
+    >>> td = np.arange(12).reshape((-1, 3))
+    >>> y = np.arange(3).reshape((-1, 1))
+    >>> cross_val_split(td, 1, 1, 1)
+    (array([[ 9, 10, 11],
+           [ 3,  4,  5]]), array([[0, 1, 2]]), array([[6, 7, 8]]))
     """
     # Find number of rows in dataset
     numrows = x.shape[0]
@@ -135,6 +142,7 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     used_num = train_num + test_num + val_num
     while numrows > used_num:
         train_num += 1
+        used_num = train_num + test_num + val_num
     # I THINK that we have used all the rows, but just to check:
     try:
         assert numrows == train_num + test_num + val_num
@@ -156,7 +164,3 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     val = data[train_num + test_num:]
 
     return train, test, val
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
