@@ -22,6 +22,14 @@ def zscore(x):
             same as the original data
         1 - 1d array of the column means of `x`
         2 - 1d array of the column standard deviations of `x`
+    
+    Examples
+    --------
+    >>> import numpy as np
+    >>> x = np.array([[1., 1., 1.], [2., 2., 2.]])
+    >>> zscore(x)
+    (array([[-1., -1., -1.],
+           [ 1.,  1.,  1.]]), array([1.5, 1.5, 1.5]), array([0.5, 0.5, 0.5]))
     """
     means = np.mean(x, axis=0)
     stds = np.std(x, axis=0)
@@ -100,6 +108,12 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     >>> y = np.arange(3).reshape((-1, 1))
     >>> cross_val_split(td, 1, 1, 1, y)
     (array([[3, 4, 5, 1]]), array([[0, 1, 2, 0]]), array([[6, 7, 8, 2]]))
+
+    >>> np.random.seed(3)
+    >>> td = np.arange(9).reshape((-1, 3))
+    >>> y = np.arange(3).reshape((-1, 1))
+    >>> cross_val_split(td, 1, 1, 1)
+    (array([[3, 4, 5]]), array([[0, 1, 2]]), array([[6, 7, 8]]))
     """
     # Find number of rows in dataset
     numrows = x.shape[0]
