@@ -25,3 +25,4 @@ profiles_settings.xml
 *.fdb_latexmk
 *.synctex*
 *.run.xml
+*.cpython-36.pyc
