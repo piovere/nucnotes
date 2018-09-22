@@ -48,14 +48,14 @@ def add_intercept_column(x):
     >>> x = np.arange(9).reshape((3, 3))
     >>> add_intercept_column(x)
     array([[0, 1, 2, 1],
-       [3, 4, 5, 1],
-       [6, 7, 8, 1]])
+           [3, 4, 5, 1],
+           [6, 7, 8, 1]])
     
-    >>> np.arange(9).reshape((3, 3)).astype(np.float64)
+    >>> x = np.arange(9).reshape((3, 3)).astype(np.float64)
     >>> add_intercept_column(x)
     array([[0., 1., 2., 1.],
-       [3., 4., 5., 1.],
-       [6., 7., 8., 1.]])
+           [3., 4., 5., 1.],
+           [6., 7., 8., 1.]])
     """
     one_col = np.ones_like(x[:,0]).reshape((-1, 1))
 
@@ -142,3 +142,7 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     val = data[train_num + test_num:]
 
     return train, test, val
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
