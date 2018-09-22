@@ -8,7 +8,6 @@ def zscore(x):
     To Do:
     - [ ] Add checking to validate that every column has variance, raise
           ValueError otherwise
-    - [ ] Add doctests to this function
     
     Parameters
     ----------
@@ -77,7 +76,6 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     To Do:
     - [ ] Make sure that max and min values for each variable are in the
           training data set
-    - [ ] Add doctests to this function
 
     Parameters
     ----------
