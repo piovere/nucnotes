@@ -40,7 +40,3 @@ def regress(x, y):
     coefficients = np.linalg.inv(x.T @ x) @ x.T @ y
 
     return coefficients.flatten()
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
