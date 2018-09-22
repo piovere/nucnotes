@@ -35,16 +35,8 @@ def regress(x, y):
     # One-pad `x`
     ones = np.ones_like(x[:,1]).reshape(-1, 1)
     x = np.hstack([x, ones])
-
-    # Calculate the regression
-    # tmp = np.linalg.inv(x.T @ x)
-
-    # print(np.eye(4))
-    # print(tmp * (x.T @ x))
-    # assert np.allclose(np.dot(tmp, np.dot(x.T, x)), np.eye(4))
-
-    # tmp = np.dot(tmp, x.T)
     
+    # Solve linear regression equation
     coefficients = np.linalg.inv(x.T @ x) @ x.T @ y
 
     return coefficients.flatten()
