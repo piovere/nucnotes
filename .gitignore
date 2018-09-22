@@ -29,3 +29,4 @@ profiles_settings.xml
 .pytest_cache/
 .coverage
 htmlcov/
+coverage.xml
