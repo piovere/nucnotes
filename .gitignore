@@ -27,3 +27,4 @@ profiles_settings.xml
 *.run.xml
 *.cpython-36.pyc
 .pytest_cache/
+.coverage
