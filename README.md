@@ -46,6 +46,10 @@ notes and stuff for classes related to NE
   - [Learn deep learning in 6 months](https://towardsdatascience.com/how-to-learn-deep-learning-in-6-months-e45e40ef7d48)
   - [Deep learning without CUDA cores](https://informatics.sydney.edu.au/blogs/amdgpu/)
 
+### Statistics
+
+- [Choosing bins for histogram](http://www.statisticshowto.com/choose-bin-sizes-statistics/)
+
 ### Other
 
 - Latex
