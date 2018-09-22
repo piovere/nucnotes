@@ -1,8 +1,14 @@
 import numpy as np
+import math
 
 def zscore(x):
     """Scale a 2d matrix `x` such that each column is mean-centered with unit
     variance
+
+    To Do:
+    - [ ] Add checking to validate that every column has variance, raise
+          ValueError otherwise
+    - [ ] Add doctests to this function
     
     Parameters
     ----------
@@ -16,12 +22,6 @@ def zscore(x):
             same as the original data
         1 - 1d array of the column means of `x`
         2 - 1d array of the column standard deviations of `x`
-    
-    To Do
-    -----
-    - [ ] Add checking to validate that every column has variance, raise
-          ValueError otherwise
-    - [ ] Add doctests to this function
     """
     means = np.mean(x, axis=0)
     stds = np.std(x, axis=0)
@@ -66,6 +66,11 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
 
     Can optionally split the output into the same arrangement.
 
+    To Do:
+    - [ ] Make sure that max and min values for each variable are in the
+          training data set
+    - [ ] Add doctests to this function
+
     Parameters
     ----------
     x : numpy.ndarray
@@ -84,16 +89,47 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
         1 - validation set
         2 - test set
 
-    To Do
-    -----
-    - [ ] Make sure that max and min values for each variable are in the
-          training data set
-    - [ ] Add doctests to this function
+        If a y column was provided, it will be returned as the last column of
+        each dataset.
     """
     # Find number of rows in dataset
-    rows = x.shape[0]
+    numrows = x.shape[0]
+
+    # Normalize the number of rows
+    total_frac = train_frac + val_frac + test_frac
+    train_frac /= total_frac
+    val_frac /= total_frac
+    test_frac /= total_frac
 
     # Create iterable containing all the row numbers
 
     # Calculate the number of rows in each returned set
-    
+    train_num = math.floor(train_frac * numrows)
+    test_num = math.floor(test_frac * numrows)
+    val_num = math.floor(val_frac * numrows)
+
+    # Verify we have used all rows
+    used_num = train_num + test_num + val_num
+    while numrows > used_num:
+        train_num += 1
+    # I THINK that we have used all the rows, but just to check:
+    try:
+        assert numrows == train_num + test_num + val_num
+    except AssertionError:
+        print(f'{numrows - (train_num + test_num + val_num)} unassigned')
+
+    # Join `y` to `x`
+    if y is not None:
+        data = np.hstack([x, y.reshape(-1, 1)])
+    else:
+        data = x
+
+    # Shuffle the array
+    np.random.shuffle(data)
+
+    # Pick out the train, test, validation
+    train = data[:train_num]
+    test = data[train_num:train_num + test_num]
+    val = data[train_num + test_num:]
+
+    return train, test, val
