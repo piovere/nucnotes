@@ -91,6 +91,15 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
 
         If a y column was provided, it will be returned as the last column of
         each dataset.
+    
+    Examples
+    --------
+    >>> import numpy as np
+    >>> np.random.seed(3)
+    >>> td = np.arange(9).reshape((-1, 3))
+    >>> y = np.arange(3).reshape((-1, 1))
+    >>> cross_val_split(td, 1, 1, 1, y)
+    (array([[3, 4, 5, 1]]), array([[0, 1, 2, 0]]), array([[6, 7, 8, 2]]))
     """
     # Find number of rows in dataset
     numrows = x.shape[0]
