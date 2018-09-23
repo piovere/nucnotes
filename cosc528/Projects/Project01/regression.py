@@ -19,14 +19,12 @@ def regress(x, y):
     
     Examples
     --------
-    >>> import numpy as np
     >>> np.random.seed(3)
     >>> x = np.random.rand(21).reshape((-1, 3))
     >>> y = np.sum(x, axis=1) + 1
     >>> regress(x, y)
     array([1., 1., 1., 1.])
 
-    >>> import numpy as np
     >>> x = np.random.rand(12).reshape((-1, 3))
     >>> y = np.sum(x, axis=1) + 1
     >>> regress(x, y)
