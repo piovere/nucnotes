@@ -144,8 +144,9 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     # I THINK that we have used all the rows, but just to check:
     try:
         assert numrows == train_num + test_num + val_num
-    except AssertionError:
+    except AssertionError as e:
         print(f'{numrows - (train_num + test_num + val_num)} unassigned')
+        raise(e)
 
     # Join `y` to `x`
     if y is not None:
