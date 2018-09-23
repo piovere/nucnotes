@@ -19,7 +19,6 @@ def regress(x, y):
     
     Examples
     --------
-    >>> np.random.seed(3)
     >>> x = np.random.rand(21).reshape((-1, 3))
     >>> y = np.sum(x, axis=1) + 1
     >>> regress(x, y)
@@ -29,6 +28,13 @@ def regress(x, y):
     >>> y = np.sum(x, axis=1) + 1
     >>> regress(x, y)
     array([1., 1., 1., 1.])
+
+    >>> np.random.seed(3)
+    >>> x = np.random.rand(40).reshape(-1, 4)
+    >>> y = np.sum(x, axis=1) + \
+    np.random.normal(loc=0, scale=0.2, size=x[:,0].shape)
+    >>> regress(x, y)
+    array([ 0.45276566,  1.18671782,  1.43197419,  0.85275754, -0.11354249])
     """
     # One-pad `x`
     ones = np.ones_like(x[:,1]).reshape(-1, 1)
