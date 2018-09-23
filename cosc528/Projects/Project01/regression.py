@@ -1,4 +1,5 @@
 import numpy as np
+import processing as p
 
 def regress(x, y):
     """Return the coefficients of a linear regression
@@ -37,8 +38,7 @@ def regress(x, y):
     array([ 0.45276566,  1.18671782,  1.43197419,  0.85275754, -0.11354249])
     """
     # One-pad `x`
-    ones = np.ones_like(x[:,1]).reshape(-1, 1)
-    x = np.hstack([x, ones])
+    x = p.add_intercept_column(x)
     
     # Solve linear regression equation
     coefficients = np.linalg.inv(x.T @ x) @ x.T @ y
