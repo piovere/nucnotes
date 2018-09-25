@@ -1,0 +1,1279 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Homework 3 Pandas}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    Due to the random selection of rows, some variation is introduced in the
+selection of the training, test, and validation sets each time this
+notebook is run. This is the source of any deviation between the results
+recorded here and those reported in the attached paper.
+
+    \hypertarget{imports}{%
+\section{Imports}\label{imports}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{as} \PY{n+nn}{la}
+        \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k}{as} \PY{n+nn}{sio}
+        \PY{k+kn}{from} \PY{n+nn}{math} \PY{k}{import} \PY{n}{floor}
+\end{Verbatim}
+
+
+    \hypertarget{load-the-data}{%
+\section{Load the data}\label{load-the-data}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{file} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hwkdataNEW.mat}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{data\PYZus{}dict} \PY{o}{=} \PY{n}{sio}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{n}{file}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{data\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+dict\_keys(['\_\_header\_\_', '\_\_version\_\_', '\_\_globals\_\_', 'x', 'y'])
+
+    \end{Verbatim}
+
+    Extract the parts we want and examine them
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{x} \PY{o}{=} \PY{n}{data\PYZus{}dict}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{y} \PY{o}{=} \PY{n}{data\PYZus{}dict}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{x}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} (247, 14)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{y}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} (247, 1)
+\end{Verbatim}
+            
+    We want to put this all into the \texttt{pandas} data format
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{column\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adiposity Index}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Neck Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Chest Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hip Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Thigh Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Knee Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ankle Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Extended Bicep Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Forearm Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} Last column contains y}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{data}\PY{p}{[}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{y}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:}     Age  Weight  Height  Adiposity Index  Neck Circumference  \textbackslash{}
+        0  23.0  154.25   67.75             23.7                36.2   
+        1  22.0  173.25   72.25             23.4                38.5   
+        2  22.0  154.00   66.25             24.7                34.0   
+        3  26.0  184.75   72.25             24.9                37.4   
+        4  24.0  184.25   71.25             25.6                34.4   
+        
+           Chest Circumference  Abdomen Circumference  Hip Circumference  \textbackslash{}
+        0                 93.1                   85.2               94.5   
+        1                 93.6                   83.0               98.7   
+        2                 95.8                   87.9               99.2   
+        3                101.8                   86.4              101.2   
+        4                 97.3                  100.0              101.9   
+        
+           Thigh Circumference  Knee Circumference  Ankle Circumference  \textbackslash{}
+        0                 59.0                37.3                 21.9   
+        1                 58.7                37.3                 23.4   
+        2                 59.6                38.9                 24.0   
+        3                 60.1                37.3                 22.8   
+        4                 63.2                42.2                 24.0   
+        
+           Extended Bicep Circumference  Forearm Circumference  Wrist Circumference  \textbackslash{}
+        0                          32.0                   27.4                 17.1   
+        1                          30.5                   28.9                 18.2   
+        2                          28.8                   25.2                 16.6   
+        3                          32.4                   29.4                 18.2   
+        4                          32.2                   27.7                 17.7   
+        
+           Body Fat Percentage  
+        0                 12.6  
+        1                  6.9  
+        2                 24.6  
+        3                 10.9  
+        4                 27.8  
+\end{Verbatim}
+            
+    Data is now a pandas DataFrame that contains the information we need
+
+    \hypertarget{sort-into-train-test-and-validation}{%
+\section{Sort into Train, Test, and
+Validation}\label{sort-into-train-test-and-validation}}
+
+    Since the rows of data should be indpendent and uncorrelated, I have
+chosen to simply shuffle them then tag them as belonging to one of the
+named data sets (\texttt{train}, \texttt{test}, or \texttt{validation}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{train\PYZus{}frac} \PY{o}{=} \PY{l+m+mf}{0.6}
+         \PY{n}{test\PYZus{}frac} \PY{o}{=} \PY{l+m+mf}{0.2}
+         \PY{n}{val\PYZus{}frac} \PY{o}{=} \PY{l+m+mf}{0.2}
+         
+         \PY{n}{train\PYZus{}len} \PY{o}{=} \PY{n}{floor}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)} \PY{o}{*} \PY{n}{train\PYZus{}frac}\PY{p}{)}
+         \PY{n}{test\PYZus{}len} \PY{o}{=} \PY{n}{floor}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)} \PY{o}{*} \PY{n}{test\PYZus{}frac}\PY{p}{)}
+         \PY{n}{val\PYZus{}len} \PY{o}{=} \PY{n}{floor}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)} \PY{o}{*} \PY{n}{val\PYZus{}frac}\PY{p}{)}
+         \PY{n}{rows\PYZus{}used} \PY{o}{=} \PY{n}{train\PYZus{}len} \PY{o}{+} \PY{n}{test\PYZus{}len} \PY{o}{+} \PY{n}{val\PYZus{}len}
+         \PY{c+c1}{\PYZsh{} Make sure all rows being used by adding unused}
+         \PY{c+c1}{\PYZsh{} rows into the training set}
+         \PY{k}{while} \PY{n}{rows\PYZus{}used} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+             \PY{n}{train\PYZus{}len} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+             \PY{n}{rows\PYZus{}used} \PY{o}{=} \PY{n}{train\PYZus{}len} \PY{o}{+} \PY{n}{test\PYZus{}len} \PY{o}{+} \PY{n}{val\PYZus{}len}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rows in original dataset: }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{len(data)\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rows in training dataset: }\PY{l+s+si}{\PYZob{}train\PYZus{}len\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rows in testing dataset: }\PY{l+s+si}{\PYZob{}test\PYZus{}len\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rows in validation dataset: }\PY{l+s+si}{\PYZob{}val\PYZus{}len\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rows used: }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{train\PYZus{}len + test\PYZus{}len + val\PYZus{}len\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Rows in original dataset: 247
+Rows in training dataset: 149
+Rows in testing dataset: 49
+Rows in validation dataset: 49
+Rows used: 247
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Shuffle and reindex the dataset}
+         \PY{n}{data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{frac}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Split the data into three datasets}
+         \PY{n}{dataset\PYZus{}labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{str}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{dataset\PYZus{}labels}\PY{p}{[}\PY{p}{:}\PY{n}{train\PYZus{}len}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{dataset\PYZus{}labels}\PY{p}{[}\PY{n}{train\PYZus{}len}\PY{p}{:}\PY{n}{train\PYZus{}len} \PY{o}{+} \PY{n}{test\PYZus{}len}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{dataset\PYZus{}labels}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{val\PYZus{}len}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{dataset\PYZus{}labels}
+\end{Verbatim}
+
+
+    \hypertarget{to-do-make-sure-max-and-min-for-each-column-is-in-training-set}{%
+\subsection{TO DO: Make sure max and min for each column is in training
+set}\label{to-do-make-sure-max-and-min-for-each-column-is-in-training-set}}
+
+    \hypertarget{regression}{%
+\section{Regression}\label{regression}}
+
+    Explanation of regression
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{train} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k}{def} \PY{n+nf}{regress}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Returns coefficient of regression\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{} One\PYZhy{}pad x}
+             \PY{n}{o} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{o}\PY{p}{]}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Perform regression}
+             \PY{n}{coefficients} \PY{o}{=} \PY{n}{la}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{n}{x}\PY{p}{)} \PY{o}{@} \PY{n}{x}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{n}{y}
+             
+             \PY{k}{return} \PY{n}{coefficients}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{k}{def} \PY{n+nf}{performance}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{coefficients}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Root mean squared error\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{} One\PYZhy{}pad x}
+             \PY{n}{o} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+             \PY{n}{x\PYZus{}test} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{[}\PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{o}\PY{p}{]}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Make predictions}
+             \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{x\PYZus{}test} \PY{o}{@} \PY{n}{coefficients}
+         
+             \PY{c+c1}{\PYZsh{} Calculate RMSE}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}test} \PY{o}{\PYZhy{}} \PY{n}{y\PYZus{}pred}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{pairplot}\PY{p}{(}\PY{n}{train}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} <seaborn.axisgrid.PairGrid at 0x1a22347ac8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Wow, that's a little unweildy. Let's try just the correlation matrix
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+         \PY{n}{mask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{bool}\PY{p}{)}
+         \PY{n}{mask}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{triu\PYZus{}indices\PYZus{}from}\PY{p}{(}\PY{n}{mask}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{k+kc}{True}
+         \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{center}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
+                     \PY{n}{square}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coolwarm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{mask}\PY{o}{=}\PY{n}{mask}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{attempt-a-1-value-regression-for-each-column}{%
+\subsection{Attempt a 1-value regression for each
+column}\label{attempt-a-1-value-regression-for-each-column}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{test} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{test\PYZus{}performance} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{one\PYZus{}factor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{name} \PY{o+ow}{in} \PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+             \PY{n}{test\PYZus{}performance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{one\PYZus{}factor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{name}\PY{p}{]} \PY{o}{=} \PY{n}{performance}\PY{p}{(}
+                 \PY{n}{test}\PY{p}{[}\PY{n}{name}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                 \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{name}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+             \PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Root mean squared error vs regressor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{f}\PY{p}{,} \PY{n}{p} \PY{o+ow}{in} \PY{n}{test\PYZus{}performance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{one\PYZus{}factor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}f\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}p:0.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Root mean squared error vs regressor
+------------------------------------
+Age		7.57
+Weight		5.16
+Height		8.15
+Adiposity Index		4.71
+Neck Circumference		6.00
+Chest Circumference		4.93
+Abdomen Circumference		3.67
+Hip Circumference		5.34
+Thigh Circumference		5.50
+Knee Circumference		5.51
+Ankle Circumference		7.06
+Extended Bicep Circumference		5.99
+Forearm Circumference		6.48
+Wrist Circumference		6.75
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{f} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{p}{[}\PY{n}{v} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{test\PYZus{}performance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{one\PYZus{}factor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Root mean squared error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{pairwise-regression}{%
+\section{Pairwise Regression}\label{pairwise-regression}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k+kn}{from} \PY{n+nn}{itertools} \PY{k}{import} \PY{n}{combinations}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{combs} \PY{o}{=} \PY{n}{combinations}\PY{p}{(}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{two\PYZus{}factor} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n}{combs}\PY{p}{:}
+             \PY{n}{c} \PY{o}{=} \PY{p}{[}\PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{\PYZus{}}\PY{p}{]}
+             \PY{n}{p} \PY{o}{=} \PY{n}{performance}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+             \PY{n}{two\PYZus{}factor}\PY{p}{[}\PY{n+nb}{tuple}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{p}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}c\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}p:0.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['Age', 'Weight'] 				 5.02
+['Age', 'Height'] 				 7.90
+['Age', 'Adiposity Index'] 				 4.71
+['Age', 'Neck Circumference'] 				 6.00
+['Age', 'Chest Circumference'] 				 4.89
+['Age', 'Abdomen Circumference'] 				 3.77
+['Age', 'Hip Circumference'] 				 5.14
+['Age', 'Thigh Circumference'] 				 5.18
+['Age', 'Knee Circumference'] 				 5.80
+['Age', 'Ankle Circumference'] 				 7.03
+['Age', 'Extended Bicep Circumference'] 				 5.90
+['Age', 'Forearm Circumference'] 				 6.40
+['Age', 'Wrist Circumference'] 				 7.02
+['Weight', 'Height'] 				 5.19
+['Weight', 'Adiposity Index'] 				 5.03
+['Weight', 'Neck Circumference'] 				 5.15
+['Weight', 'Chest Circumference'] 				 5.22
+['Weight', 'Abdomen Circumference'] 				 3.72
+['Weight', 'Hip Circumference'] 				 5.18
+['Weight', 'Thigh Circumference'] 				 5.21
+['Weight', 'Knee Circumference'] 				 5.30
+['Weight', 'Ankle Circumference'] 				 5.04
+['Weight', 'Extended Bicep Circumference'] 				 5.18
+['Weight', 'Forearm Circumference'] 				 5.19
+['Weight', 'Wrist Circumference'] 				 5.15
+['Height', 'Adiposity Index'] 				 5.03
+['Height', 'Neck Circumference'] 				 6.55
+['Height', 'Chest Circumference'] 				 5.20
+['Height', 'Abdomen Circumference'] 				 3.89
+['Height', 'Hip Circumference'] 				 5.58
+['Height', 'Thigh Circumference'] 				 5.96
+['Height', 'Knee Circumference'] 				 5.96
+['Height', 'Ankle Circumference'] 				 7.69
+['Height', 'Extended Bicep Circumference'] 				 6.54
+['Height', 'Forearm Circumference'] 				 7.08
+['Height', 'Wrist Circumference'] 				 7.61
+['Adiposity Index', 'Neck Circumference'] 				 4.79
+['Adiposity Index', 'Chest Circumference'] 				 4.62
+['Adiposity Index', 'Abdomen Circumference'] 				 3.61
+['Adiposity Index', 'Hip Circumference'] 				 4.98
+['Adiposity Index', 'Thigh Circumference'] 				 5.00
+['Adiposity Index', 'Knee Circumference'] 				 4.85
+['Adiposity Index', 'Ankle Circumference'] 				 4.72
+['Adiposity Index', 'Extended Bicep Circumference'] 				 4.86
+['Adiposity Index', 'Forearm Circumference'] 				 4.83
+['Adiposity Index', 'Wrist Circumference'] 				 4.78
+['Neck Circumference', 'Chest Circumference'] 				 5.16
+['Neck Circumference', 'Abdomen Circumference'] 				 3.67
+['Neck Circumference', 'Hip Circumference'] 				 5.29
+['Neck Circumference', 'Thigh Circumference'] 				 5.47
+['Neck Circumference', 'Knee Circumference'] 				 5.51
+['Neck Circumference', 'Ankle Circumference'] 				 6.01
+['Neck Circumference', 'Extended Bicep Circumference'] 				 5.83
+['Neck Circumference', 'Forearm Circumference'] 				 5.94
+['Neck Circumference', 'Wrist Circumference'] 				 6.00
+['Chest Circumference', 'Abdomen Circumference'] 				 3.64
+['Chest Circumference', 'Hip Circumference'] 				 4.97
+['Chest Circumference', 'Thigh Circumference'] 				 5.05
+['Chest Circumference', 'Knee Circumference'] 				 5.03
+['Chest Circumference', 'Ankle Circumference'] 				 4.93
+['Chest Circumference', 'Extended Bicep Circumference'] 				 5.10
+['Chest Circumference', 'Forearm Circumference'] 				 5.06
+['Chest Circumference', 'Wrist Circumference'] 				 5.11
+['Abdomen Circumference', 'Hip Circumference'] 				 3.70
+['Abdomen Circumference', 'Thigh Circumference'] 				 3.85
+['Abdomen Circumference', 'Knee Circumference'] 				 3.76
+['Abdomen Circumference', 'Ankle Circumference'] 				 3.60
+['Abdomen Circumference', 'Extended Bicep Circumference'] 				 3.80
+['Abdomen Circumference', 'Forearm Circumference'] 				 3.75
+['Abdomen Circumference', 'Wrist Circumference'] 				 3.56
+['Hip Circumference', 'Thigh Circumference'] 				 5.51
+['Hip Circumference', 'Knee Circumference'] 				 5.47
+['Hip Circumference', 'Ankle Circumference'] 				 5.31
+['Hip Circumference', 'Extended Bicep Circumference'] 				 5.33
+['Hip Circumference', 'Forearm Circumference'] 				 5.29
+['Hip Circumference', 'Wrist Circumference'] 				 5.36
+['Thigh Circumference', 'Knee Circumference'] 				 5.29
+['Thigh Circumference', 'Ankle Circumference'] 				 5.49
+['Thigh Circumference', 'Extended Bicep Circumference'] 				 5.44
+['Thigh Circumference', 'Forearm Circumference'] 				 5.36
+['Thigh Circumference', 'Wrist Circumference'] 				 5.51
+['Knee Circumference', 'Ankle Circumference'] 				 5.47
+['Knee Circumference', 'Extended Bicep Circumference'] 				 5.37
+['Knee Circumference', 'Forearm Circumference'] 				 5.38
+['Knee Circumference', 'Wrist Circumference'] 				 5.63
+['Ankle Circumference', 'Extended Bicep Circumference'] 				 5.98
+['Ankle Circumference', 'Forearm Circumference'] 				 6.36
+['Ankle Circumference', 'Wrist Circumference'] 				 6.73
+['Extended Bicep Circumference', 'Forearm Circumference'] 				 5.92
+['Extended Bicep Circumference', 'Wrist Circumference'] 				 5.98
+['Forearm Circumference', 'Wrist Circumference'] 				 6.39
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{n}{two\PYZus{}factor}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{two\PYZus{}factor}\PY{o}{.}\PY{n}{get}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{p}{[}\PY{n}{v} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{two\PYZus{}factor}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+('Age', 'Height')
+7.901445978984846
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{n}{two\PYZus{}factor}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{two\PYZus{}factor}\PY{o}{.}\PY{n}{get}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{p}{[}\PY{n}{v} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{two\PYZus{}factor}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+('Abdomen Circumference', 'Wrist Circumference')
+3.5561491191764545
+
+    \end{Verbatim}
+
+    \hypertarget{all-14-variables}{%
+\section{All 14 Variables}\label{all-14-variables}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{p} \PY{o}{=} \PY{n}{performance}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{o}{=}\PY{n}{test}\PY{p}{[}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                         \PY{n}{y\PYZus{}test}\PY{o}{=}\PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                         \PY{n}{coefficients}\PY{o}{=}\PY{n}{regress}\PY{p}{(}
+                             \PY{n}{train}\PY{p}{[}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                         \PY{p}{)}\PY{p}{)}
+         \PY{n}{test\PYZus{}performance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{All inputs performance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{p}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{All inputs performance}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}p:0.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+All inputs performance		3.41
+
+    \end{Verbatim}
+
+    \hypertarget{my-best-guess}{%
+\section{My best guess}\label{my-best-guess}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{predictive\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{p} \PY{o}{=} \PY{n}{performance}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{o}{=}\PY{n}{test}\PY{p}{[}\PY{n}{predictive\PYZus{}columns}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                         \PY{n}{y\PYZus{}test}\PY{o}{=}\PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                         \PY{n}{coefficients}\PY{o}{=}\PY{n}{regress}\PY{p}{(}
+                             \PY{n}{train}\PY{p}{[}\PY{n}{predictive\PYZus{}columns}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                         \PY{p}{)}\PY{p}{)}
+         \PY{n}{test\PYZus{}performance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predictive columns performance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{p}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predictive columns performance}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}p:0.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Predictive columns performance		3.70
+
+    \end{Verbatim}
+
+    \hypertarget{non-linear-terms}{%
+\section{Non-linear terms}\label{non-linear-terms}}
+
+    In order to improve the model it's worth trying higher-order
+(non-linear) terms.
+
+    Add a term for the square of each input variable
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+             \PY{n}{data}\PY{p}{[}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}c\PYZcb{}}\PY{l+s+s1}{\PYZca{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{*} \PY{n}{data}\PY{p}{[}\PY{n}{c}\PY{p}{]}
+\end{Verbatim}
+
+
+    Add a term for the product of each combination of two variables
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{combs} \PY{o}{=} \PY{n}{combinations}\PY{p}{(}\PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+         \PY{k}{for} \PY{n}{c1}\PY{p}{,} \PY{n}{c2} \PY{o+ow}{in} \PY{n}{combs}\PY{p}{:}
+             \PY{n}{data}\PY{p}{[}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}c1\PYZcb{}}\PY{l+s+s1}{ x }\PY{l+s+si}{\PYZob{}c2\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{c1}\PY{p}{]} \PY{o}{*} \PY{n}{data}\PY{p}{[}\PY{n}{c2}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+             \PY{n}{data}\PY{p}{[}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}c\PYZcb{}}\PY{l+s+s1}{\PYZca{}\PYZhy{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{*}\PY{o}{*} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{train} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{test} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{train}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:}     Age  Weight  Height  Adiposity Index  Neck Circumference  \textbackslash{}
+         0  43.0  164.25   73.25             21.3                35.7   
+         1  36.0  226.75   71.75             31.0                41.5   
+         2  45.0  135.75   68.50             20.4                32.8   
+         3  48.0  173.75   72.00             23.6                37.0   
+         4  24.0  208.50   72.75             27.7                39.2   
+         
+            Chest Circumference  Abdomen Circumference  Hip Circumference  \textbackslash{}
+         0                 96.6                   81.5               97.2   
+         1                115.3                  108.8              114.4   
+         2                 92.3                   83.4               90.4   
+         3                 99.1                   92.0               98.3   
+         4                102.0                   99.1              110.1   
+         
+            Thigh Circumference  Knee Circumference           {\ldots}            \textbackslash{}
+         0                 58.4                38.2           {\ldots}             
+         1                 69.2                42.4           {\ldots}             
+         2                 52.0                35.8           {\ldots}             
+         3                 59.3                38.4           {\ldots}             
+         4                 71.2                43.5           {\ldots}             
+         
+            Neck Circumference\^{}-1  Chest Circumference\^{}-1  Abdomen Circumference\^{}-1  \textbackslash{}
+         0               0.028011                0.010352                  0.012270   
+         1               0.024096                0.008673                  0.009191   
+         2               0.030488                0.010834                  0.011990   
+         3               0.027027                0.010091                  0.010870   
+         4               0.025510                0.009804                  0.010091   
+         
+            Hip Circumference\^{}-1  Thigh Circumference\^{}-1 Knee Circumference\^{}-1  \textbackslash{}
+         0              0.010288                0.017123              0.026178   
+         1              0.008741                0.014451              0.023585   
+         2              0.011062                0.019231              0.027933   
+         3              0.010173                0.016863              0.026042   
+         4              0.009083                0.014045              0.022989   
+         
+            Ankle Circumference\^{}-1  Extended Bicep Circumference\^{}-1  \textbackslash{}
+         0                0.042735                         0.033670   
+         1                0.041667                         0.028249   
+         2                0.048544                         0.034722   
+         3                0.044643                         0.035842   
+         4                0.039683                         0.027701   
+         
+            Forearm Circumference\^{}-1  Wrist Circumference\^{}-1  
+         0                  0.036496                0.054645  
+         1                  0.047619                0.049751  
+         2                  0.039216                0.061350  
+         3                  0.038168                0.058824  
+         4                  0.033003                0.053476  
+         
+         [5 rows x 135 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{train}\PY{o}{.}\PY{n}{columns}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} Index(['Age', 'Weight', 'Height', 'Adiposity Index', 'Neck Circumference',
+                'Chest Circumference', 'Abdomen Circumference', 'Hip Circumference',
+                'Thigh Circumference', 'Knee Circumference',
+                {\ldots}
+                'Neck Circumference\^{}-1', 'Chest Circumference\^{}-1',
+                'Abdomen Circumference\^{}-1', 'Hip Circumference\^{}-1',
+                'Thigh Circumference\^{}-1', 'Knee Circumference\^{}-1',
+                'Ankle Circumference\^{}-1', 'Extended Bicep Circumference\^{}-1',
+                'Forearm Circumference\^{}-1', 'Wrist Circumference\^{}-1'],
+               dtype='object', length=135)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{train\PYZus{}x} \PY{o}{=} \PY{n}{train}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{o}{*}\PY{n}{train\PYZus{}x}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Age
+Weight
+Height
+Adiposity Index
+Neck Circumference
+Chest Circumference
+Abdomen Circumference
+Hip Circumference
+Thigh Circumference
+Knee Circumference
+Ankle Circumference
+Extended Bicep Circumference
+Forearm Circumference
+Wrist Circumference
+Age\^{}2
+Weight\^{}2
+Height\^{}2
+Adiposity Index\^{}2
+Neck Circumference\^{}2
+Chest Circumference\^{}2
+Abdomen Circumference\^{}2
+Hip Circumference\^{}2
+Thigh Circumference\^{}2
+Knee Circumference\^{}2
+Ankle Circumference\^{}2
+Extended Bicep Circumference\^{}2
+Forearm Circumference\^{}2
+Wrist Circumference\^{}2
+Age x Weight
+Age x Height
+Age x Adiposity Index
+Age x Neck Circumference
+Age x Chest Circumference
+Age x Abdomen Circumference
+Age x Hip Circumference
+Age x Thigh Circumference
+Age x Knee Circumference
+Age x Ankle Circumference
+Age x Extended Bicep Circumference
+Age x Forearm Circumference
+Age x Wrist Circumference
+Weight x Height
+Weight x Adiposity Index
+Weight x Neck Circumference
+Weight x Chest Circumference
+Weight x Abdomen Circumference
+Weight x Hip Circumference
+Weight x Thigh Circumference
+Weight x Knee Circumference
+Weight x Ankle Circumference
+Weight x Extended Bicep Circumference
+Weight x Forearm Circumference
+Weight x Wrist Circumference
+Height x Adiposity Index
+Height x Neck Circumference
+Height x Chest Circumference
+Height x Abdomen Circumference
+Height x Hip Circumference
+Height x Thigh Circumference
+Height x Knee Circumference
+Height x Ankle Circumference
+Height x Extended Bicep Circumference
+Height x Forearm Circumference
+Height x Wrist Circumference
+Adiposity Index x Neck Circumference
+Adiposity Index x Chest Circumference
+Adiposity Index x Abdomen Circumference
+Adiposity Index x Hip Circumference
+Adiposity Index x Thigh Circumference
+Adiposity Index x Knee Circumference
+Adiposity Index x Ankle Circumference
+Adiposity Index x Extended Bicep Circumference
+Adiposity Index x Forearm Circumference
+Adiposity Index x Wrist Circumference
+Neck Circumference x Chest Circumference
+Neck Circumference x Abdomen Circumference
+Neck Circumference x Hip Circumference
+Neck Circumference x Thigh Circumference
+Neck Circumference x Knee Circumference
+Neck Circumference x Ankle Circumference
+Neck Circumference x Extended Bicep Circumference
+Neck Circumference x Forearm Circumference
+Neck Circumference x Wrist Circumference
+Chest Circumference x Abdomen Circumference
+Chest Circumference x Hip Circumference
+Chest Circumference x Thigh Circumference
+Chest Circumference x Knee Circumference
+Chest Circumference x Ankle Circumference
+Chest Circumference x Extended Bicep Circumference
+Chest Circumference x Forearm Circumference
+Chest Circumference x Wrist Circumference
+Abdomen Circumference x Hip Circumference
+Abdomen Circumference x Thigh Circumference
+Abdomen Circumference x Knee Circumference
+Abdomen Circumference x Ankle Circumference
+Abdomen Circumference x Extended Bicep Circumference
+Abdomen Circumference x Forearm Circumference
+Abdomen Circumference x Wrist Circumference
+Hip Circumference x Thigh Circumference
+Hip Circumference x Knee Circumference
+Hip Circumference x Ankle Circumference
+Hip Circumference x Extended Bicep Circumference
+Hip Circumference x Forearm Circumference
+Hip Circumference x Wrist Circumference
+Thigh Circumference x Knee Circumference
+Thigh Circumference x Ankle Circumference
+Thigh Circumference x Extended Bicep Circumference
+Thigh Circumference x Forearm Circumference
+Thigh Circumference x Wrist Circumference
+Knee Circumference x Ankle Circumference
+Knee Circumference x Extended Bicep Circumference
+Knee Circumference x Forearm Circumference
+Knee Circumference x Wrist Circumference
+Ankle Circumference x Extended Bicep Circumference
+Ankle Circumference x Forearm Circumference
+Ankle Circumference x Wrist Circumference
+Extended Bicep Circumference x Forearm Circumference
+Extended Bicep Circumference x Wrist Circumference
+Forearm Circumference x Wrist Circumference
+Age\^{}-1
+Weight\^{}-1
+Height\^{}-1
+Adiposity Index\^{}-1
+Neck Circumference\^{}-1
+Chest Circumference\^{}-1
+Abdomen Circumference\^{}-1
+Hip Circumference\^{}-1
+Thigh Circumference\^{}-1
+Knee Circumference\^{}-1
+Ankle Circumference\^{}-1
+Extended Bicep Circumference\^{}-1
+Forearm Circumference\^{}-1
+Wrist Circumference\^{}-1
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{theory\PYZus{}1\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weight\PYZca{}\PYZhy{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{theory\PYZus{}1\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} 3.683762778355379
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{theory\PYZus{}2\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weight\PYZca{}\PYZhy{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{theory\PYZus{}2\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} 3.683762778355379
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{theory\PYZus{}3\PYZus{}columns} \PY{o}{=} \PY{n}{train\PYZus{}x}\PY{o}{.}\PY{n}{columns}
+         \PY{n}{c} \PY{o}{=} \PY{n}{theory\PYZus{}3\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} 20.737652502714663
+\end{Verbatim}
+            
+    \hypertarget{final-validation-performance-calculations}{%
+\section{Final Validation Performance
+Calculations}\label{final-validation-performance-calculations}}
+
+    The final performance for the ``best'' models from the categories above
+will now be calculated on the validation set
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{val} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \hypertarget{single-variable-performance}{%
+\subsection{Single variable
+performance}\label{single-variable-performance}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{one\PYZus{}variable\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{one\PYZus{}variable\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} 4.265121424789481
+\end{Verbatim}
+            
+    \hypertarget{two-variable-performance}{%
+\subsection{Two variable performance}\label{two-variable-performance}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{two\PYZus{}variable\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{two\PYZus{}variable\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:} 3.9050699059210032
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{other\PYZus{}two\PYZus{}variable\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{other\PYZus{}two\PYZus{}variable\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}39}]:} 4.52611272089604
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{another\PYZus{}two\PYZus{}variable\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{another\PYZus{}two\PYZus{}variable\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} 4.300874979416831
+\end{Verbatim}
+            
+    \hypertarget{variable-performance}{%
+\subsection{14 variable performance}\label{variable-performance}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{fourteen\PYZus{}variable\PYZus{}columns} \PY{o}{=} \PY{n}{column\PYZus{}names}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{fourteen\PYZus{}variable\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} 4.265218559119979
+\end{Verbatim}
+            
+    Just goes to show the value of a validation set\ldots{}
+
+    \hypertarget{best-guess-variables}{%
+\subsection{``Best guess'' variables}\label{best-guess-variables}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{best\PYZus{}guess\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{best\PYZus{}guess\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:} 4.223629635987778
+\end{Verbatim}
+            
+    \hypertarget{linear-in-parameters}{%
+\subsection{Linear in parameters}\label{linear-in-parameters}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{linear\PYZus{}in\PYZus{}parameters\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weight\PYZca{}\PYZhy{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{linear\PYZus{}in\PYZus{}parameters\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} 4.189345933006309
+\end{Verbatim}
+            
+    \hypertarget{statistical-perspective}{%
+\section{Statistical Perspective}\label{statistical-perspective}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{s} \PY{o}{=} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{s}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} 7.902927289914957
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{s}\PY{o}{/}\PY{l+m+mi}{2}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} 3.9514636449574785
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{l+m+mf}{6.84} \PY{o}{/} \PY{n}{s}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}47}]:} 0.8655020790496991
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{l+m+mf}{3.87} \PY{o}{/} \PY{n}{s}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} 0.4896919657781193
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{norm}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:} 0.38292492254802624
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:} 0.6826894921370859
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{l+m+mf}{6.84} \PY{o}{/} \PY{n}{s}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{6.84} \PY{o}{/} \PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:} 0.6132367246886898
+\end{Verbatim}
+            
+    \hypertarget{reproducing-penrose}{%
+\section{Reproducing Penrose}\label{reproducing-penrose}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{penrose\PYZus{}columns} \PY{o}{=} \PY{p}{[}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZca{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abdomen Circumference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wrist Circumference}\PY{l+s+s1}{\PYZsq{}}
+         \PY{p}{]}
+         \PY{n}{c} \PY{o}{=} \PY{n}{penrose\PYZus{}columns}
+         \PY{n}{performance}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,}
+                             \PY{n}{regress}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body Fat Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} 4.3673819767976205
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
