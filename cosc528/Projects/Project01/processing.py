@@ -163,3 +163,37 @@ def cross_val_split(x, train_frac, val_frac, test_frac, y=None):
     val = data[train_num + test_num:]
 
     return train, test, val
+
+def rmse(truth, prediction):
+    """Gives the root-mean-squared erorr between prediction and truth
+    
+    Parameters
+    ----------
+    truth : numpy.ndarray
+    prediction : numpy.ndarray
+    
+    Returns
+    -------
+    float
+    
+    Examples
+    --------
+    >>> a = np.array([3, 4, 5])
+    >>> b = np.array([3, 4, 5])
+    >>> rmse(a, b)
+    0.0
+    
+    >>> c = np.array([4, 3, 6])
+    >>> rmse(a, c)
+    1.0
+    
+    >>> d = np.array([3, 4])
+    >>> rmse(a, d)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 2, in rmse
+    AssertionError
+    """
+    assert truth.shape == prediction.shape
+    rmse = np.linalg.norm(truth - prediction) / truth.shape[0] ** 0.5
+    return rmse
