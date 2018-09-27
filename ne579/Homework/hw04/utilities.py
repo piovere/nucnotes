@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import scipy as sp
 import scipy.io as sio
+from sklearn.base import BaseEstimator, TransformerMixin
 
 def load_matlab_data(filename):
     dd = sio.loadmat(filename)
@@ -48,7 +49,8 @@ def zscore(x, m=None, s=None):
     else:
         raise Exception("Something went wrong in zscore")
 
-def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15):
+def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15,
+                         seed=None):
     """DOCSTRING!!!
     
     Hopefully this is deprecated soon in favor of cross validation
@@ -66,18 +68,40 @@ def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15):
         x and y for the training, testing, and validation set respectively
     """
     # Get length of data
+    rows, cols = x.shape
+
     # Generate randomized array of row numbers
+    rand_ind = np.random.permutation(rows)
+
     # Find the index row with the max and min in each column
+    min_indices = [np.argmin(x[:,i]) for i in range(cols)]
+    max_indices = [np.argmax(x[:,i]) for i in range(cols)]
+    # Filter non-unique values
+    minmax_indices = min_indices + max_indices
+    minmax_indices = list(set(minmax_indices))
+
     # Convert the train, test, val fractions into numbers
     # Take floor of each of those numbers
+    train_len = np.floor(train_f * rows).astype(int)
+    test_len = np.floor(test_f * rows).astype(int)
+    val_len = np.floor(val_f * rows).astype(int)
+
     # Split array of row numbers into train_ix, test_ix, val_ix
-    # Add leftover rows to the training set
+    val_ixs = list(rand_ind[:val_len])
+    test_ixs = list(rand_ind[val_len:val_len + test_len])
+    train_ixs = list(rand_ind[val_len + test_len:])
+
     # Add the max and min indices to training set
+    train_ixs.extend(minmax_indices)
+
     # Slice up x and y
+    x_train = x[train_ixs]
+    y_train = y[train_ixs]
+
+    x_test = x[test_ixs]
+    y_test = y[test_ixs]
+
+    x_val = x[val_ixs]
+    y_val = y[val_ixs]
+
     return x_train, y_train, x_test, y_test, x_val, y_val
-    
-def correllation(a, b):
-    """Calculate the correlation between two vectors
-    """
-    np.var(a) * np.var(b) / np.std(a) / np.std(b)
-    raise Exception("I forget how to calculat correlation")
