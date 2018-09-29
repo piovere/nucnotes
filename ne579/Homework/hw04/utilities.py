@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import numpy.linalg as la
 import scipy as sp
 import scipy.io as sio
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -42,8 +43,9 @@ def zscore(x, m=None, s=None):
         If only `m` or only `s` is provided
     """
     if m is None and s is None:
-        m = np.mean(x, axis=1)
-        s = np.std(x, axis=1)
+        m = np.mean(x, axis=0)
+        s = np.std(x, axis=0)
+        return (x - m) / s, m, s
     elif m is not None and s is not None:
         return (x - m) / s, m, s
     else:
@@ -105,3 +107,19 @@ def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15,
     y_val = y[val_ixs]
 
     return x_train, y_train, x_test, y_test, x_val, y_val
+
+class linear_regression():
+    def __init__(self):
+        self._params = None
+    
+    def fit(self, x, y):
+        x = np.hstack([x, np.ones_like(x[:,0]).reshape((-1, 1))])
+        self._params = la.inv(x.T @ x) @ x.T @ y
+    
+    def predict(self, x):
+        if len(x.shape) < 2:
+            print(x.shape)
+            x = np.atleast_2d(x)
+            print(x.shape)
+        x = np.hstack([x, np.ones_like(x[:,0]).reshape((-1, 1))])
+        return x @ self._params
