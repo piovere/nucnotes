@@ -109,11 +109,16 @@ def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15,
     return x_train, y_train, x_test, y_test, x_val, y_val
 
 class linear_regression():
-    def __init__(self):
+    def __init__(self, cols=None):
         self._params = None
+        self._cols = cols
     
     def fit(self, x, y):
-        x = np.hstack([x, np.ones_like(x[:,0]).reshape((-1, 1))])
+        # Add check to see if x is 1d
+        # Add step to select columns from x if needed
+        if self._cols is None:
+            x = np.hstack([x, np.ones_like(x[:,0]).reshape((-1, 1))])
+        
         self._params = la.inv(x.T @ x) @ x.T @ y
     
     def predict(self, x):
@@ -123,3 +128,6 @@ class linear_regression():
             print(x.shape)
         x = np.hstack([x, np.ones_like(x[:,0]).reshape((-1, 1))])
         return x @ self._params
+    
+def rmse(y_true, y_false):
+    return np.sqrt(np.sum((y_true - y_false) ** 2) / y_true.flatten().shape[0])
