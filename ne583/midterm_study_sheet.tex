@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{physics}
+\usepackage{cancel}
 
 \title{Study sheet for NE583 midterm exam \#1}
 \author{J.R. Powers-Luhn}
@@ -88,7 +89,36 @@ $$
 \newpage
 \section{Show that the total derivative flux with respect to distance traveled ($\dv{\psi}{s}$) is equivalent to the $\hat{\Omega} \cdot \vec{\nabla} \psi$. I will expect you do expand the total derivative FULLY (in terms of all of the dependent variables of flux and explain why some of the terms disappear in Cartesian coordinates).}
 
-Lorem ipsum dolor simet
+\begin{align}
+	\psi(s + \dd{s}) &= \psi(s) - \psi(s) \sigma_t(s) \dd{s} + q(s) \dd{s} \\
+	\frac{\psi(s + \dd{s}) - \psi(s)}{\dd{s}} + \psi(s) \sigma_t(s) &= q(s) \\
+	\dv{\psi}{s} + \sigma_t(s) \psi(s) &= q(s)
+\end{align}
+
+How do the terms in $\psi(r, E, \Omega, t)$ change with respect to s?
+
+\begin{align*}
+	x(s) &= x_0 + \int_0^s \dv{x}{s} \dd{s} = x_0 + (\Omega \cdot \hat{\imath}) s \\
+	y(s) &= y_0 + \int_0^s \dv{y}{s} \dd{s} = y_0 + (\Omega \cdot \hat{\jmath}) s \\
+	z(s) &= z_0 + \int_0^s \dv{z}{s} \dd{s} = z_0 + (\Omega \cdot \hat{k}) s \\
+	E(s) &= E_0 + \int_0^s \dv{E}{s} \dd{s} = E_0 \\
+	\Omega(s) &= \Omega_0 + \int_0^s \dv{\Omega}{s} \dd{s} = \Omega_0 \\
+	t(s) &= t_0 + \int_0^s \dv{t}{s} \dd{s} = t_0 + \frac{s}{v}
+\end{align*}
+
+To find $\dv{\psi}{s}$, use product rule on all the equations above
+
+\begin{align*}
+	\dv{\psi}{s} &= \dv{\psi}{t} \dv{t}{s} + \dv{\psi}{x} \dv{x}{s} + \dv{\psi}{y} \dv{y}{s} + \dv{\psi}{z} \dv{z}{s} + \dv{\psi}{E} \cancel{\dv{E}{s}} + \dv{\psi}{\Omega} \cancel{\dv{\Omega}{s}} \\
+	&= \frac{1}{v} \dv{\psi}{t} + \dv{\psi}{x} \Omega \cdot \hat{\imath} + \dv{\psi}{y} \Omega \cdot \hat{\jmath} + \dv{\psi}{z} \Omega \cdot \hat{k} \\
+	&= \frac{1}{v} \dv{\psi}{t} + \Omega \cdot \nabla \psi
+\end{align*}
+
+Plug this into the previous equation to get:
+
+\begin{align*}
+	\frac{1}{v} \dv{\psi(r, E, \Omega, t)}{t} + \Omega \cdot \nabla \psi(r, E, \Omega, t) + \sigma_t(r, E, \Omega, t) \psi(r, E, \Omega, t) = q(r, E, \Omega, t)
+\end{align*}
 
 \newpage
 \section{List and discuss the explicit and implicit boundary condition types we studied -- void, surface source, reflected, white, periodic. Be able to show that the incoming angular flux for the white boundary condition is four times the outgoing partial current.}
@@ -110,12 +140,36 @@ All particles that leave the boundary reenter at the opposite side of the cell
 \newpage
 \section{Develop the streaming operator in spherical coordinates as done in the example in the notes.}
 
-Lorem ipsum dolor simet
+Position: $\hat{r} = (r, \theta, \phi)$
+Direction: $\hat{\Omega} = (\mu, \eta, \xi) = (\hat{\Omega} \cdot \hat{e_r}, \hat{\Omega} \cdot \hat{e_\theta}, \hat{\Omega} \cdot \hat{e_\phi})$
+
+\begin{align*}
+\dv{\psi(s)}{s} &= \dv{\psi}{r} \dv{r}{s} + \dv{\psi}{\theta} \dv{\theta}{s} + \dv{\psi}{\phi} \dv{\phi}{s} + \dv{\psi}{\mu} \dv{\mu}{s} + \dv{\psi}{\eta} \dv{\eta}{s} + \dv{\psi}{\xi} \dv{\xi}{s} + \dv{\psi}{E} \cancel{\dv{E}{s}} \\
+&= \dv{\psi}{r} \dv{r}{s} + \dv{\psi}{\theta} \dv{\theta}{s} + \dv{\psi}{\phi} \dv{\phi}{s} + \dv{\psi}{\mu} \dv{\mu}{s} + \dv{\psi}{\eta} \dv{\eta}{s} + \dv{\psi}{\xi} \dv{\xi}{s} \\
+&= \mu \dv{\psi}{r} + \eta \dv{\psi}{\theta} + \xi \dv{\psi}{\phi} + \dv{\psi}{\mu} \dv{\mu}{s} + \dv{\psi}{\eta} \dv{\eta}{s} + \dv{\psi}{\xi} \dv{\xi}{s} 
+\end{align*}
 
 \newpage
 \section{Demonstrate the equivalence of a conservative and non-conservative version of the streaming operator for any curvilinear coordinate system. (No need to memorize the versions.)}
 
-Lorem ipsum dolor simet
+The conservative form is used ``So that when we finite difference the streaming operator, the resulting terms will conserve particles''
+
+Non-conservative form:
+\begin{align*}
+	\mu \pdv{\Psi (r, \mu, E)}{r} + \frac{1-\mu^2}{r} \pdv{\Psi (r, \mu, E)}{\mu} +\sigma_t(r, E) \Psi (r, \mu, E) = q(r, \mu, E)
+\end{align*}
+
+Conservative form:
+\begin{align*}
+	\frac{\mu}{r^2} \pdv{\left[ r^2 \Psi(r, \mu, E) \right]}{r} + \pdv{}{\mu} \left[ \frac{\left( 1 - \mu^2 \right) \Psi(r, \mu, E)}{r} \right]
+		\sigma_t (r, E) \Psi ( r, \mu, E ) &= q(r, \mu, E) \\
+	\frac{\mu}{r^2} \left[ 2 r \Psi ( r, \mu, E ) + r^2 \pdv{\Psi ( r, \mu, E )}{r} \right] + 
+		\frac{1}{r} \left[ -2 \mu \Psi ( r, \mu, E ) + \left( 1 - \mu^2 \right) \pdv{\Psi ( r, \mu, E )}{\mu} \right] + 
+		\sigma_t \Psi ( r, \mu, E ) &= q(r, \mu, E) \\
+	\cancel{\frac{2 \mu}{r} \Psi ( r, \mu, E )} + \mu \pdv{\Psi ( r, \mu, E )}{r} - \cancel{\frac{2 \mu}{r} \Psi ( r, \mu, E )} +
+		\frac{1 - \mu^2}{r} \pdv{\Psi ( r, \mu, E )}{\mu} + \sigma_t \Psi ( r, \mu, E ) &= q(r, \mu, E) \\
+	\mu \pdv{\Psi (r, \mu, E)}{r} + \frac{1-\mu^2}{r} \pdv{\Psi (r, \mu, E)}{\mu} +\sigma_t(r, E) \Psi (r, \mu, E) = q(r, \mu, E)
+\end{align*}
 
 \newpage
 \section{Explain the use of spherical harmonic moments and spherical harmonic distributions to represent the scattering source term.}
