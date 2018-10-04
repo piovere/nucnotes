@@ -4,7 +4,7 @@
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -20,7 +20,7 @@ from sklearn.metrics import make_scorer
 # In[2]:
 
 
-get_ipython().run_line_magic('run', 'utilities.py')
+from utilities import *
 
 
 # # Load and scale the data
@@ -113,7 +113,7 @@ plt.xlabel("Number of Loading Vectors (minus 1)")
 plt.ylabel("Cumulative fraction of variance explained")
 plt.axhline(y=0.9, linestyle=':', color='r', alpha=0.5)
 plt.savefig('images/cumulative_variance.png', dpi=300)
-plt.show()
+plt.show(block=True)
 
 
 # In[12]:
@@ -140,12 +140,18 @@ plt.ylabel('| Correlation with Body Fat Percentage |')
 plt.axhline(y=0.7, linestyle=':', color='r', alpha=0.5)
 plt.axhline(y=0.3, linestyle=':', color='r', alpha=0.5)
 plt.savefig('images/pca_correlation.png', dpi=300)
-plt.show()
+plt.show(block=True)
+
+
+# In[15]:
+
+
+components_sorted_by_correlation = np.argsort(np.abs(corr_vec))[::-1]
 
 
 # ## Are the correlations between the various loadings linear?
 
-# In[15]:
+# In[16]:
 
 
 def plot_loading_scatter(loading_num):
@@ -153,10 +159,10 @@ def plot_loading_scatter(loading_num):
     plt.xlabel(f'Loading {loading_num}')
     plt.ylabel('Body Fat Percentage')
     plt.savefig(f'images/pca_{loading_num}_scatter.png', dpi=300)
-    plt.show()
+    plt.show(block=True)
 
 
-# In[16]:
+# In[17]:
 
 
 for _ in range(14):
@@ -169,13 +175,13 @@ for _ in range(14):
 
 # ## What are the first few PCA loadings comprised of?
 
-# In[17]:
+# In[18]:
 
 
 pca_data = pca_pipeline.named_steps['pca']
 
 
-# In[18]:
+# In[19]:
 
 
 f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, sharex='col', figsize=(10,10))
@@ -207,7 +213,7 @@ plt.show()
 
 # ## PCR capturing 90% of the variation in the input space
 
-# In[19]:
+# In[20]:
 
 
 pcr_90_percent = LinearRegression()
@@ -218,13 +224,13 @@ pcr_90_percent.fit(xtr_scaled_pca[:,:5], ytr)
 # transformation determined from the training set to `x` (in 
 # this case, the test data).
 
-# In[20]:
+# In[21]:
 
 
 xts_scaled_pca = pca_pipeline.transform(xts)
 
 
-# In[21]:
+# In[22]:
 
 
 pcr_90_percent_performance = rmse(
@@ -239,14 +245,14 @@ print(pcr_90_percent_performance)
 # of all of the eigenvalues). This is equivalent to the fraction 
 # of variance they explain.
 
-# In[22]:
+# In[23]:
 
 
 pcr_gt10_percent = LinearRegression()
 pcr_gt10_percent.fit(xtr_scaled_pca[:,:9], ytr)
 
 
-# In[23]:
+# In[24]:
 
 
 pcr_gt10_percent_performance = rmse(
@@ -260,14 +266,14 @@ print(pcr_gt10_percent_performance)
 # fat (>0.3), and consisted of only the first 2 loadings. To explore 
 # this further, I will include the next most correlated PC (index 11).
 
-# In[24]:
+# In[25]:
 
 
 pcr_correlated = LinearRegression()
 pcr_correlated.fit(xtr_scaled_pca[:, [0, 1, 11]], ytr)
 
 
-# In[25]:
+# In[26]:
 
 
 pcr_correlated_performance = rmse(
@@ -275,7 +281,7 @@ pcr_correlated_performance = rmse(
 print(pcr_correlated_performance)
 
 
-# In[26]:
+# In[27]:
 
 
 pcr_correlated2 = LinearRegression()
@@ -285,9 +291,72 @@ pcr_correlated2_performance = rmse(
 print(pcr_correlated2_performance)
 
 
+# ## Watch how performance on the test set improves 
+# ## as components are added in order of correlation
+
+# In[28]:
+
+
+corr_pc_perf = []
+for _ in range(1,corr_vec.shape[0]):
+    pcs = components_sorted_by_correlation[:_]
+    print(f'Using columns {pcs}')
+    lr = LinearRegression()
+    lr.fit(xtr_scaled_pca[:,pcs], ytr)
+    e = rmse(lr.predict(pca.transform(scaler.transform(xts))[:,pcs]), yts)
+    corr_pc_perf.append(e)
+    print(f'Testing error for the {_} most correlated PC(s) is {e}')
+
+
+# In[29]:
+
+
+plt.plot(corr_pc_perf)
+plt.plot(3, np.min(corr_pc_perf), 'ro')
+plt.ylabel('Test set RMSE')
+plt.xlabel('Number of PC\'s in regression')
+plt.xticks(np.arange(len(corr_pc_perf)), range(1,len(corr_pc_perf)+1))
+plt.savefig('images/selective_pcr_performance.png', dpi=300)
+plt.show()
+
+
+# It appears that columns 0, 1, 11, and 5 make for the best regression
+
+# In[30]:
+
+
+pcr_correlated3 = LinearRegression()
+pcr_correlated3.fit(xtr_scaled_pca[:, [0, 1, 5, 11]], ytr)
+pcr_correlated3_performance = rmse(
+    pcr_correlated3.predict(xts_scaled_pca[:, [0, 1, 5, 11]]), yts)
+print(pcr_correlated3_performance)
+
+
+# Check the condition number of this input matrix ($\lambda_0 / \lambda_{11}$)
+
+# In[31]:
+
+
+evr = pca_pipeline.named_steps['pca'].explained_variance_ratio_
+evr[0] / evr[11]
+
+
+# In[32]:
+
+
+plt.plot([evr[0] / np.min(evr[components_sorted_by_correlation[:i]])          for i in range(1,components_sorted_by_correlation.shape[0]+1)])
+plt.xlabel("Number of PCs in model")
+plt.ylabel("Condition number of matrix")
+plt.xticks(np.arange(len(corr_pc_perf)), range(1,len(corr_pc_perf)+1))
+plt.axhline(y=100, color='r', linestyle=':', alpha=0.5)
+plt.yscale('log')
+plt.savefig('images/condition_number_corr_ordered.png', dpi=300)
+plt.show()
+
+
 # ## All the PCA's
 
-# In[27]:
+# In[33]:
 
 
 pcr_all = LinearRegression()
@@ -298,7 +367,7 @@ print(pcr_all_performance)
 
 # # Comparison of PCR performance
 
-# In[28]:
+# In[34]:
 
 
 models = {
@@ -307,26 +376,28 @@ models = {
         'PCR of loadings with >1% of Variance',
         'PCR of correlated loadings (>0.3)',
         'PCR of correlated loadings (>0.2)',
-        'PCR of all loadings'
+        'Best PCR sorted by correlation',
+        'PCR of all loadings',
     ],
     'RMSE': [
         pcr_90_percent_performance,
         pcr_gt10_percent_performance,
         pcr_correlated_performance,
         pcr_correlated2_performance,
+        pcr_correlated3_performance,
         pcr_all_performance
     ]
 }
 
 
-# In[29]:
+# In[35]:
 
 
 test_results = pd.DataFrame(models)
 test_results
 
 
-# In[30]:
+# In[36]:
 
 
 print(test_results.to_latex(index=False))
@@ -334,16 +405,16 @@ print(test_results.to_latex(index=False))
 
 # # Calculate the error on the validation set
 
-# In[31]:
+# In[37]:
 
 
 val_scaled_pca = pca_pipeline.transform(xv)
-pcr_correlated_val_performance = rmse(
-    pcr_correlated.predict(val_scaled_pca[:, [0, 1, 11]]), yv)
-print(pcr_correlated_val_performance)
+pcr_correlated3_val_performance = rmse(
+    pcr_correlated3.predict(val_scaled_pca[:, [0, 1, 5, 11]]), yv)
+print(pcr_correlated3_val_performance)
 
 
-# In[32]:
+# In[38]:
 
 
 naive_linear_model = LinearRegression()
@@ -351,4 +422,50 @@ naive_linear_model.fit(scaler.transform(xtr), ytr)
 naive_linear_model_performance = rmse(
     naive_linear_model.predict(scaler.transform(xv)), yv)
 print(naive_linear_model_performance)
+
+
+# # Compare to the "best" conventional linear regression
+
+# In[39]:
+
+
+best_linear = LinearRegression()
+best_xtr = np.hstack([xtr[:,[6, 2, 13]], 1 / xtr[:, 1].reshape((-1, 1))])
+linear_scaler = StandardScaler()
+best_xtr_scaled = linear_scaler.fit_transform(best_xtr)
+best_linear.fit(best_xtr_scaled, ytr)
+
+
+# In[40]:
+
+
+best_xts_scaled = linear_scaler.transform(
+    np.hstack([xts[:,[6, 2, 13]], 1 / xts[:, 1].reshape((-1, 1))]))
+yts_pred = best_linear.predict(best_xts_scaled)
+
+
+# In[41]:
+
+
+rmse(yts, yts_pred)
+
+
+# In[42]:
+
+
+best_xv_scaled = linear_scaler.transform(
+    np.hstack([xv[:,[6, 2, 13]], 1 / xv[:, 1].reshape((-1, 1))]))
+yv_pred = best_linear.predict(best_xv_scaled)
+
+
+# In[43]:
+
+
+rmse(yv, yv_pred)
+
+
+# In[44]:
+
+
+np.linalg.cond(best_xts_scaled)
 
