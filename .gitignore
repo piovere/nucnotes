@@ -30,3 +30,4 @@ profiles_settings.xml
 .coverage
 htmlcov/
 coverage.xml
+__pycache__
