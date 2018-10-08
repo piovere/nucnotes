@@ -34,12 +34,15 @@ for i in range(1, x.shape[1]):
 pls_models = [PLSRegression(n_components=i).fit(xtr, ytr) for i in range(1, x.shape[1]+1)]
 # map(lambda m: m.fit(xtr, ytr), pls_models)
 
-es = [rmse(yts, m.predict(xts)) for m in pls_models]
+ets = [rmse(yts, m.predict(xts)) for m in pls_models]
+etr = [rmse(ytr, m.predict(xtr)) for m in pls_models]
 
 f = plt.figure()
-plt.plot(range(1, x.shape[1]+1), es)
+plt.plot(range(1, x.shape[1]+1), ets, label="Test error")
+plt.plot(range(1, x.shape[1]+1), etr, label="Training error")
 plt.xlabel("Number of components")
-plt.ylabel("Test set RMSE")
+plt.ylabel("PLS RMSE")
+plt.legend(loc="upper right")
 plt.savefig("images/rmse_vs_number_components.png", dpi=1000)
 plt.show()
 
@@ -52,12 +55,15 @@ def PCR(n_features):
     return pcr
 
 pcr_models = [PCR(i).fit(xtr, ytr) for i in range(1, x.shape[1]+1)]
-es = [rmse(yts, m.predict(xts)) for m in pcr_models]
+ets = [rmse(yts, m.predict(xts)) for m in pcr_models]
+etr = [rmse(ytr, m.predict(xtr)) for m in pcr_models]
 
 f = plt.figure()
-plt.plot(range(1, x.shape[1]+1), es)
+plt.plot(range(1, x.shape[1]+1), ets, label="Test error")
+plt.plot(range(1, x.shape[1]+1), etr, label="Training error")
 plt.xlabel("Number of PCA loadings")
 plt.ylabel("PCR RMSE")
+plt.legend(loc="upper right")
 plt.savefig("images/rmse_vs_pca_loadings.png", dpi=1000)
 plt.show()
 
