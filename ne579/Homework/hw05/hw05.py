@@ -40,7 +40,7 @@ etr = [rmse(ytr, m.predict(xtr)) for m in pls_models]
 f = plt.figure()
 plt.plot(range(1, x.shape[1]+1), ets, label="Test error")
 plt.plot(range(1, x.shape[1]+1), etr, label="Training error")
-plt.xlabel("Number of components")
+plt.xlabel("Number of latent variables")
 plt.ylabel("PLS RMSE")
 plt.legend(loc="upper right")
 plt.savefig("images/rmse_vs_number_components.png", dpi=1000)
