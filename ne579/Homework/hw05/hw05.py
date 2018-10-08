@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.cross_decomposition import PLSRegression
 from sklearn.pipeline import Pipeline
-from utilities import *
+from utilities import load_matlab_data, train_test_val_split, rmse
 
 
 # Set seed to match earlier homeworks
@@ -38,4 +38,5 @@ f = plt.figure()
 plt.plot(range(1, x.shape[1]+1), es)
 plt.xlabel("Number of components")
 plt.ylabel("Test set RMSE")
+plt.savefig("images/rmse_vs_number_components.png", dpi=1000)
 plt.show()
