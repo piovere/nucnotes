@@ -47,7 +47,6 @@ def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15,
 
     # Convert the train, test, val fractions into numbers
     # Take floor of each of those numbers
-    train_len = np.floor(train_f * rows).astype(int)
     test_len = np.floor(test_f * rows).astype(int)
     val_len = np.floor(val_f * rows).astype(int)
 
