@@ -81,12 +81,9 @@ for a in l_curve_alphas:
 plt.plot(residual_norms, solution_norms, '.')
 plt.xlabel(r"$|y-\beta x|$")
 plt.ylabel(r"$|\beta|$")
-plt.axhline(y=la.norm(rr.best_estimator_.named_steps.ridge.coef_), 
-            linestyle=':', color='r', alpha=0.5)
-plt.axvline(x=rmse(ytr, rr.best_estimator_.predict(xtr)), linestyle=':', 
-            color='r', alpha=0.5)
-plt.xscale('log')
-plt.yscale('log')
+
+#plt.xscale('log')
+#plt.yscale('log')
 plt.show()
 
 plt.clf()
