@@ -62,11 +62,11 @@ params = {
 }
 rr = GridSearchCV(rr_pipe, param_grid=params,
                   scoring=make_scorer(rmse, greater_is_better=False), 
-                  cv=10)
+                  cv=70)
 rr.fit(xtr, ytr)
 
 best_alpha = rr.best_params_['ridge__alpha']
-print(f"Best alpha from grid search: {best_alpha:0.2f}")
+print(f"Best alpha from grid search: {best_alpha:0.6f}")
 
 # Plot the solution norm vs the residuals for the "l-curve" method
 l_curve_alphas = np.linspace(0.01, 1000)
@@ -84,14 +84,14 @@ plt.ylabel(r"$|\beta|$")
 
 #plt.xscale('log')
 #plt.yscale('log')
-plt.show()
+#plt.show()
 
 plt.clf()
 
 # Then use a randomized search to find the best
 # alpha_candidates are chosen from a normal distribution centered at the
 # best result from the grid search above
-alpha_candidates = norm(loc=best_alpha, scale=np.std(alpha_candidates))
+alpha_candidates = norm(loc=best_alpha, scale=best_alpha)
 
 # scale=np.log(best_alpha)/np.log(10))
 
@@ -100,7 +100,7 @@ params = {
 }
 rr = RandomizedSearchCV(rr_pipe, param_distributions=params, 
                         scoring=make_scorer(rmse, greater_is_better=False), 
-                        n_iter=1000, cv=10)
+                        n_iter=10, cv=70)
 rr.fit(xtr, ytr)
 
 best_alpha = rr.best_params_['ridge__alpha']
