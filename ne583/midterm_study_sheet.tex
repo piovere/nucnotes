@@ -1,0 +1,229 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{cancel}
+
+\title{Study sheet for NE583 midterm exam \#1}
+\author{J.R. Powers-Luhn}
+\date{October 2nd, 2018}
+
+\begin{document}
+
+\section{Explain the significance of any of the seven physical approximations we made}
+
+\subsection{Particles are points}
+
+Lorem ipsum dolor simet
+
+\subsection{Particles travel in straight lines, unaccelerated until they interact}
+
+Lorem ipsum dolor simet
+
+\subsection{Particles don't hit other particles}
+
+Lorem ipsum dolor simet
+
+\subsection{Collisions are resolved instantaneously}
+
+Lorem ipsum dolor simet
+
+\subsection{Material properties are the same no matter what direction a particle approaches}
+
+Lorem ipsum dolor simet
+
+\subsection{Composition, configuration, and material properties are known and constant in time}
+
+Lorem ipsum dolor simet
+
+\subsection{Only the expected (mean) values of reaction rates are needed}
+
+Lorem ipsum dolor simet
+
+\newpage
+\section{Derive the mean free path as the inverse of the macroscopic cross section}
+
+%Assume that the particle experiences one collision every time it travels one mean free path ($\lambda$). At every collision the neutron gains an average lethargy, $u$, of $\xi=\ln(E_0/E)=\ln E_0 - \ln E$. If we approximate these discrete collisions as a continuous slowing down, the slope of this line is $\dv{u}{E}=\frac{-1}{E}$. Therefore $\dv{E}{s} = \dv{E}{u} \dv{u}{s} = \left( \dv{E}{u} \right)^{-1} \dv{u}{s} = -E \xi \sigma$%
+
+\begin{align*}
+	\lambda &= \frac{\int_0^\infty x \sigma_t I(x) \dd{x}}{\int_0^\infty \sigma_t I(x) \dd{x}} \\
+	&= \frac{\int_0^\infty x \mathrm{e}^{-\sigma_t x} \dd{x}}{\int_0^\infty \mathrm{e}^{-\sigma_t x} \dd{x}} \\
+	\lambda \int_0^\infty \mathrm{e}^{-\sigma_t x} dx &= \int_0^\infty x \mathrm{e}^{-\sigma_t x} dx \\
+    u = x, \frac{du}{dx} = 1, v &= -\frac{1}{\sigma_t} \mathrm{e}^{-\sigma_t x}, \frac{dv}{dx} = \mathrm{e}^{-\sigma_t x} \\
+    \lambda \left(-\frac{1}{\sigma_t} \mathrm{e}^{-\sigma_t x} \Big|_0^\infty\right) &= -\frac{1}{\sigma_t} x \mathrm{e}^{-\sigma_t x}\Big|_0^\infty - \frac{1}{\sigma_t^2}\mathrm{e}^{-\sigma_t x}\Big|_0^\infty \\
+    \lambda \frac{-1}{\sigma_t} \left( 0 - 1 \right) &= -\frac{1}{\sigma_t} x \mathrm{e}^{-\sigma_t x}\Big|_0^\infty - \frac{1}{\sigma_t^2} \left( 0 - 1 \right) \\
+    \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \frac{x}{\mathrm{e}^{\sigma_t x}}\Big|_0^\infty \right) \\
+    \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} - \lim_{x\to0}\frac{x}{\mathrm{e}^{\sigma_t x}} \right] \right) \\
+    \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} - 0 \right] \right) \\
+\end{align*}
+
+To evaluate $\lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}}$, we use l'Hopital's rule.
+
+\begin{align*}
+    \lim_{x\to\infty}\frac{x}{\mathrm{e}^{\sigma_t x}} &= \lim_{x\to\infty}\frac{\frac{d}{dx}x}{\frac{d}{dx}\mathrm{e}^{\sigma_t x}} \\
+    &= \lim_{x\to\infty}\frac{1}{\sigma_t \mathrm{e}^{\sigma_t x}} \\
+    &= 0
+\end{align*}
+
+Plugging this back in, we get:
+
+\begin{align*}
+    \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t} \left( \frac{1}{\sigma_t} - \left[ 0 - 0 \right] \right) \\
+    \lambda \frac{1}{\sigma_t} &= \frac{1}{\sigma_t^2} \\
+    \lambda &= {\frac{1}{\sigma_t^2}} / {\frac{1}{\sigma_t}} \\
+    \lambda &= \frac{1}{\sigma_t}
+\end{align*}
+
+\newpage
+\section{Expand the directional dimension of the scattering cross section in Legendre polynomials, using the orthogonality condition to arrive at the coefficients}
+
+$$
+\sigma_s(E \rightarrow E^\prime, \mu_o) = \sum_{n=0}^\infty (2n+1) \sigma_sn(E \rightarrow E^\prime) P_n (\mu_0)
+$$
+
+The coefficients are:
+
+$$
+\sigma_{sm}(E \rightarrow E^\prime) = \frac{1}{2} \int_{-1}^{1} \dd{\mu_0} P_m(\mu_0) \sigma_s(E\rightarrow E^\prime, \mu_0)
+$$
+
+\newpage
+\section{Show that the total derivative flux with respect to distance traveled ($\dv{\psi}{s}$) is equivalent to the $\hat{\Omega} \cdot \vec{\nabla} \psi$. I will expect you do expand the total derivative FULLY (in terms of all of the dependent variables of flux and explain why some of the terms disappear in Cartesian coordinates).}
+
+\begin{align}
+	\psi(s + \dd{s}) &= \psi(s) - \psi(s) \sigma_t(s) \dd{s} + q(s) \dd{s} \\
+	\frac{\psi(s + \dd{s}) - \psi(s)}{\dd{s}} + \psi(s) \sigma_t(s) &= q(s) \\
+	\dv{\psi}{s} + \sigma_t(s) \psi(s) &= q(s)
+\end{align}
+
+How do the terms in $\psi(r, E, \Omega, t)$ change with respect to s?
+
+\begin{align*}
+	x(s) &= x_0 + \int_0^s \dv{x}{s} \dd{s} = x_0 + (\Omega \cdot \hat{\imath}) s \\
+	y(s) &= y_0 + \int_0^s \dv{y}{s} \dd{s} = y_0 + (\Omega \cdot \hat{\jmath}) s \\
+	z(s) &= z_0 + \int_0^s \dv{z}{s} \dd{s} = z_0 + (\Omega \cdot \hat{k}) s \\
+	E(s) &= E_0 + \int_0^s \dv{E}{s} \dd{s} = E_0 \\
+	\Omega(s) &= \Omega_0 + \int_0^s \dv{\Omega}{s} \dd{s} = \Omega_0 \\
+	t(s) &= t_0 + \int_0^s \dv{t}{s} \dd{s} = t_0 + \frac{s}{v}
+\end{align*}
+
+To find $\dv{\psi}{s}$, use product rule on all the equations above
+
+\begin{align*}
+	\dv{\psi}{s} &= \dv{\psi}{t} \dv{t}{s} + \dv{\psi}{x} \dv{x}{s} + \dv{\psi}{y} \dv{y}{s} + \dv{\psi}{z} \dv{z}{s} + \dv{\psi}{E} \cancel{\dv{E}{s}} + \dv{\psi}{\Omega} \cancel{\dv{\Omega}{s}} \\
+	&= \frac{1}{v} \dv{\psi}{t} + \dv{\psi}{x} \Omega \cdot \hat{\imath} + \dv{\psi}{y} \Omega \cdot \hat{\jmath} + \dv{\psi}{z} \Omega \cdot \hat{k} \\
+	&= \frac{1}{v} \dv{\psi}{t} + \Omega \cdot \nabla \psi
+\end{align*}
+
+Plug this into the previous equation to get:
+
+\begin{align*}
+	\frac{1}{v} \dv{\psi(r, E, \Omega, t)}{t} + \Omega \cdot \nabla \psi(r, E, \Omega, t) + \sigma_t(r, E, \Omega, t) \psi(r, E, \Omega, t) = q(r, E, \Omega, t)
+\end{align*}
+
+\newpage
+\section{List and discuss the explicit and implicit boundary condition types we studied -- void, surface source, reflected, white, periodic. Be able to show that the incoming angular flux for the white boundary condition is four times the outgoing partial current.}
+
+\subsection{void}
+All particles leaving the boundary are eliminated
+
+\subsection{surface source}
+
+\subsection{reflected}
+All particles that leave the boundary re-enter the cell at the incident angle
+
+\subsection{white}
+All particles that leave the boundary re-enter at the point they left, but re-enter isotropically
+
+\subsection{periodic}
+All particles that leave the boundary reenter at the opposite side of the cell
+
+\newpage
+\section{Develop the streaming operator in spherical coordinates as done in the example in the notes.}
+
+Position: $\hat{r} = (r, \theta, \phi)$
+Direction: $\hat{\Omega} = (\mu, \eta, \xi) = (\hat{\Omega} \cdot \hat{e_r}, \hat{\Omega} \cdot \hat{e_\theta}, \hat{\Omega} \cdot \hat{e_\phi})$
+
+\begin{align*}
+\dv{\psi(s)}{s} &= \dv{\psi}{r} \dv{r}{s} + \dv{\psi}{\theta} \dv{\theta}{s} + \dv{\psi}{\phi} \dv{\phi}{s} + \dv{\psi}{\mu} \dv{\mu}{s} + \dv{\psi}{\eta} \dv{\eta}{s} + \dv{\psi}{\xi} \dv{\xi}{s} + \dv{\psi}{E} \cancel{\dv{E}{s}} \\
+&= \dv{\psi}{r} \dv{r}{s} + \dv{\psi}{\theta} \dv{\theta}{s} + \dv{\psi}{\phi} \dv{\phi}{s} + \dv{\psi}{\mu} \dv{\mu}{s} + \dv{\psi}{\eta} \dv{\eta}{s} + \dv{\psi}{\xi} \dv{\xi}{s} \\
+&= \mu \dv{\psi}{r} + \eta \dv{\psi}{\theta} + \xi \dv{\psi}{\phi} + \dv{\psi}{\mu} \dv{\mu}{s} + \dv{\psi}{\eta} \dv{\eta}{s} + \dv{\psi}{\xi} \dv{\xi}{s} 
+\end{align*}
+
+\newpage
+\section{Demonstrate the equivalence of a conservative and non-conservative version of the streaming operator for any curvilinear coordinate system. (No need to memorize the versions.)}
+
+The conservative form is used ``So that when we finite difference the streaming operator, the resulting terms will conserve particles''
+
+Non-conservative form:
+\begin{align*}
+	\mu \pdv{\Psi (r, \mu, E)}{r} + \frac{1-\mu^2}{r} \pdv{\Psi (r, \mu, E)}{\mu} +\sigma_t(r, E) \Psi (r, \mu, E) = q(r, \mu, E)
+\end{align*}
+
+Conservative form:
+\begin{align*}
+	\frac{\mu}{r^2} \pdv{\left[ r^2 \Psi(r, \mu, E) \right]}{r} + \pdv{}{\mu} \left[ \frac{\left( 1 - \mu^2 \right) \Psi(r, \mu, E)}{r} \right]
+		\sigma_t (r, E) \Psi ( r, \mu, E ) &= q(r, \mu, E) \\
+	\frac{\mu}{r^2} \left[ 2 r \Psi ( r, \mu, E ) + r^2 \pdv{\Psi ( r, \mu, E )}{r} \right] + 
+		\frac{1}{r} \left[ -2 \mu \Psi ( r, \mu, E ) + \left( 1 - \mu^2 \right) \pdv{\Psi ( r, \mu, E )}{\mu} \right] + 
+		\sigma_t \Psi ( r, \mu, E ) &= q(r, \mu, E) \\
+	\cancel{\frac{2 \mu}{r} \Psi ( r, \mu, E )} + \mu \pdv{\Psi ( r, \mu, E )}{r} - \cancel{\frac{2 \mu}{r} \Psi ( r, \mu, E )} +
+		\frac{1 - \mu^2}{r} \pdv{\Psi ( r, \mu, E )}{\mu} + \sigma_t \Psi ( r, \mu, E ) &= q(r, \mu, E) \\
+	\mu \pdv{\Psi (r, \mu, E)}{r} + \frac{1-\mu^2}{r} \pdv{\Psi (r, \mu, E)}{\mu} +\sigma_t(r, E) \Psi (r, \mu, E) = q(r, \mu, E)
+\end{align*}
+
+\newpage
+\section{Explain the use of spherical harmonic moments and spherical harmonic distributions to represent the scattering source term.}
+
+Spherical harmonic moments are used to calculate the angular moments of the flux in order to calculate scattering terms.
+
+\newpage
+\section{Explain why source problems must be subcritical.}
+
+Lorem ipsum dolor simet
+
+\newpage
+\section{Develop the k-effective ($\lambda$), buckling ($B^2$), or time-absorption ($\alpha$) eigenvalues, showing how the Boltzmann Equation is modified for each of them and indicating the range of values corresponding to subcriticality, criticality, and supercriticality.}
+
+\subsection{$k_{eff}$}
+Write out the flux equation but multiply the fission production term by a factor $\lambda = 1 / k_{eff}$. That is now the eigenvalue of the removal operator (as long as fission is the only production source).
+
+\subsection{$B^2$}
+Add a term $DB^2$ to the scattering/removal cross section such that we get:
+$$
+	\Omega \cdot \nabla \psi + (DB^2 + \sigma_s) \psi = \chi \nu \sigma_f \psi
+$$
+
+$B^2 > 0$ indicates supercritical
+
+$B^2 = 0$ indicates critical
+
+$B^2 < 0$ indicates subcritical
+
+\subsection{$\alpha$}
+Add a term $\frac{\alpha}{v}$ to the scattering/removal cross section such that we get:
+$$
+	\Omega \cdot \nabla \psi + (\frac{\alpha}{v} + \sigma_s) \psi = \chi \nu \sigma_f \psi
+$$
+
+$\alpha > 0$ indicates supercritical
+
+$\alpha = 0$ indicates critical
+
+$\alpha < 0$ indicates subcritical
+
+\newpage
+\section{Develop the adjoint of any of the forward Boltzmann sub-operators -- L1, L2, L3, or L4 -- as was done in class.}
+
+\begin{enumerate}
+	\item Write down the regular form $\langle a, Lb \rangle$
+	\item Reverse a and b
+	\item Rearrange if necessary integrals into form $\langle b, L^* a \rangle$
+	\item Isolate $L^*$ by observation
+\end{enumerate}
+
+\newpage
+\section{Explain through use of the definition of the adjoint -- $\langle a, Lb \rangle = \langle b,L^*a \rangle$ -- that either the forward or adjoint solution can be used to find a detector response.  Included in this is a description of how it is done (each way) and examples of when one method would be preferred over the other.}
+
+If there is a fixed source with multiple detectors or potential detector locations, then the forward solution is to be preferred. If the detector is fixed in place but there are multiple sources or the source could be in multiple locations, then the adjoint solution is better. This is because the calculation of the flux or adjoint flux is much more difficult than calculating the detector response function, so performing the flux/adjoint flux calculation once is to be preferred.
+
+\end{document}

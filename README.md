@@ -45,6 +45,8 @@ notes and stuff for classes related to NE
 - Deep Learning
   - [Learn deep learning in 6 months](https://towardsdatascience.com/how-to-learn-deep-learning-in-6-months-e45e40ef7d48)
   - [Deep learning without CUDA cores](https://informatics.sydney.edu.au/blogs/amdgpu/)
+- Other
+  - [Short docstring examples](http://queirozf.com/entries/docstrings-by-example-documenting-python-code-the-right-way)
 
 ### Statistics
 
