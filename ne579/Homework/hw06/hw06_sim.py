@@ -14,7 +14,7 @@ x2 = 10 * np.sin(t) + 0.01 * np.random.rand(t.shape[0])
 x = np.hstack([x1.reshape((-1, 1)), x2.reshape((-1, 1))])
 y = 0.1 * x[:,0] + 0.9 * x[:,1] + np.random.rand(t.shape[0])
 
-xtr, ytr, xts, yts, xv, yv = train_test_val_split(x, y)
+xtr, ytr, xts, yts, xv, yv = train_test_val_split(x, y, seed=42)
 ytr = ytr.reshape((-1, 1))
 yts = yts.reshape((-1, 1))
 yv = yv.reshape((-1, 1))
@@ -82,8 +82,8 @@ alpha_params = np.logspace(-3, 2)
 # Generate a model for each alpha value
 models = [Ridge(alpha=a, fit_intercept=False).fit(xs, ys) for a in alpha_params]
 norm_b = [la.norm(m.coef_) for m in models]
-yts_scaled_pred = [m.predict(xscaler.transform(xts)) for m in models]
-rmse_vals = [rmse(yts, yscaler.inverse_transform(y)) for y in yts_scaled_pred]
+ytr_scaled_pred = [m.predict(xscaler.transform(xtr)) for m in models]
+rmse_vals = [rmse(ytr, yscaler.inverse_transform(y)) for y in ytr_scaled_pred]
 
 # Examine norm of coefficients vs RMSE
 plt.plot(rmse_vals, norm_b)
@@ -145,7 +145,7 @@ c_scaled = np.linalg.cond(xs.T @ xs)
 print(f"Condition number of scaled matrix: {c_scaled}")
 
 # Ridge regression condition number
-c_ridge = cond_ridge(xs, a_loo)
+c_ridge = cond_ridge(xs, alpha_params[opt_b_loc])
 print(f"Condition number for ridge regression: {c_ridge}")
 
 # Compare model performance
@@ -155,8 +155,10 @@ lin_predictions = yscaler.inverse_transform(
 linear_performance = rmse(yts, lin_predictions)
 print(f"Linear regression RMSE: {linear_performance}")
 
-ridge_loo_predictions = yscaler.inverse_transform(
-    ridge_loo.predict(xscaler.transform(xts))
+ridge_lc = Ridge(alpha=alpha_params[opt_b_loc], 
+                 fit_intercept=False).fit(xs, ys)
+ridge_lc_predictions = yscaler.inverse_transform(
+    ridge_lc.predict(xscaler.transform(xts))
 )
-ridge_performance = rmse(yts, ridge_loo_predictions)
+ridge_performance = rmse(yts, ridge_lc_predictions)
 print(f"Ridge regression RMSE: {ridge_performance}")
