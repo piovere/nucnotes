@@ -32,6 +32,10 @@ def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15,
     tuple of numpy.ndarray
         x and y for the training, testing, and validation set respectively
     """
+    # Set random seed
+    if seed is not None:
+        np.random.seed(seed)
+
     # Get length of data
     rows, cols = x.shape
 
