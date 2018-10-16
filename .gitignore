@@ -31,3 +31,5 @@ profiles_settings.xml
 htmlcov/
 coverage.xml
 __pycache__
+cosc528/Projects/Project01/cs528project1/.env
+cosc528/Projects/Project01/cs528project1/data/raw/auto-mpg.data
