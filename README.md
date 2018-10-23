@@ -67,4 +67,4 @@ notes and stuff for classes related to NE
 - Unix
   - [tmux](https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340)
 
-[Taylor An Introduction to Error Analysis]
+[Taylor An Introduction to Error Analysis]test

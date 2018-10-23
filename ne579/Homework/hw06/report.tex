@@ -67,8 +67,8 @@ by noise.
 \end{equation}
 
 By assuming that the solution to the linear regression problem should be insensitive to noise, it 
-follows that the coefficients $\vec{b}$ should be small. The cost function is 
-thus modified to that shown in equation \ref{eq:ridge_cost}.
+follows that the coefficients $\vec{b}$ should be small since large coefficients would amplify the 
+effect of noise. The cost function is thus modified to that shown in equation \ref{eq:ridge_cost}.
 
 \begin{equation}
 	|| \vec{y} - \mathbf{X} \vec{b} ||_2 + \alpha^2 || \vec{b} ||_2
@@ -174,8 +174,8 @@ Using this approach, an $\alpha$ value of \num{1.84} was selected. This model ha
 \subsection{Condition Number}
 Because these data were highly linearly dependent, the condition number was high, with a value of 
 \num{2.1e6}. Standardizing the data reduced this somewhat (to \num{2.6e5}), but still high. By adding the 
-$\alpha^2$ term, the condition number becomes $$ Cond(\mathbf{X} ) = \frac{\lambda_{max} + \alpha}
-{\lambda_{min} + \alpha}. $$ This disproportionately affects the denominator, pushing the condition number 
+$\alpha^2$ term, the condition number becomes $$ Cond(\mathbf{X} ) = \frac{\lambda_{max} + \alpha^2}
+{\lambda_{min} + \alpha^2}. $$ This disproportionately affects the denominator, pushing the condition number 
 down. This also sets the scale of the $\alpha$ value--if $\alpha << \lambda_{min}$, ridge regression acts 
 essentially like least squares regression. If $\alpha >> \lambda_{min}$, the model will have a high bias 
 and will not fit the data well. $\alpha$ should be on a similar scale to the smallest eigenvalue of 
