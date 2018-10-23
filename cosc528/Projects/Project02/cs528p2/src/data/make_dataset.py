@@ -14,6 +14,9 @@ def main(input_filepath, output_filepath):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
+    logger = logging.getLogger(__name__)
+    logger.info('making final data set from raw data')
+
     df = pd.read_excel(input_filepath, na_values=["-"],
                    nrows=57, true_values=["x"])
     # Fill in missing values from research
@@ -51,10 +54,8 @@ def main(input_filepath, output_filepath):
         df_clean.at[ix, "Endowment"] / df_clean.at[ix, "ST. FTE"]
 
     # Save to file
+    logger.info(f'Writing processed data to {output_filepath}')
     df_clean.to_csv(output_filepath)
-
-    logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
 
 
 if __name__ == '__main__':
@@ -68,4 +69,4 @@ if __name__ == '__main__':
     # load up the .env entries as environment variables
     load_dotenv(find_dotenv())
 
-    main("data/raw/UTK-peers.xls", "data/processed/UTK-peers_processed.csv")
+    main()
