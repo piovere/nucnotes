@@ -38,17 +38,33 @@
 
 \section{Methodology}
 
+\subsection{Kernel regression}
 
+\subsection{Locally weighted regression}
+
+\begin{equation}
+\vec{b} = (\mathbf{X}^T  \mathbf{W}^T  \mathbf{W}  \mathbf{X})^{-1} \mathbf{X}^T \mathbf{W}^T \mathbf{W} \vec{y}
+\label{eq:weighted regression}
+\end{equation}
+
+The $\mathbf{W}$ matrix in equation \ref{eq:weighted regression} is a diagonal matrix that has the effect of increasing the 
+conditional number of the term to be inverted. This makes the equation more sensitive to small perturbations. This is counteracted 
+by the fact that the data being inverted is more representative of the shape of the equation in the area around the training points. 
+This trade off is balanced using cross validation to determine the generality of the models for different bandwidth parameters. 
+As such, models with several different bandwidths (\numlist{0.15; 0.25; 0.50; 0.75; 1.00; 1.50; 2.00}) were trained on the training 
+set and evaluated using the testing set.
 
 \subsection{Body Composition}
 A dataset of body measurements (body fat percentage, age, weight, height, adiposity index, and ten 
-circumference measurements) was obtained \cite{Penrose1985}. Ridge regression was used to generate models to 
-predict body fat percentage from the other predictor variables using the two methods described above to select 
+circumference measurements) was obtained \cite{Penrose1985}. Locally Weighted Regression was used to generate models to 
+predict body fat percentage from the other predictor variables using cross validation to select 
 the hyperparameter $\alpha$.
 
 \section{Results}
 
+\begin{table}[h]
 \input{table}
+\end{table}
 
 \subsection{Model Selection}
 The model that was selected was that produced by the L-curve method. Its performance was not significantly 
@@ -58,7 +74,7 @@ stability. Both models significantly improved on the least squares model, which 
 The selected model was evaluated on the validation set data, producing an RMSE of \num{7.78}\% body fat.
 \section{Conclusions}
 
-A model was generated to predict body fat percentage from body composition predictors. The error of this model was \num{7.78}\% body fat. This was comparable to the error produced by a partial least squares model (\num{4.35}\%) and showed improvement over principal component regression (\num{4.72}\%) and a best-guess linear regression (\num{4.79}\%). Further, the linear model required the calculation of inverse terms while the ridge regression was both straightforward to calculate (unlike PLS, no iterative algorithms were necessary) and did not require non-linear terms. Two methods of selecting the hyperparameter $\alpha$ were examined. Leave one out cross validation was easy to understand but computationally expensive and might be prohibitive for large datasets. Variations on this method (e.g. ``Leave K out'') are worth exploring if they lead to stable results. The L-curve method of determining $\alpha$ clearly demonstrates the bias/variance trade, making it attractive if potentially subjective. 
+A model was generated to predict body fat percentage from body composition predictors using locally weighted regression. The error of this model was \num{7.78}\% body fat. This compared unfavorably to previously generated models on these data. The error was greater than that produced by a partial least squares model (\num{4.35}\%), principal component regression (\num{4.72}\%), a best-guess linear regression (\num{4.79}\%), and a ridge regression model (\num{4.34}\%). 
 
 \printbibliography
 
