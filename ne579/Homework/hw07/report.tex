@@ -1,0 +1,71 @@
+\documentclass{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage[citestyle=ieee,sorting=none,bibencoding=utf8,backend=biber]{biblatex}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\graphicspath{{images/}}
+\bibliography{bibliography}
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\author{J.R. Powers-Luhn}
+\title{Locally Weighted Regression}
+\date{October 25th, 2018}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+
+
+\end{abstract}
+
+\section{Introduction}
+
+
+
+\section{Methodology}
+
+
+
+\subsection{Body Composition}
+A dataset of body measurements (body fat percentage, age, weight, height, adiposity index, and ten 
+circumference measurements) was obtained \cite{Penrose1985}. Ridge regression was used to generate models to 
+predict body fat percentage from the other predictor variables using the two methods described above to select 
+the hyperparameter $\alpha$.
+
+\section{Results}
+
+\input{table}
+
+\subsection{Model Selection}
+The model that was selected was that produced by the L-curve method. Its performance was not significantly 
+different from the model produced using the LOO method and the larger $\alpha$ value should result in greater 
+stability. Both models significantly improved on the least squares model, which had an RMSE of \num{19.35}.
+
+The selected model was evaluated on the validation set data, producing an RMSE of \num{7.78}\% body fat.
+\section{Conclusions}
+
+A model was generated to predict body fat percentage from body composition predictors. The error of this model was \num{7.78}\% body fat. This was comparable to the error produced by a partial least squares model (\num{4.35}\%) and showed improvement over principal component regression (\num{4.72}\%) and a best-guess linear regression (\num{4.79}\%). Further, the linear model required the calculation of inverse terms while the ridge regression was both straightforward to calculate (unlike PLS, no iterative algorithms were necessary) and did not require non-linear terms. Two methods of selecting the hyperparameter $\alpha$ were examined. Leave one out cross validation was easy to understand but computationally expensive and might be prohibitive for large datasets. Variations on this method (e.g. ``Leave K out'') are worth exploring if they lead to stable results. The L-curve method of determining $\alpha$ clearly demonstrates the bias/variance trade, making it attractive if potentially subjective. 
+
+\printbibliography
+
+\onecolumn
+\section{Appendix}
+Python code used to perform calculations and generate graphics.
+\lstset{frame=single}
+\lstinputlisting[language=Python]{Homework07.py}
+
+\end{document}
