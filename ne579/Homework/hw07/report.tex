@@ -8,6 +8,7 @@
 \usepackage[citestyle=ieee,sorting=none,bibencoding=utf8,backend=biber]{biblatex}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{tabularx}
 \usepackage{booktabs}
 
 \usepackage{algorithm}
@@ -38,7 +39,17 @@
 
 \section{Methodology}
 
+\begin{itemize}
+\item Describe the locally weighted regression algorithm
+\item Discuss the pros and cons of locally weighted regression over least squares regression
+\item Discuss how weights are determined (Gaussian kernels)
+\item Discuss how the kernel bandwidth is optimized
+\item Discuss the importance of standardization for the weight calculation
+\end{itemize}
+
 \subsection{Kernel regression}
+
+
 
 \subsection{Locally weighted regression}
 
@@ -62,7 +73,9 @@ the hyperparameter $\alpha$.
 
 \section{Results}
 
-\begin{table}[h]
+\begin{table}[ht]
+\caption{Lorem ipsum dolor simet}
+\center
 \input{table}
 \end{table}
 
