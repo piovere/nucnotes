@@ -10,6 +10,7 @@
 \usepackage{subcaption}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{physics}
 
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
@@ -29,65 +30,108 @@
 
 \begin{abstract}
 
-
+A nonlinear regression technique called locally weighted regression is examined. This method fits linear-in-parameters curves to small regions around a prediction point. The importance of the training points to the model is scaled by a kernel function that operates on the distance between each training point and the point being predicted. Models are examined for a range of kernel width and polynomial order with the best model being selected by cross validation. A weighted regression model was generated that predicted body fat percentage to a root mean squared error of \SI{7.78}{\percent} body fat.
 
 \end{abstract}
 
 \section{Introduction}
 
+Regression techniques examined to this point have sought to produce a single model that describes a phenomenon across the training domain. This assumption is attractive in that the models produced may reflect physical relationships present in the system being modeled, but linear models that make this assumption may be insufficiently complex to predict accurately across the training domain. Locally weighted regression (LWR) instead approximates the training data as a series of connected linear relationships--that there exists some interval $\dd{\vec{x}}$ small enough that in that region a linear model is a close enough approximation. This trades physical meaning of the model for accuracy of prediction. It also introduces additional free parameters that must be selected via cross validation.
 
+Linear (and linear-in-parameters) regression models examine an entire training set and attempt to fit a single model to it. A single computationally intense calculation (inverting $\mathbf{X}^T \mathbf{X}$, with the possible addition of some regularization term) is performed to determine regression coefficients, which can then be applied to future predictors. Linear models are limited to linear functions, however. No linear regression can fit non-linear (in parameters) functions, which is unfortunate as a number of these functions (e.g. $\sin$, $\exp$, and $\log$) appear in natural processes.
+
+These functions can be approximated as a series of locally linear functions, assuming that the underlying processes are continuous. By adding an importance or ``weight'' term to represent how representative a training point is of the area around the region being predicted, a locally representative model is generated. It is intuitively reasonable to assume that distant points (determined by the difference in the values of their associated predictor variables) should be less represented in the model and that the importance should go to zero as the distance measure approaches infinity. This allows for broad latitude in the selection of the weight function and the distance function. Any function that follows the following criteria \cite{cleveland1979robust} is suitable:
+
+\begin{itemize}
+\item $w(x) > 0$ for $|x| < 1$,
+\item $w(x) = w(-x)$, and
+\item $w(x)$ is non-increasing for $x \geq 0$.
+\end{itemize}
+
+Cleveland identified a fourth criterion (that $w(x) = 0$ for $|x| \geq 1$) which does not apply to Gaussian weighting function. This method was not practical until the advent of modern computers. Since a (possibly nonlinear) weight calculation must be performed for each point to be predicted and training point, it was not feasible to perform this calculation by hand for real data sets. Now these computations can be performed relatively quickly, making the practical use of this method possible. 
 
 \section{Methodology}
 
-\begin{itemize}
-\item Describe the locally weighted regression algorithm
-\item Discuss the pros and cons of locally weighted regression over least squares regression
-\item Discuss how weights are determined (Gaussian kernels)
-\item Discuss how the kernel bandwidth is optimized
-\item Discuss the importance of standardization for the weight calculation
-\end{itemize}
+LWR also changes the computational cost of the modeling process. In previous linear regression techniques the training data is used to generate regression coefficients and can then be discarded. The cost of making new predictions is low, as it simply involves multiplying the inputs by the coefficients. In LWR, the coefficients of the regression model depend on the inputs. The weights must be generated as a function of the distance between the point to be predicted and the training data. A kernel function is then applied to this distance, generating the weights (as in equation \ref{eq:weights}). This means that the model takes up more computer storage (since all of the training data must be stored) and the computational cost of making predictions is $\mathcal{O}(n_t n_p)$--it scales as the product of the number of training points and the number of prediction points. This shows another trade off in LWR: storing more training data may increase the variance of the model (by representing more regions of the training space), but it also increases the cost of making new predictions. 
+
+\begin{equation}
+\vec{w} = K(d(\mathbf{X}_t, \vec{x}), b)
+\label{eq:weights}
+\end{equation}
+
+To implement locally weighted regression it is necessary to choose three parameters: the distance measurement to use, the 
+convolution kernel, and the bandwidth of that kernel. For the purposes of this paper only one distance measure (the $\ell_2$ 
+norm, or euclidean distance) and convolution kernel (the Gaussian distribution, equation \ref{eq:gauss}) were examined. Smaller bandwidths effectively 
+shrink the size of the training set. If the bandwidth is too small, local noise could overwhelm the underlying physical process. 
+Conversely, if the bandwidth is too large, the model becomes biased and under fits the data. An infinite bandwidth would weight 
+all training points equally, producing the same result as a linear regression.
+
+For models with input dimensions greater than one, the scale of each input is likely to vary (for example, one input might be in \si{\pascal} while another might be in \si{\micro\meter}). The varying scales would skew the distance calculation and underweight inputs with large scales. In order to counteract this effect, the input and prediction data were scaled to unit variance before performing any regression calculation.
+
+\begin{equation}
+w_i = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp{-\frac{||r||^2}{2 \sigma^2}}
+\label{eq:gauss}
+\end{equation}
+
+\begin{figure}[t!]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{{lwr_0.1}.png}
+        \caption{Bandwidth of 0.1}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{{lwr_1.0}.png}
+        \caption{Bandwidth of 1.0}
+    \end{subfigure}
+    \caption{Comparison of the impact of bandwidth on locally weighted regression. These are first-order LWR fits with bandwidth of 0.1 (left) and 1.0 (right). While the figure on the right shows some response to the sine curve, it primarily fits the underlying linear trend. The figure on the right fits the model more precisely. Smaller bandwidths (not shown ) would begin to over fit the noise present in the data.}
+    \label{fig:bandwidth bias}
+\end{figure}
+
+As shown in figure \ref{fig:bandwidth bias}, the selection of bandwidth has a direct effect on the model's bias vs. variance trade off. In order to select the best bandwidth, a cross validation strategy is employed. The training data is used to generate models with varying parameters and the error from the test set is compared.
 
 \subsection{Kernel regression}
 
-
+The simplest form of LWR is a 0-th order regression or weighted moving average. The value of the dependent variables in the training set are multiplied by the weights (normalized to sum to one) and the sum of these values is the prediction ($\sum_i w_i x^t_i$). 
 
 \subsection{Locally weighted regression}
+
+A more complex method for fitting the data is to fit higher order polynomial (order one or greater) to the weighted data. The linear regression equation is modified by inserting 
 
 \begin{equation}
 \vec{b} = (\mathbf{X}^T  \mathbf{W}^T  \mathbf{W}  \mathbf{X})^{-1} \mathbf{X}^T \mathbf{W}^T \mathbf{W} \vec{y}
 \label{eq:weighted regression}
 \end{equation}
 
-The $\mathbf{W}$ matrix in equation \ref{eq:weighted regression} is a diagonal matrix that has the effect of increasing the 
-conditional number of the term to be inverted. This makes the equation more sensitive to small perturbations. This is counteracted 
-by the fact that the data being inverted is more representative of the shape of the equation in the area around the training points. 
-This trade off is balanced using cross validation to determine the generality of the models for different bandwidth parameters. 
-As such, models with several different bandwidths (\numlist{0.15; 0.25; 0.50; 0.75; 1.00; 1.50; 2.00}) were trained on the training 
-set and evaluated using the testing set.
+The $\mathbf{W}$ matrix in equation \ref{eq:weighted regression} is a diagonal matrix with the diagonal elements having the values $\sqrt{w_i}$ that has the effect of increasing the conditional number of the term to be inverted. This makes the equation more sensitive to small perturbations. This is counteracted by the fact that the data being inverted is more representative of the shape of the equation in the area around the training points. This trade off is balanced using cross validation to determine the generality of the models for different bandwidth parameters. As such, models with several different bandwidths (\numlist{0.15; 0.25; 0.50; 0.75; 1.00; 1.50; 2.00}) were trained on the training set and evaluated using the testing set.
 
 \subsection{Body Composition}
-A dataset of body measurements (body fat percentage, age, weight, height, adiposity index, and ten 
+A data set of body measurements (body fat percentage, age, weight, height, adiposity index, and ten 
 circumference measurements) was obtained \cite{Penrose1985}. Locally Weighted Regression was used to generate models to 
-predict body fat percentage from the other predictor variables using cross validation to select 
-the hyperparameter $\alpha$.
+predict body fat percentage from the other predictor variables.
 
 \section{Results}
 
+The RMSE of the models examined ranged from \numrange{7.48}{18.73}\% (full results in table \ref{tab:results}). As in pure regression, adding higher order polynomial terms increases the ability of the model to over fit the data. This is reflected in the worse performance of the order two models. This is corrected by increasing the bandwidth, but this could come at a cost of a loss of local predictive power. 
+
 \begin{table}[ht]
-\caption{Lorem ipsum dolor simet}
+\caption{Test set RMSE for models with varying order and bandwidth. Models with order zero represent kernel regression, or a weighted moving average.}
+\label{tab:results}
 \center
 \input{table}
 \end{table}
 
 \subsection{Model Selection}
-The model that was selected was that produced by the L-curve method. Its performance was not significantly 
-different from the model produced using the LOO method and the larger $\alpha$ value should result in greater 
-stability. Both models significantly improved on the least squares model, which had an RMSE of \num{19.35}.
+The model selected as best was a first order weighted linear regression with a bandwidth of \num{0.50}. This number is dimensionless since it represents the standard deviation of the distance between two scaled (and therefore unitless) vectors. It performed as well as a kernel regression with a bandwidth of two but was selected over that model due to it being slightly more representative of physical trends in the area around the predicted point.
 
 The selected model was evaluated on the validation set data, producing an RMSE of \num{7.78}\% body fat.
 \section{Conclusions}
 
 A model was generated to predict body fat percentage from body composition predictors using locally weighted regression. The error of this model was \num{7.78}\% body fat. This compared unfavorably to previously generated models on these data. The error was greater than that produced by a partial least squares model (\num{4.35}\%), principal component regression (\num{4.72}\%), a best-guess linear regression (\num{4.79}\%), and a ridge regression model (\num{4.34}\%). 
+
+The strength and weakness of this modeling technique is that it requires no physical understanding of the underlying data. In the presence of enough training data (enough such that the mean of the noise is zero in each local region) it is possible to select a small enough bandwidth to perfectly predict the data. One purpose of generating models, however, is to understand the underlying processes that produce the measured results. This technique does not provide anything in the way of physical understanding. While that does not detract from the utility of this technique, it should be approached with this limitation in mind.
 
 \printbibliography
 
