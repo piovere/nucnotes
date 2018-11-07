@@ -9,10 +9,11 @@ from sklearn.base import BaseEstimator, TransformerMixin
 def load_matlab_data(filename):
     dd = sio.loadmat(filename)
     
-    x = dd.get('x')
-    y = dd.get('y')
-    
-    return x, y
+    data = dd.get('data')
+    test1 = dd.get('test1')
+    test2 = dd.get('test2')
+
+    return data, test1, test2
 
 def train_test_val_split(x, y, train_f=0.7, test_f=0.15, val_f=0.15,
                          seed=None):
