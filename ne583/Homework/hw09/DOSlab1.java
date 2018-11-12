@@ -171,7 +171,8 @@ class DOSlab
 //     totxs[ig] = Total cross section                                 *
 //                                                                     *
 //**********************************************************************
-              double phi1 = (sourin[ix] + muabs * phi0 / dx) / (muabs / dx + totxs[ig]);
+              if (ix0==0)phi0=1.0;
+              double phi1 = (muabs * phi0 / dx) / (muabs / dx + 0.1);
               double fluxave = phi1;
               phi0 = phi1;
 //**********************************************************************
