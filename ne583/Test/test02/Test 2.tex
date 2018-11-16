@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\begin{document}
+
+\section{Problem 1}
+
+\section{Problem 2}
+
+\subsection{Normalization factor}
+
+\begin{align*}
+\int_6^7 \psi(E) \dd{E} &= \int_6^7 \frac{1}{E} \dd{E} \\
+&= \log{7} - \log{6} \\
+f &= 0.154151
+\end{align*}
+
+\subsection{Alpha}
+
+\begin{align*}
+\alpha = \frac{(A-1)^2}{(A+1)^2} = 1
+\end{align*}
+
+\subsection{Scattering Cross section}
+
+\begin{align*}
+\sigma_s^{gg} &= \int_6^7 \dd{E^\prime} \int_6^7 \dd{E} \frac{\sigma}{(1 - \alpha)E} \frac{\psi(E)}{f} \\
+&= \frac{\sigma}{f} \int_6^7 \dd{E^\prime} \int_6^7 \frac{\dd{E}}{E^2} \\
+&= \frac{\sigma}{f} \int_6^7 \dd{E^\prime} \left( \frac{-1}{7} - \frac{-1}{6} \right) \\
+&= \frac{\sigma}{f} \left( \frac{1}{6} - \frac{1}{7} \right) \left( 7 - 6 \right) \\
+&= \SI{3.089}{\barn}
+\end{align*}
+
+\section{Problem 3}
+
+\section{Problem 4}
+
+\section{Problem 5}
+
+\end{document}
