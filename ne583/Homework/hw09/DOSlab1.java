@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class DOSlab
+class ninedashtwo
 {
   static double[] wt;
   static double[] mu;
@@ -8,111 +8,32 @@ class DOSlab
   {
     try
     {
-//***********************************************************************
-//                                                                     *
-//       1D SN calculation of a slab:                                  *
-//                                                                     *
-//       |      |                 g                   |                *
-//       |      |         -----------------           |                *
-//       |      |         Grp 1       Grp 2           |                *
-//       |      | Total    0.1        0.2             |                *
-//       |      | G1->g    0.05       0.04            |                *
-//       |S1 .4 | G2->g    0          0.1             |                *
-//       |S2 .6 |                                     |                *
-//       |      |                                     |                *
-//       |      |                                     |                *
-//       |      |                                     |                *
-//       |      |                                     |                *
-//       | 5 cm |              45 cm                  |                *
-//       |<---->|<----------------------------------->|                *
-//       |      |                                     |                *
-//                                                                     *
-//***********************************************************************
-//                                                                     *
-//     Variable definitions:                                           *
-//       totxs(ig)   Total cross section in group ig, 1/cm             *
-//       scat(ig,jg) Scattering cross section from group ig to jg, 1/cm *
-//       totscat(ig) Total scattering in group ig (i.e., sum of scat   *
-//                      for all other groups jg                        *
-//       sour(ig)    Source in group ig, #/cm3/sec                     *
-//       bin(ib)     Bin values                                        *
-//                   ib = 1 Left leakage for group 1                   *
-//                      = 2 Left leakage for group 2                   *
-//                      = 3 Right leakage for group 1                  *
-//                      = 4 Right leakage for group 2                  *
-//                      = 5 Flux for group 1                           *
-//                      = 6 Flux for group 2                           *
-//       ig          Current energy group of the particle              *
-//       mu          Current direction cosine of the particle, (-1,1)  *
-//       x           Current position of particle                      *
-//       dd          Distance to next collision                        *
-//       dx          x dimension distance to next collision = dd*mu    *
-//       mfp         Mean free paths to next collision                 *
-//                                                                     *
-//***********************************************************************
-//                                                                     *
-//       Set the source and cross sections                             *
-//                                                                     *
-//***********************************************************************
-      double[] totxs={0.1,0.2};
-      double alpha=0.5;
-      double[] left=new double[2];
-      double[] right=new double[2];
-      double[][] scat=new double[2][2];
-      scat[0][0]=.05;
-      scat[0][1]=0.04;
-      scat[1][0]=0.;
-      scat[1][1]=0.1;
-      double[] sour={.4,.6};
-      sour[0]/=5.;
-      sour[1]/=5.;
-//***********************************************************************
-//                                                                     *
-//       Find total scattering cross section for each group            *
-//                                                                     *
-//***********************************************************************
-      int ng=2;
-      System.out.println(" No. of spatial divisions in (0-5)?");
-      Scanner sc=new Scanner(System.in);
-      int ns=sc.nextInt();
-      int nx=ns*10;
+      double totxs=0.1;
+      double alpha=0.8;
+      double left=0.0;
+      double right=0.0;
+      double sour=.4;
+      int ng=1;
+      int nx=10000;
       double dx=50./nx;
+      Scanner sc=new Scanner(System.in);
       System.out.println(" No. of angles?");
       nang=sc.nextInt();
       mu=new double[nang];
       wt=new double[nang];
       setQuadrature();
-      double[][] scalar=new double[nx][ng];
+      double[] scalar=new double[nx];
       for(int ix=0;ix<nx;ix++)
       {
         for(int ig=0;ig<ng;ig++)
         {
-          scalar[ix][ig]=0.;
+          scalar[ix]=0.;
         }
       }
       double[] sext=new double[nx];
       double[] sourin=new double[nx];
-//**********************************************************************
-//                                                                     *
-// Outer iterations: Loop over each group                              *
-//                                                                     *
-//**********************************************************************
-      for(int ig=0;ig<ng;ig++)
+      for(int ig=0;ig<1;ig++)
       {
-//**********************************************************************
-//                                                                     *
-//     Find the external and scattering source from other groups       *
-//                                                                     *
-//**********************************************************************
-        for(int ix=0;ix<nx;ix++)
-        {
-          sext[ix]=0.;
-          if(ix < ns)sext[ix]+=sour[ig];
-          for(int igp=0;igp<ng;igp++)
-          {
-            if(ig != igp)sext[ix]+=scalar[ix][igp]*scat[igp][ig];
-          }
-        }
 //**********************************************************************
 //                                                                     *
 //  Inner iterations                                                   *
@@ -125,19 +46,15 @@ class DOSlab
         while(Math.abs(conv)>eps)
         {
           inner++;
-//**********************************************************************
-//                                                                     *
-//    Add within-group scattering source                               *
-//                                                                     *
-//**********************************************************************
+
+          // copy scalar into scalarOld
           for(int ix=0;ix<nx;ix++)
           {
-            sourin[ix]=sext[ix]+scalar[ix][ig]*scat[ig][ig];
-            scalarOld[ix]=scalar[ix][ig];
-            scalar[ix][ig]=0.;
+            scalarOld[ix]=scalar[ix];
+            scalar[ix]=0.;
           }
-          left[ig]=0.;
-          right[ig]=0.;
+          left=0.;
+          right=0.;
 //**********************************************************************
 //                                                                     *
 //    Loop over directions                                             *
@@ -171,7 +88,7 @@ class DOSlab
 //     totxs[ig] = Total cross section                                 *
 //                                                                     *
 //**********************************************************************
-              if (ix0==0)phi0=1.0;
+              if (ix==0)phi0=1.0;
               double phi1 = (muabs * phi0 / dx) / (muabs / dx + 0.1);
               double fluxave = phi1;
               phi0 = phi1;
@@ -180,15 +97,15 @@ class DOSlab
 //        Add to scalar flux                                           *
 //                                                                     *
 //**********************************************************************
-              scalar[ix][ig]+=wt[ia]*fluxave;
+              scalar[ix]+=wt[ia]*fluxave;
             }
 //**********************************************************************
 //                                                                     *
 //      Add to outgoing leakage                                        *
 //                                                                     *
 //**********************************************************************
-            if(mu[ia]<0.)left[ig]-=wt[ia]*phi0*mu[ia];
-            if(mu[ia]>0.)right[ig]+=wt[ia]*phi0*mu[ia];
+            if(mu[ia]<0.)left-=wt[ia]*phi0*mu[ia];
+            if(mu[ia]>0.)right+=wt[ia]*phi0*mu[ia];
           }
 //**********************************************************************
 //                                                                     *
@@ -198,7 +115,7 @@ class DOSlab
           conv=0.;
           for(int ix=0;ix<nx;ix++)
           {
-            double etry=(scalar[ix][ig]-scalarOld[ix])/scalar[ix][ig];
+            double etry=(scalar[ix]-scalarOld[ix])/scalar[ix];
             if(Math.abs(etry)>conv)conv=Math.abs(etry);
           }
         }
@@ -208,31 +125,14 @@ class DOSlab
 //    Print results                                                    *
 //                                                                     *
 //**********************************************************************
-      if(true)
+      
+      for(int ig=0;ig<ng;ig++)
       {
-        for(int ig=0;ig<ng;ig++)
-        {
-          System.out.println("FOR GROUP "+(ig+1));
-          for(int ix=0;ix<nx;ix++)
-          {
-            System.out.println("  Flux pt "+(ix+1)+" = "+scalar[ix][ig]);
-          }
-          System.out.println(" average of 45-50");
-          double avephi=0;
-          for(int ix=nx-ns;ix<nx;ix++)
-          {
-            avephi+=scalar[ix][ig]/ns;
-          }
-          System.out.println("  Ave "+avephi);
-        }
+        System.out.println("  Left grp "+(ig+1)+" is "+left);
       }
       for(int ig=0;ig<ng;ig++)
       {
-        System.out.println("  Left grp "+(ig+1)+" is "+left[ig]);
-      }
-      for(int ig=0;ig<ng;ig++)
-      {
-        System.out.println(" Right grp "+(ig+1)+" is "+right[ig]);
+        System.out.println(" Right grp "+(ig+1)+" is "+right);
       }
     }
     catch(Exception e)
@@ -268,7 +168,7 @@ class DOSlab
     }
     else
     {
-      throw new Exception(" Quadrature order must be 2,4 or 8");
+      throw new Exception(" Quadrature order must be 2,4 or 8, not "+nang);
     }
     double tot=0.;
     for(int ia=0;ia<nang/2;ia++)

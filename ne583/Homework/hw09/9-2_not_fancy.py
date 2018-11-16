@@ -1,24 +1,19 @@
 import numpy as np
 from numpy.polynomial.legendre import leggauss
-from scipy.special import expn
 import matplotlib.pyplot as plt
 from itertools import product
 import tabulate
 
 
-nx = 10000
-nang = 4
-width = 50
-nmfp = 5
+NX = 100.0
+nang = 14
+width = 5.0
+nmfp = 5.0
 mfp = width / nmfp
 sigma = 1 / mfp
 
-# Get points for Gauss-Legendre quadrature
-mus, wts = leggauss(nang)
-
-
 # Define our auxiliary equations
-def step(psi_in, mu, s=0, nx=nx, width=width, sigma=sigma):
+def step(psi_in, mu, s=0, nx=NX, width=width, sigma=sigma):
     dx = width / nx
 
     mux = mu / dx
@@ -33,7 +28,7 @@ def step(psi_in, mu, s=0, nx=nx, width=width, sigma=sigma):
     return psi_avg, psi_out
 
 
-def diamond_difference(psi_in, mu, s=0, nx=nx, width=width, sigma=sigma):
+def diamond_difference(psi_in, mu, s=0, nx=NX, width=width, sigma=sigma):
     dx = width / nx
     mux = mu / dx
     hsig = sigma / 2
@@ -46,7 +41,7 @@ def diamond_difference(psi_in, mu, s=0, nx=nx, width=width, sigma=sigma):
     return psi_avg, psi_out
 
 
-def weighted_diamond_difference(psi_in, mu, s=0, nx=nx, width=width,
+def weighted_diamond_difference(psi_in, mu, s=0, nx=NX, width=width,
                                 sigma=sigma, alpha=0.8):
     dx = width / nx
     mux = mu / dx
@@ -67,7 +62,7 @@ def convergence(old_scalar, new_scalar):
         return np.max(tmp)
 
 
-def calc_right_leakage(nang, aux_function, nx=1000, make_plot=True,\
+def calc_right_leakage(nang, aux_function, nx=NX, make_plot=True,\
                        verbose=False):
     # Make placeholders for old and new scalar flux
     scalar = np.zeros(nx)
@@ -81,6 +76,11 @@ def calc_right_leakage(nang, aux_function, nx=1000, make_plot=True,\
     loop_counter = 0
     max_loops = 10000
 
+    # Get points for Gauss-Legendre quadrature
+    mus, wts = leggauss(nang)
+    mus = -1 * mus  # It loads the negative ones first
+    wts /= 2
+
     while convergence(old_scalar, scalar) > 0.000001 and \
             loop_counter < max_loops:
         loop_counter += 1
@@ -92,13 +92,14 @@ def calc_right_leakage(nang, aux_function, nx=1000, make_plot=True,\
         old_scalar = np.copy(scalar)
         scalar = np.zeros(nx)
 
-        left_leakage = 0
+        left_leakage = 1.0 / (wts.T @ np.abs(mus)) / 2.0
         right_leakage = 0
 
         # Loop over all the angles
         for mu, wt in zip(mus, wts):
+            left_leakage = 1.0 / (wts.T @ np.abs(mus)) / 2.0
             if mu > 0:
-                psi_in = 1.0
+                psi_in = left_leakage
 
                 # Loop over all the positions
                 for ix in range(nx):
@@ -131,7 +132,7 @@ def calc_right_leakage(nang, aux_function, nx=1000, make_plot=True,\
 
     if verbose:
         print(f"Converged after {loop_counter} iterations")
-        print(f"Right leakage should be {2*expn(3, 5)}")
+        print(f"Right leakage should be {0.0017556017855412775}")
         print(f"Right leakage is {right_leakage}")
         print(f"Left leakage is {left_leakage}")
 
@@ -140,9 +141,9 @@ def calc_right_leakage(nang, aux_function, nx=1000, make_plot=True,\
         plt.xlabel('x')
         plt.ylabel('Scalar flux')
         plt.yscale('log')
-        plt.title(f'$S_{nang}$, {aux_function.__name__}')
+        plt.title(f'$S_{{{nang}}}$, {aux_function.__name__}')
         plt.show()
-    
+
     return right_leakage
 
 
@@ -159,12 +160,12 @@ if __name__ == "__main__":
     }
 
     for nangles, fxn in product(angles_list, functions_list):
-        rl = calc_right_leakage(nangles, fxn, make_plot=False, nx=1000000)
+        rl = calc_right_leakage(nangles, fxn, make_plot=False, nx=100, verbose=False)
         res['Quadrature'].append(nangles)
         res['Aux Function'].append(fxn.__name__)
         res['Right Leakage'].append(rl)
-        analytic = 2 * expn(3, 5)
+        analytic = 0.0017556017855412775
         res['Analytic'].append(analytic)
         res['Error %'].append(100 * abs(rl - analytic) / analytic)
-    
+
     print(tabulate.tabulate(res, headers='keys'))
