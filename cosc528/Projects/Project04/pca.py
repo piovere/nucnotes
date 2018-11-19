@@ -22,14 +22,16 @@ class PCA():
         self.scaler_ = None
         self.num_pcs = num_pcs
         self.v_ = None
-        self.s_ = None
+        self.explained_variance_ = None
+        self.explained_variance_ratio_ = None
     
     def fit(self, x):
         self.scaler_ = Scaler().fit(x)
         xs = self.scaler_.transform(x)
         s, vt = la.svd(xs, full_matrices=False)[1:]
         self.v_ = vt.T
-        self.s_ = s
+        self.explained_variance_ = s ** 2
+        self.explained_variance_ratio_ = s ** 2 / np.sum(s ** 2)
     
     def transform(self, x):
         raise NotImplementedError
