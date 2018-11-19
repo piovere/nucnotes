@@ -7,7 +7,7 @@ class test02
         double width = 6. / totxs;
         double height = 6. / totxs;
 
-        int nang = 2;
+        int nang = 4;
         int nx = 6000;
         int ny = 6000;
 
@@ -17,8 +17,12 @@ class test02
 
         mu[0] = 0.3500212;
         mu[1] = 0.8688903;
+        mu[2] = - mu[0];
+        mu[3] = - mu[1];
         eta[0] = mu[0];
         eta[1] = mu[1];
+        eta[2] = mu[2];
+        eta[3] = mu[3];
 
         double dx = width / nx;
         double dy = height / ny;
@@ -54,8 +58,12 @@ class test02
                 // Initialize the average row
                 for (int ix=0; ix<nx; ix++) average[ix] = 0.;
 
-                for (int iy=0; iy<ny; iy++)
+                for (int iy0=0; iy0<ny; iy0++)
                 {
+                    int iy = iy0;
+                    // Top to bottom for negative eta
+                    if (eta[ieta]<0.) iy = ny - 1 - iy0;
+
                     double left = 0.0;
                     double right = 0.0;
 
@@ -63,8 +71,12 @@ class test02
                     // Initialize the top row
                     for (int ix=0; ix<nx; ix++) top[ix] = 0;
 
-                    for (int ix=0; ix<nx; ix++)
+                    for (int ix0=0; ix0<nx; ix0++)
                     {
+                        int ix = ix0;
+                        // Right to left for negative mu
+                        if (mu[imu]<0.0) ix = nx - 1 - ix0;
+
                         average[ix] = favg(m, e, dx, dy, totxs, source[iy][ix], left, bottom[ix]);
                         right = fnext(average[ix], left);
                         left = right;
@@ -78,7 +90,10 @@ class test02
                 }
                 for (int ix=0; ix<nx; ix++)
                 {
-                    tottop[ix] += wt * e * wt * m * bottom[ix];
+                    if (eta[ieta]>0.) {
+                        tottop[ix] += wt * e * wt * Math.abs(m) * bottom[ix];
+                    }
+                    
                 }
 
             }
@@ -93,8 +108,8 @@ class test02
                        double totxs, double s, double left, double bottom)
     {
         double num, den;
-        den = totxs + 2. * mu / dx + 2 * eta / dy;
-        num = 2 * mu / dx * left + 2 * eta / dy * bottom + s;
+        den = totxs + 2. * Math.abs(mu) / dx + 2 * Math.abs(eta) / dy;
+        num = 2 * Math.abs(mu) / dx * left + 2 * Math.abs(eta) / dy * bottom + s;
         return num / den;
     }
     static double fnext(double avg, double last)
