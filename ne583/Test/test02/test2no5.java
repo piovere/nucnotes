@@ -24,7 +24,7 @@ class test02
         double dy = height / ny;
 
         double[] tottop = new double[nx];
-        // Initialize the top matrix
+        // Initialize the top row
         for (int ix=0; ix<nx; ix++) tottop[ix] = 0.0;
 
         // Set the source matrix
