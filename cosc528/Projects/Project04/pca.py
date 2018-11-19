@@ -32,6 +32,7 @@ class PCA():
         self.v_ = vt.T
         self.explained_variance_ = s ** 2
         self.explained_variance_ratio_ = s ** 2 / np.sum(s ** 2)
+        return self
     
     def transform(self, x):
         raise NotImplementedError
