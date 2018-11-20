@@ -6,7 +6,7 @@
 \usepackage{siunitx}
 \usepackage{listings}
 \usepackage[citestyle=ieee,sorting=none,bibencoding=utf8,backend=biber]{biblatex}
-\usepackage{caption}
+%\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{tabularx}
 \usepackage{booktabs}
@@ -22,123 +22,109 @@
 \makeatother
 
 \author{J.R. Powers-Luhn}
-\title{Locally Weighted Regression}
-\date{October 25th, 2018}
+\title{Anomaly Detection}
+\date{November 8th, 2018}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
 
-A nonlinear regression technique called locally weighted regression is examined. This method fits linear-in-parameters curves to small regions around a prediction point. The importance of the training points to the model is scaled by a kernel function that operates on the distance between each training point and the point being predicted. Models are examined for a range of kernel width and polynomial order with the best model being selected by cross validation. A weighted regression model was generated that predicted body fat percentage to a root mean squared error of \SI{7.78}{\percent} body fat.
+Principal component analysis is employed as a mechanism to detect outlier measurements from temperature and sightglass level readings in a Slurry Red Ceramic Melter. Two statistical metrics are employed to detect outliers: Hotelling's $T^2$ and the $Q$-statistic. The process of setting thresholds for these statistics is discussed and a brief exploration of the use of these statistics in diagnostics is offered.
 
 \end{abstract}
 
 \section{Introduction}
 
-Regression techniques examined to this point have sought to produce a single model that describes a phenomenon across the training domain. This assumption is attractive in that the models produced may reflect physical relationships present in the system being modeled, but linear models that make this assumption may be insufficiently complex to predict accurately across the training domain. Locally weighted regression (LWR) instead approximates the training data as a series of connected linear relationships--that there exists some interval $\dd{\vec{x}}$ small enough that in that region a linear model is a close enough approximation. This trades physical meaning of the model for accuracy of prediction. It also introduces additional free parameters that must be selected via cross validation.
+Interrelated process failures fall into two categories. The failure can be within the model (meaning that the measured values are within the normal bounds in which the model was trained but do not follow the established relationships) or outside of the model (meaning that there is variation that cannot be explained by the model). A well designed fault detection system should be able to identify each of these types of faults.
 
-Linear (and linear-in-parameters) regression models examine an entire training set and attempt to fit a single model to it. A single computationally intense calculation (inverting $\mathbf{X}^T \mathbf{X}$, with the possible addition of some regularization term) is performed to determine regression coefficients, which can then be applied to future predictors. Linear models are limited to linear functions, however. No linear regression can fit non-linear (in parameters) functions, which is unfortunate as a number of these functions (e.g. $\sin$, $\exp$, and $\log$) appear in natural processes.
-
-These functions can be approximated as a series of locally linear functions, assuming that the underlying processes are continuous. By adding an importance or ``weight'' term to represent how representative a training point is of the area around the region being predicted, a locally representative model is generated. It is intuitively reasonable to assume that distant points (determined by the difference in the values of their associated predictor variables) should be less represented in the model and that the importance should go to zero as the distance measure approaches infinity. This allows for broad latitude in the selection of the weight function and the distance function. Any function that follows the following criteria \cite{cleveland1979robust} is suitable:
-
-\begin{itemize}
-\item $w(x) > 0$ for $|x| < 1$,
-\item $w(x) = w(-x)$, and
-\item $w(x)$ is non-increasing for $x \geq 0$.
-\end{itemize}
-
-Cleveland identified a fourth criterion (that $w(x) = 0$ for $|x| \geq 1$) which does not apply to Gaussian weighting function. This method was not practical until the advent of modern computers. Since a (possibly nonlinear) weight calculation must be performed for each point to be predicted and training point, it was not feasible to perform this calculation by hand for real data sets. Now these computations can be performed relatively quickly, making the practical use of this method possible. 
+Two statistics that can be used to detect these types of faults are Hotelling's $T^2$ (for detecting variation within a model) and $Q$-statistics (for detecting deviation from a model). These statistics measure deviation by using a principal component analysis transformation then calculating the deviation from the model. Simple thresholds can be set using known training data. Values that then exceed these thresholds can trigger alarms or investigation of the instruments that produced the measurements. Further, it is possible to calculate the relative contribution from each measurement in a data point to the $T^2$ and $Q$ statistic, assisting in diagnostics.
 
 \section{Methodology}
 
-LWR also changes the computational cost of the modeling process. In previous linear regression techniques the training data is used to generate regression coefficients and can then be discarded. The cost of making new predictions is low, as it simply involves multiplying the inputs by the coefficients. In LWR, the coefficients of the regression model depend on the inputs. The weights must be generated as a function of the distance between the point to be predicted and the training data. A kernel function is then applied to this distance, generating the weights (as in equation \ref{eq:weights}). This means that the model takes up more computer storage (since all of the training data must be stored) and the computational cost of making predictions is $\mathcal{O}(n_t n_p)$--it scales as the product of the number of training points and the number of prediction points. This shows another trade off in LWR: storing more training data may increase the variance of the model (by representing more regions of the training space), but it also increases the cost of making new predictions. 
+In order to measure a measurement's deviation within a model, Hotelling's $T^2$ (equation \ref{eq:t2}) statistic is used. A generalization of the student's T-test, this measures how far the measurement has departed from the center of the principal component space. 
 
 \begin{equation}
-\vec{w} = K(d(\mathbf{X}_t, \vec{x}), b)
-\label{eq:weights}
+T^2_i = t_i \lambda^-1 t_i^T
+\label{eq:t2}
 \end{equation}
 
-To implement locally weighted regression it is necessary to choose three parameters: the distance measurement to use, the 
-convolution kernel, and the bandwidth of that kernel. For the purposes of this paper only one distance measure (the $\ell_2$ 
-norm, or euclidean distance) and convolution kernel (the Gaussian distribution, equation \ref{eq:gauss}) were examined. Smaller bandwidths effectively 
-shrink the size of the training set. If the bandwidth is too small, local noise could overwhelm the underlying physical process. 
-Conversely, if the bandwidth is too large, the model becomes biased and under fits the data. An infinite bandwidth would weight 
-all training points equally, producing the same result as a linear regression.
-
-For models with input dimensions greater than one, the scale of each input is likely to vary (for example, one input might be in \si{\pascal} while another might be in \si{\micro\meter}). The varying scales would skew the distance calculation and underweight inputs with large scales. In order to counteract this effect, the input and prediction data were scaled to unit variance before performing any regression calculation.
+If there is variation outside of the model the residuals will be high. This is captured by a second statistic: the $Q$ statistic (equation \ref{eq:q}), which measures deviation outside the model.
 
 \begin{equation}
-w_i = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp{-\frac{||r||^2}{2 \sigma^2}}
-\label{eq:gauss}
+Q_i = x_i ( \mathbf{I} - \mathbf{P}_k \mathbf{P}_k^T ) x_i^T
+\label{eq:q}
 \end{equation}
+
+The values of these statistics, calculated on a ``known good'' training set, can be used to set alarm thresholds for future data.
+
+A PCA model was generated using a training data set of 450 samples of 21 values each. The number of principal components included in the model was determined by increasing the number of components and calculating the $T^2$ and $Q$ statistics. After two PC's were included the $T^2$ values did not change and the $Q$ statistics were reduced by an order of magnitude. Adding additional components did continue to lower as more components were added, but the rate decreased significantly--the next order-of-magnitude reduction threshold was not reached until 9 PC's were included.  A threshold was set based on the 95\% quantile of the data, giving values of \num{289} for $T^2$ and \num{16.3} for $Q$. Two test data sets were then projected into the same PC space and data points with $T^2$ and $Q$ values above the selected thresholds were identified.
+
+\section{Results}
+
+$T^2$ and $Q$ statistics for the training data are shown in figure \ref{fig:data_q_and_t2}. A model employing two principal components was selected, producing 95\% quantile thresholds of \num{289} for $T^2$ and \num{16.3} for $Q$.
+
+\begin{centering}
+\begin{figure}
+\centering
+\begin{center}
+	\includegraphics[width=0.48\textwidth]{data_q_and_t2}
+	\caption{$Q$ and $T^2$ statistics for selected PCA model. After 2
+			 \label{fig:data_q_and_t2}}
+\end{center}
+\end{figure}
+\end{centering}
+
+The same transformation and thresholds were applied to the test1 and test2 datasets. Scatterplots of the two principal component scores were plotted against each other. The test1 data (figure \ref{fig:test1_scatter}) essentially fit that model, with only a few values (identified in orange) exceeding the thresholds set.
 
 \begin{figure}[t!]
     \centering
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{{lwr_0.1}.png}
-        \caption{Bandwidth of 0.1}
+        \includegraphics[width=\linewidth]{{test1_t2}.png}
+        \caption{$T^2$ statistic}
     \end{subfigure}%
     ~ 
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{{lwr_1.0}.png}
-        \caption{Bandwidth of 1.0}
+        \includegraphics[width=\linewidth]{{test1_q}.png}
+        \caption{Q-statistic}
     \end{subfigure}
-    \caption{Comparison of the impact of bandwidth on locally weighted regression. These are first-order LWR fits with bandwidth of 0.1 (left) and 1.0 (right). While the figure on the right shows some response to the sine curve, it primarily fits the underlying linear trend. The figure on the right fits the model more precisely. Smaller bandwidths (not shown ) would begin to over fit the noise present in the data.}
-    \label{fig:bandwidth bias}
+    \caption{test1 data principal components plotted against each other. Only three scattered points exceed the $T^2$ threshold, while five exceed the $Q$ threshold (identified in orange). This is consistent with the training dataset.}
+    \label{fig:test1_scatter}
 \end{figure}
 
-As shown in figure \ref{fig:bandwidth bias}, the selection of bandwidth has a direct effect on the model's bias vs. variance trade off. In order to select the best bandwidth, a cross validation strategy is employed. The training data is used to generate models with varying parameters and the error from the test set is compared.
+The contribution of each variable to the high $T^2$ score was calculated. In the case of the first outlier no unusual contribution was noted, meaning that it might be the result of normal statistical fluctuation. The second outlier had relatively large contributions from the \numlist{17;19}th measurements. Finally the last outlier had a large contribution from the 5th measurement. These instruments should be examined for potential failure.
 
-\subsection{Kernel regression}
+A similar analysis was applied to the $Q$ statistics for the five outliers in that parameter. Few measurements stood out except in the case of the first outlying point which showed significant deviation in the 9th measurement and smaller (though still significant) deviation in the 19th. Again, these instruments and portions of the process should be examined more closely to search for a fault.
 
-The simplest form of LWR is a 0-th order regression or weighted moving average. The value of the dependent variables in the training set are multiplied by the weights (normalized to sum to one) and the sum of these values is the prediction ($\sum_i w_i x^t_i$). 
+The test2 data, on the other hand, deviated significantly from the model (figure \ref{fig:test2_scatter}). The $Q$-statistic value for nearly every one of the points exceeded the threshold and a large number of the points also exceeded their threshold. Extracting diagnostic information from these measurements would be difficult; the entire system should be examined.
 
-\subsection{Locally weighted regression}
+\begin{figure}[t!]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{{test2_t2}.png}
+        \caption{$T^2$ statistic}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{{test2_q}.png}
+        \caption{Q-statistic}
+    \end{subfigure}
+    \caption{test2 data principal components plotted against each other. Many of the points exceed the $T^2$ threshold; nearly all of them exceed the $Q$ threshold.}
+    \label{fig:test2_scatter}
+\end{figure}
 
-A more complex method for fitting the data is to fit higher order polynomial (order one or greater) to the weighted data. The linear regression equation is modified by inserting 
-
-\begin{equation}
-\vec{b} = (\mathbf{X}^T  \mathbf{W}^T  \mathbf{W}  \mathbf{X})^{-1} \mathbf{X}^T \mathbf{W}^T \mathbf{W} \vec{y}
-\label{eq:weighted regression}
-\end{equation}
-
-The $\mathbf{W}$ matrix in equation \ref{eq:weighted regression} is a diagonal matrix with the diagonal elements having the values $\sqrt{w_i}$ that has the effect of increasing the conditional number of the term to be inverted. This makes the equation more sensitive to small perturbations. This is counteracted by the fact that the data being inverted is more representative of the shape of the equation in the area around the training points. This trade off is balanced using cross validation to determine the generality of the models for different bandwidth parameters. As such, models with several different bandwidths (\numlist{0.15; 0.25; 0.50; 0.75; 1.00; 1.50; 2.00}) were trained on the training set and evaluated using the testing set.
-
-\subsection{Body Composition}
-A data set of body measurements (body fat percentage, age, weight, height, adiposity index, and ten 
-circumference measurements) was obtained \cite{Penrose1985}. Locally Weighted Regression was used to generate models to 
-predict body fat percentage from the other predictor variables.
-
-\section{Results}
-
-The RMSE of the models examined ranged from \numrange{7.48}{18.73}\% (full results in table \ref{tab:results}). As in pure regression, adding higher order polynomial terms increases the ability of the model to over fit the data. This is reflected in the worse performance of the order two models. This is corrected by increasing the bandwidth, but this could come at a cost of a loss of local predictive power. 
-
-\begin{table}[ht]
-\caption{Test set RMSE for models with varying order and bandwidth. Models with order zero represent kernel regression, or a weighted moving average.}
-\label{tab:results}
-\center
-\input{table}
-\end{table}
-
-\subsection{Model Selection}
-The model selected as best was a first order weighted linear regression with a bandwidth of \num{0.50}. This number is dimensionless since it represents the standard deviation of the distance between two scaled (and therefore unitless) vectors. It performed as well as a kernel regression with a bandwidth of two but was selected over that model due to it being slightly more representative of physical trends in the area around the predicted point.
-
-The selected model was evaluated on the validation set data, producing an RMSE of \num{7.78}\% body fat.
 \section{Conclusions}
 
-A model was generated to predict body fat percentage from body composition predictors using locally weighted regression. The error of this model was \num{7.78}\% body fat. This compared unfavorably to previously generated models on these data. The error was greater than that produced by a partial least squares model (\num{4.35}\%), principal component regression (\num{4.72}\%), a best-guess linear regression (\num{4.79}\%), and a ridge regression model (\num{4.34}\%). 
-
-The strength and weakness of this modeling technique is that it requires no physical understanding of the underlying data. In the presence of enough training data (enough such that the mean of the noise is zero in each local region) it is possible to select a small enough bandwidth to perfectly predict the data. One purpose of generating models, however, is to understand the underlying processes that produce the measured results. This technique does not provide anything in the way of physical understanding. While that does not detract from the utility of this technique, it should be approached with this limitation in mind.
-
-\printbibliography
+A PCA method for detecting anomalies in data was examined employing two statistical measures--Hotelling's $T^2$ and the $Q$-statistic. Thresholds were set for these statistics and were applied to two sets of data containing anomalies. In the first case, it was possible to extract information as to the source of anomalous readings, potentially assisting the diagnostic process. In the second case it was quickly apparent that the model no longer described the data and that the entire model should be re-examined from scratch. 
 
 \onecolumn
 \section{Appendix}
 Python code used to perform calculations and generate graphics.
 \lstset{frame=single}
-\lstinputlisting[language=Python]{Homework07.py}
+\lstinputlisting[language=Python]{HW08.py}
 
 \end{document}
