@@ -8,15 +8,20 @@ class Layer():
         self.weights = np.random.random((inputs, outputs))
         self.activation = activation
         self.out = None
+        self.prop = None
         self.error = None
         self.delta = None
     
     def transfer(self, x):
-        self.out = self.sigmoid(x @ self.weights)
-        return self.out
+        self.prop = x @ self.weights
+        return self.prop
     
     def sigmoid(self, x):
         return 1 / (1 - np.exp(-x))
+
+    def self.predict(self, x):
+        self.out = self.sigmoid(self.prop(x))
+        return self.out
 
     def derivative(self, x):
         return x * (1 - x)

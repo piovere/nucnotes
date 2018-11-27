@@ -3,24 +3,6 @@ import numpy.linalg as la
 from random import random
 
 
-def make_network(inputs, outputs, hidden_layers, neurons_per_layer, 
-                 max_error=None, max_epochs=None, max_improvement=None):
-    # Initialize weight matrix
-    raise NotImplementedError
-
-
-def print_error(network, x_train, y_train):
-    raise NotImplementedError
-
-
-def predict(network, x_predict):
-    raise NotImplementedError
-
-
-def confusion():
-    raise NotImplementedError
-
-
 class Layer():
     def __init__(self, inputs, outputs=None, activation='sigmoid'):
         if outputs is None:
