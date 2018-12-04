@@ -72,13 +72,15 @@ class Problem3
 //                                                                     *
 //***********************************************************************
       int ng=2;
-      System.out.println(" No. of spatial divisions in (0-5)?");
-      Scanner sc=new Scanner(System.in);
-      int ns=sc.nextInt();
+      //System.out.println(" No. of spatial divisions in (0-5)?");
+      //Scanner sc=new Scanner(System.in);
+      //int ns=sc.nextInt();
+      int ns=100;
       int nx=ns*10;
       double dx=50./nx;
-      System.out.println(" No. of angles?");
-      nang=sc.nextInt();
+      //System.out.println(" No. of angles?");
+      //nang=sc.nextInt();
+      nang=12;
       mu=new double[nang];
       wt=new double[nang];
       setQuadrature();
