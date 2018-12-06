@@ -75,7 +75,7 @@ class Problem3
       //System.out.println(" No. of spatial divisions in (0-5)?");
       //Scanner sc=new Scanner(System.in);
       //int ns=sc.nextInt();
-      int ns=100;
+      int ns=1000000;
       int nx=ns*10;
       double dx=50./nx;
       //System.out.println(" No. of angles?");
@@ -216,7 +216,7 @@ class Problem3
           System.out.println("FOR GROUP "+(ig+1));
           for(int ix=0;ix<nx;ix++)
           {
-            System.out.println("  Flux pt "+(ix+1)+" = "+scalar[ix][ig]);
+            //System.out.println("  Flux pt "+(ix+1)+" = "+scalar[ix][ig]);
           }
           System.out.println(" average of 45-50");
           double avephi=0;
@@ -229,11 +229,11 @@ class Problem3
       }
       for(int ig=0;ig<ng;ig++)
       {
-        System.out.println("  Left grp "+(ig+1)+" is "+left[ig]);
+        //System.out.println("  Left grp "+(ig+1)+" is "+left[ig]);
       }
       for(int ig=0;ig<ng;ig++)
       {
-        System.out.println(" Right grp "+(ig+1)+" is "+right[ig]);
+        //System.out.println(" Right grp "+(ig+1)+" is "+right[ig]);
       }
     }
     catch(Exception e)
