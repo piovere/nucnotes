@@ -2,8 +2,8 @@ import numpy as np
 from numpy.polynomial.legendre import leggauss
 import matplotlib.pyplot as plt
 
-NX = 1000
-NY = 1000
+NX = 100
+NY = 100
 TOTXS = 1.0
 WIDTH = 6 / TOTXS
 
