@@ -1,9 +1,6 @@
 import java.util.Scanner;
-class Problem3
+class Problem4
 {
-  static double[] wt;
-  static double[] mu;
-  static int nang;
   public static void main(String[] args)
   {
     try
@@ -55,9 +52,6 @@ class Problem3
 //                                                                     *
 //***********************************************************************
       double[] totxs={0.1,0.2};
-      double alpha=0.8;
-      double[] left=new double[2];
-      double[] right=new double[2];
       double[][] scat=new double[2][2];
       scat[0][0]=.05;
       scat[0][1]=0.04;
@@ -72,16 +66,11 @@ class Problem3
 //                                                                     *
 //***********************************************************************
       int ng=2;
-      System.out.println(" No. of spatial divisions in (0-5)?");
-      Scanner sc=new Scanner(System.in);
-      int ns=sc.nextInt();
+      System.out.println("Setting 1 division per 5cm");
+      //Scanner sc=new Scanner(System.in);
+      int ns=1; //sc.nextInt();
       int nx=ns*10;
       double dx=50./nx;
-      System.out.println(" No. of angles?");
-      nang=sc.nextInt();
-      mu=new double[nang];
-      wt=new double[nang];
-      setQuadrature();
       double[][] scalar=new double[nx][ng];
       for(int ix=0;ix<nx;ix++)
       {
@@ -92,6 +81,35 @@ class Problem3
       }
       double[] sext=new double[nx];
       double[] sourin=new double[nx];
+//**********************************************************************
+//                                                                     *
+//    For each group find the group-to-group tranfer (with the argument*
+//    being how far away the cell is from this one                     *
+//                                                                     *
+//**********************************************************************
+      double[][] transfer=new double[ng][nx];
+      for(int ig=0;ig<ng;ig++)
+      {
+        double dtau=totxs[ig]*dx;
+//**********************************************************************
+//                                                                     *
+//      Transfer to the same cell                                      *
+//                                                                     *
+//**********************************************************************
+        transfer[ig][0]=1 - (1. / 2. / dtau) * (1. - 2. * E(3, dtau));
+        //System.out.println(" Transfer ig "+ig+" 0 = "+transfer[ig][0]);
+//**********************************************************************
+//                                                                     *
+//      Transfer to other cells                                        *
+//                                                                     *
+//**********************************************************************
+        for(int ix=1;ix<nx;ix++)
+        {
+          double tau=(ix-1)*dtau;
+          transfer[ig][ix]=(1./(2.*dtau))*(E(3,tau)-2.*E(3,dtau+tau)+E(3,tau+2.*dtau));
+          //System.out.println(" Transfer ig "+ig+" "+ix+" = "+transfer[ig][ix]);
+        }
+      }
 //**********************************************************************
 //                                                                     *
 // Outer iterations: Loop over each group                              *
@@ -136,58 +154,24 @@ class Problem3
             scalarOld[ix]=scalar[ix][ig];
             scalar[ix][ig]=0.;
           }
-          left[ig]=0.;
-          right[ig]=0.;
 //**********************************************************************
 //                                                                     *
-//    Loop over directions                                             *
+//        Loop over source cells                                       *
 //                                                                     *
 //**********************************************************************
-          for(int ia=0;ia<nang;ia++)
+          for(int ix0=0;ix0<nx;ix0++)
           {
 //**********************************************************************
 //                                                                     *
-//      Loop over positions                                            *
+//        Loop over destination cells                                  *
 //                                                                     *
 //**********************************************************************
-            double phi0=0.;
-            double muabs=Math.abs(mu[ia]);
-            for(int ix0=0;ix0<nx;ix0++)
+            for(int ix=0;ix<nx;ix++)
             {
-              int ix=ix0;
-              if(mu[ia]<0.)ix=nx-1-ix0;
-//**********************************************************************
-//                                                                     *
-//        AUXILIARY: Find angular flux for cell and outgoing           *
-//                                                                     *
-//**********************************************************************
-//                                                                     *
-//          phi0 = Incoming angular flux                               *
-//          phi1 = Outgoing angular flux                               *
-//       fluxave = Average angular flux in cell                        *
-//    sourin[ix] =  Source in the cell                                 *
-//            mu = Absolute value of cosine of direction               *
-//            dx = Width of the cell                                   *
-//     totxs[ig] = Total cross section                                 *
-//                                                                     *
-//**********************************************************************
-              double phi1=(sourin[ix] + (muabs / dx - (1. - alpha) * totxs[ig]) * phi0) / (muabs / dx + alpha * totxs[ig]);
-              double fluxave=(1. - alpha) * phi0 + alpha * phi1;
-              phi0=phi1;
-//**********************************************************************
-//                                                                     *
-//        Add to scalar flux                                           *
-//                                                                     *
-//**********************************************************************
-              scalar[ix][ig]+=wt[ia]*fluxave;
+              int dif=Math.abs(ix0-ix);
+              double dcoll=transfer[ig][dif]*dx*(sourin[ix0]);
+              scalar[ix][ig]+=dcoll/dx/totxs[ig];
             }
-//**********************************************************************
-//                                                                     *
-//      Add to outgoing leakage                                        *
-//                                                                     *
-//**********************************************************************
-            if(mu[ia]<0.)left[ig]-=wt[ia]*phi0*mu[ia];
-            if(mu[ia]>0.)right[ig]+=wt[ia]*phi0*mu[ia];
           }
 //**********************************************************************
 //                                                                     *
@@ -225,14 +209,6 @@ class Problem3
           System.out.println("  Ave "+avephi);
         }
       }
-      for(int ig=0;ig<ng;ig++)
-      {
-        //System.out.println("  Left grp "+(ig+1)+" is "+left[ig]);
-      }
-      for(int ig=0;ig<ng;ig++)
-      {
-        //System.out.println(" Right grp "+(ig+1)+" is "+right[ig]);
-      }
     }
     catch(Exception e)
     {
@@ -240,60 +216,40 @@ class Problem3
     }
   }
 
-  static void setQuadrature() throws Exception
+  static double E(int order,double x)
   {
-    if(nang==2)
+    double ret=0.;
+    if(x == 0. && order == 3)
     {
-      wt[0]=1.;
-      mu[0]=.5773502691;
+      ret=0.5;
     }
-    else if(nang==4)
+    else if(order == 1)
     {
-      wt[0]=.6521451549;
-      wt[1]=.3478548451;
-      mu[0]=.3399810435;
-      mu[1]=.8611363115;
-    }
-    else if(nang==8)
-    {
-      wt[0]=.3626837834;
-      wt[1]=.3137066459;
-      wt[2]=.2223810344;
-      wt[3]=.1012285363;
-      mu[0]=.1834346424;
-      mu[1]=.5255324099;
-      mu[2]=.7966664774;
-      mu[3]=.9602898564;
-    }
-    else if (nang==12)
-    {
-      wt[0] = 0.04717534;
-      wt[1] = 0.10693933;
-      wt[2] = 0.16007833;
-      wt[3] = 0.20316743;
-      wt[4] = 0.23349254;
-      wt[5] = 0.24914705;
-
-      mu[0] = 0.98156063;
-      mu[1] = 0.90411726;
-      mu[2] = 0.76990267;
-      mu[3] = 0.58731795;
-      mu[4] = 0.3678315;
-      mu[5] = 0.12523341;
+      if(x<1)
+      {
+        double a0=-.57721566;
+        double a1=.9999193;
+        double a2=-.24991055;
+        double a3=.05519968;
+        double a4=-.00976004;
+        double a5=.00107857;
+        ret=-Math.log(x)+a0+a1*x+a2*x*x+a3*x*x*x+a4*x*x*x*x+a5*x*x*x*x*x;
+      }
+      else
+      {
+        double a1=2.334733;
+        double a2=.250621;
+        double b1=3.330657;
+        double b2=1.681534;
+        ret=(x*x+a1*x+a2)/(x*x+b1*x+b2)/x/Math.exp(x);
+      }
     }
     else
     {
-      throw new Exception(" Quadrature order must be 2,4 or 8");
+      ret=(Math.exp(-x)-x*E(order-1,x))/(order-1.);
     }
-    double tot=0.;
-    for(int ia=0;ia<nang/2;ia++)
-    {
-      mu[ia+nang/2]=-mu[ia];
-      wt[ia]/=2.;
-      wt[ia+nang/2]=wt[ia];
-      tot+=wt[ia]+wt[ia+nang/2];
-    }
-    if(Math.abs(tot-1.)>.00001)throw new Exception("Wts add to "+tot);
+    //System.out.println(" E  "+order+","+x+" = "+ret);
+    return ret;
   }
 }
 
