@@ -1,0 +1,3 @@
+[submodule "ne697bayes/ThinkBayes"]
+	path = ne697bayes/ThinkBayes
+	url = git@github.com:piovere/ThinkBayes.git
